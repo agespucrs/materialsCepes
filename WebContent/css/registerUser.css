@@ -25,6 +25,7 @@ input[type=text], input[type=password] {
 	margin-top: 5px;
 	height: 25px;
 	display: block;
+	margin-left: 10px;
 }
 
 .cadastrar input{
