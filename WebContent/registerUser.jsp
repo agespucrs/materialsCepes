@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" href="css/comum.css" />
-	<title>Insert title here</title>
+	<link rel="stylesheet" href="css/registerUser.css" />
+	<title>Cadastrar Usuário</title>
 	<script type="text/javascript">
 	
 			function cadastrar() {
@@ -20,7 +20,7 @@
 <body>
 	<form method="post" action="">
 		<jsp:include page="/template/msg.jsp"></jsp:include>
-		<fieldset class="fieldset_login">
+		<fieldset class="fieldset_register">
 			<legend>Registrar Usuário</legend>
 			<div class="campo">
 				<label for="matricula">Matricula</label> <sup class="red">*</sup> <input type="text" id="matricula" name="matricula" maxlength="15" value="${param.matricula}" />
@@ -42,12 +42,12 @@
 				<label for="senha">Senha</label> <sup class="red">*</sup> <input type="password" id="senha" name="senha" maxlength="15" value="${param.senha}" />
 			</div>
 
-			<div class="campo">
+			<div class=limpar>
 				<input type="reset" value="Limpar Campos" id="limpar" name="limpar" />
 			</div>
 			
-			<div class="campo">
-				<input value="Cadastrar" id="cadastrar" name="cadastrar" onclick="cadastrar()"/>
+			<div class="cadastrar">
+				<input type="button" value="Cadastrar" id="cadastrar" name="cadastrar" onclick="cadastrar()"/>
 			</div>
 
 		</fieldset>
