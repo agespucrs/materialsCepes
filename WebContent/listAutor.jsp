@@ -39,15 +39,7 @@
 				<div id="ordenar">Ordenar: <select id="orderBy" name="orderBy"><option>Campo1</option></select></div>
 			</div>
 			
-			<div id="titleList"> Listagem de Livros</div>
-			
-			<div id="fieldCamposExtras">
-				<input id="cddvd" name="cddvd" type="checkbox"> CD/DVD 
-				<input id="ebook" name="ebook" type="checkbox"> E-Book
-				<select id="editora" name="editora"><option>Editora</option></select>
-				<select id="autor" name="autor"><option>Autor</option></select>	
-			</div>
-			
+			<div id="titleList"> Listagem de Autor</div>
 			
 			<div id="acaoEmMassa">
 			Ação em massa: 
@@ -57,66 +49,41 @@
 			
 			<table id="tbLista" border="1">
 			<tr>
-				<td></td>
-				<td>Código ISBN</td>
-				<td>Título</td>
-				<td>Edição</td>
-				<td>Ano</td>
-				<td>Situação</td>
-				<td>Data</td>
+				<td><input id="todos" name="todos" type="checkbox" /></td>
+				<td>Nome</td>
+				<td>Data Cadastro</td>
 				<td>Ações</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>José Bonifácio</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>José Bonifácio</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>José Bonifácio</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>José Bonifácio</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>José Bonifácio</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
-			
 			</table>
 			
 			<div id="totalRegistros"> Total de registros: 2</div>
