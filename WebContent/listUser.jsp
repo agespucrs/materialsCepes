@@ -14,6 +14,7 @@
 #tbLista { clear: both; width: 100%; margin-top: 10px; float: left; border: 1px solid #e4e4e4; }
 .img { width: 20px; }
 #totalRegistros { float: right; }
+#acaoEmMassa { width: 420px; display: block; float: right;}
 </style>
 
 </head>
@@ -33,82 +34,68 @@
 		<fieldset class="fieldset_listLivros">
 			
 			<div class="content">
-				<input type="text" /> <img style="width: 18px;" src="img/search.png" />
-				<select><option>Campo1</option></select>
-				<div id="ordenar">Ordenar: <select><option>Campo1</option></select></div>
+				<input id="search" name="search" type="text" /> <img style="width: 18px;" src="img/search.png" />
+				<select id="field" name="field"><option>Campo1</option></select>
+				<div id="ordenar">Ordenar: <select id="orderBy" name="orderBy"><option>Campo1</option></select></div>
 			</div>
 			
-			<div id="titleList"> Listagem de Livros</div>
+			<div id="titleList"> Listagem de Usuários</div>
 			
-			<div id="fieldCamposExtras">
-				<input type="checkbox"> CD/DVD 
-				<input type="checkbox"> E-Book
-				<select><option>Editora</option></select>
-				<select><option>Autor</option></select>	
+			<div id="acaoEmMassa">
+			Ação em massa: 
+			<select><option>Excluir</option></select>
+			<input type="button" value="OK"/>	
 			</div>
 			
 			<table id="tbLista" border="1">
 			<tr>
 				<td></td>
-				<td>Código ISBN</td>
-				<td>Título</td>
-				<td>Edição</td>
-				<td>Ano</td>
-				<td>Situação</td>
-				<td>Data</td>
+				<td>Nome</td>
+				<td>E-mail</td>
+				<td>Login</td>
+				<td>Data Cadastro</td>
 				<td>Ações</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>Leonardo Bittencourt</td>
+				<td>leonardo@acad.pucrs.br</td>
+				<td>leonardo.bit</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>Leonardo Bittencourt</td>
+				<td>leonardo@acad.pucrs.br</td>
+				<td>leonardo.bit</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>Leonardo Bittencourt</td>
+				<td>leonardo@acad.pucrs.br</td>
+				<td>leonardo.bit</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>Leonardo Bittencourt</td>
+				<td>leonardo@acad.pucrs.br</td>
+				<td>leonardo.bit</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
+				<td>Leonardo Bittencourt</td>
+				<td>leonardo@acad.pucrs.br</td>
+				<td>leonardo.bit</td>
 				<td>10/01/2015</td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
-			
 			</table>
 			
 			<div id="totalRegistros"> Total de registros: 2</div>
