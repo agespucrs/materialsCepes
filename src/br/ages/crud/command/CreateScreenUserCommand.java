@@ -21,7 +21,7 @@ public class CreateScreenUserCommand implements Command {
 		if (isEdit != null && !"".equals(isEdit)) {
 			proxima = "user/editUser.jsp";
 		} else {
-			proxima = "user/addUser.jsp";
+			proxima = "user/registerUser.jsp";
 		}
 		try {
 

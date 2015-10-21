@@ -92,10 +92,12 @@ public class UsuarioBO {
 			}
 
 			// flag administrador
+			/*
 			if (usuario.getAdministrador() == null || "".equals(usuario.getAdministrador())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrador").concat("<br/>"));
 			}
+			*/
 
 			// valida se Pessoa esta ok
 			if (!isValido) {
