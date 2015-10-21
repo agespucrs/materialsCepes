@@ -13,6 +13,10 @@ body, input {
 }
 
 a.tooltip {
+	margin-top: -20px;
+	margin-right: 25px;
+	float: right;
+	color: black;
 	outline: none; 
 }
 
@@ -88,10 +92,7 @@ legend {
 }
 
 .campo a {
-	margin-top: -20px;
-	margin-right: -10px;
-	float: right;
-	color: black;
+	
 }
 
 .main {

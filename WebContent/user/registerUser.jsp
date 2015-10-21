@@ -17,10 +17,6 @@
 				formCadastro.submit();
 			}
 			
-			function alerta(){
-				 alert("Ta funcionando");
-			}
-		
 		</script>
 </head>
 <body>
@@ -32,8 +28,8 @@
 			<div class="campo">
 				<label for="matricula">Matricula</label> <sup class="red">*</sup> 
 				<input type="text" id="matricula" name="matricula" maxlength="15" value="${param.matricula}" />
+			</div>	
 				<a href="#" class="tooltip"><img src="" height="5" width="5"/><span>Matrícula da PUCRS</span></a> 
-			</div>
 			
 			<div class="campo">
 				<label for="nome">Nome</label> <sup class="red">*</sup> 
@@ -53,8 +49,9 @@
 			<div class="campo">
 				<label for="senha">Senha</label> <sup class="red">*</sup>
 				<input type="password" id="senha" name="senha" maxlength="15" value="${param.senha}" />
+			</div>	
 				<a href="#" class="tooltip"><img src="" height="5" width="5"/><span>Texto de no mínimo 8 caractéres, contendo maiúsculas, minúsculas e números</span></a> 
-			</div>
+			
 
 			
 			
