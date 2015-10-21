@@ -168,3 +168,23 @@ SELECT p.*, e.logradouro, c.descricao, uf.descricao FROM ages_e.tb_pessoa p
    on e.cod_cidade = c.id_cidade
    inner join tb_uf uf
    on c.cod_estado = uf.id_uf;
+   
+CREATE TABLE tb_livro (
+ID_LIVRO numeric(8) NOT NULL AUTO_INCREMENT,
+TITULO varchar(255) NOT NULL,
+SUBTITULO varchar(255) NOT NULL,
+DATA_CADASTRO date NOT NULL,
+PRECO numeric(8) ,
+LINGUA varchar(255) NOT NULL,
+CODIGO_ISBN numeric(20) NOT NULL,
+EDICAO numeric(4) NOT NULL,
+ANO date ,
+PAGINAS int(4) ,
+VIDEO boolean ,
+CD_DVD boolean ,
+E_BOOK boolean ,
+DESCRICAO text 
+PRIMARY KEY (ID_LIVRO,CODIGO_ISBN),
+  UNIQUE KEY CODISBN_UNIQUE (CODIGO_ISBN)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
