@@ -18,8 +18,8 @@ public class CreateScreenUserCommand implements Command {
 		
 		// Verifica se abre tela edição de pessoa ou de adição de pessoa.
 		String isEdit = request.getParameter("isEdit");
-		if (isEdit != null && !"".equals(isEdit)) {
-			proxima = "user/editUser.jsp";
+		if (isEdit != null && "sim".equals(isEdit)) {
+			proxima = "user/alterUser.jsp";
 		} else {
 			proxima = "user/registerUser.jsp";
 		}
