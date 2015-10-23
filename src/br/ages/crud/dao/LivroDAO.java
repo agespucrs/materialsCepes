@@ -23,7 +23,8 @@ public class LivroDAO {
 	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	private ArrayList<Livro> listarLivros;
-
+	private Livro consultarLivro;
+	
 	public LivroDAO() {
 		listarLivros = new ArrayList<>();
 	}
@@ -113,6 +114,31 @@ public class LivroDAO {
 		}
 		return listarLivros;
 	}
+	
+	public Livro consultarLivro(Integer idLivro) throws PersistenciaException, SQLException {
+		
+		Connection conexao = null;
+
+		try {
+
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT FROM TB_LIVRO WHERE ID_LIVRO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idLivro);
+
+			statement.execute();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return consultarLivro;
+	}
+	
 
 	public void removerLivro(Integer idLivro) throws PersistenciaException {
 		Connection conexao = null;
@@ -120,7 +146,7 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("DELETE FROM TB_LIVRO WHERE ID_LIVRO= ?");
+			sql.append("DELETE FROM TB_LIVRO WHERE ID_LIVRO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
