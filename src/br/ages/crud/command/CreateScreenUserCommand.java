@@ -1,10 +1,12 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.dao.UsuarioDAO;
+import br.ages.crud.model.Usuario;
 
 public class CreateScreenUserCommand implements Command {
 
@@ -20,11 +22,12 @@ public class CreateScreenUserCommand implements Command {
 		String isEdit = request.getParameter("isEdit");
 		if (isEdit != null && "sim".equals(isEdit)) {
 			proxima = "user/alterUser.jsp";
+
 		} else {
 			proxima = "user/registerUser.jsp";
 		}
+			
 		try {
-
 
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());

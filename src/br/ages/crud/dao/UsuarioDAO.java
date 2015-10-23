@@ -101,6 +101,34 @@ public class UsuarioDAO {
 		return listarUsuarios;
 	}
 
+	public void alterarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
+		Connection conexao = null;
+		 try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_USUARIO SET USUARIO = ?, SENHA = ?, MATRICULA = ?, NOME = ?, EMAIL = ?");
+			sql.append("WHERE ID_USUARIO = ?;");
+			
+
+			// altera o usuario com os parametros da classe
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, usuario.getUsuario());
+			statement.setString(2, usuario.getSenha());
+			statement.setString(3, usuario.getMatricula());
+			statement.setString(4, usuario.getNome());
+			statement.setString(5, usuario.getEmail());
+			statement.setInt(6, usuario.getIdUsuario());
+
+			statement.executeUpdate();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		} 
+	}
+	
 	public void cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
 		try {

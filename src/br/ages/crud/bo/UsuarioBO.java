@@ -213,5 +213,13 @@ public class UsuarioBO {
 			throw new NegocioException(e);
 		}
 	}
+	
+	public void alterarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
+		try{
+			usuarioDAO.alterarUsuario(usuario);
+		} catch (PersistenciaException | SQLException e) {
+			throw new PersistenciaException(e);
+		}
+	}
 
 }
