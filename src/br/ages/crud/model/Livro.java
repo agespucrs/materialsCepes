@@ -15,7 +15,7 @@ public class Livro implements Serializable {
 		private String titulo;
 		private String subtitulo;
 		private Date dataCadastro;
-		private float preco;
+		private long preco;
 		private String lingua;
 		private String codigoISBN;
 		private Integer edicao;
@@ -58,12 +58,12 @@ public class Livro implements Serializable {
 			this.dataCadastro = dataCadastro;
 		}
 
-		public float getPreco() {
+		public long getPreco() {
 			return preco;
 		}
 
-		public void setPreco(float preco) {
-			this.preco = preco;
+		public void setPreco(long l) {
+			this.preco = l;
 		}
 
 		public String getCodigoISBN() {
@@ -82,8 +82,8 @@ public class Livro implements Serializable {
 			this.edicao = edicao;
 		}
 
-		public Date getAno() {
-			return ano;
+		public java.sql.Date getAno() {
+			return (java.sql.Date) ano;
 		}
 
 		public void setAno(Date ano) {
