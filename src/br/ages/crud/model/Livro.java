@@ -25,6 +25,7 @@ public class Livro implements Serializable {
 		private boolean cd_dvd;
 		private boolean e_book;
 		private String descricao;
+		private String bruxura_revista;
 									
 		public int getIdLivro() {
 			return idLivro;
@@ -40,6 +41,14 @@ public class Livro implements Serializable {
 
 		public void setTitulo(String titulo) {
 			this.titulo = titulo;
+		}
+
+		public String getBruxura_revista() {
+			return bruxura_revista;
+		}
+
+		public void setBruxura_revista(String bruxura_revista) {
+			this.bruxura_revista = bruxura_revista;
 		}
 
 		public String getSubtitulo() {

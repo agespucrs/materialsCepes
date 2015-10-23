@@ -38,8 +38,8 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO)");
-			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
+			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA)");
+			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 			java.util.Date utilDate = new java.util.Date();
 		    java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
@@ -58,6 +58,7 @@ public class LivroDAO {
 			statement.setBoolean(11, livro.isCd_dvd());
 			statement.setBoolean(12, livro.isE_book());
 			statement.setString(13, livro.getDescricao());
+			statement.setString(14, livro.getBruxura_revista());
 
 			statement.executeUpdate();
 
@@ -101,6 +102,7 @@ public class LivroDAO {
 				dto.setVideo(resultset.getBoolean("VIDEO"));
 				dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
+				dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
 				listarLivros.add(dto);
 			}
 

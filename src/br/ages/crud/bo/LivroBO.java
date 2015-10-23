@@ -1,0 +1,62 @@
+package br.ages.crud.bo;
+
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import br.ages.crud.dao.LivroDAO;
+import br.ages.crud.exception.NegocioException;
+import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Livro;
+import br.ages.crud.util.MensagemContantes;
+import br.ages.crud.validator.LoginValidator;
+import br.ages.crud.validator.SenhaValidator;
+
+public class LivroBO {
+	
+	LivroDAO livroDAO = null;
+
+	public LivroBO() {
+		livroDAO = new LivroDAO();
+	}
+
+	
+	public void cadastraLivro(Livro livro) throws NegocioException, SQLException, ParseException {
+
+		try {
+			livroDAO.cadastrarLivro(livro);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+
+	}
+
+	public List<Livro> listarLivro() throws NegocioException   {
+
+		List<Livro> listLivro = null;
+
+		try {
+			listLivro = livroDAO.listarLivros();
+		} catch (PersistenciaException | SQLException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+
+		return listLivro;
+
+	}
+
+	public void removerLivro(Integer idLivro) throws NegocioException {
+		try {
+			livroDAO.removerLivro(idLivro);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
+
+}
+

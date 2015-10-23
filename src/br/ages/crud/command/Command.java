@@ -1,6 +1,7 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,8 +19,9 @@ public interface Command {
 	 * @param request
 	 * @return
 	 * @throws SQLException 
+	 * @throws ParseException 
 	 * @throws NegocioException
 	 */
 
-	public String execute(HttpServletRequest request) throws SQLException ;
+	public String execute(HttpServletRequest request) throws SQLException, ParseException ;
 }
