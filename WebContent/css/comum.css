@@ -26,9 +26,7 @@ select {
 	width: 300px;
 }
 
-input[type=text], input[type=password] {
-	width: 300px;
-}
+
 
 input[type=submit], input[type=reset], input[type=button] {
 	width: 100px;

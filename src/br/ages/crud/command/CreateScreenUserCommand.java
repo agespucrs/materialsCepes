@@ -1,11 +1,11 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.dao.UsuarioDAO;
+import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Usuario;
 
 public class CreateScreenUserCommand implements Command {
@@ -14,19 +14,25 @@ public class CreateScreenUserCommand implements Command {
 
 	private UsuarioDAO cadastroDao;
 
-	public String execute(HttpServletRequest request) throws SQLException {
+	public String execute(HttpServletRequest request) throws SQLException, PersistenciaException {
 
 		cadastroDao = new UsuarioDAO();
-		
+
 		// Verifica se abre tela edição de pessoa ou de adição de pessoa.
 		String isEdit = request.getParameter("isEdit");
 		if (isEdit != null && "sim".equals(isEdit)) {
+
+			Usuario usuario = cadastroDao.consultaUsuario(request.getParameter("id_usuario"));
+
+			
+			request.setAttribute("usuario", usuario);
+
 			proxima = "user/alterUser.jsp";
 
 		} else {
 			proxima = "user/registerUser.jsp";
 		}
-			
+
 		try {
 
 		} catch (Exception e) {
