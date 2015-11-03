@@ -16,14 +16,14 @@
 	function alterar() {
 		//chamar funcao de verificar campos
 		var formCadastro = document.forms[0];
-		formCadastro.action = "main?acao=alterUser&id_usuario="+<%=usuario.getIdUsuario()%>;
+		formCadastro.action = "main?acao=alterUser&id_usuario="<%=usuario.getIdUsuario()%>;
 		formCadastro.submit();
 	}
 </script>
 </head>
 <body>
 	<jsp:include page="/template/head.jsp"></jsp:include>
-	<form method="post" action="">
+	<form method="post" action="main?acao=alterUser&id_usuario=<%=usuario.getIdUsuario()%>">
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 
 		<fieldset class="fieldset_register">
@@ -65,8 +65,7 @@
 					números</span></a>
 
 			<div class="cadastrar">
-				<input type="button" value="Alterar" id="alterar" name="alterar"
-					onclick="alterar()" />
+				<input type="submit" value="Alterar" id="alterar" name="alterar" />
 			</div>
 
 			<div class=limpar>

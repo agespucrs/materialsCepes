@@ -41,8 +41,8 @@ public class AlterUserCommand implements Command {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
 			} else { // alteracao de usuario com sucesso
 				usuarioBO.alterarUsuario(user);
-				proxima = "listUser.jsp";
-				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?", user.getNome()));
+				proxima = "main?acao=listUser";
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_ALTERADO_USUARIO.replace("?", user.getNome()));
 
 			}
 		} catch (Exception e) {

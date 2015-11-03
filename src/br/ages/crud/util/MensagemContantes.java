@@ -34,6 +34,8 @@ public class MensagemContantes {
 	
 	public static final String MSG_SUC_CADASTRO_USUARIO = "Cadastro usuário: ?, efetuado com sucesso!";
 	
+	public static final String MSG_SUC_ALTERADO_USUARIO = "Alteração usuário: ?, efetuado com sucesso!";
+	
 	public static final String MSG_SUC_REMOVE_USUARIO= "Usuario: ?, removido com sucesso!";
 	
 	public static final String MSG_SUC_ATUALIZADA_PESSOA = "Atualização de Pessoa efetuada com sucesso!";

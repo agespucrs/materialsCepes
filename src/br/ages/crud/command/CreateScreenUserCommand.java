@@ -23,7 +23,6 @@ public class CreateScreenUserCommand implements Command {
 		if (isEdit != null && "sim".equals(isEdit)) {
 
 			Usuario usuario = cadastroDao.consultaUsuario(request.getParameter("id_usuario"));
-
 			
 			request.setAttribute("usuario", usuario);
 
