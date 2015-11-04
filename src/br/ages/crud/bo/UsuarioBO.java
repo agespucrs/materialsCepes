@@ -46,7 +46,7 @@ public class UsuarioBO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new NegocioException(e);
 		}
 
