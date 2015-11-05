@@ -39,25 +39,25 @@
 
 			<div class="campo">
 				<label for="nome">Nome</label> <sup class="red">*</sup> <input
-					type="text" id="nome" name="nome" maxlength="15"
+					type="text" id="nome" name="nome" maxlength="120"
 					value="<%=usuario.getNome()%>" />
 			</div>
 
 			<div class="campo">
 				<label for="email">Email</label> <sup class="red">*</sup> <input
-					type="text" id="email" name="email" maxlength="15"
+					type="text" id="email" name="email" maxlength="120"
 					value="<%=usuario.getEmail()%>" />
 			</div>
 
 			<div class="campo">
 				<label for="usuario">Usuário</label> <sup class="red">*</sup> <input
-					type="text" id="usuario" name="usuario" maxlength="15"
+					type="text" id="usuario" name="usuario" maxlength="150"
 					value="<%=usuario.getUsuario()%>" />
 			</div>
 
 			<div class="campo">
 				<label for="senha">Senha</label> <sup class="red">*</sup> <input
-					type="password" id="senha" name="senha" maxlength="15"
+					type="password" id="senha" name="senha" maxlength="8"
 					value="<%=usuario.getSenha()%>" />
 			</div>
 			<a href="#" class="tooltip"><img src="" height="5" width="5" /><span>Texto
@@ -67,9 +67,8 @@
 			<div class="cadastrar">
 				<input type="submit" value="Alterar" id="alterar" name="alterar" />
 			</div>
-
 			<div class=limpar>
-				<input type="reset" value="Limpar" id="limpar" name="limpar" />
+				<input type="reset" value="Voltar" id="limpar" name="limpar" />
 			</div>
 
 		</fieldset>
