@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.ages.crud.command.AddUserCommand;
+import br.ages.crud.command.AlterUserCommand;
 import br.ages.crud.command.Command;
 import br.ages.crud.command.CreateScreenUserCommand;
 import br.ages.crud.command.ListUserCommand;
@@ -32,6 +33,8 @@ public class MainServlet extends HttpServlet {
 		comandos.put("addUser", new AddUserCommand());
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		comandos.put("listUser", new ListUserCommand());
+		comandos.put("alterUser", new AlterUserCommand());
+		
 	}
 
 	@Override

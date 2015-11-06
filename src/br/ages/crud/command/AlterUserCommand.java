@@ -8,7 +8,7 @@ import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
 
-public class AddUserCommand implements Command {
+public class AlterUserCommand implements Command {
 
 
 	private String proxima;
@@ -17,19 +17,16 @@ public class AddUserCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		usuarioBO = new UsuarioBO();
-		proxima = "user/registerUser.jsp";
+		this.usuarioBO = new UsuarioBO();
+		this.proxima = "user/alterUser.jsp";
 
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		String matricula = request.getParameter("matricula");
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
-		String administrador = request.getParameter("administrador");
+		Integer idUsuario = Integer.parseInt(request.getParameter("id_usuario"));
 		
-		Date dataCadastro = new Date();
-	
-
 		try {
 			Usuario user = new Usuario();
 			user.setNome(nome);
@@ -37,17 +34,15 @@ public class AddUserCommand implements Command {
 			user.setMatricula(matricula);
 			user.setUsuario(usuario);
 			user.setSenha(senha);
-			user.setAdministrador(administrador);
-			
-			user.setDataCadastro(dataCadastro);
+			user.setIdUsuario(idUsuario);
 			
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
 			if (!isValido) {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
-			} else { // cadastro de pessoa com sucesso
-				usuarioBO.cadastraUsuario(user);
+			} else { // alteracao de usuario com sucesso
+				usuarioBO.alterarUsuario(user);
 				proxima = "main?acao=listUser";
-				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?", user.getNome()));
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_ALTERADO_USUARIO.replace("?", user.getNome()));
 
 			}
 		} catch (Exception e) {

@@ -1,0 +1,102 @@
+@CHARSET "ISO-8859-1";
+
+body, input {
+	font-family: Verdana, Segoe UI, Arial;
+	font-size: 12pt;
+}
+
+.red {
+	font-size: 14px;
+	font-weight: bold;
+	color: red;
+	float:left;
+}
+
+a.tooltip {
+	margin-top: -20px;
+	margin-right: 25px;
+	float: right;
+	color: black;
+	outline: none; 
+}
+
+a.tooltip:hover {
+	text-decoration:none;
+}
+ 
+a.tooltip span {
+    z-index:10;display:none; padding:14px 20px;
+    margin-top:-30px; margin-left:28px;
+    width:300px; line-height:16px;
+}
+a.tooltip:hover span{
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;
+}
+
+input[type=text], input[type=password] {
+	width: 300px;
+}
+
+.limpar input{
+	font-weight: bold;
+	float: left;
+	padding: 2px 10px;
+	margin: 5px;
+	border: 1px solid #CCC;
+	margin-top: 5px;
+	height: 25px;
+	display: block;
+	margin-left: 10px;
+}
+
+.cadastrar input{
+	font-weight: bold;
+	float: right;
+	padding: 2px 10px;
+	margin: 5px;
+	border: 1px solid #CCC;
+	margin-top: 5px;
+	height: 25px;
+	display: block;
+}
+	
+.fieldset_register {
+	padding: 25px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -100px 0 0 -150px;
+	width: 350px;
+	height: 330px;
+	background-color: #F7F6F1;
+}
+
+legend {
+	font-style: italic;
+}
+
+.campo input {
+	border: 1px solid #CCC;
+	margin-top: 5px;
+	height: 25px;
+	display: block;
+	width: 333px;
+	margin-bottom: 5px;
+}
+
+.campo label {
+    display: block;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.campo a {
+	
+}
+
+.main {
+	min-height: 650px;
+	clear: both;
+}
+
