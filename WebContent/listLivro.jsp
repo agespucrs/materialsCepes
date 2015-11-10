@@ -67,10 +67,62 @@
 				<td>Data</td>
 				<td>Ações</td>
 			</tr>
+			
 			<%
 				List<Livro> listaLivros = (List<Livro>) request.getAttribute("listaLivros");
 				for (Livro livro : listaLivros) {
 			%>
+
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>12300123</td>
+				<td>O senhor dos anéis</td>
+				<td>2</td>
+				<td>2008</td>
+				<td>Emprestado</td>
+				<td>10/01/2015</td>
+				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>12300123</td>
+				<td>O senhor dos anéis</td>
+				<td>2</td>
+				<td>2008</td>
+				<td>Emprestado</td>
+				<td>10/01/2015</td>
+				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>12300123</td>
+				<td>O senhor dos anéis</td>
+				<td>2</td>
+				<td>2008</td>
+				<td>Emprestado</td>
+				<td>10/01/2015</td>
+				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>12300123</td>
+				<td>O senhor dos anéis</td>
+				<td>2</td>
+				<td>2008</td>
+				<td>Emprestado</td>
+				<td>10/01/2015</td>
+				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>12300123</td>
+				<td>O senhor dos anéis</td>
+				<td>2</td>
+				<td>2008</td>
+				<td>Emprestado</td>
+				<td>10/01/2015</td>
+				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
+			</tr>
 			
 			<tr>
 				<td><td><input type="checkbox" /></td>

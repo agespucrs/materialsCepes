@@ -134,8 +134,25 @@ public class LivroDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
-
-			statement.execute();
+			//statement.execute();
+			ResultSet resultset = statement.executeQuery();
+			
+			Livro dto = new Livro();
+			dto.setIdLivro(resultset.getInt("ID_LIVRO"));
+			dto.setTitulo(resultset.getString("TITULO"));
+			dto.setSubtitulo(resultset.getString("SUBTITULO"));
+			dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
+			dto.setPreco(resultset.getLong("PRECO"));
+			dto.setLingua(resultset.getString("LINGUA"));
+			dto.setCodigoISBN(resultset.getString("CODIGO_ISBN"));
+			dto.setEdicao(resultset.getInt("EDICAO"));
+			dto.setAno(resultset.getDate("ANO"));
+			dto.setPaginas(resultset.getInt("PAGINAS"));
+			dto.setVideo(resultset.getBoolean("VIDEO"));
+			dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
+			dto.setE_book(resultset.getBoolean("E_BOOK"));
+			dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
+			consultarLivro = dto;
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -155,7 +172,6 @@ public class LivroDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
-
 			statement.execute();
 			
 		} catch (ClassNotFoundException | SQLException e) {

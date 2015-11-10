@@ -40,14 +40,16 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 */
 
-	public boolean validarUsuario(Usuario usuarioDTO) throws PersistenciaException {
+	public boolean validarUsuario(Usuario usuarioDTO)
+			throws PersistenciaException {
 		try {
 			Connection conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO ");
 			sql.append("WHERE USUARIO = ? AND SENHA = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
 			statement.setString(1, usuarioDTO.getUsuario());
 			statement.setString(2, usuarioDTO.getSenha());
 
@@ -68,7 +70,8 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 * @throws SQLException
 	 */
-	public List<Usuario> listarUsuarios() throws PersistenciaException, SQLException {
+	public List<Usuario> listarUsuarios() throws PersistenciaException,
+			SQLException {
 		Connection conexao = null;
 
 		try {
@@ -77,7 +80,8 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO");
 
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
@@ -101,7 +105,37 @@ public class UsuarioDAO {
 		return listarUsuarios;
 	}
 
-	public void cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
+	public void alterarUsuario(Usuario usuario) throws PersistenciaException,
+			SQLException, ParseException {
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_USUARIO SET USUARIO = ?, SENHA = ?, MATRICULA = ?, NOME = ?, EMAIL = ?");
+			sql.append("WHERE ID_USUARIO = ?;");
+
+			// altera o usuario com os parametros da classe
+			PreparedStatement statement = conexao.prepareStatement(
+					sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, usuario.getUsuario());
+			statement.setString(2, usuario.getSenha());
+			statement.setString(3, usuario.getMatricula());
+			statement.setString(4, usuario.getNome());
+			statement.setString(5, usuario.getEmail());
+			statement.setInt(6, usuario.getIdUsuario());
+
+			statement.executeUpdate();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+	}
+
+	public void cadastrarUsuario(Usuario usuario) throws PersistenciaException,
+			SQLException, ParseException {
 		Connection conexao = null;
 		try {
 			Integer idUsuario = null;
@@ -114,11 +148,11 @@ public class UsuarioDAO {
 
 			// converte a data para data Juliana, data que o banco reconhece;
 			java.util.Date utilDate = new java.util.Date();
-		    java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
-			
+			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
 
 			// Cadastra a pessoa e gera e busca id gerado
-			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conexao.prepareStatement(
+					sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, usuario.getAdministrador());
@@ -155,11 +189,12 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("DELETE FROM TB_USUARIO WHERE ID_USUARIO= ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
 			statement.setInt(1, idUsuario);
 
 			statement.execute();
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
@@ -169,5 +204,37 @@ public class UsuarioDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public Usuario consultaUsuario(String idUsuario)
+			throws PersistenciaException, SQLException {
+		Connection conexao = null;
+		Usuario usuario = new Usuario();
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_USUARIO WHERE ID_USUARIO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
+			statement.setString(1, idUsuario);
+
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				usuario.setMatricula(resultset.getString("MATRICULA"));
+				usuario.setNome(resultset.getString("NOME"));
+				usuario.setEmail(resultset.getString("EMAIL"));
+				usuario.setUsuario(resultset.getString("USUARIO"));
+				usuario.setSenha(resultset.getString("SENHA"));
+				usuario.setAdministrador(resultset.getString("ADMINISTRADOR"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return usuario;
 	}
 }

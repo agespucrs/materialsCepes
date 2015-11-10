@@ -13,7 +13,7 @@
 		<h1>Sistema CePES MAterials</h1>
 		<fieldset>
 			<legend>Home</legend>
-			<h4>Modulo de Cadastro de Usu·rios.</h4>
+			<h4>Modulo de Cadastro de Usu√°rios.</h4>
 		</fieldset>
 	</div>
 	<jsp:include page="./template/foot.jsp"></jsp:include>

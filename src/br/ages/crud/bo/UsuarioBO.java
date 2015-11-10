@@ -46,7 +46,7 @@ public class UsuarioBO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new NegocioException(e);
 		}
 
@@ -92,10 +92,12 @@ public class UsuarioBO {
 			}
 
 			// flag administrador
+			/*
 			if (usuario.getAdministrador() == null || "".equals(usuario.getAdministrador())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrador").concat("<br/>"));
 			}
+			*/
 
 			// valida se Pessoa esta ok
 			if (!isValido) {
@@ -167,10 +169,12 @@ public class UsuarioBO {
 	 * @throws SQLException
 	 * @throws ParseException
 	 */
-	public void cadastraUsuario(Usuario usuario) throws NegocioException, SQLException, ParseException {
-
+	public boolean cadastraUsuario(Usuario usuario) throws NegocioException, SQLException, ParseException {
+		boolean cadastrado;
 		try {
 			usuarioDAO.cadastrarUsuario(usuario);
+			cadastrado = true;
+			return cadastrado;
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
@@ -203,12 +207,24 @@ public class UsuarioBO {
  * @param idUsuario
  * @throws NegocioException
  */
-	public void removerUsuario(Integer idUsuario) throws NegocioException {
+	public boolean removerUsuario(Integer idUsuario) throws NegocioException {
+		boolean removido;
 		try {
 			usuarioDAO.removerUsuario(idUsuario);
+			removido = true;
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
+		}
+	
+		return removido;
+	}
+	
+	public void alterarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
+		try{
+			usuarioDAO.alterarUsuario(usuario);
+		} catch (PersistenciaException | SQLException e) {
+			throw new PersistenciaException(e);
 		}
 	}
 

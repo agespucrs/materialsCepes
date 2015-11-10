@@ -10,7 +10,7 @@ import br.ages.crud.util.MensagemContantes;
 public class SenhaValidator implements Validator {
 
 	public boolean validar(Map<String, Object> valores) throws ValidationException {
-		Pattern pattern = Pattern.compile("[a-zA-Z0-9]{8}");
+		Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-zA-Z])(?!.*[\\W_\\x7B-\\xFF]).{6,15}$​");
 		String msgErro = "";
 
 		for (String key : valores.keySet()) {
