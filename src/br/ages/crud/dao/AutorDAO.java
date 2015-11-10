@@ -37,7 +37,7 @@ public class AutorDAO {
 
 			while (resultset.next()) {
 				Autor dto = new Autor();
-				dto.setId_autor(resultset.getInt("ID_USUARIO"));
+				dto.setId_autor(resultset.getInt("ID_AUTOR"));
 				dto.setNome(resultset.getString("NOME"));
 				dto.setNome(resultset.getString("SOBRENOME"));
 				listarAutores.add(dto);
@@ -62,7 +62,7 @@ public class AutorDAO {
 			sql.append("INSERT INTO TB_AUTOR (ID_AUTOR, NOME, SOBRENOME)");
 			sql.append("VALUES (?, ?, ?)");
 
-						PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, autor.getNome());
 			statement.setString(2, autor.getSobrenome());
 			
