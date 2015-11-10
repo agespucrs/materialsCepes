@@ -20,6 +20,23 @@
 </style>
 
 </head>
+<script type="text/javascript">
+	function remover(id) {
+		var resposta = confirm("Deseja remover o livro " + id);
+
+		if (resposta == true) {
+			var formCadastro = document.forms[0];
+			formCadastro.action = "main?acao=removerLivro&id_livro=" + id;
+			formCadastro.submit();
+		}
+	}
+	
+	function alterar(id){
+		var form = document.forms[0];
+		form.action = "main?acao=alterLivro&id_livro="+id;
+		form.submit();
+	}
+</script>
 <body>
 	<div class="head">
 		<div class="logo">
@@ -74,57 +91,6 @@
 			%>
 
 			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			
-			<tr>
 				<td><td><input type="checkbox" /></td>
 				<td><% livro.getCodigoISBN(); %></td>
 				<td><% livro.getTitulo(); %></td>
@@ -136,7 +102,7 @@
 			<% }  %>
 			</table>
 			
-			<div id="totalRegistros"> Total de registros: 2</div>
+			<div id="totalRegistros"> Total de registros: <%listaLivros.size(); %></div>
 			
 		</fieldset>
 	</form>
