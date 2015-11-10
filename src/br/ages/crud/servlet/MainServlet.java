@@ -41,7 +41,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("logout", new LogoutCommand());
 		comandos.put("telaUser", new CreateScreenUserCommand());
 		
-		comandos.put("addUser", new AddUserCommand());
+		comandos.put("registerUser", new AddUserCommand());
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		comandos.put("listUser", new ListUserCommand());
 		

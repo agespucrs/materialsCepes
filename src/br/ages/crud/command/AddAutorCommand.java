@@ -19,7 +19,7 @@ public class AddAutorCommand implements Command {
 	public String execute(HttpServletRequest request) {
 		
 		autorBO = new AutorBO();
-		proxima = "addAutor.jsp";
+		proxima = "autor/addAutor.jsp";
 
 		String nome = request.getParameter("nome");
 		String sobrenome = request.getParameter("sobrenome");

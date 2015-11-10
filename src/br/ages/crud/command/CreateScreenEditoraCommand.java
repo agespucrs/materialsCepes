@@ -19,9 +19,9 @@ public class CreateScreenEditoraCommand implements Command {
 		// Verifica se abre tela edição de editora ou de adição de editora.
 		String isEdit = request.getParameter("isEdit");
 		if (isEdit != null && !"".equals(isEdit)) {
-			proxima = "editEditora.jsp";
+			proxima = "editora/editEditora.jsp";
 		} else {
-			proxima = "addEditora.jsp";
+			proxima = "editora/addEditora.jsp";
 		}
 		try {
 

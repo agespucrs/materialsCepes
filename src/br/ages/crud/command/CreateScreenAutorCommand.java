@@ -19,9 +19,9 @@ public class CreateScreenAutorCommand implements Command {
 		// Verifica se abre tela edição de autor ou de adição de autor.
 		String isEdit = request.getParameter("isEdit");
 		if (isEdit != null && !"".equals(isEdit)) {
-			proxima = "editAutor.jsp";
+			proxima = "autor/editAutor.jsp";
 		} else {
-			proxima = "addAutor.jsp";
+			proxima = "autor/addAutor.jsp";
 		}
 		try {
 

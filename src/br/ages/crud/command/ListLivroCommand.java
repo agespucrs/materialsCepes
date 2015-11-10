@@ -17,7 +17,7 @@ public class ListLivroCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		this.livroBO = new LivroBO();
-		proxima = "listLivro.jsp";
+		proxima = "livro/listLivro.jsp";
 
 		try {
 			List<Livro> listaLivros = livroBO.listarLivro();

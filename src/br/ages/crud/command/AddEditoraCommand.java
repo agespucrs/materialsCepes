@@ -18,7 +18,7 @@ public class AddEditoraCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) {
 		editoraBO = new EditoraBO();
-		proxima = "addEditora.jsp";
+		proxima = "editora/addEditora.jsp";
 
 		String nome = request.getParameter("nome");
 		

@@ -17,7 +17,7 @@ public class ListEditoraCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		this.editoraBO = new EditoraBO();
-		proxima = "listEditora.jsp";
+		proxima = "editora/listEditora.jsp";
 
 		try {
 			List<Editora> listaEditoras = editoraBO.listarEditora();

@@ -17,7 +17,7 @@ public class ListAutorCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		this.autorBO = new AutorBO();
-		proxima = "listAutor.jsp";
+		proxima = "autor/listAutor.jsp";
 
 		try {
 			List<Autor> listaAutores = autorBO.listarAutor();

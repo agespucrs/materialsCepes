@@ -21,7 +21,7 @@ public class AddLivroCommand implements Command {
 	public String execute(HttpServletRequest request) throws ParseException {
 		
 		livroBO = new LivroBO();
-		proxima = "cadastrarLivro.jsp";
+		proxima = "livro/cadastrarLivro.jsp";
 
 		String titulo = request.getParameter("Titulo");
 		String subtitulo = request.getParameter("Subtitulo");

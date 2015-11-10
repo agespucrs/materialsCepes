@@ -19,9 +19,9 @@ public class CreateScreenLivroCommand implements Command {
 		// Verifica se abre tela edição de livro ou de adição de livro.
 		String isEdit = request.getParameter("isEdit");
 		if (isEdit != null && !"".equals(isEdit)) {
-			proxima = "editLivro.jsp";
+			proxima = "livro/editLivro.jsp";
 		} else {
-			proxima = "addLivro.jsp";
+			proxima = "livro/addLivro.jsp";
 		}
 		try {
 
