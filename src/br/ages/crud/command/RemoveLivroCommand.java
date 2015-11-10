@@ -13,13 +13,13 @@ public class RemoveLivroCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		proximo = "main?acao=listUser";
+		proximo = "main?acao=listLivro";
 		this.livroBO = new LivroBO();
 
 		try {
 			Integer idLivro = Integer.parseInt(request.getParameter("id_livro"));
 			livroBO.removerLivro(idLivro);
-			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_USUARIO.replace("?", idLivro.toString()).concat("<br/>"));
+			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_LIVRO.replace("?", idLivro.toString()).concat("<br/>"));
 			
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());

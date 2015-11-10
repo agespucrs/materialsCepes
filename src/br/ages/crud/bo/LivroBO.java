@@ -22,7 +22,6 @@ public class LivroBO {
 		livroDAO = new LivroDAO();
 	}
 
-	
 	public void cadastraLivro(Livro livro) throws NegocioException, SQLException, ParseException {
 
 		try {
@@ -49,15 +48,15 @@ public class LivroBO {
 
 	}
 	
-	public void consultarLivro(Integer idLivro) throws NegocioException, SQLException, ParseException {
-
+	public Livro consultarLivro(Integer idLivro) throws NegocioException, SQLException, ParseException {
+		Livro livro;
 		try {
-			livroDAO.consultarLivro(idLivro);
+			livro = livroDAO.consultarLivro(idLivro);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
-
+		return livro;
 	}
 
 	public void removerLivro(Integer idLivro) throws NegocioException {

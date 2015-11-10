@@ -17,11 +17,11 @@ public class ListLivroCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		this.livroBO = new LivroBO();
-		proxima = "user/listUser.jsp";
+		proxima = "listLivro.jsp";
 
 		try {
 			List<Livro> listaLivros = livroBO.listarLivro();
-			request.setAttribute("listaUsuarios", listaLivros);
+			request.setAttribute("listaLivros", listaLivros);
 		} catch (NegocioException e) {
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());

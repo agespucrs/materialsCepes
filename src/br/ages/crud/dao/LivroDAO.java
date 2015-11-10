@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Editora;
 import br.ages.crud.model.Livro;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
@@ -39,8 +40,8 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA)");
-			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
+			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, EDITORA, AUTOR)");
+			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 			java.util.Date utilDate = new java.util.Date();
 		    java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
@@ -60,7 +61,9 @@ public class LivroDAO {
 			statement.setBoolean(12, livro.isE_book());
 			statement.setString(13, livro.getDescricao());
 			statement.setString(14, livro.getBruxura_revista());
-
+			statement.setInt(15, livro.getEditora().getIdEditora());
+			statement.setInt(16, livro.getAutor().getId_autor());
+			
 			statement.executeUpdate();
 
 			ResultSet resultset = statement.getGeneratedKeys();
@@ -83,13 +86,15 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_LIVRO");
+			sql.append("SELECT * FROM TB_LIVRO INNER JOIN TB_EDITORA ON EDITORA = ID_EDITORA INNER JOIN TB_AUTOR ON AUTOR = ID_AUTOR");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
 				Livro dto = new Livro();
+				Editora edi = new Editora();
+				
 				dto.setIdLivro(resultset.getInt("ID_LIVRO"));
 				dto.setTitulo(resultset.getString("TITULO"));
 				dto.setSubtitulo(resultset.getString("SUBTITULO"));
@@ -104,6 +109,7 @@ public class LivroDAO {
 				dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
 				dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
+				
 				listarLivros.add(dto);
 			}
 
@@ -124,7 +130,7 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT FROM TB_LIVRO WHERE ID_LIVRO = ?");
+			sql.append("SELECT FROM TB_LIVRO WHERE ID_LIVRO = ? ");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
@@ -139,7 +145,6 @@ public class LivroDAO {
 		return consultarLivro;
 	}
 	
-
 	public void removerLivro(Integer idLivro) throws PersistenciaException {
 		Connection conexao = null;
 		try {

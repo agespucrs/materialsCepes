@@ -65,7 +65,7 @@ public class AddLivroCommand implements Command {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
 			} else { // cadastro de pessoa com sucesso*/
 				livroBO.cadastraLivro(livro);
-				proxima = "main?acao=listUser";
+				proxima = "main?acao=listLivro";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?", livro.getTitulo()));
 			/**/
 			

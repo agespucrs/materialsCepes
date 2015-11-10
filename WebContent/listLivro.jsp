@@ -1,3 +1,5 @@
+<%@page import="br.ages.crud.model.Livro"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -62,61 +64,24 @@
 				<td>Título</td>
 				<td>Edição</td>
 				<td>Ano</td>
-				<td>Situação</td>
 				<td>Data</td>
 				<td>Ações</td>
 			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>12300123</td>
-				<td>O senhor dos anéis</td>
-				<td>2</td>
-				<td>2008</td>
-				<td>Emprestado</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
+			<%
+				List<Livro> listaLivros = (List<Livro>) request.getAttribute("listaLivros");
+				for (Livro livro : listaLivros) {
+			%>
 			
+			<tr>
+				<td><td><input type="checkbox" /></td>
+				<td><% livro.getCodigoISBN(); %></td>
+				<td><% livro.getTitulo(); %></td>
+				<td><% livro.getEdicao(); %></td>
+				<td><% livro.getAno(); %></td>
+				<td><% livro.getDataCadastro(); %></td>
+				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
+			</tr>
+			<% }  %>
 			</table>
 			
 			<div id="totalRegistros"> Total de registros: 2</div>
