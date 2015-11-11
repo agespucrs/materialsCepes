@@ -27,13 +27,13 @@
 			<legend>Registrar Usuário</legend>
 			<div class="campo">
 				<label for="matricula">Matricula</label> <sup class="red">*</sup> 
-				<input type="text" id="matricula" name="matricula" maxlength="150" value="${param.matricula}" />
+				<input type="text" id="matricula" name="matricula" maxlength="15" value="${param.matricula}" />
 			</div>	
 			<a href="#" class="tooltip"><img src="" height="5" width="5"/><span>Matrícula da PUCRS</span></a> 
 			
 			<div class="campo">
 				<label for="nome">Nome</label> <sup class="red">*</sup> 
-				<input type="text" id="nome" name="nome" maxlength="15" value="${param.nome}" />
+				<input type="text" id="nome" name="nome" maxlength="150" value="${param.nome}" />
 			</div>
 
 			<div class="campo">
