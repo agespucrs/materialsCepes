@@ -18,14 +18,15 @@ public class AddUserCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) {
 		usuarioBO = new UsuarioBO();
-		proxima = "user/addUser.jsp";
+		proxima = "user/registerUser.jsp";
 
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		String matricula = request.getParameter("matricula");
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
-		String administrador = request.getParameter("adm");
+		String administrador = request.getParameter("administrador");
+		
 		Date dataCadastro = new Date();
 	
 
@@ -37,6 +38,7 @@ public class AddUserCommand implements Command {
 			user.setUsuario(usuario);
 			user.setSenha(senha);
 			user.setAdministrador(administrador);
+			
 			user.setDataCadastro(dataCadastro);
 			
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);

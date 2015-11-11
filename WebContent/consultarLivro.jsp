@@ -39,7 +39,7 @@
 				</tr>
 				<tr>
 					<td><select name="">
-							<option value="Autor"><%livro.getAutor().getNome() + " " + livro.getAutor().getNome() ;%></option>
+							<option value="Autor"><%livro.getAutor().getNome();%> </option>
 					</select></td>
 					<td><select name="">
 							<option value="Editora"><%livro.getEditora().getNome();%></option>

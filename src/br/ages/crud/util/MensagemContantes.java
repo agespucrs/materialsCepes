@@ -34,7 +34,21 @@ public class MensagemContantes {
 	
 	public static final String MSG_SUC_CADASTRO_USUARIO = "Cadastro usuário: ?, efetuado com sucesso!";
 	
+	public static final String MSG_SUC_CADASTRO_AUTOR = "Cadastro autor: ?, efetuado com sucesso!";
+	
+	public static final String MSG_SUC_CADASTRO_LIVRO = "Cadastro livro: ?, efetuado com sucesso!";
+	
+	public static final String MSG_SUC_CADASTRO_EDITORA = "Cadastro editora: ?, efetuado com sucesso!";
+
+	public static final String MSG_SUC_ALTERADO_USUARIO = "Alteração usuário: ?, efetuado com sucesso!";
+	
 	public static final String MSG_SUC_REMOVE_USUARIO= "Usuario: ?, removido com sucesso!";
+	
+	public static final String MSG_SUC_REMOVE_EDITORA = "Editora: ?, removido com sucesso!";
+	
+	public static final String MSG_SUC_REMOVE_AUTOR = "Autor: ?, removido com sucesso!";
+	
+	public static final String MSG_SUC_REMOVE_LIVRO = "Livro: ?, removido com sucesso!";
 	
 	public static final String MSG_SUC_ATUALIZADA_PESSOA = "Atualização de Pessoa efetuada com sucesso!";
 	

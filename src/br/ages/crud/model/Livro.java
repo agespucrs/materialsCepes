@@ -1,21 +1,18 @@
 package br.ages.crud.model;
-
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Entity Livro - Data Transfer Objeto 
- * @author Cássio Trindade
- *
- */
 public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+		
 		private int idLivro;
 		private String titulo;
 		private String subtitulo;
 		private Date dataCadastro;
 		private long preco;
+		private Editora editora;
+		private Autor autor;
 		private String lingua;
 		private String codigoISBN;
 		private Integer edicao;
@@ -142,8 +139,13 @@ public class Livro implements Serializable {
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
+		
+		public Editora getEditora() {
+			return editora;
+		}
 
-		public Livro() {
+		public void setEditora(Editora editora) {
+			this.editora = editora;
 		}
 
 		public String getLingua() {
@@ -152,6 +154,17 @@ public class Livro implements Serializable {
 
 		public void setLingua(String lingua) {
 			this.lingua = lingua;
+		}
+
+		public Autor getAutor() {
+			return autor;
+		}
+
+		public void setAutor(Autor autor) {
+			this.autor = autor;
+		}
+		
+		public Livro() {
 		}
 
 }
