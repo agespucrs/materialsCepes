@@ -21,7 +21,7 @@ public class ListAutorCommand implements Command {
 
 		try {
 			List<Autor> listaAutores = autorBO.listarAutor();
-			request.setAttribute("listaEditoras", listaAutores);
+			request.setAttribute("listaAutores", listaAutores);
 		} catch (NegocioException e) {
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());

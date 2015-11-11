@@ -89,6 +89,7 @@ public class AutorDAOv1 {
 	public Autor consultarAutor(Integer idAutor) throws PersistenciaException, SQLException {		
 		Connection conexao = null;
 
+		Autor autor = new Autor();
 		try {
 
 			conexao = ConexaoUtil.getConexao();
@@ -100,17 +101,16 @@ public class AutorDAOv1 {
 			statement.setInt(1, idAutor);
 			ResultSet resultset = statement.executeQuery();
 			
-			Autor dto = new Autor();
-			dto.setId_autor(resultset.getInt("ID_AUTOR"));
-			dto.setNome(resultset.getString("NOME"));
-			dto.setSobrenome(resultset.getString("SOBRENOME"));
-			consultarAutor = dto;
+			autor.setId_autor(resultset.getInt("ID_AUTOR"));
+			autor.setNome(resultset.getString("NOME"));
+			autor.setSobrenome(resultset.getString("SOBRENOME"));
 			
 		} catch (ClassNotFoundException | SQLException e) {
 		throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
-	return consultarAutor;
+	
+		return autor;
 	}
 }
