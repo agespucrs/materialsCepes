@@ -1,5 +1,7 @@
 package br.ages.crud.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.InputMismatchException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,5 +50,17 @@ public class Util {
 	
 	public static String imprimeCPF(String cpf) { 
 		return(cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11)); 
+	}
+	
+	public static String toAno(Date data){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		String ano = sdf.format(data);
+		return ano;
+	}
+	
+	public static String toDataNormal(Date data){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String novaData = sdf.format(data);
+		return novaData;
 	}
 }

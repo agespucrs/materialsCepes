@@ -1,4 +1,5 @@
 <%@page import="br.ages.crud.model.Livro"%>
+<%@page import="br.ages.crud.util.Util"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -94,12 +95,12 @@
 			%>
 
 			<tr>
-				<td><td><input type="checkbox" /></td>
+				<td><input type="checkbox" /></td>
 				<td><%= livro.getCodigoISBN() %></td>
 				<td><%= livro.getTitulo() %></td>
 				<td><%= livro.getEdicao() %></td>
-				<td><%= livro.getAno() %></td>
-				<td><%= livro.getDataCadastro() %></td>
+				<td><%= Util.toAno(livro.getAno()) %></td>
+				<td><%= Util.toDataNormal(livro.getDataCadastro()) %></td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
 			<%

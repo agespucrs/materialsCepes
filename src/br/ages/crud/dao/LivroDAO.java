@@ -109,7 +109,7 @@ public class LivroDAO {
 				dto.setVideo(resultset.getBoolean("VIDEO"));
 				dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
-				dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
+				//dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
 				
 				listarLivros.add(dto);
 			}
