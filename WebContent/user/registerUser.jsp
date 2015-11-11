@@ -33,7 +33,7 @@
 			
 			<div class="campo">
 				<label for="nome">Nome</label> <sup class="red">*</sup> 
-				<input type="text" id="nome" name="nome" maxlength="150" value="${param.nome}" />
+				<input type="text" id="nome" name="nome" maxlength="15" value="${param.nome}" />
 			</div>
 
 			<div class="campo">
