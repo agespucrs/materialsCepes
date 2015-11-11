@@ -86,9 +86,10 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_LIVRO INNER JOIN TB_EDITORA ON EDITORA = ID_EDITORA INNER JOIN TB_AUTOR ON AUTOR = ID_AUTOR");
+			sql.append("SELECT * FROM TB_LIVRO INNER JOIN TB_EDITORA ON tb_livro.id_EDITORA = tb_editora.ID_EDITORA INNER JOIN TB_livro_AUTOR ON tb_livro.id_livro = tb_livro_autor.id_livro");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {

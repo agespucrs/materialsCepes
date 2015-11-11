@@ -87,22 +87,37 @@
 			
 			<%
 				List<Livro> listaLivros = (List<Livro>) request.getAttribute("listaLivros");
+				int sizeListaLivros = listaLivros.size();
+				
+				
 				for (Livro livro : listaLivros) {
 			%>
 
 			<tr>
 				<td><td><input type="checkbox" /></td>
-				<td><% livro.getCodigoISBN(); %></td>
-				<td><% livro.getTitulo(); %></td>
-				<td><% livro.getEdicao(); %></td>
-				<td><% livro.getAno(); %></td>
-				<td><% livro.getDataCadastro(); %></td>
+				<td><%= livro.getCodigoISBN() %></td>
+				<td><%= livro.getTitulo() %></td>
+				<td><%= livro.getEdicao() %></td>
+				<td><%= livro.getAno() %></td>
+				<td><%= livro.getDataCadastro() %></td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
-			<% }  %>
+			<%
+				}
+			%>
 			</table>
 			
-			<div id="totalRegistros"> Total de registros: <%listaLivros.size(); %></div>
+			
+			
+			<div id="totalRegistros"><%
+			if(sizeListaLivros == 0)
+			{
+				%> <p>Nenhum livro encontrado.</p> <%	
+			}
+			%>	 
+			Total de registros: <%=sizeListaLivros %></div>
+			
+			
 			
 		</fieldset>
 	</form>
