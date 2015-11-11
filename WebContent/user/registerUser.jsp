@@ -27,28 +27,28 @@
 			<legend>Registrar Usuário</legend>
 			<div class="campo">
 				<label for="matricula">Matricula</label> <sup class="red">*</sup> 
-				<input type="text" id="matricula" name="matricula" maxlength="15" value="${param.matricula}" />
+				<input type="text" id="matricula" name="matricula" maxlength="150" value="${param.matricula}" />
 			</div>	
 			<a href="#" class="tooltip"><img src="" height="5" width="5"/><span>Matrícula da PUCRS</span></a> 
 			
 			<div class="campo">
 				<label for="nome">Nome</label> <sup class="red">*</sup> 
-				<input type="text" id="nome" name="nome" maxlength="15" value="${param.nome}" />
+				<input type="text" id="nome" name="nome" maxlength="150" value="${param.nome}" />
 			</div>
 
 			<div class="campo">
 				<label for="email">Email</label> <sup class="red">*</sup> 
-				<input type="text" id="email" name="email" maxlength="15" value="${param.email}" />
+				<input type="text" id="email" name="email" maxlength="150" value="${param.email}" />
 			</div>
 
 			<div class="campo">
 				<label for="usuario">Usuário</label> <sup class="red">*</sup> 
-				<input type="text" id="usuario" name="usuario" maxlength="15" value="${param.usuario}" />
+				<input type="text" id="usuario" name="usuario" maxlength="150" value="${param.usuario}" />
 			</div>
 			
 			<div class="campo">
 				<label for="senha">Senha</label> <sup class="red">*</sup>
-				<input type="password" id="senha" name="senha" maxlength="15" value="${param.senha}" />
+				<input type="password" id="senha" name="senha" maxlength="150" value="${param.senha}" />
 			</div>	
 			<a href="#" class="tooltip"><img src="" height="5" width="5"/><span>Texto de no mínimo 8 caractéres, contendo maiúsculas, minúsculas e números</span></a> 
 			
