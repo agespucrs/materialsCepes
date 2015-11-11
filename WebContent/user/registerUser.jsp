@@ -13,7 +13,7 @@
 				//chamar funcao de verificar campos
 				
 				var formCadastro = document.forms[0]; 
-				formCadastro.action ="main?acao=addUser";
+				formCadastro.action ="main?acao=registerUser";
 				formCadastro.submit();
 			}
 			
