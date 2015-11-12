@@ -10,8 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Editora;
+import br.ages.crud.model.Livro;
 import br.ages.crud.util.ConexaoUtil;
 
 import com.mysql.jdbc.Statement;
@@ -82,6 +84,34 @@ public class EditoraDAO {
 		}
 	}
 
+	public Editora consultarEditora(Integer idEditora) throws PersistenciaException, SQLException {
+		
+		Connection conexao = null;
+		Editora editora = new Editora();
+		
+		try {
+
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_EDITORA WHERE ID_EDITORA = ? ");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idEditora);
+			//statement.execute();
+			ResultSet resultset = statement.executeQuery();
+			
+			editora.setIdEditora(resultset.getInt("ID_EDITORA"));
+			editora.setNome(resultset.getString("NOME"));
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return editora;
+	}
+	
 	public void removerEditora(Integer idEditora) throws PersistenciaException {
 		Connection conexao = null;
 		try {

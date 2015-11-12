@@ -8,6 +8,7 @@ import br.ages.crud.dao.EditoraDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Editora;
+import br.ages.crud.model.Usuario;
 
 public class EditoraBO {
 	EditoraDAO editoraDAO = null;
@@ -65,4 +66,15 @@ public class EditoraBO {
 		}
 	}
 
+	public Editora consultarEditora(Integer idEditora) throws NegocioException, SQLException, ParseException {
+		Editora editora;
+		try {
+			editora = editoraDAO.consultarEditora(idEditora);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		return editora;
+	}
+	
 }

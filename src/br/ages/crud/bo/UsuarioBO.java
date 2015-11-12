@@ -9,6 +9,7 @@ import java.util.Map;
 import br.ages.crud.dao.UsuarioDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Livro;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.LoginValidator;
@@ -220,11 +221,22 @@ public class UsuarioBO {
 		return removido;
 	}
 	
-	public void alterarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
+	public Usuario consultarUsuario(String idUsuario) throws NegocioException, SQLException, ParseException {
+		Usuario usuario;
+		try {
+			usuario = usuarioDAO.consultaUsuario(idUsuario);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		return usuario;
+	}
+	
+	public void alterarUsuario(Usuario usuario) throws NegocioException, SQLException, ParseException {
 		try{
 			usuarioDAO.alterarUsuario(usuario);
-		} catch (PersistenciaException | SQLException e) {
-			throw new PersistenciaException(e);
+		} catch (PersistenciaException e) {
+			throw new NegocioException(e);
 		}
 	}
 

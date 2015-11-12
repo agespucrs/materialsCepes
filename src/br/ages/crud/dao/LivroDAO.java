@@ -131,7 +131,7 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT FROM TB_LIVRO WHERE ID_LIVRO = ? ");
+			sql.append("SELECT * FROM TB_LIVRO WHERE ID_LIVRO = ? ");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);

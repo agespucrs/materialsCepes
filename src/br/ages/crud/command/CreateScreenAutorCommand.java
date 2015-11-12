@@ -4,18 +4,18 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import br.ages.crud.dao.AutorDAO;
+import br.ages.crud.bo.AutorBO;
 import br.ages.crud.model.Autor;
 
 public class CreateScreenAutorCommand implements Command {
 
 	private String proxima;
 
-	private AutorDAO autorDao;
+	private AutorBO autorBO;
 
 	public String execute(HttpServletRequest request) throws SQLException {
 
-		autorDao = new AutorDAO();
+		autorBO = new AutorBO();
 		
 		try {
 		// Verifica se abre tela edição de autor ou de adição de autor.
@@ -24,7 +24,7 @@ public class CreateScreenAutorCommand implements Command {
 			int autorId = Integer.parseInt(request.getParameter("autor_id"));
 			
 			// Criar funçao AutorDAO.consultarAutor(int autorId)
-			 Autor autor = autorDao.consultarAutor(autorId);
+			 Autor autor = autorBO.consultarAutor(autorId);
 			request.setAttribute("autor", autor);
 			
 			proxima = "autor/editAutor.jsp";

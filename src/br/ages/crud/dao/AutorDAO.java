@@ -113,7 +113,7 @@ public class AutorDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT FROM TB_AUTOR WHERE ID_AUTOR = ?");
+			sql.append("SELECT * FROM TB_AUTOR WHERE ID_AUTOR = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idAutor);
