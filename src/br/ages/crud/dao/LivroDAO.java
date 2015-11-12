@@ -60,7 +60,7 @@ public class LivroDAO {
 			statement.setBoolean(11, livro.isCd_dvd());
 			statement.setBoolean(12, livro.isE_book());
 			statement.setString(13, livro.getDescricao());
-			statement.setString(14, livro.getBruxura_revista());
+			//statement.setString(14, livro.getBruxura_revista());
 			statement.setInt(15, livro.getEditora().getIdEditora());
 			//statement.setInt(16, livro.getAutor().getId_autor());
 			
