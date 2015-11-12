@@ -40,7 +40,7 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, EDITORA, AUTOR)");
+			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, EDITORA)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 			java.util.Date utilDate = new java.util.Date();
@@ -62,7 +62,7 @@ public class LivroDAO {
 			statement.setString(13, livro.getDescricao());
 			statement.setString(14, livro.getBruxura_revista());
 			statement.setInt(15, livro.getEditora().getIdEditora());
-			statement.setInt(16, livro.getAutor().getId_autor());
+			//statement.setInt(16, livro.getAutor().getId_autor());
 			
 			statement.executeUpdate();
 

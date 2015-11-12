@@ -1,3 +1,5 @@
+<%@page import="br.ages.crud.model.Autor"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -51,42 +53,39 @@
 			<tr>
 				<td><input id="todos" name="todos" type="checkbox" /></td>
 				<td>Nome</td>
-				<td>Data Cadastro</td>
+				<!--<td>Data Cadastro</td>-->
 				<td>Ações</td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" /></td>
-				<td>José Bonifácio</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
+					
+			<%
+				List<Autor> listaAutores = (List<Autor>) request.getAttribute("listaAutores");
+				int sizeListaAutores = listaAutores.size();
+				
+				
+				for (Autor autor: listaAutores) {
+			%>
+
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td>José Bonifácio</td>
-				<td>10/01/2015</td>
+				<td><%= autor.getNome()%> <%= autor.getSobrenome() %></td>
+				<!--<td><% //autor.getDataCadastro()%></td>-->
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>José Bonifácio</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>José Bonifácio</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>José Bonifácio</td>
-				<td>10/01/2015</td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
-			</tr>
+			<%
+				}
+			%>
 			</table>
 			
-			<div id="totalRegistros"> Total de registros: 2</div>
+			<div id="totalRegistros"><%
+			if(sizeListaAutores == 0)
+			{
+				%> <p>Nenhum autor encontrado.</p> <%	
+			}
+			%>	 
+			Total de registros: <%= sizeListaAutores %></div>
+			
+			
 			
 		</fieldset>
 	</form>

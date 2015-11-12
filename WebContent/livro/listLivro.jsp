@@ -108,15 +108,13 @@
 			%>
 			</table>
 			
-			
-			
 			<div id="totalRegistros"><%
 			if(sizeListaLivros == 0)
 			{
 				%> <p>Nenhum livro encontrado.</p> <%	
 			}
 			%>	 
-			Total de registros: <%=sizeListaLivros %></div>
+			Total de registros: <%= sizeListaLivros %></div>
 			
 			
 			

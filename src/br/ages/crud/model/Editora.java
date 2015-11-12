@@ -7,6 +7,7 @@ public class Editora {
 	
 	private int idEditora;
 	private String nome;
+	
 	public int getIdEditora() {
 		return idEditora;
 	}
