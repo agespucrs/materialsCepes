@@ -10,6 +10,7 @@ import br.ages.crud.dao.AutorDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Autor;
+import br.ages.crud.model.Editora;
 import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.LoginValidator;
 import br.ages.crud.validator.SenhaValidator;
@@ -77,4 +78,15 @@ public class AutorBO {
 		}
 	}
 
+	public Autor consultarAutor(Integer idAutor) throws NegocioException, SQLException, ParseException {
+		Autor autor;
+		try {
+			autor = autorDAO.consultarAutor(idAutor);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		return autor;
+	}
+	
 }

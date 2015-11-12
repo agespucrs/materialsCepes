@@ -1,6 +1,7 @@
 package br.ages.crud.model;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.*;
 
 public class Livro implements Serializable {
 
@@ -12,7 +13,7 @@ public class Livro implements Serializable {
 		private Date dataCadastro;
 		private long preco;
 		private Editora editora;
-		private Autor autor;
+		private List<Autor> autores;
 		private String lingua;
 		private String codigoISBN;
 		private Integer edicao;
@@ -156,12 +157,12 @@ public class Livro implements Serializable {
 			this.lingua = lingua;
 		}
 
-		public Autor getAutor() {
-			return autor;
+		public List<Autor> getAutores() {
+			return this.autores;
 		}
 
-		public void setAutor(Autor autor) {
-			this.autor = autor;
+		public void setAutores(List<Autor> autores) {
+			this.autores = autores;
 		}
 		
 		public Livro() {

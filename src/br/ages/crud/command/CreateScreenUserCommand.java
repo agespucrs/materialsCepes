@@ -4,25 +4,28 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import br.ages.crud.dao.UsuarioDAO;
-import br.ages.crud.exception.PersistenciaException;
+import java.sql.SQLException;
+import java.text.ParseException;
+
+import br.ages.crud.bo.UsuarioBO;
+import br.ages.crud.exception.NegocioException;
 import br.ages.crud.model.Usuario;
 
 public class CreateScreenUserCommand implements Command {
 
 	private String proxima;
 
-	private UsuarioDAO cadastroDao;
+	private UsuarioBO usuarioBO;
 
-	public String execute(HttpServletRequest request) throws SQLException, PersistenciaException {
+	public String execute(HttpServletRequest request) throws SQLException, NegocioException, ParseException {
 
-		cadastroDao = new UsuarioDAO();
+		usuarioBO = new UsuarioBO();
 
 		// Verifica se abre tela edição de pessoa ou de adição de pessoa.
 		String isEdit = request.getParameter("isEdit");
 		if (isEdit != null && "sim".equals(isEdit)) {
 
-			Usuario usuario = cadastroDao.consultaUsuario(request.getParameter("id_usuario"));
+			Usuario usuario = usuarioBO.consultarUsuario(request.getParameter("id_usuario"));
 			
 			request.setAttribute("usuario", usuario);
 

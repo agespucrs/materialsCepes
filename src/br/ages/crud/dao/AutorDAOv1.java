@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Autor;
 import br.ages.crud.util.ConexaoUtil;
 
 public class AutorDAOv1 {
@@ -17,30 +19,30 @@ public class AutorDAOv1 {
 	private ArrayList<Autor> listarAutores;
 	private Autor consultarAutor;
 	
-	public AutorDAO() {
+	public AutorDAOv1() {
 		listarAutores = new ArrayList<>();
 	}
 	
-	public List<Autor> listarAutores() throws PersistenciaException, SQLException { {
+	public List<Autor> listarAutores() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 
 		try {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_AUTORES");
+			sql.append("SELECT * FROM TB_AUTOR");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
 			
 			while (resultset.next()) {
-				/*
+				
 				Autor dto = new Autor();				
-				dto.setIdAutor(resultset.getInt("ID_AUTOR"));
+				dto.setId_autor(resultset.getInt("ID_AUTOR"));
 				dto.setNome(resultset.getString("NOME"));
 				dto.setSobrenome(resultset.getString("SOBRENOME"));				
 				listarAutores.add(dto);
-				*/
+				
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -87,6 +89,7 @@ public class AutorDAOv1 {
 	public Autor consultarAutor(Integer idAutor) throws PersistenciaException, SQLException {		
 		Connection conexao = null;
 
+		Autor autor = new Autor();
 		try {
 
 			conexao = ConexaoUtil.getConexao();
@@ -98,17 +101,16 @@ public class AutorDAOv1 {
 			statement.setInt(1, idAutor);
 			ResultSet resultset = statement.executeQuery();
 			
-			Autor dto = new Autor();
-			dto.setIdAutor(resultset.getInt("ID_AUTOR"));
-			dto.setNome(resultset.getString("NOME"));
-			dto.setSobrenome(resultset.getString("SOBRENOME"));
-			consultarAutor = dto;
+			autor.setId_autor(resultset.getInt("ID_AUTOR"));
+			autor.setNome(resultset.getString("NOME"));
+			autor.setSobrenome(resultset.getString("SOBRENOME"));
 			
 		} catch (ClassNotFoundException | SQLException e) {
 		throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
-	return consultarAutor;
+	
+		return autor;
 	}
 }

@@ -40,7 +40,7 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, EDITORA, AUTOR)");
+			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, EDITORA)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 			java.util.Date utilDate = new java.util.Date();
@@ -62,7 +62,7 @@ public class LivroDAO {
 			statement.setString(13, livro.getDescricao());
 			statement.setString(14, livro.getBruxura_revista());
 			statement.setInt(15, livro.getEditora().getIdEditora());
-			statement.setInt(16, livro.getAutor().getId_autor());
+			//statement.setInt(16, livro.getAutor().getId_autor());
 			
 			statement.executeUpdate();
 
@@ -86,9 +86,10 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_LIVRO INNER JOIN TB_EDITORA ON EDITORA = ID_EDITORA INNER JOIN TB_AUTOR ON AUTOR = ID_AUTOR");
+			sql.append("SELECT * FROM TB_LIVRO INNER JOIN TB_EDITORA ON tb_livro.id_EDITORA = tb_editora.ID_EDITORA INNER JOIN TB_livro_AUTOR ON tb_livro.id_livro = tb_livro_autor.id_livro");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
@@ -108,7 +109,7 @@ public class LivroDAO {
 				dto.setVideo(resultset.getBoolean("VIDEO"));
 				dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
-				dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
+				//dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
 				
 				listarLivros.add(dto);
 			}
@@ -130,7 +131,7 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT FROM TB_LIVRO WHERE ID_LIVRO = ? ");
+			sql.append("SELECT * FROM TB_LIVRO WHERE ID_LIVRO = ? ");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);

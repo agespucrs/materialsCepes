@@ -4,27 +4,35 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import br.ages.crud.dao.LivroDAO;
+import br.ages.crud.bo.LivroBO;
+import br.ages.crud.model.Livro;
 
 public class CreateScreenLivroCommand implements Command {
 
 	private String proxima;
 
-	private LivroDAO cadastroDao;
+	private LivroBO livroBO;
 
 	public String execute(HttpServletRequest request) throws SQLException {
 
-		cadastroDao = new LivroDAO();
+		livroBO = new LivroBO();
 		
-		// Verifica se abre tela edição de livro ou de adição de livro.
-		String isEdit = request.getParameter("isEdit");
-		if (isEdit != null && !"".equals(isEdit)) {
-			proxima = "livro/editLivro.jsp";
-		} else {
-			proxima = "livro/addLivro.jsp";
-		}
 		try {
-
+			// Verifica se abre tela edição ou adição de livro.
+			String isEdit = request.getParameter("isEdit");
+			if (isEdit != null && "sim".equals(isEdit)) {
+				int livroId = Integer.parseInt(request.getParameter("livro_id"));
+				
+				Livro livro= livroBO.consultarLivro(livroId);
+				request.setAttribute("livro", livro);
+				
+				proxima = "livro/editLivro.jsp";
+				
+			} else {
+				
+				proxima = "livro/addLivro.jsp";
+			
+			}
 
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
