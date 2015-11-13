@@ -37,34 +37,32 @@ public class MainServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		
+		// USUARIO
 		comandos.put("login", new LoginCommand());
 		comandos.put("logout", new LogoutCommand());
-		comandos.put("telaUser", new CreateScreenUserCommand());
-		
+		comandos.put("telaUser", new CreateScreenUserCommand());		
 		comandos.put("registerUser", new AddUserCommand());
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		comandos.put("listUser", new ListUserCommand());
+		comandos.put("alterUser", new AlterUserCommand());
 		
 		// EDITORA
 		comandos.put("addEditora", new ListEditoraCommand());
 		comandos.put("listEditora", new ListEditoraCommand());
-		comandos.put("removeEditora", new RemoveEditoraCommand());
+		comandos.put("removerEditora", new RemoveEditoraCommand());
 		comandos.put("telaEditora", new CreateScreenEditoraCommand());
 		
 		// AUTOR
 		comandos.put("addAutor", new ListEditoraCommand());
 		comandos.put("listAutor", new ListEditoraCommand());
-		comandos.put("removeAutor", new RemoveAutorCommand());
+		comandos.put("removerAutor", new RemoveAutorCommand());
 		comandos.put("telaAutor", new CreateScreenAutorCommand());
 		
 		// LIVRO
 		comandos.put("addLivro", new AddLivroCommand());
 		comandos.put("listLivro", new ListLivroCommand());
-		comandos.put("removeLivro", new RemoveLivroCommand());
+		comandos.put("removerLivro", new RemoveLivroCommand());
 		comandos.put("telaLivro", new CreateScreenLivroCommand());
-
-		comandos.put("alterUser", new AlterUserCommand());
-
 		
 	}
 

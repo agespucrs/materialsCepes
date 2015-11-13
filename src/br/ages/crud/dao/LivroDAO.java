@@ -60,9 +60,8 @@ public class LivroDAO {
 			statement.setBoolean(11, livro.isCd_dvd());
 			statement.setBoolean(12, livro.isE_book());
 			statement.setString(13, livro.getDescricao());
-			//statement.setString(14, livro.getBruxura_revista());
+			statement.setString(14, livro.getBruxura_revista());
 			statement.setInt(15, livro.getEditora().getIdEditora());
-			//statement.setInt(16, livro.getAutor().getId_autor());
 			
 			statement.executeUpdate();
 
@@ -86,16 +85,18 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_LIVRO INNER JOIN TB_EDITORA ON tb_livro.id_EDITORA = tb_editora.ID_EDITORA INNER JOIN TB_livro_AUTOR ON tb_livro.id_livro = tb_livro_autor.id_livro");
+			sql.append("SELECT * FROM TB_LIVRO INNER JOIN "
+					+ "TB_EDITORA ON tb_livro.id_EDITORA = tb_editora.ID_EDITORA INNER JOIN "
+					+ "TB_livro_AUTOR ON tb_livro.id_livro = tb_livro_autor.id_livro");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
-				Livro dto = new Livro();
-				Editora edi = new Editora();
-				
+				if (!resultset.getBoolean("EXLUIDO")) {
+					
+				Livro dto = new Livro();				
 				dto.setIdLivro(resultset.getInt("ID_LIVRO"));
 				dto.setTitulo(resultset.getString("TITULO"));
 				dto.setSubtitulo(resultset.getString("SUBTITULO"));
@@ -109,9 +110,11 @@ public class LivroDAO {
 				dto.setVideo(resultset.getBoolean("VIDEO"));
 				dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
-				//dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
-				
+				dto.setDescricao(resultset.getString("DESCRICAO"));
+				dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
+				//id_editora				
 				listarLivros.add(dto);
+				}
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -135,7 +138,6 @@ public class LivroDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
-			//statement.execute();
 			ResultSet resultset = statement.executeQuery();
 			
 			Livro dto = new Livro();
@@ -169,7 +171,7 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("DELETE FROM TB_LIVRO WHERE ID_LIVRO = ?");
+			sql.append("UPDATE TB_LIVRO SET EXLUIDO='1' WHERE ID_LIVRO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);

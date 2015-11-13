@@ -21,31 +21,15 @@
 </style>
 
 </head>
-<script type="text/javascript">
-	function remover(id) {
-		var resposta = confirm("Deseja remover o livro " + id);
-
-		if (resposta == true) {
-			var formCadastro = document.forms[0];
-			formCadastro.action = "main?acao=removerLivro&id_livro=" + id;
-			formCadastro.submit();
-		}
-	}
-	
-	function alterar(id){
-		var form = document.forms[0];
-		form.action = "main?acao=alterLivro&id_livro="+id;
-		form.submit();
-	}
-</script>
 <body>
-	<div class="head">
+<%@ include file="/template/head.jsp"%>
+	<!-- <div class="head">
 		<div class="logo">
 			<a href="index.jsp"> <img alt="Logo AgES" src="img/FACIN-AGES-poli.jpg">
 			</a>
 		</div>
 		<h1>Bem Vindo ao sistema Fluxo AGES / CePES MAterials</h1>
-	</div>
+	</div>-->
 	
 	<br><br>
 	
@@ -78,8 +62,8 @@
 			<table id="tbLista" border="1">
 			<tr>
 				<td></td>
-				<td>Código ISBN</td>
 				<td>Título</td>
+				<td>Código ISBN</td>
 				<td>Edição</td>
 				<td>Ano</td>
 				<td>Data</td>
@@ -96,14 +80,18 @@
 
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td><%= livro.getCodigoISBN() %></td>
 				<td><%= livro.getTitulo() %></td>
+				<td><%= livro.getCodigoISBN() %></td>
 				<td><%= livro.getEdicao() %></td>
 				<%if (livro.getAno() == null) {%>
 				<td>Não Informado</td><%}else{ %>
 				<td><%= Util.toAno(livro.getAno())%></td><%} %>
 				<td><%= Util.toDataNormal(livro.getDataCadastro()) %></td>
-				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
+				<td>
+						<img class="img" src="img/view.png"/>
+						<a href="/CePESMaterials/main?acao=alterLivro&id_livro=<%=livro.getIdLivro()%>"><img class="img" src="img/edit.png"/></a>
+						<a href="/CePESMaterials/main?acao=removerLivro&id_livro=<%=livro.getIdLivro()%>"><img class="img" src="img/trash.png"/></a>
+						</td>
 			</tr>
 			<%
 				}

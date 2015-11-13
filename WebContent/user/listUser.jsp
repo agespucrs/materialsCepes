@@ -58,7 +58,6 @@
 							<td class="alignLeft"><%=usuario.getNome()%></td>
 							<td class="alignLeft"><%=usuario.getEmail()%></td>
 							<td class="alignLeft"><%=usuario.getUsuario()%></td>
-							<%-- 	<td class="alignLeft"> 	 <%=usuario.getSenha() %></td> --%>
 							<td class="alignCenter"><%=usuario.getAdministrador()%></td>
 							<td class="alignCenter"><a href="/CePESMaterials/main?acao=telaUser&id_usuario=<%=usuario.getIdUsuario()%>&isEdit=sim" title="Editar"> <i class="fa fa-pencil fa-2x"></i>
 							</a></td>

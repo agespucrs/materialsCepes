@@ -24,7 +24,12 @@ public class Livro implements Serializable {
 		private boolean e_book;
 		private String descricao;
 		private String bruxura_revista;
+		private boolean excluido; // determinar se livro esta ativo/exluido
 									
+		public Livro() {
+			excluido = true;
+		}
+		
 		public int getIdLivro() {
 			return idLivro;
 		}
@@ -158,15 +163,19 @@ public class Livro implements Serializable {
 		}
 
 		public List<Autor> getAutores() {
-			return this.autores;
+			return autores;
 		}
 
 		public void setAutores(List<Autor> autores) {
 			this.autores = autores;
 		}
 		
-		public Livro() {
+		public void setStatus(boolean excluido) {
+			this.excluido = excluido;
 		}
-
+		
+		public boolean getStatus() {
+			return excluido;
+		}
 }
 
