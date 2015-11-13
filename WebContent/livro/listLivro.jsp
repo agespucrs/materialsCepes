@@ -99,7 +99,9 @@
 				<td><%= livro.getCodigoISBN() %></td>
 				<td><%= livro.getTitulo() %></td>
 				<td><%= livro.getEdicao() %></td>
-				<td><%= Util.toAno(livro.getAno()) %></td>
+				<%if (livro.getAno() == null) {%>
+				<td>Não Informado</td><%}else{ %>
+				<td><%= Util.toAno(livro.getAno())%></td><%} %>
 				<td><%= Util.toDataNormal(livro.getDataCadastro()) %></td>
 				<td><img class="img" src="img/view.png"/><img class="img" src="img/edit.png"/><img class="img" src="img/trash.png"/></td>
 			</tr>
