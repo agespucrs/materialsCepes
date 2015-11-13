@@ -1,6 +1,7 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ public class ListLivroCommand implements Command {
 	private LivroBO livroBO;
 	
 	@Override
-	public String execute(HttpServletRequest request) throws SQLException {
+	public String execute(HttpServletRequest request) throws SQLException, ParseException {
 		this.livroBO = new LivroBO();
 		proxima = "livro/listLivro.jsp";
 

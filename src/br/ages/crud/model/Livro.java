@@ -27,7 +27,7 @@ public class Livro implements Serializable {
 		private boolean excluido; // determinar se livro esta ativo/exluido
 									
 		public Livro() {
-			excluido = true;
+			excluido = false;
 		}
 		
 		public int getIdLivro() {

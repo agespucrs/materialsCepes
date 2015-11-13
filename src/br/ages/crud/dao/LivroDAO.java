@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.ages.crud.bo.EditoraBO;
+import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Editora;
 import br.ages.crud.model.Livro;
@@ -77,7 +79,7 @@ public class LivroDAO {
 		}
 	}
 	
-	public List<Livro> listarLivros() throws PersistenciaException, SQLException {
+	public List<Livro> listarLivros() throws PersistenciaException, SQLException, NegocioException, ParseException {
 		
 		Connection conexao = null;
 
@@ -95,8 +97,8 @@ public class LivroDAO {
 
 			while (resultset.next()) {
 				if (!resultset.getBoolean("EXLUIDO")) {
-					
-				Livro dto = new Livro();				
+				EditoraBO editora = new EditoraBO();
+				Livro dto = new Livro();
 				dto.setIdLivro(resultset.getInt("ID_LIVRO"));
 				dto.setTitulo(resultset.getString("TITULO"));
 				dto.setSubtitulo(resultset.getString("SUBTITULO"));
@@ -111,8 +113,8 @@ public class LivroDAO {
 				dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
 				dto.setDescricao(resultset.getString("DESCRICAO"));
-				dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));
-				//id_editora				
+				dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));				
+				dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
 				listarLivros.add(dto);
 				}
 			}

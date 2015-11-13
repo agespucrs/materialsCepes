@@ -33,7 +33,7 @@ public class LivroBO {
 
 	}
 
-	public List<Livro> listarLivro() throws NegocioException   {
+	public List<Livro> listarLivro() throws NegocioException, ParseException   {
 
 		List<Livro> listLivro = null;
 
