@@ -62,8 +62,8 @@
 			<table id="tbLista" border="1">
 			<tr>
 				<td></td>
-				<td>Título</td>
 				<td>Código ISBN</td>
+				<td>Título</td>
 				<td>Edição</td>
 				<td>Ano</td>
 				<td>Data</td>
@@ -80,15 +80,15 @@
 
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td><%= livro.getTitulo() %></td>
 				<td><%= livro.getCodigoISBN() %></td>
+				<td><%= livro.getTitulo() %></td>
 				<td><%= livro.getEdicao() %></td>
 				<%if (livro.getAno() == null) {%>
 				<td>Não Informado</td><%}else{ %>
 				<td><%= Util.toAno(livro.getAno())%></td><%} %>
 				<td><%= Util.toDataNormal(livro.getDataCadastro()) %></td>
 				<td>
-						<img class="img" src="img/view.png"/>
+						<a href="/CePESMaterials/main?acao=consultarLivro&id_livro=<%=livro.getIdLivro()%>"><img class="img" src="img/view.png"/>
 						<a href="/CePESMaterials/main?acao=alterLivro&id_livro=<%=livro.getIdLivro()%>"><img class="img" src="img/edit.png"/></a>
 						<a href="/CePESMaterials/main?acao=removerLivro&id_livro=<%=livro.getIdLivro()%>"><img class="img" src="img/trash.png"/></a>
 						</td>

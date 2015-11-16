@@ -39,7 +39,7 @@ public class AutorDAO {
 				Autor dto = new Autor();
 				dto.setId_autor(resultset.getInt("ID_AUTOR"));
 				dto.setNome(resultset.getString("NOME"));
-				dto.setNome(resultset.getString("SOBRENOME"));
+				dto.setSobrenome(resultset.getString("SOBRENOME"));
 				listarAutores.add(dto);
 			}
 

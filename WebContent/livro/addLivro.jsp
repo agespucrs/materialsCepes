@@ -37,7 +37,7 @@
 								int sizeListaAutores = listaAutores.size();
 								for (Autor autor: listaAutores) {
 							%>
-									<option value="<%=autor.getId_autor() %>"><%=autor.getNome()%></option>			
+									<option value="<%=autor.getId_autor() %>"><%=autor.getNome()+" "+autor.getSobrenome()%></option>			
 							<%
 								}
 							%>
@@ -103,10 +103,6 @@
 					<tr>
 						<td>CD/DVD</td>
 						<td><input type="checkbox" id="cddvd" name="cddvd" value="${param.cddvd}" /></td>
-					</tr>
-					<tr>
-						<td>Brochura ou Revista</td>
-						<td><input type="text" id="bruxuraRevista" name="bruxuraRevista" value="${param.bruxuraRevista}" /></td>
 					</tr>
 					<tr>
 						<td>e-book</td>
