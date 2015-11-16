@@ -96,7 +96,7 @@ public class LivroDAO {
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
-				if (!resultset.getBoolean("EXLUIDO")) {
+				if (!resultset.getBoolean("EXCLUIDO")) {
 				EditoraBO editora = new EditoraBO();
 				Livro dto = new Livro();
 				dto.setIdLivro(resultset.getInt("ID_LIVRO"));
@@ -114,7 +114,7 @@ public class LivroDAO {
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
 				dto.setDescricao(resultset.getString("DESCRICAO"));
 				dto.setBruxura_revista(resultset.getString("BRUXURA_REVISTA"));				
-				dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
+				//dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
 				listarLivros.add(dto);
 				}
 			}
