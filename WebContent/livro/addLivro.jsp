@@ -13,7 +13,7 @@
 		<script type="text/javascript">
 		
 			function cadastrar() {
-				var formCadastro =document.forms[0]; 
+				var formCadastro = document.forms[0]; 
 				formCadastro.action ="main?acao=addLivro";
 				formCadastro.submit();
 			}
@@ -61,28 +61,28 @@
 						</td>
 					</tr>
 					<tr>
-						<td>*Código ISBN <sup class="red">*</sup></td>
+						<td>Código ISBN <sup class="red">*</sup></td>
 						<td><input type="text" id="isbn" name="isbn" maxlength="13" value="${param.codigoISBN}" required/></td> 
 					</tr>
 					<tr>
-						<td>*Título <sup class="red">*</sup></td>
+						<td>Título <sup class="red">*</sup></td>
 						<td><input type="text" id="titulo" name="titulo" maxlength="120" value="${param.titulo}" required/></td>
 					</tr>
 					<tr>
-						<td>*Subtítulo <sup class="red">*</sup></td>
+						<td>Subtítulo <sup class="red">*</sup></td>
 						<td><input type="text" id="subtitulo" name="subtitulo" maxlength="120" value="${param.subtitulo}" required/></td>
 					</tr>
 					<tr>
-						<td>Preço <sup class="red">*</sup></td>
+						<td>Preço </td>
 						<td><input type="text" id="preco" name="preco" maxlength="45" value="${param.preco}" /></td>
 					</tr>
 					<tr>
-						<td>*Lingua</td>
+						<td>Lingua <sup class="red">*</sup></td>
 						<td><input type="text" id="lingua" name="lingua" maxlength="45" value="${param.lingua}" required/></td>
 					</tr>
 					<tr>
-						<td>*Edição</td>
-						<td><input type="text" id="edicao" name="edicao" maxlength="45" value="${param.edicao}" /></td>
+						<td>Edição <sup class="red">*</sup></td>
+						<td><input type="text" id="edicao" name="edicao" maxlength="45" value="${param.edicao}" required /></td>
 					</tr>
 					<tr>
 						<td>Ano</td>
@@ -94,6 +94,13 @@
 					</tr>
 					<tr>
 						<td>Brochura ou Revista</td>
+						<!--<td>
+						<select id="bruxuraRevista" name="bruxuraRevista">
+							<option value="${param.bruxuraRevista}"></option>
+							<option value="${param.bruxuraRevista}">Bruchura</option>
+							<option value="${param.bruxuraRevista}">Revista</option>
+						</select>
+						</td>-->
 						<td><input type="text" id="bruxuraRevista" name="bruxuraRevista" value="${param.bruxuraRevista}" /></td>
 					</tr>
 					<tr>
@@ -113,8 +120,7 @@
 						<td><textarea cols="10" rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea></td>
 					</tr>
 					<tr>
-						<td></td>
-						<td><input type="submit" /></td>
+						<td></td>						
 					</tr>
 				</table>
 			</fieldset>
