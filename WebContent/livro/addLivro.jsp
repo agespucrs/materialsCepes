@@ -1,6 +1,8 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Livro"%>
+<%@page import="br.ages.crud.model.Autor"%>
+<%@page import="br.ages.crud.model.Editora"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -27,32 +29,96 @@
 			<fieldset>
 				<table cellpadding="5">
 					<tr>
-						<td>Código ISBN <sup class="red">*</sup></td>
-						<td><input type="text" id="isbn" name="isbn" maxlength="??" value="${param.codigoISBN}" /></td> 
+						<td>Autor</td>
+						<td>
+							<select id="autor" name="autor">
+							<%
+								List<Autor> listaAutores = (List<Autor>) request.getAttribute("autores");
+								int sizeListaAutores = listaAutores.size();
+								for (Autor autor: listaAutores) {
+							%>
+									<option value="<%=autor.getId_autor() %>"><%=autor.getNome()%></option>			
+							<%
+								}
+							%>
+							</select>
+						</td>
 					</tr>
 					<tr>
-						<td>Título <sup class="red">*</sup></td>
-						<td><input type="text" id="titulo" name="titulo" maxlength="??" value="${param.titulo}" /></td>
+						<td>Editora</td>
+						<td>
+							<select id="editora" name="editora">
+							<%
+								List<Editora> listaEditora = (List<Editora>) request.getAttribute("editoras");
+								int sizeListaEditoras = listaEditora.size();
+								for (Editora editora: listaEditora) {
+							%>
+									<option value="<%=editora.getIdEditora() %>"><%=editora.getNome()%></option>			
+							<%
+								}
+							%>
+							</select>
+						</td>
 					</tr>
 					<tr>
-						<td>Subtítulo <sup class="red">*</sup></td>
-						<td><input type="text" id="subtitulo" name="subtitulo" maxlength="??" value="${param.subtitulo}" /></td>
+						<td>*Código ISBN <sup class="red">*</sup></td>
+						<td><input type="text" id="isbn" name="isbn" maxlength="13" value="${param.codigoISBN}" required/></td> 
 					</tr>
 					<tr>
-						<td>Usuario <sup class="red">*</sup></td>
-						<td><input type="text" id="usuario" name="usuario" maxlength="11" value="${param.usuario}" /></td> 
+						<td>*Título <sup class="red">*</sup></td>
+						<td><input type="text" id="titulo" name="titulo" maxlength="120" value="${param.titulo}" required/></td>
 					</tr>
 					<tr>
-						<td>Senha <sup class="red">*</sup></td>
-						<td><input type="text" id="senha" name="senha" maxlength="45" value="${param.senha}" /></td>
-					</tr><tr>
-						<td>e-Mail Address</td>
-						<td><input type="text" id="email" name="email" maxlength="45" value="${param.email}" /></td>
+						<td>*Subtítulo <sup class="red">*</sup></td>
+						<td><input type="text" id="subtitulo" name="subtitulo" maxlength="120" value="${param.subtitulo}" required/></td>
 					</tr>
 					<tr>
-						<td>Administrador <sup class="red">*</sup></td>
-						<td><input type="radio" id="adm" name="adm" value="S" <%= "S".equals(request.getParameter("adm")) ? "checked" : "" %>/>SIM
-						    <input type="radio" id="adm" name="adm" value="N" <%= "N".equals(request.getParameter("adm")) ? "checked" : "" %>/>NÃO</td>
+						<td>Preço <sup class="red">*</sup></td>
+						<td><input type="text" id="preco" name="preco" maxlength="45" value="${param.preco}" /></td>
+					</tr>
+					<tr>
+						<td>*Lingua</td>
+						<td><input type="text" id="lingua" name="lingua" maxlength="45" value="${param.lingua}" required/></td>
+					</tr>
+					<tr>
+						<td>*Edição</td>
+						<td><input type="text" id="edicao" name="edicao" maxlength="45" value="${param.edicao}" /></td>
+					</tr>
+					<tr>
+						<td>Ano</td>
+						<td><input type="text" id="ano" name="ano" maxlength="4" value="${param.ano}" /></td>
+					</tr>
+					<tr>
+						<td>Páginas</td>
+						<td><input type="text" id="paginas" name="paginas" maxlength="4" value="${param.paginas}" /></td>
+					</tr>
+					<tr>
+						<td>Brochura ou Revista</td>
+						<td><input type="text" id="bruxuraRevista" name="bruxuraRevista" value="${param.bruxuraRevista}" /></td>
+					</tr>
+					<tr>
+						<td>Video</td>
+						<td><input type="checkbox" id="video" name="video" value="${param.video}" /></td>
+					</tr>
+					<tr>
+						<td>CD/DVD</td>
+						<td><input type="checkbox" id="cddvd" name="cddvd" value="${param.cddvd}" /></td>
+					</tr>
+					<tr>
+						<td>Brochura ou Revista</td>
+						<td><input type="text" id="bruxuraRevista" name="bruxuraRevista" value="${param.bruxuraRevista}" /></td>
+					</tr>
+					<tr>
+						<td>e-book</td>
+						<td><input type="checkbox" id="ebook" name="ebook" value="${param.ebook}" /></td>
+					</tr>
+					<tr>
+						<td>Descrição</td>
+						<td><textarea cols="10" rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" /></td>
 					</tr>
 				</table>
 			</fieldset>

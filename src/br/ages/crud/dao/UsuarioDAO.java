@@ -151,8 +151,7 @@ public class UsuarioDAO {
 			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
 
 			// Cadastra a pessoa e gera e busca id gerado
-			PreparedStatement statement = conexao.prepareStatement(
-					sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, usuario.getAdministrador());
