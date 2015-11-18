@@ -131,4 +131,42 @@ public class AutorDAO {
 	
 		return autor;
 	}
+	
+	public ArrayList<Autor> consultarAutores(ArrayList<Integer> idAutores) throws PersistenciaException, SQLException {		
+		Connection conexao = null;
+
+		ArrayList<Autor> autores = new ArrayList<Autor>();
+		try {
+
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql;
+			
+			
+			for (int i = 0; i < idAutores.size(); i++){
+				Autor autor = new Autor();	
+			
+				sql = new StringBuilder();
+				sql.append("SELECT * FROM TB_AUTOR WHERE ID_AUTOR = ?");
+				
+				PreparedStatement statement = conexao.prepareStatement(sql.toString());
+				statement.setInt(1, idAutores.get(i));
+				
+				ResultSet resultset = statement.executeQuery();
+				
+				while (resultset.next()) {
+				autor.setId_autor(resultset.getInt("ID_AUTOR"));
+				autor.setNome(resultset.getString("NOME"));
+				autor.setSobrenome(resultset.getString("SOBRENOME"));				
+				autores.add(autor);
+				}
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+		throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+	
+		return autores;
+	}
 }

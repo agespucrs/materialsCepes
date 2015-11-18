@@ -74,8 +74,8 @@ public class Livro implements Serializable {
 			return preco;
 		}
 
-		public void setPreco(long l) {
-			this.preco = l;
+		public void setPreco(long preco) {
+			this.preco = preco;
 		}
 
 		public String getCodigoISBN() {

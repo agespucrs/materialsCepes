@@ -53,7 +53,7 @@
 								int sizeListaEditoras = listaEditora.size();
 								for (Editora editora: listaEditora) {
 							%>
-									<option value="<%=editora.getIdEditora() %>"><%=editora.getNome()%></option>			
+									<option value="<%=editora.getIdEditora()%>"><%=editora.getNome()%></option>			
 							<%
 								}
 							%>
@@ -109,7 +109,7 @@
 					</tr>
 					<tr>
 						<td>CD/DVD</td>
-						<td><input type="checkbox" id="cddvd" name="cddvd" value="${param.cddvd}" /></td>
+						<td><input type="checkbox" id="cd_dvd" name="cd_dvd" value="${param.cddvd}" /></td>
 					</tr>
 					<tr>
 						<td>e-book</td>

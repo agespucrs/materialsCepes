@@ -2,48 +2,68 @@ package br.ages.crud.command;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import br.ages.crud.bo.AutorBO;
 import br.ages.crud.bo.LivroBO;
+import br.ages.crud.bo.EditoraBO;
+import br.ages.crud.model.Editora;
 import br.ages.crud.model.Livro;
+import br.ages.crud.model.Autor;
 import br.ages.crud.util.MensagemContantes;
 
 public class AddLivroCommand implements Command {
 
-
 	private String proxima;
 
 	private LivroBO livroBO;
+	private EditoraBO editoraBO;
+	private AutorBO autorBO;
 
 	@Override
 	public String execute(HttpServletRequest request) throws ParseException {
-		
+
 		livroBO = new LivroBO();
+		editoraBO = new EditoraBO();
 		proxima = "livro/addLivro.jsp";
 
-		String titulo = request.getParameter("Titulo");
-		String subtitulo = request.getParameter("Subtitulo");
+		String titulo = request.getParameter("titulo");
+		String subtitulo = request.getParameter("subtitulo");
 		Date dataCadastro = new Date();
-		long preco = Long.parseLong(request.getParameter("Preco"));
-		String lingua = request.getParameter("Lingua");
-		String codigoISBN = request.getParameter("Codigo_Isbn");
-		Integer edicao = Integer.parseInt(request.getParameter("Edicao"));
+
+		String sPreco = (request.getParameter("preco"));
+		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco);
+
+		String lingua = request.getParameter("lingua");
+		String codigoISBN = request.getParameter("isbn");
+
+		String sEdicao = (request.getParameter("edicao"));
+		Integer edicao = sEdicao.equals("") ? null : Integer.parseInt(sEdicao);
+
+		String sAno = request.getParameter("ano");
+		SimpleDateFormat sdano = new SimpleDateFormat("yyyy");		
+		Date ano = sAno.equals("") ? null : sdano.parse(sAno);
 		
-		String strano = request.getParameter("ano");
-		SimpleDateFormat sdano = new SimpleDateFormat("yyyy");
-		Date ano = sdano.parse(strano);
+		String sPaginas = (request.getParameter("paginas"));
+		Integer paginas = sPaginas.equals("") ? null :Integer.parseInt(sPaginas);
 		
-		Integer paginas = Integer.parseInt(request.getParameter("Paginas"));
 		Boolean video = Boolean.valueOf(request.getParameter("video"));
 		Boolean cd_dvd = Boolean.valueOf(request.getParameter("cd_dvd"));
-		Boolean e_book = Boolean.valueOf(request.getParameter("E_book"));
+		Boolean e_book = Boolean.valueOf(request.getParameter("ebook"));
 		String descricao = request.getParameter("descricao");
-		String bruxura_revista = request.getParameter("bruxura_revista");
-		
+		String bruxura_revista = request.getParameter("bruxuraRevista");
+
+		// Object receptor
+		Integer idEditora = Integer.parseInt(request.getParameter("editora"));
+		ArrayList<Integer> idAutores = new ArrayList<Integer>();
+		Integer idAutor = Integer.parseInt(request.getParameter("autor"));
+		idAutores.add(idAutor);
+
 		try {
-			
+
 			Livro livro = new Livro();
 			livro.setTitulo(titulo);
 			livro.setSubtitulo(subtitulo);
@@ -59,21 +79,32 @@ public class AddLivroCommand implements Command {
 			livro.setE_book(e_book);
 			livro.setDescricao(descricao);
 			livro.setBruxura_revista(bruxura_revista);
-			
-			/*boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
-			if (!isValido) {
-				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
-			} else { // cadastro de pessoa com sucesso*/
-				livroBO.cadastraLivro(livro);
-				proxima = "main?acao=listLivro";
-				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?", livro.getTitulo()));
+			Editora editora = editoraBO.consultarEditora(idEditora);
+			livro.setEditora(editora);
+			ArrayList<Autor> autores = autorBO.consultarAutores(idAutores);
+			livro.setAutores(autores);
+
+			/*
+			 * boolean isValido = usuarioBO.validaCadastroUsuarioA(user); if
+			 * (!isValido) { request.setAttribute("msgErro",
+			 * MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS); } else { //
+			 * cadastro de pessoa com sucesso
+			 */
+			livroBO.cadastraLivro(livro);
+			proxima = "main?acao=listLivro";
+			request.setAttribute("msgSucesso",
+					MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?",
+							livro.getTitulo()));
 			/**/
-			
+
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
-			//proxima = "main?acao=addUser";
+			// proxima = "main?acao=addUser";
 		}
 		return proxima;
 	}
-}
 
+	public boolean isNulo(HttpServletRequest request, String parameter) {
+		return request.getParameter(parameter) == null;
+	}
+}

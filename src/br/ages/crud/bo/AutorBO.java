@@ -2,6 +2,7 @@ package br.ages.crud.bo;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +88,17 @@ public class AutorBO {
 			throw new NegocioException(e);
 		}
 		return autor;
+	}
+	
+	public ArrayList<Autor> consultarAutores(ArrayList<Integer> idAutores) throws NegocioException, SQLException, ParseException {
+		ArrayList<Autor> autores;
+		try {
+			autores = autorDAO.consultarAutores(idAutores);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		return autores;
 	}
 	
 }

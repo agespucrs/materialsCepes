@@ -64,7 +64,6 @@ public class LivroDAO {
 			statement.setString(13, livro.getDescricao());
 			statement.setString(14, livro.getBruxura_revista());
 			statement.setInt(15, livro.getEditora().getIdEditora());
-			
 			statement.executeUpdate();
 
 			ResultSet resultset = statement.getGeneratedKeys();
