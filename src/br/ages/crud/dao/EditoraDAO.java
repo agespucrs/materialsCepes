@@ -27,8 +27,7 @@ public class EditoraDAO {
 		listarEditoras = new ArrayList<>();
 	}
 
-	public List<Editora> listarEditoras() throws PersistenciaException,
-			SQLException {
+	public List<Editora> listarEditoras() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 
 		try {
@@ -37,8 +36,7 @@ public class EditoraDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_EDITORA");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
@@ -68,10 +66,8 @@ public class EditoraDAO {
 			sql.append("INSERT INTO TB_EDITORA (ID_EDITORA, NOME)");
 			sql.append("VALUES (?, ?)");
 
-			PreparedStatement statement = conexao.prepareStatement(
-					sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, editora.getNome());
-
 			statement.executeUpdate();
 
 			ResultSet resultset = statement.getGeneratedKeys();
@@ -99,8 +95,7 @@ public class EditoraDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_EDITORA WHERE ID_EDITORA = ? ");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idEditora);
 			ResultSet resultset = statement.executeQuery();
 
@@ -125,10 +120,8 @@ public class EditoraDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("DELETE FROM TB_EDITORA WHERE ID_EDITORA= ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idEditora);
-
 			statement.execute();
 
 		} catch (ClassNotFoundException | SQLException e) {

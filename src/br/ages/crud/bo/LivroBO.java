@@ -22,7 +22,7 @@ public class LivroBO {
 		livroDAO = new LivroDAO();
 	}
 
-	public void cadastraLivro(Livro livro) throws NegocioException, SQLException, ParseException {
+	public void cadastrarLivro(Livro livro) throws NegocioException, SQLException, ParseException {
 
 		try {
 			livroDAO.cadastrarLivro(livro);

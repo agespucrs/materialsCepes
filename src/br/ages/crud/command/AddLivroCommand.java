@@ -28,6 +28,7 @@ public class AddLivroCommand implements Command {
 
 		livroBO = new LivroBO();
 		editoraBO = new EditoraBO();
+		autorBO = new AutorBO();
 		proxima = "livro/addLivro.jsp";
 
 		String titulo = request.getParameter("titulo");
@@ -90,11 +91,10 @@ public class AddLivroCommand implements Command {
 			 * MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS); } else { //
 			 * cadastro de pessoa com sucesso
 			 */
-			livroBO.cadastraLivro(livro);
+			livroBO.cadastrarLivro(livro);
 			proxima = "main?acao=listLivro";
 			request.setAttribute("msgSucesso",
-					MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?",
-							livro.getTitulo()));
+			MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?",livro.getTitulo()));
 			/**/
 
 		} catch (Exception e) {
