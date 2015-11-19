@@ -165,8 +165,7 @@ public class AutorDAO {
 		throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
-		}
-	
+		}	
 		return autores;
 	}
 }

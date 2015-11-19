@@ -42,8 +42,8 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, EDITORA)");
-			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
+			sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, ID_EDITORA)");
+			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 			java.util.Date utilDate = new java.util.Date();
 		    java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
@@ -55,8 +55,9 @@ public class LivroDAO {
 			statement.setLong(4, livro.getPreco());
 			statement.setString(5, livro.getLingua());
 			statement.setString(6, livro.getCodigoISBN());
-			statement.setInt(7, livro.getEdicao());
-			statement.setDate(8, livro.getAno());
+			statement.setInt(7, livro.getEdicao());			
+			java.sql.Date anoLivro = new java.sql.Date(livro.getAno().getTime());			
+			statement.setDate(8, anoLivro);
 			statement.setInt(9, livro.getPaginas());
 			statement.setBoolean(10, livro.isVideo());
 			statement.setBoolean(11, livro.isCd_dvd());

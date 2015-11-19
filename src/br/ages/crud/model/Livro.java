@@ -94,8 +94,8 @@ public class Livro implements Serializable {
 			this.edicao = edicao;
 		}
 
-		public java.sql.Date getAno() {
-			return (java.sql.Date) ano;
+		public Date getAno() {
+			return ano;
 		}
 
 		public void setAno(Date ano) {
