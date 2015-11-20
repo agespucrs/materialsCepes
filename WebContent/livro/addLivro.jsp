@@ -93,15 +93,8 @@
 						<td><input type="text" id="paginas" name="paginas" maxlength="4" value="${param.paginas}" /></td>
 					</tr>
 					<tr>
-						<td>Brochura ou Revista</td>
-						<!--<td>
-						<select id="bruxuraRevista" name="bruxuraRevista">
-							<option value="${param.bruxuraRevista}"></option>
-							<option value="${param.bruxuraRevista}">Bruchura</option>
-							<option value="${param.bruxuraRevista}">Revista</option>
-						</select>
-						</td>-->
-						<td><input type="text" id="bruxuraRevista" name="bruxuraRevista" value="${param.bruxuraRevista}" /></td>
+						<td>Brochura</td>
+						<td><input type="checkbox" id="bruxuraRevista" name="bruxuraRevista" value="${param.bruxuraRevista}" /></td>						
 					</tr>
 					<tr>
 						<td>Video</td>

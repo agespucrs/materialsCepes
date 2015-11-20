@@ -23,7 +23,7 @@ public class Livro implements Serializable {
 		private boolean cd_dvd;
 		private boolean e_book;
 		private String descricao;
-		private String bruxura_revista;
+		private boolean bruxura_revista;
 		private boolean excluido; // determinar se livro esta ativo/exluido
 									
 		public Livro() {
@@ -46,11 +46,11 @@ public class Livro implements Serializable {
 			this.titulo = titulo;
 		}
 
-		public String getBruxura_revista() {
+		public boolean getBruxura_revista() {
 			return bruxura_revista;
 		}
 
-		public void setBruxura_revista(String bruxura_revista) {
+		public void setBruxura_revista(boolean bruxura_revista) {
 			this.bruxura_revista = bruxura_revista;
 		}
 
