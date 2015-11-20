@@ -50,11 +50,11 @@ public class AddLivroCommand implements Command {
 		
 		String sPaginas = (request.getParameter("paginas"));
 		Integer paginas = sPaginas.equals("") ? null :Integer.parseInt(sPaginas);
-		
-		Boolean bruxura_revista = Boolean.valueOf(request.getParameter("bruxuraRevista"));
-		Boolean video = Boolean.valueOf(request.getParameter("video"));
-		Boolean cd_dvd = Boolean.valueOf(request.getParameter("cd_dvd"));
-		Boolean e_book = Boolean.valueOf(request.getParameter("ebook"));
+
+		Boolean bruxura_revista = request.getParameter("bruxuraRevista") == null ? false : true;
+		Boolean video =  request.getParameter("video") == null ? false : true;
+		Boolean cd_dvd = request.getParameter("cd_dvd") == null ? false : true;
+		Boolean e_book = request.getParameter("ebook") == null ? false : true;
 		String descricao = request.getParameter("descricao");
 		
 
