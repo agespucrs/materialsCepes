@@ -8,15 +8,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.ages.crud.bo.EditoraBO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
-import br.ages.crud.model.Editora;
+import br.ages.crud.model.Autor;
 import br.ages.crud.model.Livro;
-import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
 import com.mysql.jdbc.Statement;
@@ -66,18 +64,38 @@ public class LivroDAO {
 			statement.setBoolean(14, livro.getBruxura_revista());
 			statement.setInt(15, livro.getEditora().getIdEditora());
 			statement.setBoolean(16, livro.getStatus());
+			
 			statement.executeUpdate();
-
+		
 			ResultSet resultset = statement.getGeneratedKeys();
+			
 			if (resultset.first()) {
 				idLivro = resultset.getInt(1);
 			}
+			
+			ArrayList<Integer> idAutores = new ArrayList<Integer>();
+			for (Autor aut : livro.getAutores()) {
+				idAutores.add(aut.getId_autor());
+			} 
 
+			cadastraAutoresLivros(idLivro,idAutores,conexao);			
+		
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
+	}
+
+	private void cadastraAutoresLivros(int IdLivro, ArrayList<Integer> idAutores, Connection conexao) throws SQLException {
+		for (Integer idAutor : idAutores) {
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO TB_LIVRO_AUTOR (ID_LIVRO, ID_AUTOR) VALUES (?,?)");
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, IdLivro);
+			statement.setInt(2, idAutor);
+			statement.executeUpdate();
+		}		
 	}
 	
 	public List<Livro> listarLivros() throws PersistenciaException, SQLException, NegocioException, ParseException {
