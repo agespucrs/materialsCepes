@@ -106,9 +106,7 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_LIVRO INNER JOIN "
-					+ "TB_EDITORA ON tb_livro.id_EDITORA = tb_editora.ID_EDITORA INNER JOIN "
-					+ "TB_livro_AUTOR ON tb_livro.id_livro = tb_livro_autor.id_livro");
+			sql.append("SELECT * FROM TB_LIVRO INNER JOIN TB_EDITORA ON tb_livro.id_EDITORA = tb_editora.ID_EDITORA INNER JOIN TB_livro_AUTOR ON tb_livro.id_livro = tb_livro_autor.id_livro ORDER BY tb_livro.ID_LIVRO");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			
@@ -133,7 +131,7 @@ public class LivroDAO {
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
 				dto.setDescricao(resultset.getString("DESCRICAO"));
 				dto.setBruxura_revista(resultset.getBoolean("BRUXURA_REVISTA"));				
-				//dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
+				dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
 				listarLivros.add(dto);
 				}
 			}
