@@ -14,7 +14,7 @@ public class ConsultarLivroCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		proximo = "main?acao=consultarLivro";
+		proximo = "livro/consultarLivro.jsp";
 		this.livroBO = new LivroBO();
 
 		try {

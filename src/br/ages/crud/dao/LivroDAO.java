@@ -159,6 +159,7 @@ public class LivroDAO {
 			statement.setInt(1, idLivro);
 			ResultSet resultset = statement.executeQuery();
 			
+			while (resultset.next()) {
 			Livro dto = new Livro();
 			dto.setIdLivro(resultset.getInt("ID_LIVRO"));
 			dto.setTitulo(resultset.getString("TITULO"));
@@ -175,6 +176,7 @@ public class LivroDAO {
 			dto.setE_book(resultset.getBoolean("E_BOOK"));
 			dto.setBruxura_revista(resultset.getBoolean("BRUXURA_REVISTA"));
 			consultarLivro = dto;
+			}
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
