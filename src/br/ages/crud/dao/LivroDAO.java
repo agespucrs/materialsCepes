@@ -40,17 +40,63 @@ public class LivroDAO {
 
 			conexao = ConexaoUtil.getConexao();
 
+			StringBuilder sql = new StringBuilder();
+			
+			java.util.Date utilDate = new java.util.Date();
+			java.sql.Date dataCadastro = new java.sql.Date(
+					utilDate.getTime());
+			
 			if (consultaCodigoISBNExistente(livro, conexao)) {
-
+				
+				sql.append("UPDATE TB_LIVRO SET TITULO = ?,"
+						+ " SUBTITULO = ?,"
+						+ " DATA_CADASTRO = ?,"
+						+ " PRECO = ?,"
+						+ " LINGUA = ?,"
+						+ " EDICAO = ?,"
+						+ " ANO = ?,"
+						+ " PAGINAS = ?,"
+						+ " VIDEO = ?,"
+						+ " CD_DVD = ?,"
+						+ " E_BOOK = ?,"
+						+ " DESCRICAO = ?,"
+						+ " BRUXURA_REVISTA = ?,"
+						+ " ID_EDITORA = ?,"
+						+ " EXCLUIDO = ?"
+						+ " WHERE CODIGO_ISBN = ?");
+				
+				PreparedStatement statement = conexao.prepareStatement(
+						sql.toString());
+			
+				if (livroEstaExcluido(livro, conexao)){
+					statement.setString(1, livro.getTitulo());
+					statement.setString(2, livro.getSubtitulo());
+					statement.setDate(3, dataCadastro);
+					statement.setLong(4, livro.getPreco());
+					statement.setString(5, livro.getLingua());
+					statement.setInt(6, livro.getEdicao());
+					java.sql.Date anoLivro = new java.sql.Date(livro.getAno()
+							.getTime());
+					statement.setDate(7, anoLivro);
+					statement.setInt(8, livro.getPaginas());
+					statement.setBoolean(9, livro.isVideo());
+					statement.setBoolean(10, livro.isCd_dvd());
+					statement.setBoolean(11, livro.isE_book());
+					statement.setString(12, livro.getDescricao());
+					statement.setBoolean(13, livro.getBruxura_revista());
+					statement.setInt(14, livro.getEditora().getIdEditora());
+					statement.setBoolean(15, false);
+					statement.setString(16, livro.getCodigoISBN());
+					
+					statement.executeUpdate();
+				}
+				else{
+					
+				}
+				// END TO DO
 			} else {
-				StringBuilder sql = new StringBuilder();
-
 				sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, ID_EDITORA, EXCLUIDO)");
 				sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-				java.util.Date utilDate = new java.util.Date();
-				java.sql.Date dataCadastro = new java.sql.Date(
-						utilDate.getTime());
 
 				PreparedStatement statement = conexao.prepareStatement(
 						sql.toString(), Statement.RETURN_GENERATED_KEYS);
@@ -99,6 +145,8 @@ public class LivroDAO {
 			throws SQLException {
 		Integer codISBN = null;
 
+		Livro livroISBNExistente = new Livro();
+		
 		StringBuilder sql = new StringBuilder();
 
 		sql.append("select * from tb_livro where CODIGO_ISBN = ?");
@@ -114,9 +162,32 @@ public class LivroDAO {
 			return false;
 		}
 
+		
 		return true;
 	}
+	
+	private boolean livroEstaExcluido(Livro livro, Connection conexao)
+			throws SQLException {
 
+		Integer excluido = 0;
+		
+		StringBuilder sql = new StringBuilder();
+
+		sql.append("select EXCLUIDO from tb_livro where CODIGO_ISBN = ?");
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+		statement.setString(1, livro.getCodigoISBN());
+
+		ResultSet resultset = statement.executeQuery();
+		if (resultset.first()) {
+			excluido = resultset.getInt(1);
+		}
+
+		if (excluido == 0) {
+			return false;
+		}
+		
+		return true;
+	}
 	private void cadastraAutoresLivros(int IdLivro,
 			ArrayList<Integer> idAutores, Connection conexao)
 			throws SQLException {
