@@ -56,7 +56,12 @@
 
 				</tr>
 				<tr>
-					<td colspan='2'><textarea rows="4" cols="90"><%=livro.getDescricao()%></textarea></td>
+					<%if (livro.getDescricao() == null) {%>
+					<td colspan='2'><label	>Não possui descrição</label></td>
+					<%} else{%>
+					<td colspan='2'><textarea rows="4" cols="90" readonly><%=livro.getDescricao()%></textarea></td>
+					<%} %>
+					<!-- <td colspan='2'><label rows="4" cols="90"><%=livro.getDescricao()%></label></td> -->
 				</tr>
 				<tr>
 					<td><label>Numero de paginas</label></td>
@@ -73,20 +78,22 @@
 				<tr>
 					<td><label>Preco</label></td>
 					<td><label>Data de compra</label></td>
-					<td><label>Bruchuria ou Revista</label></td>
 				</tr>
 
 				<tr>
 					<td><%=livro.getPreco()%></td>
 					<td><%=Util.toDataNormal(livro.getDataCadastro())%></td>
 					<%if (livro.getBruxura_revista()) {%>
-					<td>Bruchuria</td><%}else{ %>
-					<td>Revista></td><%} %>
+					<td>Brochura</td><%}else{ %>
+					<td>Revista</td><%} %>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="cd_dvd">CD ou DVD</td>
-					<td><input type="checkbox" name="video">video</td>
-					<td><input type="checkbox" name="ebook">E-Book</td>
+				<%if (livro.isCd_dvd()) {%>
+					<td>CD ou DVD</td><%}%>
+					<%if (livro.isVideo()) {%>
+					<td>Video</td><%}%>
+					<%if (livro.isE_book()) {%>
+					<td>E-Book</td><%}%>				
 				</tr>
 
 			</div>
