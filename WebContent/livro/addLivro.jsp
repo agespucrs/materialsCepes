@@ -110,7 +110,7 @@
 					</tr>
 					<tr>
 						<td>Descrição</td>
-						<td><textarea cols="10" rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea></td>
+						<td><textarea cols="45" rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea></td>
 					</tr>
 					<tr>
 						<td></td>						
