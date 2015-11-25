@@ -59,12 +59,11 @@
 
 				</tr>
 				<tr>
-					<%if (livro.getDescricao() == null) {%>
+					<%if (livro.getDescricao() == "") {%>
 					<td colspan='2'><label	>Não possui descrição</label></td>
-					<%} else{%>
+					<%} else {%>
 					<td colspan='2'><textarea rows="4" cols="90" readonly><%=livro.getDescricao()%></textarea></td>
-					<%} %>
-					<!-- <td colspan='2'><label rows="4" cols="90"><%=livro.getDescricao()%></label></td> -->
+					<%} %>					
 				</tr>
 				<tr>
 					<td><label>Numero de paginas</label></td>

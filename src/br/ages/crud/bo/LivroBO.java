@@ -58,6 +58,16 @@ public class LivroBO {
 		}
 		return livro;
 	}
+	
+	public void alterarLivro(Livro Livro) throws NegocioException, SQLException, ParseException {
+		
+		try {
+			livroDAO.alterarLivro(Livro);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
 
 	public void removerLivro(Integer idLivro) throws NegocioException {
 		try {

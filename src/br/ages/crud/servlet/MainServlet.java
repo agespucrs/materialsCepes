@@ -65,6 +65,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("removerLivro", new RemoveLivroCommand());
 		comandos.put("telaLivro", new CreateScreenLivroCommand());
 		comandos.put("consultarLivro", new ConsultarLivroCommand());
+		comandos.put("alterarLivro", new CreateScreenLivroCommand());
 		
 	}
 
