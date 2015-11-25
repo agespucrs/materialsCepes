@@ -13,15 +13,65 @@
 		<script type="text/javascript">
 		
 			function cadastrar() {
+				
 				var formCadastro = document.forms[0]; 
-				formCadastro.action ="main?acao=addLivro";
-				formCadastro.submit();
+				var err = false;
+				
+				if(document.getElementById("isbn").value == "undefined" || document.getElementById("isbn").value == "")
+						err = true;
+				if(document.getElementById("titulo").value == "undefined" || document.getElementById("titulo").value == "")
+					err = true;
+				if(document.getElementById("subtitulo").value == "undefined" || document.getElementById("subtitulo").value == "")
+					err = true;
+				if(document.getElementById("lingua").value == "undefined" || document.getElementById("lingua").value == "")
+					err = true;
+				if(document.getElementById("edicao").value == "undefined" || document.getElementById("edicao").value == "")
+					err = true;
+				
+				
+				if(!err)
+				{
+					formCadastro.action ="main?acao=addLivro";
+					formCadastro.submit();
+				}
+				else
+				{
+					document.getElementById("msgErro").style.display = "block";
+					document.getElementById("msgErro").innerHTML = "Preencha os campos obrigatórios";
+				}	
+				
+			
+			}
+			
+			function onlyNumber(e)
+			{
+				var valueof = e.value;
+				var value = valueof.match(/^[\0-9]+$/);
+				e.value = value;
+				
+			}
+			
+			function precoMask(e)
+			{
+				var valueof = e.value;
+				var value = valueof.match(/^[\0-9.]+$/);
+				e.value = value;
+			}
+			
+			function virgulaPraPonto(e)
+			{
+				e.value = e.value.replace(",",".");
+				
 			}
 		
 		</script>
 </head>
 <body>
+	
+	
+
 	<jsp:include page="/template/head.jsp"></jsp:include>
+	<div id="msgErro" class="msgErro" style="display: none;"></div>
 	<h1>Cadastro Livro</h1>
 	<div class="main">
 		<form action="" method="post">
@@ -62,7 +112,7 @@
 					</tr>
 					<tr>
 						<td>Código ISBN <sup class="red">*</sup></td>
-						<td><input type="text" id="isbn" name="isbn" maxlength="13" value="${param.codigoISBN}" required/></td> 
+						<td><input type="text" id="isbn" name="isbn" maxlength="13" value="${param.codigoISBN}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required/></td> 
 					</tr>
 					<tr>
 						<td>Título <sup class="red">*</sup></td>
@@ -74,7 +124,7 @@
 					</tr>
 					<tr>
 						<td>Preço </td>
-						<td><input type="text" id="preco" name="preco" maxlength="45" value="${param.preco}" /></td>
+						<td><input type="text" id="preco" name="preco" maxlength="45" value="${param.preco}" onkeyup="precoMask(this)" onkeydown="precoMask(this)"/></td>
 					</tr>
 					<tr>
 						<td>Lingua <sup class="red">*</sup></td>
@@ -82,15 +132,15 @@
 					</tr>
 					<tr>
 						<td>Edição <sup class="red">*</sup></td>
-						<td><input type="text" id="edicao" name="edicao" maxlength="45" value="${param.edicao}" required /></td>
+						<td><input type="text" id="edicao" name="edicao" maxlength="45" value="${param.edicao}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
 					</tr>
 					<tr>
 						<td>Ano</td>
-						<td><input type="text" id="ano" name="ano" maxlength="4" value="${param.ano}" /></td>
+						<td><input type="text" id="ano" name="ano" maxlength="4" value="${param.ano}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
 					</tr>
 					<tr>
 						<td>Páginas</td>
-						<td><input type="text" id="paginas" name="paginas" maxlength="4" value="${param.paginas}" /></td>
+						<td><input type="text" id="paginas" name="paginas" maxlength="4" value="${param.paginas}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
 					</tr>
 					<tr>
 						<td>Brochura</td>

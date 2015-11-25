@@ -38,6 +38,8 @@ public class MensagemContantes {
 	
 	public static final String MSG_SUC_CADASTRO_LIVRO = "Cadastro livro: ?, efetuado com sucesso!";
 	
+	public static final String MSG_ERR_CADASTRO_LIVRO_EXISTENTE = "ERRO! Livro ? já existente";
+	
 	public static final String MSG_SUC_CADASTRO_EDITORA = "Cadastro editora: ?, efetuado com sucesso!";
 
 	public static final String MSG_SUC_ALTERADO_USUARIO = "Alteração usuário: ?, efetuado com sucesso!";

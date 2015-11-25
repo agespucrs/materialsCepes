@@ -196,3 +196,13 @@ background: #666;
  transition: all .5s ease-out 0s;
  position: relative;
 }
+
+.msgErro {
+	background-color: #B01518;
+	width: 300px;
+	text-align: center;
+
+	padding: 20px 30px;
+	margin: 10px;
+	color: white; 		
+}

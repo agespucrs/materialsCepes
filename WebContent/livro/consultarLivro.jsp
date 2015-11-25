@@ -21,7 +21,7 @@
 					<td>CADASTRO DE LIVROS</td>
 				</tr>
 				<tr>
-					<td><label>Codigo isbn</label></td>
+					<td><label>Codigo ISBN</label></td>
 					<td><label>Titulo</label></td>
 				</tr>
 				<tr>
@@ -48,10 +48,10 @@
 				</tr>
 				<tr>
 					<td><select name="">
-					<option value="Autor"><%//livro.getAutores().get(0).getNome()%> </option>
+					<option value="Autor"><%=livro.getAutores().get(0).getNome()+" "+livro.getAutores().get(0).getSobrenome()%> </option>
 					</select></td>
 					<td><select name="">
-					<option value="Editora"><%//livro.getEditora().getNome()%></option>
+					<option value="Editora"><%=livro.getEditora().getNome()%></option>
 					</select></td>
 
 				</tr>
