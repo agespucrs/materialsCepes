@@ -1,4 +1,5 @@
 <%@page import="br.ages.crud.model.Livro"%>
+<%@page import="br.ages.crud.model.Autor"%>
 <%@page import="br.ages.crud.util.Util"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
@@ -8,7 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/comum.css" />
 <title>Consulta Livros</title>
-
 </head>
 <%Livro livro = (Livro) request.getAttribute("livro");%>
 <body>
@@ -48,7 +48,10 @@
 				</tr>
 				<tr>
 					<td><select name="">
-					<option value="Autor"><%=livro.getAutores().get(0).getNome()+" "+livro.getAutores().get(0).getSobrenome()%> </option>
+					<% for(Autor autor : livro.getAutores()){
+						%>
+					<option value="Autor"><%=autor.getNome()+" "+autor.getSobrenome()%> </option>
+					<% } %>
 					</select></td>
 					<td><select name="">
 					<option value="Editora"><%=livro.getEditora().getNome()%></option>
