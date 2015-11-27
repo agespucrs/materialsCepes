@@ -36,12 +36,9 @@ public class CreateScreenLivroCommand implements Command {
 				proxima = "livro/editLivro.jsp";
 				
 			} else {
-				//int livroId = Integer.parseInt(request.getParameter("livro_id"));
 				
-				//Livro livro= livroBO.consultarLivro(livroId);
 				ArrayList<Autor> autores = (ArrayList<Autor>) autorBO.listarAutor();
 				ArrayList<Editora> editoras = (ArrayList<Editora>) editoraBO.listarEditora();
-				//request.setAttribute("livro", livro);
 				request.setAttribute("autores", autores);
 				request.setAttribute("editoras", editoras);
 				

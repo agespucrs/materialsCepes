@@ -89,7 +89,7 @@
 				<td><%= Util.toDataNormal(livro.getDataCadastro()) %></td>
 				<td>
 						<a href="/CePESMaterials/main?acao=consultarLivro&id_livro=<%=livro.getIdLivro()%>"><img class="img" src="img/view.png"/>
-						<a href="/CePESMaterials/main?acao=alterLivro&id_livro=<%=livro.getIdLivro()%>&isEdit=sim"><img class="img" src="img/edit.png"/></a>
+						<a href="/CePESMaterials/main?acao=telaLivro&id_livro=<%=livro.getIdLivro()%>&isEdit=sim"><img class="img" src="img/edit.png"/></a>
 						<a href="/CePESMaterials/main?acao=removerLivro&id_livro=<%=livro.getIdLivro()%>"><img class="img" src="img/trash.png"/></a>
 						</td>
 			</tr>

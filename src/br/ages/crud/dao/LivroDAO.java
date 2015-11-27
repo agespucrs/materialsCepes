@@ -77,7 +77,7 @@ public class LivroDAO {
 					statement.setBoolean(13, livro.getBruxura_revista());
 					statement.setInt(14, livro.getEditora().getIdEditora());
 					statement.setBoolean(15, false);
-					statement.setString(16, livro.getCodigoISBN());
+					statement.setInt(16, livro.getIdLivro());
 
 					statement.executeUpdate();
 
@@ -347,12 +347,12 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			
-			java.util.Date utilDate = new java.util.Date();
-			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
+			//java.util.Date utilDate = new java.util.Date();
+			//java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
 					
 				
 			sql.append("UPDATE TB_LIVRO SET TITULO = ?,"
-					+ " SUBTITULO = ?," + " DATA_CADASTRO = ?,"
+					+ " SUBTITULO = ?,"
 					+ " PRECO = ?," + " LINGUA = ?," + " EDICAO = ?,"
 					+ " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?,"
 					+ " CD_DVD = ?," + " E_BOOK = ?," + " DESCRICAO = ?,"
@@ -362,21 +362,21 @@ public class LivroDAO {
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, livro.getTitulo());
 			statement.setString(2, livro.getSubtitulo());
-			statement.setDate(3, dataCadastro);
-			statement.setLong(4, livro.getPreco());
-			statement.setString(5, livro.getLingua());
-			statement.setInt(6, livro.getEdicao());
+			//statement.setDate(3, dataCadastro);
+			statement.setLong(3, livro.getPreco());
+			statement.setString(4, livro.getLingua());
+			statement.setInt(5, livro.getEdicao());
 			java.sql.Date anoLivro = new java.sql.Date(livro.getAno().getTime());
-			statement.setDate(7, anoLivro);
-			statement.setInt(8, livro.getPaginas());
-			statement.setBoolean(9, livro.isVideo());
-			statement.setBoolean(10, livro.isCd_dvd());
-			statement.setBoolean(11, livro.isE_book());
-			statement.setString(12, livro.getDescricao());
-			statement.setBoolean(13, livro.getBruxura_revista());
-			statement.setInt(14, livro.getEditora().getIdEditora());
-			statement.setBoolean(15, false);
-			statement.setString(16, livro.getCodigoISBN());
+			statement.setDate(6, anoLivro);
+			statement.setInt(7, livro.getPaginas());
+			statement.setBoolean(8, livro.isVideo());
+			statement.setBoolean(9, livro.isCd_dvd());
+			statement.setBoolean(10, livro.isE_book());
+			statement.setString(11, livro.getDescricao());
+			statement.setBoolean(12, livro.getBruxura_revista());
+			statement.setInt(13, livro.getEditora().getIdEditora());
+			statement.setBoolean(14, false);
+			statement.setInt(15, livro.getIdLivro());
 
 			statement.executeUpdate();
 			
