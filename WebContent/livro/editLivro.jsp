@@ -98,7 +98,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Editora</td>
+						<td>editora</td>
 						<td>
 							<select id="editora" name="editora">
 							<%/*
