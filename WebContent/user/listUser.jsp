@@ -17,6 +17,12 @@
 			formCadastro.submit();
 		}
 	}
+	
+	function alterar(id){
+		var form = document.forms[0];
+		form.action = "main?acao=alterUser&id_usuario="+id;
+		form.submit();
+	}
 </script>
 <title>AgES - Pagina Inicial</title>
 </head>
@@ -52,11 +58,10 @@
 							<td class="alignLeft"><%=usuario.getNome()%></td>
 							<td class="alignLeft"><%=usuario.getEmail()%></td>
 							<td class="alignLeft"><%=usuario.getUsuario()%></td>
-							<%-- 	<td class="alignLeft"> 	 <%=usuario.getSenha() %></td> --%>
 							<td class="alignCenter"><%=usuario.getAdministrador()%></td>
-							<td class="alignCenter"><a href="" title="Editar"> <i class="fa fa-pencil fa-2x"></i>
+							<td class="alignCenter"><a href="/CePESMaterials/main?acao=telaUser&id_usuario=<%=usuario.getIdUsuario()%>&isEdit=sim" title="Editar"> <i class="fa fa-pencil fa-2x"></i>
 							</a></td>
-							<td class="alignCenter"><a onclick="remover('<%=usuario.getIdUsuario()%>')" title="Deletear"> <i class="fa fa-trash-o fa-2x"></i>
+							<td class="alignCenter"><a href="/CePESMaterials/main?acao=removerUsuario&id_usuario=<%=usuario.getIdUsuario()%>" title="Deletear"> <i class="fa fa-trash-o fa-2x"></i>
 							</a></td>
 						</tr>
 						<%

@@ -9,6 +9,7 @@ import java.util.Map;
 import br.ages.crud.dao.UsuarioDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Livro;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.LoginValidator;
@@ -46,7 +47,7 @@ public class UsuarioBO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new NegocioException(e);
 		}
 
@@ -92,10 +93,12 @@ public class UsuarioBO {
 			}
 
 			// flag administrador
+			/*
 			if (usuario.getAdministrador() == null || "".equals(usuario.getAdministrador())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrador").concat("<br/>"));
 			}
+			*/
 
 			// valida se Pessoa esta ok
 			if (!isValido) {
@@ -167,10 +170,12 @@ public class UsuarioBO {
 	 * @throws SQLException
 	 * @throws ParseException
 	 */
-	public void cadastraUsuario(Usuario usuario) throws NegocioException, SQLException, ParseException {
-
+	public boolean cadastraUsuario(Usuario usuario) throws NegocioException, SQLException, ParseException {
+		boolean cadastrado;
 		try {
 			usuarioDAO.cadastrarUsuario(usuario);
+			cadastrado = true;
+			return cadastrado;
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
@@ -203,11 +208,34 @@ public class UsuarioBO {
  * @param idUsuario
  * @throws NegocioException
  */
-	public void removerUsuario(Integer idUsuario) throws NegocioException {
+	public boolean removerUsuario(Integer idUsuario) throws NegocioException {
+		boolean removido;
 		try {
 			usuarioDAO.removerUsuario(idUsuario);
+			removido = true;
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	
+		return removido;
+	}
+	
+	public Usuario consultarUsuario(String idUsuario) throws NegocioException, SQLException, ParseException {
+		Usuario usuario;
+		try {
+			usuario = usuarioDAO.consultaUsuario(idUsuario);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		return usuario;
+	}
+	
+	public void alterarUsuario(Usuario usuario) throws NegocioException, SQLException, ParseException {
+		try{
+			usuarioDAO.alterarUsuario(usuario);
+		} catch (PersistenciaException e) {
 			throw new NegocioException(e);
 		}
 	}

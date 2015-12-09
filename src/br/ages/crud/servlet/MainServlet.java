@@ -10,12 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.ages.crud.command.AddLivroCommand;
 import br.ages.crud.command.AddUserCommand;
+import br.ages.crud.command.AlterUserCommand;
 import br.ages.crud.command.Command;
+import br.ages.crud.command.ConsultarLivroCommand;
+import br.ages.crud.command.CreateScreenAutorCommand;
+import br.ages.crud.command.CreateScreenEditoraCommand;
+import br.ages.crud.command.CreateScreenLivroCommand;
 import br.ages.crud.command.CreateScreenUserCommand;
+import br.ages.crud.command.EditarLivroCommand;
+import br.ages.crud.command.ListEditoraCommand;
+import br.ages.crud.command.ListLivroCommand;
 import br.ages.crud.command.ListUserCommand;
 import br.ages.crud.command.LoginCommand;
 import br.ages.crud.command.LogoutCommand;
+import br.ages.crud.command.RemoveAutorCommand;
+import br.ages.crud.command.RemoveEditoraCommand;
+import br.ages.crud.command.RemoveLivroCommand;
 import br.ages.crud.command.RemoveUserCommand;
 
 @WebServlet("/main")
@@ -26,12 +38,36 @@ public class MainServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		
+		// USUARIO
 		comandos.put("login", new LoginCommand());
 		comandos.put("logout", new LogoutCommand());
-		comandos.put("telaUser", new CreateScreenUserCommand());
-		comandos.put("addUser", new AddUserCommand());
+		comandos.put("telaUser", new CreateScreenUserCommand());		
+		comandos.put("registerUser", new AddUserCommand());
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		comandos.put("listUser", new ListUserCommand());
+		comandos.put("alterUser", new AlterUserCommand());
+		
+		// EDITORA
+		comandos.put("addEditora", new ListEditoraCommand());
+		comandos.put("listEditora", new ListEditoraCommand());
+		comandos.put("removerEditora", new RemoveEditoraCommand());
+		comandos.put("telaEditora", new CreateScreenEditoraCommand());
+		
+		// AUTOR
+		comandos.put("addAutor", new ListEditoraCommand());
+		comandos.put("listAutor", new ListEditoraCommand());
+		comandos.put("removerAutor", new RemoveAutorCommand());
+		comandos.put("telaAutor", new CreateScreenAutorCommand());
+		
+		// LIVRO
+		comandos.put("addLivro", new AddLivroCommand());
+		comandos.put("listLivro", new ListLivroCommand());
+		comandos.put("removerLivro", new RemoveLivroCommand());
+		comandos.put("telaLivro", new CreateScreenLivroCommand());
+		comandos.put("consultarLivro", new ConsultarLivroCommand());
+		comandos.put("alterarLivro", new EditarLivroCommand());
+		
 	}
 
 	@Override

@@ -27,144 +27,84 @@ INSERT INTO tb_usuario
 VALUES
 ('10', 'admin', 'admin', 'S', '00000', 'Cássio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
 
-	
--- Tabela de estados do Brasil	
-CREATE TABLE TB_UF (
-  id_uf INTEGER NOT NULL AUTO_INCREMENT,
-  sigla VARCHAR(2) NOT NULL,
-  descricao VARCHAR(30) NOT NULL,
-  PRIMARY KEY(id_uf)
-);
+   
+CREATE TABLE tb_autor (
+  id_autor int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(60) NOT NULL,
+  sobrenome varchar(60) NOT NULL,
+  PRIMARY KEY (id_autor)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AC', 'Acre');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AL', 'Alagoas');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AP', 'Amapá');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AM', 'Amazonas');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('BA', 'Bahia');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('CE', 'Ceará');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('DF', 'Distrito Federal');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('ES', 'Espírito Santo');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('GO', 'Goiás');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MA', 'Maranhão');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MT', 'Mato Grosso');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MS', 'Mato Grosso do Sul');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MG', 'Minas Gerais');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PA', 'Pará');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PB', 'Paraíba');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PR', 'Paraná');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PE', 'Pernambuco');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PI', 'Piauí');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RJ', 'Rio de Janeiro');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RN', 'Rio Grande do Norte');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RS', 'Rio Grande do Sul');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RO', 'Rondônia');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RR', 'Roraima');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SC', 'Santa Catarina');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SP', 'São Paulo');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SE', 'Sergipe');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('TO', 'Tocantins');
+CREATE TABLE tb_editora (
+  ID_EDITORA int(8) NOT NULL AUTO_INCREMENT,
+  NOME varchar(255) NOT NULL,
+  PRIMARY KEY (ID_EDITORA)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE tb_livro (
+  ID_LIVRO int(8) NOT NULL AUTO_INCREMENT,
+  TITULO varchar(255) NOT NULL,
+  SUBTITULO varchar(255) NOT NULL,
+  DATA_CADASTRO date NOT NULL,
+  PRECO decimal(8,0) DEFAULT NULL,
+  LINGUA varchar(255) NOT NULL,
+  CODIGO_ISBN decimal(20,0) NOT NULL,
+  EDICAO decimal(4,0) NOT NULL,
+  ANO date DEFAULT NULL,
+  PAGINAS int(4) DEFAULT NULL,
+  VIDEO boolean DEFAULT NULL,
+  CD_DVD boolean DEFAULT NULL,
+  E_BOOK boolean DEFAULT NULL,
+  BRUXURA_REVISTA boolean DEFAULT NULL,
+  DESCRICAO text,
+  ID_EDITORA int(11) NOT NULL,
+  EXCLUIDO boolean DEFAULT NULL,
+  PRIMARY KEY (ID_LIVRO),
+  UNIQUE KEY CODISBN_UNIQUE (CODIGO_ISBN)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `crud_devmedia`.`tb_cidade` (
-  `ID_CIDADE` INT NOT NULL AUTO_INCREMENT,
-  `DESCRICAO` VARCHAR(45) NOT NULL,
-  `COD_ESTADO` INT NOT NULL,
-  PRIMARY KEY (`ID_CIDADE`),
-  INDEX `FK_UF_CIDADE_idx` (`COD_ESTADO` ASC),
-  CONSTRAINT `FK_UF_CIDADE`
-    FOREIGN KEY (`COD_ESTADO`)
-    REFERENCES `crud_devmedia`.`tb_uf` (`id_uf`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE tb_livro_autor (
+  id_livro int(11) NOT NULL,
+  id_autor int(11) NOT NULL,
+  KEY fk_livro_idx (id_livro),
+  KEY fk_autor (id_autor),
+  CONSTRAINT fk_autor FOREIGN KEY (id_autor) REFERENCES tb_autor (id_autor) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT fk_livro FOREIGN KEY (id_livro) REFERENCES tb_livro (ID_LIVRO) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO TB_CIDADE (`descricao`, `cod_estado`) 
-	VALUES ('Rio Branco', 1),
-		   ('Cruzeiro do Sul', 1),
-		   ('Maceió', 2),
-		   ('Macapá', 3),
-		   ('Manaus', 4),
-		   ('Salvador', 5);
-		   ('Porto Alegre', 21),
-		   ('Alegrete', 21),
-		   ('Bagé', 21),
-		   ('Canoas', 21);
-		   
--- Tabela de para endereço de Pessoas			   
-CREATE TABLE IF NOT EXISTS `ages_e`.`tb_endereco` (
-  `id_endereco` INT(11) NOT NULL AUTO_INCREMENT,
-  `logradouro` VARCHAR(45) NOT NULL,
-  `cod_cidade` INT(11) NOT NULL,
-  PRIMARY KEY (`id_endereco`),
-  INDEX `fk_tb_endereco_tb_cidade1_idx` (`cod_cidade` ASC),
-  CONSTRAINT `fk_tb_endereco_tb_cidade1`
-    FOREIGN KEY (`cod_cidade`)
-    REFERENCES `ages_e`.`tb_cidade` (`ID_CIDADE`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1
-COLLATE = latin1_swedish_ci;
+/* SCRIPTS DE INSERÇÃO PRA FACILITAR TESTES */
 
--- Tabela de Pessoas
-CREATE TABLE IF NOT EXISTS `ages_e`.`tb_pessoa` (
-  `id_pessoa` INT(11) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NOT NULL,
-  `cpf` FLOAT(11) NOT NULL,
-  `dt_nasc` DATE NULL DEFAULT NULL,
-  `sexo` CHAR(1) NOT NULL,
-  `mini_bio` VARCHAR(100) NULL DEFAULT NULL,
-  `cod_endereco` INT(11) NOT NULL,
-  PRIMARY KEY (`id_pessoa`),
-  INDEX `fk_tb_pessoa_tb_endereco1_idx` (`cod_endereco` ASC),
-  CONSTRAINT `fk_tb_pessoa_tb_endereco1`
-    FOREIGN KEY (`cod_endereco`)
-    REFERENCES `ages_e`.`tb_endereco` (`id_endereco`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1
-COLLATE = latin1_swedish_ci;
+INSERT INTO tb_editora
+(ID_EDITORA,NOME)
+VALUES
+( 1, 'Abril');
 
--- Tabela de preferencias
-CREATE TABLE IF NOT EXISTS `ages_e`.`tb_preferencia` (
-  `id_preferencia` INT(11) NOT NULL AUTO_INCREMENT,
-  `descricao` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_preferencia`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1
-COLLATE = latin1_swedish_ci;
+INSERT INTO tb_editora
+(ID_EDITORA,NOME)
+VALUES
+( 2, 'Saraiva');
 
--- Tabela associativa entre pessoas e suas preferencias
-CREATE TABLE IF NOT EXISTS `ages_e`.`tb_preferencia_pessoa` (
-  `cod_preferencia` INT(11) NOT NULL,
-  `cod_pessoa` INT(11) NOT NULL,
-  PRIMARY KEY (`cod_preferencia`, `cod_pessoa`),
-  INDEX `fk_tb_preferencia_has_tb_pessoa_tb_pessoa1_idx` (`cod_pessoa` ASC),
-  INDEX `fk_tb_preferencia_has_tb_pessoa_tb_preferencia1_idx` (`cod_preferencia` ASC),
-  CONSTRAINT `fk_tb_preferencia_has_tb_pessoa_tb_preferencia1`
-    FOREIGN KEY (`cod_preferencia`)
-    REFERENCES `ages_e`.`tb_preferencia` (`id_preferencia`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_preferencia_has_tb_pessoa_tb_pessoa1`
-    FOREIGN KEY (`cod_pessoa`)
-    REFERENCES `ages_e`.`tb_pessoa` (`id_pessoa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1
-COLLATE = latin1_swedish_ci;
+INSERT INTO tb_livro
+(ID_LIVRO,TITULO,SUBTITULO,DATA_CADASTRO,LINGUA,CODIGO_ISBN,EDICAO, ID_EDITORA, EXCLUIDO)
+VALUES
+( 1, 'A arte da guerra', '--', '2015-10-01 00:00:00', 'pt', 11111111111111111111, 1, 1, 0);
 
--- Valores das preferencias musicais
-insert into TB_PREFERENCIA (`descricao`) values('	Jazz'),('Blues'),('MPB'),('Pop'),('Rock');
+INSERT INTO tb_livro
+(ID_LIVRO,TITULO,SUBTITULO,DATA_CADASTRO,LINGUA,CODIGO_ISBN,EDICAO, ID_EDITORA, EXCLUIDO)
+VALUES
+( 2, 'O pequeno principe', '--', '2015-10-01 00:00:00', 'pt', 11111111111111111112, 1, 2, 0);
 
-/*
- *  Script principal para retorno dos dados de pessoa
- */
-SELECT p.*, e.logradouro, c.descricao, uf.descricao FROM ages_e.tb_pessoa p
-   inner join tb_endereco e
-   on p.cod_endereco = id_endereco
-   inner join tb_cidade c
-   on e.cod_cidade = c.id_cidade
-   inner join tb_uf uf
-   on c.cod_estado = uf.id_uf;
+INSERT INTO tb_autor
+(ID_AUTOR,NOME,SOBRENOME)
+VALUES
+( 1, 'Paulo', 'Coelho');
+
+INSERT INTO tb_livro_autor
+(ID_LIVRO,ID_AUTOR)
+VALUES
+(1, 1);
+
+INSERT INTO tb_livro_autor
+(ID_LIVRO,ID_AUTOR)
+VALUES
+(2, 1);
