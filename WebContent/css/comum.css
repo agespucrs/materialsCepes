@@ -82,7 +82,7 @@ legend {
 
 .head {
 	border-bottom: 1px solid gray;
-	min-height: 70px;
+	min-height: 78px;
 }
 
 .head a {
@@ -201,8 +201,14 @@ background: #666;
 	background-color: #B01518;
 	width: 300px;
 	text-align: center;
-
 	padding: 20px 30px;
 	margin: 10px;
 	color: white; 		
 }
+
+textarea, input, #editora, #autor{ background: black; border: 1px solid #198AB0; color: #198AB0; }
+
+td { padding: 0px 10px; }
+
+.btn:hover { background: #198ab0; color: white; text-align: center; font-size: 12px; font-weight: bold; transition: all 0.5s ease-in-out;  }
+.btn { cursor: pointer; background: black; color: #198ab0; text-align: center; font-size: 12px; font-weight: bold; transition: all 0.5s ease-in-out;  }
