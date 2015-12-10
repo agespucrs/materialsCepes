@@ -1,7 +1,10 @@
 package br.ages.crud.command;
 
 import java.awt.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,41 +26,71 @@ public class AlterLivroCommand implements Command {
 	private LivroBO livroBO;
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request) throws ParseException {
 		this.livroBO = new LivroBO();
-		this.proxima = "autor/alterLivro.jsp";
+		EditoraBO editoraBO = new EditoraBO();
+		AutorBO autorBO = new AutorBO();
+		this.proxima = "livro/alterLivro.jsp";
 
-		Integer id_editora = Integer.parseInt(request.getParameter("editora"));
-		String isbn = request.getParameter("isbn");
+		Integer id_livro = Integer.parseInt(request.getParameter("id_livro"));
 		String titulo = request.getParameter("titulo");
-		String sobrenome = request.getParameter("sobrenome");
-		String preco = request.getParameter("preco");
+		String subtitulo = request.getParameter("subtitulo");
+		Date dataCadastro = new Date();
+
+		String sPreco = (request.getParameter("preco"));
+		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco);
+
 		String lingua = request.getParameter("lingua");
-		String edicao = request.getParameter("edicao");
-		String ano = request.getParameter("ano");
-		String paginas = request.getParameter("paginas");
-		String bruxuraRevista = request.getParameter("bruxuraRevista");
-		String video = request.getParameter("video");
-		String cddvd = request.getParameter("cd_dvd");
-		String ebook = request.getParameter("ebook");
+		String codigoISBN = request.getParameter("isbn");
+
+		String sEdicao = (request.getParameter("edicao"));
+		Integer edicao = sEdicao.equals("") ? null : Integer.parseInt(sEdicao);
+
+		String sAno = request.getParameter("ano");
+		SimpleDateFormat sdano = new SimpleDateFormat("yyyy");
+		Date ano = sAno.equals("") ? null : sdano.parse(sAno);
+
+		String sPaginas = (request.getParameter("paginas"));
+		Integer paginas = sPaginas.equals("") ? null : Integer
+				.parseInt(sPaginas);
+
+		Boolean bruxura_revista = request.getParameter("bruxuraRevista") == null ? false : true;
+		Boolean video = request.getParameter("video") == null ? false : true;
+		Boolean cd_dvd = request.getParameter("cd_dvd") == null ? false : true;
+		Boolean e_book = request.getParameter("ebook") == null ? false : true;
 		String descricao = request.getParameter("descricao");
-		Integer idLivro = Integer.parseInt(request.getParameter("id_livro"));
-		
+
+		// Object receptor
+		Integer idEditora = Integer.parseInt(request.getParameter("editora"));
+		ArrayList<Integer> idAutores = new ArrayList<Integer>();
+		Integer idAutor = Integer.parseInt(request.getParameter("autor"));
+		idAutores.add(idAutor);
+
 		try {
-			
+
 			Livro livro = new Livro();
-			EditoraBO editoraBO = new EditoraBO();
-			Editora editora = editoraBO.consultarEditora(id_editora);
-			ArrayList<Autor> autores = new ArrayList<Autor>();
-			
-			livro.setEditora(editora);
 			livro.setTitulo(titulo);
-			
-			
-			livro.setIdLivro(idLivro);
+			livro.setSubtitulo(subtitulo);
+			livro.setDataCadastro(dataCadastro);
+			livro.setPreco(preco);
+			livro.setLingua(lingua);
+			livro.setCodigoISBN(codigoISBN);
+			livro.setEdicao(edicao);
+			livro.setAno(ano);
+			livro.setPaginas(paginas);
+			livro.setVideo(video);
+			livro.setCd_dvd(cd_dvd);
+			livro.setE_book(e_book);
+			livro.setDescricao(descricao);
+			livro.setBruxura_revista(bruxura_revista);
+			Editora editora = editoraBO.consultarEditora(idEditora);
+			livro.setEditora(editora);
+			ArrayList<Autor> autores = autorBO.consultarAutores(idAutores);
+			livro.setAutores(autores);
+			livro.setIdLivro(id_livro);
 			
 			livroBO.alterarLivro(livro);
-			proxima = "main?acao=listAutor";
+			proxima = "main?acao=listLivro";
 			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_ALTERADO_USUARIO.replace("?", livro.getTitulo()));
 
 			

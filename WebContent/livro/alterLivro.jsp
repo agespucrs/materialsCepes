@@ -14,61 +14,6 @@
 	Livro livro = (Livro) request.getAttribute("livro");
 %>
 		<script type="text/javascript">
-		
-			function cadastrar() {
-				
-				var formCadastro = document.forms[0]; 
-				var err = false;
-				
-				if(document.getElementById("isbn").value == "undefined" || document.getElementById("isbn").value == "")
-						err = true;
-				if(document.getElementById("titulo").value == "undefined" || document.getElementById("titulo").value == "")
-					err = true;
-				if(document.getElementById("subtitulo").value == "undefined" || document.getElementById("subtitulo").value == "")
-					err = true;
-				if(document.getElementById("lingua").value == "undefined" || document.getElementById("lingua").value == "")
-					err = true;
-				if(document.getElementById("edicao").value == "undefined" || document.getElementById("edicao").value == "")
-					err = true;
-				
-				
-				if(!err)
-				{
-					formCadastro.action ="main?acao=telaLivro&isEdit=sim";
-					formCadastro.submit();
-				}
-				else
-				{
-					document.getElementById("msgErro").style.display = "block";
-					document.getElementById("msgErro").innerHTML = "Preencha os campos obrigatórios";
-				}	
-				
-			
-			}
-			
-			function onlyNumber(e)
-			{
-				var valueof = e.value;
-				var value = valueof.match(/^[\0-9]+$/);
-				e.value = value;
-				
-			}
-			
-			function precoMask(e)
-			{
-				var valueof = e.value;
-				var value = valueof.match(/^[\0-9.]+$/);
-				e.value = value;
-			}
-			
-			function virgulaPraPonto(e)
-			{
-				e.value = e.value.replace(",",".");
-				
-			}
-		
-		</script>
-		<script type="text/javascript">
 			function alterar() {
 				//chamar funcao de verificar campos
 				var formCadastro = document.forms[0];
@@ -85,7 +30,7 @@
 	<div id="msgErro" class="msgErro" style="display: none;"></div>
 	<h1>Editar Livro</h1>
 	<div class="main">
-		<form action="" method="post">
+		<form action="" method="post" action="main?acao=alterLivro&id_livro=<%=livro.getIdLivro()%>">
 			<input type="hidden" id="id_livro" name="id_livro" value="<%=livro.getIdLivro()%>">
 			<jsp:include page="/template/msg.jsp"></jsp:include>
 			<fieldset>
@@ -181,7 +126,7 @@
 			</fieldset>
 			<span><sup class="red">*</sup> campos obrigatórios</span>
 			<input type="reset"  value="Limpar"  id="limpar" name="limpar" />
-			<input type="button" value=Cadastrar onclick="cadastrar()"/>
+			<input type="submit"/>
 		</form>
 	</div>
 	<jsp:include page="/template/foot.jsp"></jsp:include>
