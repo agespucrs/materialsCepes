@@ -223,4 +223,5 @@ td { padding: 0px 10px; }
 #tbLista { border: none !important; transition: all .5s ease-out 0s;}
 #titleList { padding: 15px; transition: all .5s ease-out 0s;}
 
-form { margin-top: -44px; }
+.formlist { margin-top: -44px;  display: inline-block; left: 0;width: 100%;}
+form { margin-top: -44px;  }

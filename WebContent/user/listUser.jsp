@@ -50,7 +50,7 @@
 	
 	<br><br>
 	
-	<form method="post" class="login_form" action="main?acao=login">
+	<form class="formlist" method="post" class="login_form" action="main?acao=login">
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 		<fieldset class="fieldset_listLivros" style="background: URL('img/banner_black.jpg'); min-height: 515px;">
 			
