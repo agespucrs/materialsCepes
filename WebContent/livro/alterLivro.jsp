@@ -34,7 +34,7 @@
 				
 				if(!err)
 				{
-					formCadastro.action ="main?acao=alterarLivro";
+					formCadastro.action ="main?acao=telaLivro&isEdit=sim";
 					formCadastro.submit();
 				}
 				else
@@ -68,6 +68,14 @@
 			}
 		
 		</script>
+		<script type="text/javascript">
+			function alterar() {
+				//chamar funcao de verificar campos
+				var formCadastro = document.forms[0];
+				formCadastro.action = "main?acao=alterLivro&id_livro="<%=livro.getIdLivro()%>;
+				formCadastro.submit();
+			}
+		</script>
 </head>
 <body>
 	
@@ -75,9 +83,10 @@
 
 	<jsp:include page="/template/head.jsp"></jsp:include>
 	<div id="msgErro" class="msgErro" style="display: none;"></div>
-	<h1>Cadastro Livro</h1>
+	<h1>Editar Livro</h1>
 	<div class="main">
 		<form action="" method="post">
+			<input type="hidden" id="id_livro" name="id_livro" value="<%=livro.getIdLivro()%>">
 			<jsp:include page="/template/msg.jsp"></jsp:include>
 			<fieldset>
 				<table cellpadding="5">
@@ -98,7 +107,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>editora</td>
+						<td>Editora</td>
 						<td>
 							<select id="editora" name="editora">
 							<%/*
@@ -135,7 +144,7 @@
 					</tr>
 					<tr>
 						<td>Edição <sup class="red">*</sup></td>
-						<td><input type="text" id="edicao" name="edicao" maxlength="45" value="<%=livro.getEdicao()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
+						<td><input type="text" id="edicao" name="edicao" maxlength="4" value="<%=livro.getEdicao()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
 					</tr>
 					<tr>
 						<td>Ano</td>

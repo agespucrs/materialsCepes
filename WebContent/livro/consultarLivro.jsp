@@ -12,94 +12,87 @@
 </head>
 <%Livro livro = (Livro) request.getAttribute("livro");%>
 <body>
+
+
+
+
+
 <%@ include file="/template/head.jsp"%>
-	<br><h1>Descrição</h1><br>
-	<table align='center' border="1">
-		<div id="outer">
-			<div id="inner">
-				<tr>
-					<td>CADASTRO DE LIVROS</td>
-				</tr>
-				<tr>
-					<td><label>Codigo ISBN</label></td>
-					<td><label>Titulo</label></td>
-				</tr>
-				<tr>
-					<td><label><%=livro.getCodigoISBN()%></label></td>
-					<td><label><%=livro.getTitulo()%></label></td>
-				</tr>
-				<tr>
-					<td><label>Lingua</label></td>
-					<td><label>Subtitulo</label></td>
-				</tr>
-				<tr>
-					<td>
-					<select name="">
-					<option value="Lingua"><%=livro.getLingua()%></option>
-					</select>
-					</td>
-					<td>
-					<label><%=livro.getSubtitulo()%></label>
-					</td>
-				</tr>
-				<tr>
-					<td><label>Autor</label></td>
-					<td><label>Editora</label></td>
-				</tr>
-				<tr>
-					<td><select name="">
-					<% for(Autor autor : livro.getAutores()){
-						%>
-					<option value="Autor"><%=autor.getNome()+" "+autor.getSobrenome()%> </option>
-					<% } %>
-					</select></td>
-					<td><select name="">
-					<option value="Editora"><%=livro.getEditora().getNome()%></option>
-					</select></td>
-
-				</tr>
-				<tr>
-					<%if (livro.getDescricao() == "") {%>
-					<td colspan='2'><label	>Não possui descrição</label></td>
-					<%} else {%>
-					<td colspan='2'><textarea rows="4" cols="90" readonly><%=livro.getDescricao()%></textarea></td>
-					<%} %>					
-				</tr>
-				<tr>
-					<td><label>Numero de paginas</label></td>
-					<td><label>Ano</label></td>
-					<td><label>Edicao</label></td>
-				</tr>
-				<tr>
-					<td><label><%=livro.getPaginas()%></label></td>
-					<%if (livro.getAno() == null) {%>
-					<td>Não Informado</td><%}else{ %>
-					<td><%= Util.toAno(livro.getAno())%></td><%} %>
-					<td><label><%=livro.getEdicao()%></label></td>
-				</tr>
-				<tr>
-					<td><label>Preco</label></td>
-					<td><label>Data de compra</label></td>
-				</tr>
-
-				<tr>
-					<td><%=livro.getPreco()%></td>
-					<td><%=Util.toDataNormal(livro.getDataCadastro())%></td>
-					<%if (livro.getBruxura_revista()) {%>
-					<td>Brochura</td><%}else{ %>
-					<td>Revista</td><%} %>
-				</tr>
-				<tr>
-				<%if (livro.isCd_dvd()) {%>
-					<td>CD ou DVD</td><%}%>
-					<%if (livro.isVideo()) {%>
-					<td>Video</td><%}%>
-					<%if (livro.isE_book()) {%>
-					<td>E-Book</td><%}%>				
-				</tr>
-
-			</div>
-		</div>
-	</table>
-</body>
-</html>
+	
+	<fieldset style="background: URL('img/banner_black.jpg');min-height: 449px; border: none !important; color: #198AB0; padding: 25px; font-size: 12px; width: 100%; margin-top: -20px; top: -10px;">
+				
+				<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px; color: white; font-weight: bold;"> Consulta de Livro</div>
+			
+				<br><br>
+	
+	
+	<table cellpadding="5">
+					<tr>
+						<td>Autor</td>
+						<td>
+							<select id="autor" name="" readonly>
+							<% for(Autor autor : livro.getAutores()){
+								%>
+							<option value="Autor"><%=autor.getNome()+" "+autor.getSobrenome()%> </option>
+							<% } %>
+							</select>
+						</td>
+						<td>Editora</td>
+						<td>
+							<select id="editora" name="" readonly>
+							<option value="Editora"><%=livro.getEditora().getNome()%></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Código ISBN <sup class="red"></sup></td>
+						<td><input readonly type="text" id="isbn" name="isbn" maxlength="13" value="<%=livro.getCodigoISBN()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required/></td> 
+						<td>Título <sup class="red">*</sup></td>
+						<td><input readonly type="text" id="titulo" name="titulo" maxlength="120" value="<%=livro.getTitulo()%>" required/></td>
+					</tr>
+					<tr>
+						<td>Subtítulo <sup class="red">*</sup></td>
+						<td><input readonly type="text" id="subtitulo" name="subtitulo" maxlength="120" value="<%=livro.getSubtitulo()%>" required/></td>
+						<td>Preço </td>
+						<td><input readonly type="text" id="preco" name="preco" maxlength="45" value="<%=livro.getPreco()%>" onkeyup="precoMask(this)" onkeydown="precoMask(this)"/></td>
+					</tr>
+					<tr>
+						<td>Lingua <sup class="red">*</sup></td>
+						<td><input readonly type="text" id="lingua" name="lingua" maxlength="45" value="<%=livro.getLingua()%>" required/></td>
+						<td>Edição <sup class="red">*</sup></td>
+						<td><input readonly type="text" id="edicao" name="edicao" maxlength="45" value="<%=livro.getEdicao()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
+					</tr>
+					<tr>
+						<td>Ano</td>
+						<td><input readonly type="text" id="ano" name="ano" maxlength="4" value="<%=livro.getAno()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
+						<td>Páginas</td>
+						<td><input readonly type="text" id="paginas" name="paginas" maxlength="4" value="<%=livro.getPaginas()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
+					</tr>
+					<tr>
+						<td>Brochura</td>
+						<td><%if(livro.getBruxura_revista()){%><input onclick="return false" type="checkbox" id="bruxuraRevista" name="bruxuraRevista" checked/><%} else { %><input type="checkbox" id="bruxuraRevista" name="bruxuraRevista"/><% %></td>						
+						<td>Video</td>
+						<td><%if(livro.isVideo()){%><input onclick="alert()" type="checkbox" id="video" name="video" checked/><%} else { %><input type="checkbox" id="video" name="video"/><%}%></td>
+					</tr>
+					<tr>
+						<td>CD/DVD</td>
+						<td><%if(livro.isE_book()){%><input onclick="return false" type="checkbox" id="cd_dvd" name="cd_dvd" checked /><%} else { %><input type="checkbox" id="cd_dvd" name="cd_dvd"/><%}%></td></td>
+						<td>e-book</td>
+						<td><%if(livro.isE_book()){%><input onclick="return false" type="checkbox" id="ebook" name="ebook" checked/><%} else { %><input type="checkbox" id="ebook" name="ebook"/><%}%></td>
+					</tr>
+					<tr>
+						<td>Descrição</td>
+						<%if(livro.getDescricao() == "") {%>
+						<td><textarea cols="45" rows="4" readonly id="descricao" name="descricao" value="Não possui descrição"></textarea></td>
+						<%} else {%>
+						<td><textarea cols="45" rows="4" readonly id="descricao" name="descricao" value="<%=livro.getDescricao()%>"></textarea></td>
+						<% }} %>
+						<td></td>						
+					</tr>
+				</table>
+	</div>
+			</fieldset>
+			
+		</form>
+	
+	<jsp:include page="/template/foot.jsp"></jsp:include>

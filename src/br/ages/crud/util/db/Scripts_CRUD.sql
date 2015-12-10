@@ -102,7 +102,7 @@ VALUES
 INSERT INTO tb_livro_autor
 (ID_LIVRO,ID_AUTOR)
 VALUES
-(1, 1);
+(401, 1);
 
 INSERT INTO tb_livro_autor
 (ID_LIVRO,ID_AUTOR)

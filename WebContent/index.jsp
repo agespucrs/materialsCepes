@@ -14,7 +14,7 @@ body { background: #111; }
 <body>
 	<jsp:include page="./template/head.jsp"></jsp:include>
 	<div class="main">
-	<img src="img/banner.jpg" width="100%"/>
+	<img src="img/banner.jpg" width="100%" style="min-height:"/>
 	</div>
 	<jsp:include page="./template/foot.jsp"></jsp:include>
 </body>

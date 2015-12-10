@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Autor;
+import br.ages.crud.model.Editora;
 import br.ages.crud.util.ConexaoUtil;
 
 import com.mysql.jdbc.Statement;
@@ -59,8 +60,8 @@ public class AutorDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_AUTOR (ID_AUTOR, NOME, SOBRENOME)");
-			sql.append("VALUES (?, ?, ?)");
+			sql.append("INSERT INTO TB_AUTOR (NOME, SOBRENOME)");
+			sql.append("VALUES (?, ?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, autor.getNome());
@@ -78,6 +79,35 @@ public class AutorDAO {
 		} finally {
 			conexao.close();
 		}
+	}
+	
+	public void alterarAutor(Autor autor) throws PersistenciaException,
+	SQLException, ParseException {
+	Connection conexao = null;
+	try {
+		Integer idAutor = null;
+	
+		conexao = ConexaoUtil.getConexao();
+	
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE TB_AUTOR SET NOME = ?, SOBRENOME = ? WHERE id_autor = ?");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, autor.getNome());
+		statement.setString(2, autor.getSobrenome());
+		statement.setLong(3, autor.getId_autor());
+		statement.executeUpdate();
+	
+		ResultSet resultset = statement.getGeneratedKeys();
+		if (resultset.first()) {
+			idAutor = resultset.getInt(1);
+		}
+	
+	} catch (ClassNotFoundException | SQLException e) {
+		throw new PersistenciaException(e);
+	} finally {
+		conexao.close();
+	}
 	}
 
 	public void removerAutor(Integer idAutor) throws PersistenciaException {
@@ -119,9 +149,11 @@ public class AutorDAO {
 			statement.setInt(1, idAutor);
 			ResultSet resultset = statement.executeQuery();
 			
-			autor.setId_autor(resultset.getInt("ID_AUTOR"));
-			autor.setNome(resultset.getString("NOME"));
-			autor.setSobrenome(resultset.getString("SOBRENOME"));
+			while (resultset.next()) {
+				autor.setId_autor(resultset.getInt("ID_AUTOR"));
+				autor.setNome(resultset.getString("NOME"));
+				autor.setSobrenome(resultset.getString("SOBRENOME"));
+			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
 		throw new PersistenciaException(e);

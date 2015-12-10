@@ -36,8 +36,7 @@
 				}
 				else
 				{
-					document.getElementById("msgErro").style.display = "block";
-					document.getElementById("msgErro").innerHTML = "Preencha os campos obrigatórios";
+					alert("Preencha os campos obrigatórios");
 				}	
 				
 			
@@ -66,17 +65,21 @@
 		
 		</script>
 </head>
-<body style="background: URL('img/banner_black.jpg');">
+<body >
 	
 	<jsp:include page="/template/head.jsp"></jsp:include>
 	
-	<div id="msgErro" class="msgErro" style="display: none;"></div>
+	<jsp:include page="/template/msg.jsp"></jsp:include>
 	
-	<div class="main" style="width: 100%; background: rgba(0,0,0,0.7);">
-		<form action="" method="post">
+		<form action="" method="post" style="background: black;">
 			<jsp:include page="/template/msg.jsp"></jsp:include>
-			<fieldset style="border: none !important; color: #198AB0; padding: 25px; font-size: 12px;">
-				<h1 style="margin: 40px 25px; font-size: 16px;">Cadastro de livro</h1>
+			
+			
+			<fieldset style="background: URL('img/banner_black.jpg');min-height: 449px; border: none !important; color: #198AB0; padding: 25px; font-size: 12px; width: 100%; margin-top: -20px; top: -10px;">
+				
+				<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px; color: white; font-weight: bold;"> Cadastro de Livro</div>
+			
+				<br><br>
 				<table cellpadding="5">
 					<tr>
 						<td>Autor</td>
@@ -124,7 +127,7 @@
 						<td>Lingua <sup class="red">*</sup></td>
 						<td><input type="text" id="lingua" name="lingua" maxlength="45" value="${param.lingua}" required/></td>
 						<td>Edição <sup class="red">*</sup></td>
-						<td><input type="text" id="edicao" name="edicao" maxlength="45" value="${param.edicao}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
+						<td><input type="text" id="edicao" name="edicao" maxlength="4" value="${param.edicao}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
 					</tr>
 					<tr>
 						<td>Ano</td>
@@ -159,7 +162,7 @@
 			</fieldset>
 			
 		</form>
-	</div>
+	
 	<jsp:include page="/template/foot.jsp"></jsp:include>
 </body>
 </html>

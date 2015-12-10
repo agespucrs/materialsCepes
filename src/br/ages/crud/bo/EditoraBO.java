@@ -33,6 +33,17 @@ public class EditoraBO {
 		}
 
 	}
+	
+	public void alterarEditora(Editora editora) throws NegocioException, SQLException, ParseException {
+
+		try {
+			editoraDAO.alterarEditora(editora);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+
+	}
 
 	/**
 	 * @return
@@ -76,5 +87,7 @@ public class EditoraBO {
 		}
 		return editora;
 	}
+	
+	
 	
 }
