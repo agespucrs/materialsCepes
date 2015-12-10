@@ -39,7 +39,7 @@
 			
 			<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px;"> Listagem de Livros</div>
 			
-			<div>
+		
 			<table id="tbLista" cellspacing="0" >
 			<tr style="background: black; height: 50px; line-height: 50px; border: none;">
 				<td></td>

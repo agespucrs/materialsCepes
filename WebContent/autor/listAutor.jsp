@@ -39,7 +39,6 @@
 			
 			<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px;"> Listagem de Autor</div>
 			
-			<div>
 			<table id="tbLista" cellspacing="0" >
 			<tr style="background: black; height: 50px; line-height: 50px; border: none;">
 				<td></td>
@@ -87,7 +86,7 @@
 			%>
 			</table>
 			
-			<div id="totalRegistros" style="background: rgba(0,0,0,1)height: 40px;background: black;width: 100%;text-align: right;padding-right: 30px;line-height: 40px;"><%
+			<div id="totalRegistros" style="background: rgba(0,0,0,1); height: 40px;background: black;width: 100%;text-align: right;padding-right: 30px;line-height: 40px;"><%
 			if(sizeListaAutores == 0)
 			{
 				%> <p>Nenhum autor encontrado.</p> <%	
