@@ -22,6 +22,7 @@ import br.ages.crud.command.Command;
 import br.ages.crud.command.ConsultarAutorCommand;
 import br.ages.crud.command.ConsultarLivroCommand;
 import br.ages.crud.command.ConsultarEditoraCommand;
+import br.ages.crud.command.ConsultarUserCommand;
 import br.ages.crud.command.CreateScreenAutorCommand;
 import br.ages.crud.command.CreateScreenEditoraCommand;
 import br.ages.crud.command.CreateScreenLivroCommand;
@@ -51,7 +52,8 @@ public class MainServlet extends HttpServlet {
 		comandos.put("logout", new LogoutCommand());
 		comandos.put("telaUser", new CreateScreenUserCommand());		
 		comandos.put("registerUser", new AddUserCommand());
-		comandos.put("removerUsuario", new RemoveUserCommand());
+		comandos.put("removerUser", new RemoveUserCommand());
+		comandos.put("consultarUser", new ConsultarUserCommand());
 		comandos.put("listUser", new ListUserCommand());
 		comandos.put("alterUser", new AlterUserCommand());
 		

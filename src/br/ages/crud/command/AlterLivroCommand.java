@@ -27,6 +27,7 @@ public class AlterLivroCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ParseException {
+		
 		this.livroBO = new LivroBO();
 		EditoraBO editoraBO = new EditoraBO();
 		AutorBO autorBO = new AutorBO();
@@ -71,7 +72,7 @@ public class AlterLivroCommand implements Command {
 			Livro livro = new Livro();
 			livro.setTitulo(titulo);
 			livro.setSubtitulo(subtitulo);
-			livro.setDataCadastro(dataCadastro);
+			//livro.setDataCadastro(dataCadastro);
 			livro.setPreco(preco);
 			livro.setLingua(lingua);
 			livro.setCodigoISBN(codigoISBN);
@@ -91,7 +92,7 @@ public class AlterLivroCommand implements Command {
 			
 			livroBO.alterarLivro(livro);
 			proxima = "main?acao=listLivro";
-			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_ALTERADO_USUARIO.replace("?", livro.getTitulo()));
+			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_ALTERADO_LIVRO.replace("?", livro.getTitulo()));
 
 			
 		} catch (Exception e) {

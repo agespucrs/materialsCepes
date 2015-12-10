@@ -1,70 +1,46 @@
-<%@page import="java.util.Arrays"%>
-<%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Livro"%>
 <%@page import="br.ages.crud.model.Autor"%>
 <%@page import="br.ages.crud.model.Editora"%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@page import="br.ages.crud.util.Util"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" href="./css/comum.css" />
-		<title>Editar Livro</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/registerUser.css" />
+<link rel="stylesheet" href="./css/comum.css" />
+<title>Cadastrar Livro</title>
 <%
 	Livro livro = (Livro) request.getAttribute("livro");
 %>
-		<script type="text/javascript">
-			function alterar() {
-				//chamar funcao de verificar campos
-				var formCadastro = document.forms[0];
-				formCadastro.action = "main?acao=alterLivro&id_livro="<%=livro.getIdLivro()%>;
-				formCadastro.submit();
-			}
-		</script>
+<script type="text/javascript">
+	function alterar() {
+		//chamar funcao de verificar campos
+		var formCadastro = document.forms[0];
+		formCadastro.action = "main?acao=alterLivro&id_livro=<%=livro.getIdLivro()%>";
+		formCadastro.submit();
+	}
+</script>
 </head>
 <body>
-	
-	
-
 	<jsp:include page="/template/head.jsp"></jsp:include>
-	<div id="msgErro" class="msgErro" style="display: none;"></div>
-	<h1>Editar Livro</h1>
-	<div class="main">
-		<form action="" method="post" action="main?acao=alterLivro&id_livro=<%=livro.getIdLivro()%>">
-			<input type="hidden" id="id_livro" name="id_livro" value="<%=livro.getIdLivro()%>">
-			<jsp:include page="/template/msg.jsp"></jsp:include>
-			<fieldset>
+	<form method="post" action="main?acao=alterLivro&id_livro=<%=livro.getIdLivro()%>">
+		<jsp:include page="/template/msg.jsp"></jsp:include>
+
+		<fieldset>
 				<table cellpadding="5">
 					<tr>
 						<td>Autor</td>
 						<td>
-							<select id="autor" name="autor">
-							<%
-								List<Autor> listaAutores = (List<Autor>) livro.getAutores();
-								int sizeListaAutores = listaAutores.size();
-								for (Autor autor: listaAutores) {
-							%>
-									<option value="<%=autor.getId_autor() %>"><%=autor.getNome()+" "+autor.getSobrenome()%></option>			
-							<%
-								}
-							%>
-							</select>
+							<input type="text" name="autor" value="1">
 						</td>
 					</tr>
 					<tr>
 						<td>Editora</td>
 						<td>
-							<select id="editora" name="editora">
-							<%/*
-								List<Editora> listaEditora = (List<Editora>) request.getAttribute("editoras");
-								int sizeListaEditoras = listaEditora.size();
-								for (Editora editora: listaEditora) {
-							*/%>
-									<option value="<%=livro.getEditora().getIdEditora()%>"><%=livro.getEditora().getNome()%></option>			
-							<%
-								//}
-							%>
-							</select>
+							<input type="text" name="editora" value="1">
 						</td>
 					</tr>
 					<tr>
@@ -93,7 +69,10 @@
 					</tr>
 					<tr>
 						<td>Ano</td>
+						<%if (livro.getAno() == null) {%>
+						<td><input type="text" id="ano" name="ano" maxlength="4" value="2015" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td><%}else{ %>
 						<td><input type="text" id="ano" name="ano" maxlength="4" value="<%=livro.getAno()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
+						<%} %>
 					</tr>
 					<tr>
 						<td>Páginas</td>
@@ -117,18 +96,19 @@
 					</tr>
 					<tr>
 						<td>Descrição</td>
-						<td><textarea cols="45" rows="4" id="descricao" name="descricao" value="<%=livro.getDescricao()%>"></textarea></td>
+						<td><textarea cols="45" rows="4" id="descricao" name="descricao"><%=livro.getDescricao()%></textarea></td>
 					</tr>
 					<tr>
 						<td></td>						
 					</tr>
 				</table>
+				<input type="submit">
 			</fieldset>
-			<span><sup class="red">*</sup> campos obrigatórios</span>
-			<input type="reset"  value="Limpar"  id="limpar" name="limpar" />
-			<input type="submit"/>
-		</form>
-	</div>
-	<jsp:include page="/template/foot.jsp"></jsp:include>
+	</form>
 </body>
 </html>
+
+
+
+
+

@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/registerUser.css" />
 <link rel="stylesheet" href="./css/comum.css" />
-<title>Cadastrar Usuário</title>
+<title>Alterar Usuário</title>
 <%
 	Usuario usuario = (Usuario) request.getAttribute("usuario");
 %>

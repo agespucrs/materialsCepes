@@ -103,9 +103,9 @@
 					<td class="alignCenter"><%=usuario.getAdministrador()%></td>
 					
 				<td>
-						<a href="/CePESMaterials/main?acao=consultarLivro&id_livro=<%=usuario.getIdUsuario()%>"><img class="img" src="img/view.png"/>
-						<a href="/CePESMaterials/main?acao=telaLivro&id_livro=<%=usuario.getIdUsuario()%>&isEdit=sim"><img class="img" src="img/edit.png"/></a>
-						<a href="/CePESMaterials/main?acao=removerLivro&id_livro=<%=usuario.getIdUsuario()%>"><img class="img" src="img/trash.png"/></a>
+						<a href="/CePESMaterials/main?acao=consultarUser&id_usuario=<%=usuario.getIdUsuario()%>"><img class="img" src="img/view.png"/>
+						<a href="/CePESMaterials/main?acao=telaUser&id_usuario=<%=usuario.getIdUsuario()%>&isEdit=sim"><img class="img" src="img/edit.png"/></a>
+						<a href="/CePESMaterials/main?acao=removerUser&id_usuario=<%=usuario.getIdUsuario()%>"><img class="img" src="img/trash.png"/></a>
 						</td>
 			</tr>
 			<%
