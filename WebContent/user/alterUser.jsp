@@ -16,18 +16,26 @@
 	function alterar() {
 		//chamar funcao de verificar campos
 		var formCadastro = document.forms[0];
-		formCadastro.action = "main?acao=alterUser&id_usuario="<%=usuario.getIdUsuario()%>;
+		formCadastro.action = "main?acao=alterUser&id_usuario=<%=usuario.getIdUsuario()%>";
 		formCadastro.submit();
 	}
 </script>
 </head>
 <body>
 	<jsp:include page="/template/head.jsp"></jsp:include>
-	<form method="post" action="main?acao=alterUser&id_usuario=<%=usuario.getIdUsuario()%>">
-		<jsp:include page="/template/msg.jsp"></jsp:include>
-
-		<fieldset class="fieldset_register">
-			<legend>Alterar Usuário</legend>
+	<jsp:include page="/template/msg.jsp"></jsp:include>
+	
+		<form action="" method="post" style="background: black;">
+			<jsp:include page="/template/msg.jsp"></jsp:include>
+			
+			
+			<fieldset style="background: URL('img/banner_black.jpg');min-height: 449px; border: none !important; color: #198AB0; padding: 25px; font-size: 12px; width: 100%; margin-top: -20px; top: -10px;">
+				
+				<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px; color: white; font-weight: bold;"> Alterar Usuário</div>
+			
+				<br><br>
+			
+			
 
 			<div class="campo">
 				<label for="matricula">Matricula</label> <sup class="red">*</sup> <input
@@ -60,18 +68,15 @@
 					type="password" id="senha" name="senha" maxlength="8"
 					value="<%=usuario.getSenha()%>" />
 			</div>
-			<a href="#" class="tooltip"><img src="" height="5" width="5" /><span>Texto
-					de no mínimo 8 caractéres, contendo maiúsculas, minúsculas e
-					números</span></a>
-
-			<div class="cadastrar">
-				<input type="submit" value="Alterar" id="alterar" name="alterar" />
+			<div style="float: left;">
+			<span><sup class="red">*</sup> campos obrigatórios</span><br>
+			<input class="btn" type="reset"  value="Limpar"  id="limpar" name="limpar" />
+			<input class="btn" type="submit" value=Alterar onclick="alterar()"/>
 			</div>
-			<div class=limpar>
-				<input type="reset" value="Voltar" id="limpar" name="limpar" />
-			</div>
-
 		</fieldset>
-	</form>
+		</form>
+	</div>
+	
+	<jsp:include page="/template/foot.jsp"></jsp:include>
 </body>
 </html>

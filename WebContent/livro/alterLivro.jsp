@@ -26,18 +26,24 @@
 </head>
 <body>
 	<jsp:include page="/template/head.jsp"></jsp:include>
-	<form method="post" action="main?acao=alterLivro&id_livro=<%=livro.getIdLivro()%>">
-		<jsp:include page="/template/msg.jsp"></jsp:include>
-
-		<fieldset>
+	<jsp:include page="/template/msg.jsp"></jsp:include>
+	
+		<form action="" method="post" style="background: black;">
+			<jsp:include page="/template/msg.jsp"></jsp:include>
+			
+			
+			<fieldset style="background: URL('img/banner_black.jpg');min-height: 449px; border: none !important; color: #198AB0; padding: 25px; font-size: 12px; width: 100%; margin-top: -20px; top: -10px;">
+				
+				<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px; color: white; font-weight: bold;"> Alterar Livro</div>
+			
+				<br><br>
+	
 				<table cellpadding="5">
 					<tr>
 						<td>Autor</td>
 						<td>
 							<input type="text" name="autor" value="1">
 						</td>
-					</tr>
-					<tr>
 						<td>Editora</td>
 						<td>
 							<input type="text" name="editora" value="1">
@@ -46,24 +52,18 @@
 					<tr>
 						<td>Código ISBN <sup class="red">*</sup></td>
 						<td><input type="text" id="isbn" name="isbn" maxlength="13" value="<%=livro.getCodigoISBN()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required/></td> 
-					</tr>
-					<tr>
 						<td>Título <sup class="red">*</sup></td>
 						<td><input type="text" id="titulo" name="titulo" maxlength="120" value="<%=livro.getTitulo()%>" required/></td>
 					</tr>
 					<tr>
 						<td>Subtítulo <sup class="red">*</sup></td>
 						<td><input type="text" id="subtitulo" name="subtitulo" maxlength="120" value="<%=livro.getSubtitulo()%>" required/></td>
-					</tr>
-					<tr>
 						<td>Preço </td>
 						<td><input type="text" id="preco" name="preco" maxlength="45" value="<%=livro.getPreco()%>" onkeyup="precoMask(this)" onkeydown="precoMask(this)"/></td>
 					</tr>
 					<tr>
 						<td>Lingua <sup class="red">*</sup></td>
 						<td><input type="text" id="lingua" name="lingua" maxlength="45" value="<%=livro.getLingua()%>" required/></td>
-					</tr>
-					<tr>
 						<td>Edição <sup class="red">*</sup></td>
 						<td><input type="text" id="edicao" name="edicao" maxlength="4" value="<%=livro.getEdicao()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
 					</tr>
@@ -73,42 +73,35 @@
 						<td><input type="text" id="ano" name="ano" maxlength="4" value="2015" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td><%}else{ %>
 						<td><input type="text" id="ano" name="ano" maxlength="4" value="<%=livro.getAno()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
 						<%} %>
-					</tr>
-					<tr>
 						<td>Páginas</td>
 						<td><input type="text" id="paginas" name="paginas" maxlength="4" value="<%=livro.getPaginas()%>" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
 					</tr>
 					<tr>
-						<td>Brochura</td>
-						<td><input type="checkbox" id="bruxuraRevista" name="bruxuraRevista" value="<%=livro.getBruxura_revista()%>" /></td>						
-					</tr>
-					<tr>
-						<td>Video</td>
-						<td><input type="checkbox" id="video" name="video" value="<%=livro.isVideo()%>" /></td>
-					</tr>
-					<tr>
-						<td>CD/DVD</td>
-						<td><input type="checkbox" id="cd_dvd" name="cd_dvd" value="<%=livro.isCd_dvd()%>" /></td>
-					</tr>
-					<tr>
-						<td>e-book</td>
-						<td><input type="checkbox" id="ebook" name="ebook" value="<%=livro.isE_book()%>" /></td>
+						<td></td>
+						<td> Brochura <input type="checkbox" id="bruxuraRevista" name="bruxuraRevista" value="<%=livro.getBruxura_revista()%>" /> Video <input type="checkbox" id="video" name="video" value="<%=livro.isVideo()%>" /></td>
+						<td></td>
+						<td>CD/DVD <input type="checkbox" id="cd_dvd" name="cd_dvd" value="<%=livro.isCd_dvd()%>" /> E-BOOK <input type="checkbox" id="ebook" name="ebook" value="<%=livro.isE_book()%>" /></td>
+						
 					</tr>
 					<tr>
 						<td>Descrição</td>
 						<td><textarea cols="45" rows="4" id="descricao" name="descricao"><%=livro.getDescricao()%></textarea></td>
+						<td></td>
+						<td></td>
+						
 					</tr>
 					<tr>
 						<td></td>						
 					</tr>
 				</table>
-				<input type="submit">
-			</fieldset>
-	</form>
+			<div style="float: left;">
+			<span><sup class="red">*</sup> campos obrigatórios</span><br>
+			<input class="btn" type="reset"  value="Limpar"  id="limpar" name="limpar" />
+			<input class="btn" type="button" value=Alterar onclick="alterar()"/>
+			</div>
+		</fieldset>
+		</form>
+	</div>
+	<jsp:include page="/template/foot.jsp"></jsp:include>
 </body>
 </html>
-
-
-
-
-
