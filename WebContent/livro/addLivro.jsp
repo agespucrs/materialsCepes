@@ -36,8 +36,7 @@
 				}
 				else
 				{
-					document.getElementById("msgErro").style.display = "block";
-					document.getElementById("msgErro").innerHTML = "Preencha os campos obrigatórios";
+					alert("Preencha os campos obrigatórios");
 				}	
 				
 			
@@ -66,17 +65,21 @@
 		
 		</script>
 </head>
-<body>
+<body >
 	
-	
-
 	<jsp:include page="/template/head.jsp"></jsp:include>
-	<div id="msgErro" class="msgErro" style="display: none;"></div>
-	<h1>Cadastro Livro</h1>
-	<div class="main">
-		<form action="" method="post">
+	
+	<jsp:include page="/template/msg.jsp"></jsp:include>
+	
+		<form action="" method="post" style="background: black;">
 			<jsp:include page="/template/msg.jsp"></jsp:include>
-			<fieldset>
+			
+			
+			<fieldset style="background: URL('img/banner_black.jpg');min-height: 449px; border: none !important; color: #198AB0; padding: 25px; font-size: 12px; width: 100%; margin-top: -20px; top: -10px;">
+				
+				<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px; color: white; font-weight: bold;"> Cadastro de Livro</div>
+			
+				<br><br>
 				<table cellpadding="5">
 					<tr>
 						<td>Autor</td>
@@ -93,8 +96,6 @@
 							%>
 							</select>
 						</td>
-					</tr>
-					<tr>
 						<td>Editora</td>
 						<td>
 							<select id="editora" name="editora">
@@ -113,65 +114,55 @@
 					<tr>
 						<td>Código ISBN <sup class="red">*</sup></td>
 						<td><input type="text" id="isbn" name="isbn" maxlength="13" value="${param.codigoISBN}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required/></td> 
-					</tr>
-					<tr>
 						<td>Título <sup class="red">*</sup></td>
 						<td><input type="text" id="titulo" name="titulo" maxlength="120" value="${param.titulo}" required/></td>
 					</tr>
 					<tr>
 						<td>Subtítulo <sup class="red">*</sup></td>
 						<td><input type="text" id="subtitulo" name="subtitulo" maxlength="120" value="${param.subtitulo}" required/></td>
-					</tr>
-					<tr>
 						<td>Preço </td>
 						<td><input type="text" id="preco" name="preco" maxlength="45" value="${param.preco}" onkeyup="precoMask(this)" onkeydown="precoMask(this)"/></td>
 					</tr>
 					<tr>
 						<td>Lingua <sup class="red">*</sup></td>
 						<td><input type="text" id="lingua" name="lingua" maxlength="45" value="${param.lingua}" required/></td>
-					</tr>
-					<tr>
 						<td>Edição <sup class="red">*</sup></td>
-						<td><input type="text" id="edicao" name="edicao" maxlength="45" value="${param.edicao}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
+						<td><input type="text" id="edicao" name="edicao" maxlength="4" value="${param.edicao}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
 					</tr>
 					<tr>
 						<td>Ano</td>
 						<td><input type="text" id="ano" name="ano" maxlength="4" value="${param.ano}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
-					</tr>
-					<tr>
 						<td>Páginas</td>
 						<td><input type="text" id="paginas" name="paginas" maxlength="4" value="${param.paginas}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
 					</tr>
 					<tr>
 						<td>Brochura</td>
 						<td><input type="checkbox" id="bruxuraRevista" name="bruxuraRevista" value="${param.bruxuraRevista}" /></td>						
-					</tr>
-					<tr>
 						<td>Video</td>
 						<td><input type="checkbox" id="video" name="video" value="${param.video}" /></td>
 					</tr>
 					<tr>
 						<td>CD/DVD</td>
 						<td><input type="checkbox" id="cd_dvd" name="cd_dvd" value="${param.cddvd}" /></td>
-					</tr>
-					<tr>
 						<td>e-book</td>
 						<td><input type="checkbox" id="ebook" name="ebook" value="${param.ebook}" /></td>
 					</tr>
 					<tr>
 						<td>Descrição</td>
 						<td><textarea cols="45" rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea></td>
-					</tr>
-					<tr>
 						<td></td>						
 					</tr>
 				</table>
+			
+			<div style="float: left;">
+			<span><sup class="red">*</sup> campos obrigatórios</span><br>
+			<input class="btn" type="reset"  value="Limpar"  id="limpar" name="limpar" />
+			<input class="btn" type="button" value=Cadastrar onclick="cadastrar()"/>
+			</div>
 			</fieldset>
-			<span><sup class="red">*</sup> campos obrigatórios</span>
-			<input type="reset"  value="Limpar"  id="limpar" name="limpar" />
-			<input type="button" value=Cadastrar onclick="cadastrar()"/>
+			
 		</form>
-	</div>
+	
 	<jsp:include page="/template/foot.jsp"></jsp:include>
 </body>
 </html>

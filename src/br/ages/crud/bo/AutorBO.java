@@ -100,5 +100,17 @@ public class AutorBO {
 		}
 		return autores;
 	}
+
+
+	public void alterarAutor(Autor autor) throws NegocioException, SQLException, ParseException {
+
+		try {
+			autorDAO.alterarAutor(autor);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+
+	}
 	
 }

@@ -5,16 +5,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="./css/comum.css" />
 
+<style>
+body { background: #111; }
+</style>
+
 <title>Pagina Inicial</title>
 </head>
 <body>
 	<jsp:include page="./template/head.jsp"></jsp:include>
 	<div class="main">
-		<h1>Sistema CePES MAterials</h1>
-		<fieldset>
-			<legend>Home</legend>
-			<h4>Modulo de Cadastro de Usuários.</h4>
-		</fieldset>
+	<img src="img/banner.jpg" width="100%" style="min-height:"/>
 	</div>
 	<jsp:include page="./template/foot.jsp"></jsp:include>
 </body>

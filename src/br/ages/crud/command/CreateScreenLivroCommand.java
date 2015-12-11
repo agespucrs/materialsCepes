@@ -33,7 +33,7 @@ public class CreateScreenLivroCommand implements Command {
 				Integer idLivro = Integer.parseInt(request.getParameter("id_livro"));
 				Livro livro = livroBO.consultarLivro(idLivro);
 				request.setAttribute("livro", livro);
-				proxima = "livro/editLivro.jsp";
+				proxima = "livro/alterLivro.jsp";
 				
 			} else {
 				

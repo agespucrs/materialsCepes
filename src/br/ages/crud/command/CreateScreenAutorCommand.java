@@ -21,13 +21,13 @@ public class CreateScreenAutorCommand implements Command {
 		// Verifica se abre tela edição de autor ou de adição de autor.
 		String isEdit = request.getParameter("isEdit");
 		if (isEdit != null && "sim".equals(isEdit)) {
-			int autorId = Integer.parseInt(request.getParameter("autor_id"));
+			int id_autor = Integer.parseInt(request.getParameter("id_autor"));
 			
 			// Criar funçao AutorDAO.consultarAutor(int autorId)
-			 Autor autor = autorBO.consultarAutor(autorId);
+			Autor autor = autorBO.consultarAutor(id_autor);
 			request.setAttribute("autor", autor);
 			
-			proxima = "autor/editAutor.jsp";
+			proxima = "autor/alterAutor.jsp";
 		} else {
 			proxima = "autor/addAutor.jsp";
 		}

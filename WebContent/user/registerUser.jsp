@@ -1,67 +1,71 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.List"%>
+<%@page import="br.ages.crud.model.Usuario"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" href="css/registerUser.css" />
 	<link rel="stylesheet" href="./css/comum.css" />
-	<title>Cadastrar Usuário</title>
-	<script type="text/javascript">
-	
+		<title>Cadastrar Usuário</title>
+		<script type="text/javascript">
+		
 			function cadastrar() {
-				//chamar funcao de verificar campos
-				
-				var formCadastro = document.forms[0]; 
+				var formCadastro =document.forms[0]; 
 				formCadastro.action ="main?acao=registerUser";
 				formCadastro.submit();
 			}
-			
+		
 		</script>
 </head>
 <body>
 	<jsp:include page="/template/head.jsp"></jsp:include>
-	<form method="post" action="">
-		<jsp:include page="/template/msg.jsp"></jsp:include>
-		<fieldset class="fieldset_register">
-			<legend>Registrar Usuário</legend>
-			<div class="campo">
-				<label for="matricula">Matricula</label> <sup class="red">*</sup> 
-				<input type="text" id="matricula" name="matricula" maxlength="15" value="${param.matricula}" />
-			</div>	
-			<a href="#" class="tooltip"><img src="" height="5" width="5"/><span>Matrícula da PUCRS</span></a> 
-			
-			<div class="campo">
-				<label for="nome">Nome</label> <sup class="red">*</sup> 
-				<input type="text" id="nome" name="nome" maxlength="150" value="${param.nome}" />
-			</div>
-
-			<div class="campo">
-				<label for="email">Email</label> <sup class="red">*</sup> 
-				<input type="text" id="email" name="email" maxlength="150" value="${param.email}" />
-			</div>
-
-			<div class="campo">
-				<label for="usuario">Usuário</label> <sup class="red">*</sup> 
-				<input type="text" id="usuario" name="usuario" maxlength="150" value="${param.usuario}" />
-			</div>
-			
-			<div class="campo">
-				<label for="senha">Senha</label> <sup class="red">*</sup>
-				<input type="password" id="senha" name="senha" maxlength="150" value="${param.senha}" />
-			</div>	
-			<a href="#" class="tooltip"><img src="" height="5" width="5"/><span>Texto de no mínimo 8 caractéres, contendo maiúsculas, minúsculas e números</span></a> 
-			
-
+	<jsp:include page="/template/msg.jsp"></jsp:include>
+	
+		<form action="" method="post" style="background: black;">
+			<jsp:include page="/template/msg.jsp"></jsp:include>
 			
 			
-			<div class="cadastrar">
-				<input type="button" value=Cadastrar onclick="cadastrar()"/>
+			<fieldset style="background: URL('img/banner_black.jpg');min-height: 449px; border: none !important; color: #198AB0; padding: 25px; font-size: 12px; width: 100%; margin-top: -20px; top: -10px;">
+				
+				<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px; color: white; font-weight: bold;"> Cadastro de Usuário</div>
+			
+				<br><br>
+				<table cellpadding="5">
+					<tr>
+						<td>Matricula <sup class="red">*</sup></td>
+						<td><input type="text" id="matricula" name="matricula" maxlength="11" value="${param.matricula}" /></td> 
+					</tr>
+					<tr>
+						<td>Name <sup class="red">*</sup></td>
+						<td><input type="text" id="nome" name="nome" maxlength="45" value="${param.nome}" /></td>
+					</tr>
+					<tr>
+						<td>Usuario <sup class="red">*</sup></td>
+						<td><input type="text" id="usuario" name="usuario" maxlength="11" value="${param.usuario}" /></td> 
+					</tr>
+					<tr>
+						<td>Senha <sup class="red">*</sup></td>
+						<td><input type="text" id="senha" name="senha" maxlength="45" value="${param.senha}" /></td>
+					</tr><tr>
+						<td>e-Mail Address</td>
+						<td><input type="text" id="email" name="email" maxlength="45" value="${param.email}" /></td>
+					</tr>
+					<tr>
+						<td>Administrador <sup class="red">*</sup></td>
+						<td><input type="radio" id="adm" name="adm" value="S" <%= "S".equals(request.getParameter("adm")) ? "checked" : "" %>/>SIM
+						    <input type="radio" id="adm" name="adm" value="N" <%= "N".equals(request.getParameter("adm")) ? "checked" : "" %>/>NÃO</td>
+					</tr>
+				</table>
+	<br><br>
+			<div style="float: left;">
+			<span><sup class="red">*</sup> campos obrigatórios</span><br>
+			<input class="btn" type="reset"  value="Limpar"  id="limpar" name="limpar" />
+			<input class="btn" type="button" value=Cadastrar onclick="cadastrar()"/>
 			</div>
-			<div class=limpar>
-				<input type="reset" value="Limpar" id="limpar" name="limpar" />
-			</div>
-		</fieldset>
+			</fieldset>
 		</form>
+	</div>
+	<jsp:include page="/template/foot.jsp"></jsp:include>
 </body>
 </html>

@@ -10,16 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.ages.crud.command.AddAutorCommand;
+import br.ages.crud.command.AddEditoraCommand;
 import br.ages.crud.command.AddLivroCommand;
 import br.ages.crud.command.AddUserCommand;
+import br.ages.crud.command.AlterAutorCommand;
+import br.ages.crud.command.AlterEditoraCommand;
+import br.ages.crud.command.AlterLivroCommand;
 import br.ages.crud.command.AlterUserCommand;
 import br.ages.crud.command.Command;
+import br.ages.crud.command.ConsultarAutorCommand;
+import br.ages.crud.command.ConsultarEditoraCommand;
 import br.ages.crud.command.ConsultarLivroCommand;
+import br.ages.crud.command.ConsultarUserCommand;
 import br.ages.crud.command.CreateScreenAutorCommand;
 import br.ages.crud.command.CreateScreenEditoraCommand;
 import br.ages.crud.command.CreateScreenLivroCommand;
 import br.ages.crud.command.CreateScreenUserCommand;
-import br.ages.crud.command.EditarLivroCommand;
+import br.ages.crud.command.ListAutorCommand;
 import br.ages.crud.command.ListEditoraCommand;
 import br.ages.crud.command.ListLivroCommand;
 import br.ages.crud.command.ListUserCommand;
@@ -44,21 +52,26 @@ public class MainServlet extends HttpServlet {
 		comandos.put("logout", new LogoutCommand());
 		comandos.put("telaUser", new CreateScreenUserCommand());		
 		comandos.put("registerUser", new AddUserCommand());
-		comandos.put("removerUsuario", new RemoveUserCommand());
+		comandos.put("removerUser", new RemoveUserCommand());
+		comandos.put("consultarUser", new ConsultarUserCommand());
 		comandos.put("listUser", new ListUserCommand());
 		comandos.put("alterUser", new AlterUserCommand());
 		
 		// EDITORA
-		comandos.put("addEditora", new ListEditoraCommand());
+		comandos.put("addEditora", new AddEditoraCommand());
 		comandos.put("listEditora", new ListEditoraCommand());
 		comandos.put("removerEditora", new RemoveEditoraCommand());
+		comandos.put("consultarEditora", new ConsultarEditoraCommand());
 		comandos.put("telaEditora", new CreateScreenEditoraCommand());
+		comandos.put("alterEditora", new AlterEditoraCommand());
 		
 		// AUTOR
-		comandos.put("addAutor", new ListEditoraCommand());
-		comandos.put("listAutor", new ListEditoraCommand());
+		comandos.put("addAutor", new AddAutorCommand());
+		comandos.put("listAutor", new ListAutorCommand());
 		comandos.put("removerAutor", new RemoveAutorCommand());
+		comandos.put("consultarAutor", new ConsultarAutorCommand());
 		comandos.put("telaAutor", new CreateScreenAutorCommand());
+		comandos.put("alterAutor", new AlterAutorCommand());
 		
 		// LIVRO
 		comandos.put("addLivro", new AddLivroCommand());
@@ -66,7 +79,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("removerLivro", new RemoveLivroCommand());
 		comandos.put("telaLivro", new CreateScreenLivroCommand());
 		comandos.put("consultarLivro", new ConsultarLivroCommand());
-		comandos.put("alterarLivro", new EditarLivroCommand());
+		comandos.put("alterLivro", new AlterLivroCommand());
 		
 	}
 

@@ -51,3 +51,4 @@ public class AlterUserCommand implements Command {
 		return proxima;
 	}
 }
+

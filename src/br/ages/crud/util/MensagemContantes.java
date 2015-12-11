@@ -57,4 +57,6 @@ public class MensagemContantes {
 	public static final String MSG_INF_LOGOUT = "Logout do Usuario efetuado com sucesso!";
 	
 	public static final String MSG_SENHA_INVALIDA = "A senha do usuario é invalida: Deve ter no minimo 3 e no maximo 8 caracteres, apenas numeros e letras!";
+
+	public static final String MSG_SUC_ALTERADO_LIVRO = "LIVRO ? ALTERADO COM SUCESSO";
 }

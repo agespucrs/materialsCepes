@@ -63,8 +63,8 @@ public class EditoraDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_EDITORA (ID_EDITORA, NOME)");
-			sql.append("VALUES (?, ?)");
+			sql.append("INSERT INTO TB_EDITORA (NOME)");
+			sql.append("VALUES (?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, editora.getNome());
@@ -80,6 +80,34 @@ public class EditoraDAO {
 		} finally {
 			conexao.close();
 		}
+	}
+	
+	public void alterarEditora(Editora editora) throws PersistenciaException,
+		SQLException, ParseException {
+	Connection conexao = null;
+	try {
+		Integer idEditora = null;
+	
+		conexao = ConexaoUtil.getConexao();
+	
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE TB_EDITORA SET NOME = ? WHERE id_editora = ?");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, editora.getNome());
+		statement.setLong(2, editora.getIdEditora());
+		statement.executeUpdate();
+	
+		ResultSet resultset = statement.getGeneratedKeys();
+		if (resultset.first()) {
+			idEditora = resultset.getInt(1);
+		}
+	
+	} catch (ClassNotFoundException | SQLException e) {
+		throw new PersistenciaException(e);
+	} finally {
+		conexao.close();
+	}
 	}
 
 	public Editora consultarEditora(Integer idEditora)

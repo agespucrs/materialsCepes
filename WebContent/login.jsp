@@ -14,7 +14,7 @@
 
 </head>
 
-<body style="background-image:URL('img/pucrs.png'); background-repeat: no-repeat; margin: 0px; padding: 0px; background-attachment: fixed;">
+<body style="background-image:URL('img/pucrscel.png'); background-repeat: no-repeat; margin: 0px; padding: 0px; background-attachment: fixed;">
 	
 
 	<div id="divLogin" style="width: 350px;float: right; margin-right: 250px; padding: 25px; margin-top: 120px;">
@@ -48,9 +48,7 @@
 		</table>
 		</form>
 		
-		<div style="color: white; width: 350px; background: #b0101a URL('img/scull.png') no-repeat; border: 1px solid white; float: right; height: 100px; margin-top: 5px; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px;"/>
-			
-		</div>	
+		
 	</div>
 
 

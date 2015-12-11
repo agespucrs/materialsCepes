@@ -21,7 +21,7 @@
 </style>
 
 </head>
-<body>
+<body style="">
 <%@ include file="/template/head.jsp"%>
 	<!-- <div class="head">
 		<div class="logo">
@@ -33,34 +33,15 @@
 	
 	<br><br>
 	
-	<form method="post" class="login_form" action="main?acao=login">
+	<form class="formlist" method="post" class="login_form" action="main?acao=login">
 		<jsp:include page="/template/msg.jsp"></jsp:include>
-		<fieldset class="fieldset_listLivros">
+		<fieldset class="fieldset_listLivros" style="background: URL('img/banner_black.jpg'); min-height: 515px;">
 			
-			<div class="content">
-				<input id="search" name="search" type="text" /> <img style="width: 18px;" src="img/search.png" />
-				<select id="field" name="field"><option>Campo1</option></select>
-				<div id="ordenar">Ordenar: <select id="orderBy" name="orderBy"><option>Campo1</option></select></div>
-			</div>
+			<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px;"> Listagem de Livros</div>
 			
-			<div id="titleList"> Listagem de Livros</div>
-			
-			<div id="fieldCamposExtras">
-				<input id="cddvd" name="cddvd" type="checkbox"> CD/DVD 
-				<input id="ebook" name="ebook" type="checkbox"> E-Book
-				<select id="editora" name="editora"><option>Editora</option></select>
-				<select id="autor" name="autor"><option>Autor</option></select>	
-			</div>
-			
-			
-			<div id="acaoEmMassa">
-			Ação em massa: 
-			<select><option>Excluir</option></select>
-			<input type="button" value="OK"/>	
-			</div>
-			
-			<table id="tbLista" border="1">
-			<tr>
+		
+			<table id="tbLista" cellspacing="0" >
+			<tr style="background: black; height: 50px; line-height: 50px; border: none;">
 				<td></td>
 				<td>Código ISBN</td>
 				<td>Título</td>
@@ -73,12 +54,28 @@
 			<%
 				List<Livro> listaLivros = (List<Livro>) request.getAttribute("listaLivros");
 				int sizeListaLivros = listaLivros.size();
-				
+				int tdChangeColor = 0;
 				
 				for (Livro livro : listaLivros) {
 			%>
 
-			<tr>
+			<%
+				if(tdChangeColor == 0)
+				{
+					%>
+					<tr class="tdInset">
+					<%
+					tdChangeColor++;
+				}
+				else
+				{
+			%>
+					<tr class="tdOutset">
+			<%
+					tdChangeColor = 0;
+				}
+			%>
+			
 				<td><input type="checkbox" /></td>
 				<td><%= livro.getCodigoISBN() %></td>
 				<td><%= livro.getTitulo() %></td>
@@ -98,17 +95,20 @@
 			%>
 			</table>
 			
-			<div id="totalRegistros"><%
+			<div id="totalRegistros" style="background: rgba(0,0,0,1)height: 40px;background: black;width: 100%;text-align: right;padding-right: 30px;line-height: 40px;"><%
 			if(sizeListaLivros == 0)
 			{
 				%> <p>Nenhum livro encontrado.</p> <%	
 			}
 			%>	 
-			Total de registros: <%= sizeListaLivros %></div>
+			<p style="color: white;">Total de registros: <%= sizeListaLivros %></div></p>
 			
 			
-			
+				
 		</fieldset>
 	</form>
 </body>
+
+<jsp:include page="/template/foot.jsp"></jsp:include>
+
 </html>
