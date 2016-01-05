@@ -32,6 +32,7 @@ import br.ages.crud.command.ListEditoraCommand;
 import br.ages.crud.command.ListLivroCommand;
 import br.ages.crud.command.ListUserCommand;
 import br.ages.crud.command.LoginCommand;
+import br.ages.crud.command.LoginCommandNovo;
 import br.ages.crud.command.LogoutCommand;
 import br.ages.crud.command.RemoveAutorCommand;
 import br.ages.crud.command.RemoveEditoraCommand;
@@ -46,6 +47,8 @@ public class MainServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		//NOVO
+		comandos.put("loginNovo", new LoginCommandNovo());
 		
 		// USUARIO
 		comandos.put("login", new LoginCommand());
