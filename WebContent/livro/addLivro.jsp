@@ -4,165 +4,105 @@
 <%@page import="br.ages.crud.model.Autor"%>
 <%@page import="br.ages.crud.model.Editora"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" href="./css/comum.css" />
-		<title>AgES - Adds</title>
-		<script type="text/javascript">
-		
-			function cadastrar() {
-				
-				var formCadastro = document.forms[0]; 
-				var err = false;
-				
-				if(document.getElementById("isbn").value == "undefined" || document.getElementById("isbn").value == "")
-						err = true;
-				if(document.getElementById("titulo").value == "undefined" || document.getElementById("titulo").value == "")
-					err = true;
-				if(document.getElementById("subtitulo").value == "undefined" || document.getElementById("subtitulo").value == "")
-					err = true;
-				if(document.getElementById("lingua").value == "undefined" || document.getElementById("lingua").value == "")
-					err = true;
-				if(document.getElementById("edicao").value == "undefined" || document.getElementById("edicao").value == "")
-					err = true;
-				
-				
-				if(!err)
-				{
-					formCadastro.action ="main?acao=addLivro";
-					formCadastro.submit();
-				}
-				else
-				{
-					alert("Preencha os campos obrigatórios");
-				}	
-				
-			
-			}
-			
-			function onlyNumber(e)
-			{
-				var valueof = e.value;
-				var value = valueof.match(/^[\0-9]+$/);
-				e.value = value;
-				
-			}
-			
-			function precoMask(e)
-			{
-				var valueof = e.value;
-				var value = valueof.match(/^[\0-9.]+$/);
-				e.value = value;
-			}
-			
-			function virgulaPraPonto(e)
-			{
-				e.value = e.value.replace(",",".");
-				
-			}
-		
-		</script>
-</head>
-<body >
 	
-	<jsp:include page="/template/head.jsp"></jsp:include>
-	
-	<jsp:include page="/template/msg.jsp"></jsp:include>
-	
-		<form action="" method="post" style="background: black;">
-			<jsp:include page="/template/msg.jsp"></jsp:include>
-			
-			
-			<fieldset style="background: URL('img/banner_black.jpg');min-height: 449px; border: none !important; color: #198AB0; padding: 25px; font-size: 12px; width: 100%; margin-top: -20px; top: -10px;">
-				
-				<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px; color: white; font-weight: bold;"> Cadastro de Livro</div>
-			
-				<br><br>
-				<table cellpadding="5">
-					<tr>
-						<td>Autor</td>
-						<td>
-							<select id="autor" name="autor">
-							<%
-								List<Autor> listaAutores = (List<Autor>) request.getAttribute("autores");
-								int sizeListaAutores = listaAutores.size();
-								for (Autor autor: listaAutores) {
-							%>
-									<option value="<%=autor.getId_autor() %>"><%=autor.getNome()+" "+autor.getSobrenome()%></option>			
-							<%
-								}
-							%>
+<jsp:include page="/template/head.jsp"></jsp:include>
+<div class="panel panel-primary panel-addLivro">
+	<div class="panel-heading text-center">Cadastro de Livros</div>
+		<div class="panel-body">
+		<jsp:include page="/template/msg.jsp"></jsp:include>
+		<!-- <div class="table-responsive">	 -->
+			<form action="main?acao=addLivro" method="post" >
+				<div class="form-group">
+					
+					<label class="form-label ages">Titulo: <span class="red">*</span></label> 
+					<input class="form-control" id="titulo" name="titulo" value="${param.titulo}"	type="text" maxlength="120" required>
+					
+					<label class="form-label ages">Sub-Titulo: <span class="red">*</span></label> 
+					<input class="form-control" id="subtitulo" name="subtitulo" value="${param.subtitulo}"	type="text" maxlength="120" required>
+					
+					<div class="row">
+						<div class="col-sm-6">
+							<label class="form-label ages">Autor: <span class="red">*</span></label> 
+							<select class="form-control" id="autor" name="autor" required>
+								<option value="" >Selecione Autor</option>
+								<%
+										List<Autor> listaAutores = (List<Autor>) request.getAttribute("autores");
+										int sizeListaAutores = listaAutores.size();
+										for (Autor autor: listaAutores) {
+									%>
+								<option value="<%=autor.getId_autor()%>" <%=(autor.getNome()+" "+autor.getSobrenome()).equals(request.getParameter("autor")) ? "selected" : "" %>><%=autor.getNome()+" "+autor.getSobrenome()%></option>
+									<%
+										}
+									%>
 							</select>
-						</td>
-						<td>Editora</td>
-						<td>
-							<select id="editora" name="editora">
-							<%
-								List<Editora> listaEditora = (List<Editora>) request.getAttribute("editoras");
-								int sizeListaEditoras = listaEditora.size();
-								for (Editora editora: listaEditora) {
-							%>
-									<option value="<%=editora.getIdEditora()%>"><%=editora.getNome()%></option>			
-							<%
-								}
-							%>
+						</div>
+						<div class="col-sm-6">
+							<label class="form-label ages">Editora: <span class="red">*</span></label> 
+							<select class="form-control" id="editora" name="editora" required>
+								<option value="" >Selecione Editora</option>
+								<%
+									List<Editora> listaEditora = (List<Editora>) request.getAttribute("editoras");
+									int sizeListaEditoras = listaEditora.size();
+									for (Editora editora: listaEditora) {
+								%>
+								<option value="<%=editora.getIdEditora()%>" <%=editora.getNome().equals(request.getParameter("editora")) ? "selected" : "" %>><editora.getNome()%></option>
+								<%
+										}
+									%>
 							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>Código ISBN <sup class="red">*</sup></td>
-						<td><input type="text" id="isbn" name="isbn" maxlength="13" value="${param.codigoISBN}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required/></td> 
-						<td>Título <sup class="red">*</sup></td>
-						<td><input type="text" id="titulo" name="titulo" maxlength="120" value="${param.titulo}" required/></td>
-					</tr>
-					<tr>
-						<td>Subtítulo <sup class="red">*</sup></td>
-						<td><input type="text" id="subtitulo" name="subtitulo" maxlength="120" value="${param.subtitulo}" required/></td>
-						<td>Preço </td>
-						<td><input type="text" id="preco" name="preco" maxlength="45" value="${param.preco}" onkeyup="precoMask(this)" onkeydown="precoMask(this)"/></td>
-					</tr>
-					<tr>
-						<td>Lingua <sup class="red">*</sup></td>
-						<td><input type="text" id="lingua" name="lingua" maxlength="45" value="${param.lingua}" required/></td>
-						<td>Edição <sup class="red">*</sup></td>
-						<td><input type="text" id="edicao" name="edicao" maxlength="4" value="${param.edicao}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)" required /></td>
-					</tr>
-					<tr>
-						<td>Ano</td>
-						<td><input type="text" id="ano" name="ano" maxlength="4" value="${param.ano}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
-						<td>Páginas</td>
-						<td><input type="text" id="paginas" name="paginas" maxlength="4" value="${param.paginas}" onkeyup="onlyNumber(this)" onkeydown="onlyNumber(this)"/></td>
-					</tr>
-					<tr>
-						<td>Brochura</td>
-						<td><input type="checkbox" id="bruxuraRevista" name="bruxuraRevista" value="${param.bruxuraRevista}" /></td>						
-						<td>Video</td>
-						<td><input type="checkbox" id="video" name="video" value="${param.video}" /></td>
-					</tr>
-					<tr>
-						<td>CD/DVD</td>
-						<td><input type="checkbox" id="cd_dvd" name="cd_dvd" value="${param.cddvd}" /></td>
-						<td>e-book</td>
-						<td><input type="checkbox" id="ebook" name="ebook" value="${param.ebook}" /></td>
-					</tr>
-					<tr>
-						<td>Descrição</td>
-						<td><textarea cols="45" rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea></td>
-						<td></td>						
-					</tr>
-				</table>
-			
-			<div style="float: left;">
-			<span><sup class="red">*</sup> campos obrigatórios</span><br>
-			<input class="btn" type="reset"  value="Limpar"  id="limpar" name="limpar" />
-			<input class="btn" type="button" value=Cadastrar onclick="cadastrar()"/>
-			</div>
-			</fieldset>
-			
-		</form>
-	
+						</div>
+					</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<label class="form-label ages">Codigo ISBN: <span class="red">*</span></label> 
+						<input class="form-control" id="isbn" name="isbn" value="${param.isbn}"	type="text" maxlength="120" required>
+					</div>
+					<div class="col-sm-4">
+						<label class="form-label ages">Preço: </label> 
+						<input class="form-control" id="preco" name="preco" value="${param.preco}"	type="text">
+					</div>
+					<div class="col-sm-4">
+						<label class="form-label ages">Lingua: </label> 
+						<select class="form-control" id="lingua" name="lingua" required>
+								<option value="" >Selecione a Lingua</option>
+								<option value="pt" <%="pt".equals(request.getParameter("lingua")) ? "selected" : ""%>>Protuguês</option>
+								<option value="en" <%="en".equals(request.getParameter("lingua")) ? "selected" : ""%>>Ingles</option>
+						</select>					
+					</div>
+				</div>			
+				<div class="row">
+					<div class="col-sm-4">
+						<label class="form-label ages">Edição: </label> 
+						<input class="form-control" id="edicao" name="edicao" value="${param.edicao}" type="text">
+					</div>
+					<div class="col-sm-4">
+						<label class="form-label ages">Ano: </label> 
+						<input class="form-control" id="ano" name="ano" value="${param.ano}" type="text">
+					</div>
+					<div class="col-sm-4">
+						<label class="form-label ages">Paginas: </label> 
+						<input class="form-control" id="paginas" name="paginas" value="${param.paginas}" type="text">
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-sm-12">
+						<label class="checkbox-inline ages"><input type="checkbox" name="bruxuraRevista" value="${param.bruxuraRevista}">Bruxura</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="video" value="${param.video}">Video</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="cd_dvd" value="${param.cddvd}">CD/DVD</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="ebook" value="${param.ebook}">E-Book</label>
+					</div>           
+				</div>
+				<label class="form-label ages">Descrição: </label> 
+				<textarea class="form-control" cols="80" rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea>
+				<p>
+					Campos que contém <span class="red">*</span> são obrigatórios
+				</p>
+				</div>
+				<div class="text-center">
+					<input class="btn btn-warning btn-limpar pull-left" type="reset" value="Limpar"> 
+					<input class="btn btn-primary btn-add pull-right" type="submit"	value="Cadastrar">
+				</div>		
+			</form>
+		</div>
+	</div>
 	<jsp:include page="/template/foot.jsp"></jsp:include>
-</body>
-</html>

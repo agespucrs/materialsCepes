@@ -1,56 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html>
+<html lang="pt-br">
 
-<head>
-<style>
-	@media screen and (max-width: 768px) {
-		
-		#divLogin { margin-right: 0px !important; }
-		body { background-image: URL('img/pucrscel.png') !important; }
-		
-	}
-</style>
+    <head>
+        <meta charset="utf-8">
+        <title>AGES - Agência Experimental de Engenharia de Software</title><!-- Título da página -->
+        <link rel="icon" href="./img/favicon.ico">
 
-</head>
+		
+		<!-- BOOTSTRAP -->
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+		<script src="./js/bootstrap.min.js"></script>
+		
+		<!-- STYLE -->
+		<link rel="stylesheet" href="./css/style.css">
 
-<body style="background-image:URL('img/pucrscel.png'); background-repeat: no-repeat; margin: 0px; padding: 0px; background-attachment: fixed;">
-	
-
-	<div id="divLogin" style="width: 350px;float: right; margin-right: 250px; padding: 25px; margin-top: 120px;">
-		
-		
-		<span style="color: white; font-weight: bold; font-size: 30px;"><img src="img/login.png"/>&nbsp;&nbsp;CePES</span>
-		<br><br>
-		
-		<form method="post" class="login_form" action="main?acao=login">
-		<table style="width: 350px; margin: 0 auto; background-color: rgba(0, 0, 0, 0.8); -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; color: white; padding: 25px; border: 1px solid white;">
-			<tr>
-				<td><label>Usuario:</label></td>
-				<td><input id="login" name="login" type="text" placeholder="Digite seu usuario..." required/></td>
-				<td><img src="img/1442277808_19.png" width="25px;" style="float: left;" title="Somente letras e numeros."/></td>
-			</tr>
-			<tr>
-				<td><label>Senha:</label></td>
-				<td><input id="senha" name="senha" type="password" placeholder="Digite sua senha..."required/></td>
-				<td><img src="img/1442277808_19.png" width="25px;" style="float: left;" title="Somente letras e numeros e somente 8 caracteres." /></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="reset" value="Limpa" /> <input type="submit" value="Enter" id="logar" name="logar" style="background-color: #028805; color: white; border: 2px solid #028805;"/></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><a link="#">Esqueci meus dados de acesso.</a></td>
-				<td></td>
-			</tr>
-		</table>
-		</form>
-		
-		
-	</div>
-
-
-</body>
+    </head>
+    
+    <body>
+    	<div class="container">
+    		
+    		<br>
+    		<div class="text-center">
+    			<img class="logo" src="./img/logo.png" alt="AGES - Agência Experimental de Engenharia de Software">
+    		</div>
+    		<br>
+   		
+    		<div class="panel panel-primary panel-login">
+    		
+    			<div class="panel-heading text-center">
+    				CePES Materials
+    			</div>
+		         
+		                
+                <div class="panel-body">
+    
+    				<h1 class="welcome">Bem <span class="ages">v</span>indo!</h1>
+    				<jsp:include page="/template/msg.jsp"></jsp:include>
+                    
+			         <form method="post" action="main?acao=login">
+			         	
+			         	
+			         	<div class="form-group">
+			            	<label class="form-label ages">Usuário:</label>
+			            	<input class="form-control" id="login" name="login" value="${param.login}" type="text" maxlength="120" required>
+		             	</div>
+		             	
+		             	<div class="form-group">
+			            	<label class="form-label ages">Senha:</label>
+			            	<input class="form-control" id="senha" name="senha" value="${param.senha}" type="password" maxlength="15" required>
+		            	</div>
+		            	
+		            	<div class="text-center">
+		            		<a href="#">Esqueci minha senha</a>
+		             	</div>
+		             	
+		             	<hr>
+		             	
+			            <div class="text-center">
+			             	<input class="btn btn-primary login pull-center" type="submit" value="Entrar">
+			         	</div>
+			         </form>
+			         
+		         </div>
+		         
+	         </div>
+        </div>
+    </body>
 </html>

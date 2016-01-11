@@ -24,7 +24,7 @@ public class LoginCommand implements Command {
 
 		try {
 			if (usuarioBO.validaUsuario(usuarioDTO)) {
-				request.getSession().setAttribute("usuario", usuarioDTO);
+				request.getSession().setAttribute("usuarioSessao", usuarioDTO);
 				proxima = "index.jsp";
 			}
 		} catch (Exception e) {

@@ -47,9 +47,7 @@ public class MainServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		//NOVO
-		comandos.put("loginNovo", new LoginCommandNovo());
-		
+	
 		// USUARIO
 		comandos.put("login", new LoginCommand());
 		comandos.put("logout", new LogoutCommand());

@@ -2,6 +2,10 @@ body{
 	background-color: #EEE;
 }
 
+.fundo {
+	background-image:url('../img/banner.jpg');
+	height: 710px;
+}
 .logo {
 	width: 30%;
 	min-width: 200px;
@@ -19,7 +23,21 @@ body{
 }
 
 .panel-add{
-	max-width: 350px;
+	max-width: 450px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.panel-addLivro{
+	max-width: 680px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.panel-list{
+	max-width: 650px;
 	float: none;
 	margin-left: auto;
 	margin-right: auto;
@@ -73,4 +91,9 @@ body{
 
 .margin-top {
 	margin-top: 20px;
+}
+
+.img {
+	width: 10%;
+	padding: 1px;
 }

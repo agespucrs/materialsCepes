@@ -1,3 +1,25 @@
-<div class="erroDiv" style="vertical-align: center; display: ${msgErro != null ? 'block' : 'none'}"><img width="20px" src="img/err.png"/><span style="margin-left: 15px; font-size: 12px;">${msgErro != null ? msgErro : ''}</span></div>
-<div class="sucessoDiv" style="vertical-align: center; display: ${msgSucesso != null ? 'block' : 'none'}"><img width="20px" src="img/ok.png"/><span style="margin-left: 15px; font-size: 12px;">${msgSucesso != null ? msgSucesso : ''}</span></div>
-<div class="avisoDiv" style="vertical-align: center; display: ${msgAviso != null ? 'block' : 'none'}"><img width="20px" src="img/bug.png"/>${msgAviso != null ? msgAviso : ''}</div>
+
+	
+	<div class="form-group" style="width: 100%; display: ${msgErro != null ? 'block' : 'none'}">
+		<div class="alert alert-danger fade in text-center" role="alert">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	    	<span class="sr-only">Erro:</span>
+	    	${msgErro != null ? msgErro : ''}                
+		</div>
+	</div>
+	
+	<div class="form-group" style="width: 100%; display: ${msgSucesso != null ? 'block' : 'none'}">
+		<div class="alert alert-success fade in text-center" role="alert">
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+	    	<span class="sr-only">Sucesso:</span>
+	    	${msgSucesso != null ? msgSucesso : ''}                
+		</div>
+	</div>
+	
+	<div class="form-group" style="width: 100%; display: ${msgAviso != null ? 'block' : 'none'}">
+		<div class="alert alert-danger fade in text-center" role="alert">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	    	<span class="sr-only">Erro:</span>
+	    	${msgAviso != null ? msgAviso : ''}              
+		</div>
+	</div>

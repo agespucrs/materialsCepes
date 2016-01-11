@@ -2,70 +2,43 @@
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Usuario"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" href="./css/comum.css" />
-		<title>Cadastrar Usuário</title>
-		<script type="text/javascript">
-		
-			function cadastrar() {
-				var formCadastro =document.forms[0]; 
-				formCadastro.action ="main?acao=registerUser";
-				formCadastro.submit();
-			}
-		
-		</script>
-</head>
-<body>
-	<jsp:include page="/template/head.jsp"></jsp:include>
-	<jsp:include page="/template/msg.jsp"></jsp:include>
-	
-		<form action="" method="post" style="background: black;">
+<jsp:include page="/template/head.jsp"></jsp:include>
+	<div class="panel panel-primary panel-add">
+		<div class="panel-heading text-center">Cadastro de Usuario</div>
+		<div class="panel-body">
+			<div class="table-responsive">
+			<form action="main?acao=registerUser" method="post">
 			<jsp:include page="/template/msg.jsp"></jsp:include>
+					<div class="form-group">
+						<label class="form-label ages">Matricula: <span class="red">*</span></label> 
+						<input class="form-control" id="matricula" name="matricula"	value="${param.matricula}" type="text" required>
+
+						<label class="form-label ages">Nome: <span class="red">*</span></label> 
+						<input class="form-control" id="nome" name="nome" value="${param.nome}" type="text" required>
 			
-			
-			<fieldset style="background: URL('img/banner_black.jpg');min-height: 449px; border: none !important; color: #198AB0; padding: 25px; font-size: 12px; width: 100%; margin-top: -20px; top: -10px;">
-				
-				<div id="titleList" style="font-size: 20px; font-style: italic; margin-left: 50px; color: white; font-weight: bold;"> Cadastro de Usuário</div>
-			
-				<br><br>
-				<table cellpadding="5">
-					<tr>
-						<td>Matricula <sup class="red">*</sup></td>
-						<td><input type="text" id="matricula" name="matricula" maxlength="11" value="${param.matricula}" /></td> 
-					</tr>
-					<tr>
-						<td>Name <sup class="red">*</sup></td>
-						<td><input type="text" id="nome" name="nome" maxlength="45" value="${param.nome}" /></td>
-					</tr>
-					<tr>
-						<td>Usuario <sup class="red">*</sup></td>
-						<td><input type="text" id="usuario" name="usuario" maxlength="11" value="${param.usuario}" /></td> 
-					</tr>
-					<tr>
-						<td>Senha <sup class="red">*</sup></td>
-						<td><input type="text" id="senha" name="senha" maxlength="45" value="${param.senha}" /></td>
-					</tr><tr>
-						<td>e-Mail Address</td>
-						<td><input type="text" id="email" name="email" maxlength="45" value="${param.email}" /></td>
-					</tr>
-					<tr>
-						<td>Administrador <sup class="red">*</sup></td>
-						<td><input type="radio" id="adm" name="adm" value="S" <%= "S".equals(request.getParameter("adm")) ? "checked" : "" %>/>SIM
-						    <input type="radio" id="adm" name="adm" value="N" <%= "N".equals(request.getParameter("adm")) ? "checked" : "" %>/>NÃO</td>
-					</tr>
-				</table>
-	<br><br>
-			<div style="float: left;">
-			<span><sup class="red">*</sup> campos obrigatórios</span><br>
-			<input class="btn" type="reset"  value="Limpar"  id="limpar" name="limpar" />
-			<input class="btn" type="button" value=Cadastrar onclick="cadastrar()"/>
-			</div>
-			</fieldset>
-		</form>
+						<label class="form-label ages">Usuário: <span class="red">*</span></label> 
+						<input class="form-control" id="usuario" name="usuario" value="${param.nome}" type="text" required>
+	
+						<label class="form-label ages">Senha: <span class="red">*</span></label> 
+						<input class="form-control" id="senha" name="senha" value="${param.senha}" type="text" required>
+
+						<label class="form-label ages">E-Mail: <span class="red">*</span></label> 
+						<input class="form-control" id="email" name="email" value="${param.email}" type="text" required>
+
+						<label class="form-label ages">Administrador: <span class="red">*</span></label> 
+						<select class="form-control" id="adm" name="adm" required>
+							<option value="SIM" <%="SIM".equals(request.getParameter("adm")) ? "selected" : ""%>>SIM</option>
+							<option value="NAO" <%="NAO".equals(request.getParameter("adm")) ? "selected" : ""%>>NAO</option>
+						</select>
+					</div>
+						
+					<span><sup class="red">*</sup> campos obrigatórios</span><br>
+					<div class="text-center">
+						<input class="btn btn-warning btn-limpar pull-left" type="reset"  value="Limpar"  id="limpar" name="limpar" />
+						<input class="btn btn-primary btn-add pull-right" type="submit" value="Cadastrar" />
+					</div>
+			</form>
+		</div>
 	</div>
-	<jsp:include page="/template/foot.jsp"></jsp:include>
-</body>
-</html>
+</div>
+<jsp:include page="/template/foot.jsp"></jsp:include>
