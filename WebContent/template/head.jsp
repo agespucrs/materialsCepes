@@ -20,10 +20,17 @@
 		<link rel="stylesheet" href="./css/style.css">
 		
 		<!-- Include the plugin's CSS and JS: Cassio -->
-		<!-- 		
+		<!-- bootstrap submenu  -->
+		<script src="./js/bootstrap-submenu.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-submenu.min.css">
+		<script>
+			$(document).ready(function(){
+				$('[data-submenu]').submenupicker();
+			});
+		</script>
 		<script src="./js/jquery.bootstrap-duallistbox.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-duallistbox.min.css">
-		 -->
+		<!-- 		
 		<!-- Include the plugin's CSS and JS: Cassio DateTime Picker -->
 		<!-- 
 		<script type="text/javascript" src="./js/moment.js"></script>
@@ -47,7 +54,39 @@
 			    	</div>
 
 					<ul class="nav navbar-nav">
-						
+			        	<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Equipamentos
+				          		<span class="caret"></span>
+			          		</a>
+				          	<ul class="dropdown-menu">
+				            	<li><a href="main?acao=telaEquipamento&tela=lista">Listar</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=periferico">Cadastro Periférico</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=marcaModelo">Cadastro Marca / Modelo</a></li>
+				            	 
+				          	</ul>
+        				</li>
+						<li class="dropdown"><a data-submenu="" data-toggle="dropdown" tabindex="0"> Livros <span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="0" href="main?acao=listLivro">Listar</a></li>
+								<li><a tabindex="0" href="main?acao=telaLivro&isEdit=">Cadastrar</a></li> 
+								<li class="divider"></li>
+								<li class="dropdown-submenu"><a tabindex="0">Autores</a>
+									<ul class="dropdown-menu">
+										<li><a tabindex="0" href="main?acao=listAutor">Listar</a></li>
+										<li><a tabindex="0" href="main?acao=addAutor">cadastrar</a></li>
+									</ul></li>
+								<li class="dropdown-submenu"><a tabindex="0">Editoras</a>
+									<ul class="dropdown-menu">
+										<li><a tabindex="0" href="main?acao=listEditora">Listar</a></li>
+										<li><a tabindex="0" href="main?acao=addEditora">Cadastrar</a></li>
+									</ul></li>
+							</ul></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
 			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuários
 				          		<span class="caret"></span>
@@ -58,40 +97,6 @@
 				          	</ul>
         				</li>
 
-			        	<li class="dropdown">
-			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Livros
-				          		<span class="caret"></span>
-			          		</a>
-				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=listLivro">Listar</a></li>
-				            	<li><a href="main?acao=telaLivro&isEdit=">Cadastrar</a></li> 
-				          	</ul>
-        				</li>
-        				
-        				<li class="dropdown">
-			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Editora
-				          		<span class="caret"></span>
-			          		</a>
-			          		<ul class="dropdown-menu">
-				            	<li><a href="main?acao=listEditora">Listar</a></li>
-				            	<li><a href="main?acao=telaEditora&isEdit=">Cadastrar</a></li> 
-				          	</ul>
-        				</li>
-
-        				<li class="dropdown">
-			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Autor
-				          		<span class="caret"></span>
-			          		</a>
-				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=listAutor">Listar</a></li>
-				            	<li><a href="main?acao=telaAutor&isEdit=">Cadastrar</a></li>
-				            	
-				          	</ul>
-        				</li>
-
-					</ul>
-
-					<ul class="nav navbar-nav navbar-right">
         				<li class="dropdown">
         					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
         						<span class="glyphicon glyphicon-user"></span>

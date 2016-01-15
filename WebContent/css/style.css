@@ -4,7 +4,7 @@ body{
 
 .fundo {
 	background-image:url('../img/banner.jpg');
-	height: 710px;
+	/* height: 710px; */
 }
 .logo {
 	width: 30%;
@@ -28,6 +28,22 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.panel-list-equipamento{
+	max-width: 650px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.panel-add-marcaModelo{
+	max-width: 650px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
 
 .panel-addLivro{
 	max-width: 680px;
@@ -96,4 +112,14 @@ body{
 .img {
 	width: 10%;
 	padding: 1px;
+}
+
+.total {
+	background: rgba(0, 0, 0, 1);
+	height: 40px; 
+	background: black; 
+	width: 100%; 
+	text-align: right; 
+	padding-right: 30px; 
+	line-height: 40px;
 }
