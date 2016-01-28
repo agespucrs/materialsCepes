@@ -23,7 +23,7 @@
 					<th style="text-align: center;">E-Mail</th>
 					<th style="text-align: center;">Usuário</th>
 					<th style="text-align: center;">ADM</th>
-					<th style="text-align: center;">Ações</th>
+					<th colspan="2" style="text-align: center;">Ações</th>
 				</tr>
 				</thead>
 
@@ -42,11 +42,8 @@
 					<td class="alignLeft"><%=usuario.getEmail()%></td>
 					<td class="alignLeft"><%=usuario.getUsuario()%></td>
 					<td class="alignCenter"><%=usuario.getAdministrador()%></td>
-					<td>
-						<a href="/CePESMaterials/main?acao=consultarUser&id_usuario=<%=usuario.getIdUsuario()%>"><img class="img" src="img/view.png"></a>
-						<a href="/CePESMaterials/main?acao=telaUser&id_usuario=<%=usuario.getIdUsuario()%>&isEdit=sim"><img class="img" src="img/edit.png"/></a>
-						<a href="/CePESMaterials/main?acao=removerUser&id_usuario=<%=usuario.getIdUsuario()%>"><img class="img" src="img/trash.png"/></a>
-					</td>
+					<td align="center"><a href="/CePESMaterials/main?acao=telaUser&id_usuario=<%=usuario.getIdUsuario()%>&isEdit=sim" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
+					<td align="center"><a href="/CePESMaterials/main?acao=removerUser&id_usuario=<%=usuario.getIdUsuario()%>" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 				</tr>
 			<%
 				}

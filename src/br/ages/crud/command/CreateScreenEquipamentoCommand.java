@@ -16,6 +16,9 @@ public class CreateScreenEquipamentoCommand implements Command {
 		try {
 
 			switch (tela) {
+			case "equipamento":
+				this.proxima = "equipamento/addEquipamento.jsp";
+				break;
 			case "computador":
 				this.proxima = "equipamento/addComputador.jsp";
 				break;
@@ -27,6 +30,24 @@ public class CreateScreenEquipamentoCommand implements Command {
 				break;
 			case "marcaModelo":
 				this.proxima = "equipamento/addMarcaModelo.jsp";
+				break;
+			case "copiaLivro":
+				this.proxima = "livro/addCopiaLivro.jsp";
+				break;
+			case "emprestimoLivro":
+				this.proxima = "livro/emprestimoLivro.jsp";
+				break;
+			case "listProjeto":
+				this.proxima = "projeto/listProjeto.jsp";
+				break;
+			case "equipamentoProjeto":
+				this.proxima = "projeto/equipamentoProjeto.jsp";
+				break;
+			case "equipeProjeto":
+				this.proxima = "projeto/equipeProjeto.jsp";
+				break;
+			case "addProjeto":
+				this.proxima = "projeto/addProjeto.jsp";
 				break;
 
 			default:

@@ -50,8 +50,13 @@
 						<input class="form-control" id="valor" name="valor"value="${param.valor}" placeholder="663,15"  type="value" required>
 					</div>
 					<div class=" col-sm-4">
-						<label class="form-label ages">Data Cadastro </label> 
-						<input class="form-control" id="dataCadastro" name="dataCadstro"value="01/01/2016"  type="text" required>
+						<label class="form-label ages">Data Cadastro:<span class="red">*</span></label> 
+						<div class='input-group date' id='dataCadastro'>
+							<input type='text' class="form-control" id='dtCadastro' name="dtCadastro" value="${param.dtCadastro}"/>
+							<span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+							</span>
+					</div>
 					</div>
 					<div class=" col-sm-12">
 						<br>
@@ -134,3 +139,13 @@
 		</div>
 	</div>
 <jsp:include page="/template/foot.jsp"></jsp:include>
+<!-- Initialize the plugin: -->
+
+<script type="text/javascript">
+	$(function() {
+		$('#dataCadastro').datetimepicker({
+			locale : 'pt-br',
+			showTodayButton: true
+		});
+	});
+</script>

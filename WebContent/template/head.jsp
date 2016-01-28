@@ -30,16 +30,16 @@
 		</script>
 		<script src="./js/jquery.bootstrap-duallistbox.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-duallistbox.min.css">
-		<!-- 		
+			
 		<!-- Include the plugin's CSS and JS: Cassio DateTime Picker -->
-		<!-- 
+	
 		<script type="text/javascript" src="./js/moment.js"></script>
 		<script type="text/javascript" src="./js/pt-br.js"></script>
 		<script type="text/javascript" src="./js/transition.js"></script>
 		<script type="text/javascript" src="./js/collapse.js"></script>
 		<script type="text/javascript" src="./js/bootstrap-datetimepicker.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-datetimepicker.min.css">
-    	-->
+
     <body>
      <% Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioSessao"); %>
     	<div class="container fundo">
@@ -49,39 +49,53 @@
 				
 		    		<div class="navbar-header">
 			      		<a class="navbar-brand" href="index.jsp">
-			        		<img class="logoNavBar" src="./img/logo.png" alt="CePES">
+			        		<img class="logoNavBar" src="./img/cepes.png" alt="CePES">
 			      		</a>
 			    	</div>
 
 					<ul class="nav navbar-nav">
+					<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Projetos
+				          		<span class="caret"></span>
+			          		</a>
+				          	<ul class="dropdown-menu">
+				            	<li><a href="main?acao=telaEquipamento&tela=addProjeto">Cadastrar</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=listProjeto">Listar</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=equipeProjeto">Alocar Equipe</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=equipamentoProjeto">Alocar Equipamento</a></li>
+				            </ul>
 			        	<li class="dropdown">
 			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Equipamentos
 				          		<span class="caret"></span>
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=telaEquipamento&tela=lista">Listar</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=equipamento">Cadastrar EQUIPAMENTO</a></li>
 				            	<li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>
 				            	<li><a href="main?acao=telaEquipamento&tela=periferico">Cadastro Periférico</a></li>
 				            	<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li>
-				            	<li><a href="main?acao=telaEquipamento&tela=marcaModelo">Cadastro Marca / Modelo</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=marcaModelo">Cadastro Marca</a></li>
 				            	 
 				          	</ul>
         				</li>
 						<li class="dropdown"><a data-submenu="" data-toggle="dropdown" tabindex="0"> Livros <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu">
+								<li><a tabindex="0" href="main?acao=telaEquipamento&tela=emprestimoLivro">Empréstimo</a></li>
+								<li class="divider"></li>
 								<li><a tabindex="0" href="main?acao=listLivro">Listar</a></li>
 								<li><a tabindex="0" href="main?acao=telaLivro&isEdit=">Cadastrar</a></li> 
+								<li><a tabindex="0" href="main?acao=telaEquipamento&tela=copiaLivro">Adicionar Cópia</a></li> 
 								<li class="divider"></li>
 								<li class="dropdown-submenu"><a tabindex="0">Autores</a>
 									<ul class="dropdown-menu">
 										<li><a tabindex="0" href="main?acao=listAutor">Listar</a></li>
-										<li><a tabindex="0" href="main?acao=addAutor">cadastrar</a></li>
+										<li><a tabindex="0" href="main?acao=telaAutor">cadastrar</a></li>
 									</ul></li>
 								<li class="dropdown-submenu"><a tabindex="0">Editoras</a>
 									<ul class="dropdown-menu">
 										<li><a tabindex="0" href="main?acao=listEditora">Listar</a></li>
-										<li><a tabindex="0" href="main?acao=addEditora">Cadastrar</a></li>
+										<li><a tabindex="0" href="main?acao=telaEditora">Cadastrar</a></li>
 									</ul></li>
 							</ul></li>
 					</ul>

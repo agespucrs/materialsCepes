@@ -36,7 +36,6 @@ public class AlterEditoraCommand implements Command {
 			
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
-			//proxima = "main?acao=addUser";
 		}
 
 		return proxima;

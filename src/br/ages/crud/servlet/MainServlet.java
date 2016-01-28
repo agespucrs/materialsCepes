@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import br.ages.crud.command.AddAutorCommand;
 import br.ages.crud.command.AddEditoraCommand;
 import br.ages.crud.command.AddLivroCommand;
@@ -39,9 +41,12 @@ import br.ages.crud.command.RemoveAutorCommand;
 import br.ages.crud.command.RemoveEditoraCommand;
 import br.ages.crud.command.RemoveLivroCommand;
 import br.ages.crud.command.RemoveUserCommand;
+import br.ages.crud.util.LogParametrosSession;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
+	
+
 
 	private static final long serialVersionUID = 1L;
 	private Map<String, Command> comandos = new HashMap<String, Command>();
@@ -100,6 +105,9 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
 		}
+		
+		LogParametrosSession.logParametros(request);
+		
 		request.getRequestDispatcher(proxima).forward(request, reponse);
 		
 	}

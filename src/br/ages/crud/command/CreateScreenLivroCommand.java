@@ -25,23 +25,24 @@ public class CreateScreenLivroCommand implements Command {
 		livroBO = new LivroBO();
 		autorBO = new AutorBO();
 		editoraBO = new EditoraBO();
-		
 		try {
 			// Verifica se abre tela edição ou adição de livro.
+			ArrayList<Autor> autores = (ArrayList<Autor>) autorBO.listarAutor();
+			ArrayList<Editora> editoras = (ArrayList<Editora>) editoraBO.listarEditora();
+			
 			String isEdit = request.getParameter("isEdit");
 			if (isEdit != null && "sim".equals(isEdit)) {
 				Integer idLivro = Integer.parseInt(request.getParameter("id_livro"));
 				Livro livro = livroBO.consultarLivro(idLivro);
 				request.setAttribute("livro", livro);
+				request.setAttribute("autores", autores);
+				request.setAttribute("editoras", editoras);
 				proxima = "livro/alterLivro.jsp";
 				
 			} else {
 				
-				ArrayList<Autor> autores = (ArrayList<Autor>) autorBO.listarAutor();
-				ArrayList<Editora> editoras = (ArrayList<Editora>) editoraBO.listarEditora();
 				request.setAttribute("autores", autores);
 				request.setAttribute("editoras", editoras);
-				
 				proxima = "livro/addLivro.jsp";
 			
 			}

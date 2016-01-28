@@ -23,20 +23,19 @@
     		
     		<br>
     		<div class="text-center">
-    			<img class="logo" src="./img/logo.png" alt="AGES - Agência Experimental de Engenharia de Software">
+    			<img class="logo" src="./img/CePES_Materials.png" alt="AGES - Agência Experimental de Engenharia de Software">
     		</div>
     		<br>
    		
     		<div class="panel panel-primary panel-login">
     		
     			<div class="panel-heading text-center">
-    				CePES Materials
+    				<h1 class="welcome">Bem <span class="ages">v</span>indo!</h1>
     			</div>
 		         
 		                
                 <div class="panel-body">
     
-    				<h1 class="welcome">Bem <span class="ages">v</span>indo!</h1>
     				<jsp:include page="/template/msg.jsp"></jsp:include>
                     
 			         <form method="post" action="main?acao=login">

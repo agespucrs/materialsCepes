@@ -36,7 +36,7 @@ public class AddLivroCommand implements Command {
 		Date dataCadastro = new Date();
 
 		String sPreco = (request.getParameter("preco"));
-		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco);
+		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco); // resolver problema das casas decimais.
 
 		String lingua = request.getParameter("lingua");
 		String codigoISBN = request.getParameter("isbn");

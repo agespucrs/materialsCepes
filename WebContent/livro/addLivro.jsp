@@ -45,7 +45,7 @@
 									int sizeListaEditoras = listaEditora.size();
 									for (Editora editora: listaEditora) {
 								%>
-								<option value="<%=editora.getIdEditora()%>" <%=editora.getNome().equals(request.getParameter("editora")) ? "selected" : "" %>><editora.getNome()%></option>
+								<option value="<%=editora.getIdEditora()%>" <%=(editora.getNome()).equals(request.getParameter("editora")) ? "selected" : "" %>><%=editora.getNome()%></option>
 								<%
 										}
 									%>
@@ -65,7 +65,7 @@
 						<label class="form-label ages">Lingua: </label> 
 						<select class="form-control" id="lingua" name="lingua" required>
 								<option value="" >Selecione a Lingua</option>
-								<option value="pt" <%="pt".equals(request.getParameter("lingua")) ? "selected" : ""%>>Protuguês</option>
+								<option value="pt" <%="pt".equals(request.getParameter("lingua")) ? "selected" : ""%>>Português</option>
 								<option value="en" <%="en".equals(request.getParameter("lingua")) ? "selected" : ""%>>Ingles</option>
 						</select>					
 					</div>
