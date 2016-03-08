@@ -76,12 +76,17 @@
 					</div>
 				<div class="row">	
 					<div class="col-sm-4">
-						<label class="form-label ages">Codigo ISBN: <span class="red">*</span></label> 
+						<label class="form-label ages">Codigo Biblioteca: <span class="red">*</span></label> 
 						<input class="form-control" id="isbn" name="isbn" value="<%=livro.getCodigoISBN()%>"	type="text" maxlength="120" required>
 					</div>
 					<div class="col-sm-4">
-						<label class="form-label ages">Preço: </label> 
-						<input class="form-control" id="preco" name="preco" value="<%=livro.getPreco()%>"	type="text">
+						<label class="form-label ages">Preço Aquisição: </label> 
+						<div class="input-group">
+							<div class="input-group-btn">
+								 <a class="btn btn-default" >R$</a>
+							</div>
+						<input class="preco form-control" id="preco" name="preco" value="<%=livro.getPreco()%>" style="text-align: right;">
+						</div>
 					</div>
 					<div class="col-sm-4">
 						<label class="form-label ages">Lingua: </label> 
@@ -98,8 +103,8 @@
 						<input class="form-control" id="edicao" name="edicao" value="<%=livro.getEdicao()%>" type="text">
 					</div>
 					<div class="col-sm-4">
-						<label class="form-label ages">Ano: </label> 
-						<input class="form-control" id="ano" name="ano" value="<%=livro.getAno()%>" type="text">
+						<label class="form-label ages">Data Entrada: </label> 
+						<input class="form-control" id="ano" name="ano" value="<%=livro.getAno()%>" type="text" style="text-align: right;">
 					</div>
 					<div class="col-sm-4">
 						<label class="form-label ages">Paginas: </label> 
@@ -108,14 +113,17 @@
 				</div>	
 				<div class="row">	
 					<div class="col-sm-12">
-						<label class="checkbox-inline ages"><input type="checkbox" name="bruxuraRevista" value="<%=livro.getBruxura_revista()%>">Bruxura</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="bruxuraRevista" value="<%=livro.getBruxura_revista()%>">Broxura</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="video" value="<%=livro.isVideo()%>">Video</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="cd_dvd" value="<%=livro.isCd_dvd()%>">CD/DVD</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="ebook" value="<%=livro.isE_book()%>">E-Book</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="capaDuara" value="">Capa Dura</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="expiral" value="">Expiral</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="revista" value="">Revista</label>
 					</div>           
 				</div>
-				<label class="form-label ages">Descrição: </label> 
-				<textarea class="form-control" cols="80" rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea>
+				<label class="form-label ages">Observação: </label> 
+				<textarea class="form-control" cols="80" rows="2" id="descricao" name="descricao" value="${param.descricao}"></textarea>
 			</div>
 			<p>Campos que contém <span class="red">*</span> são obrigatórios</p>
 
@@ -130,5 +138,8 @@
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
+	$('.preco').mask('#.##0,00', {
+		reverse : true
+	});   
 });
 </script>

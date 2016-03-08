@@ -7,7 +7,7 @@
 
 <div class="panel panel-primary panel-add">
 
-	<div class="panel-heading text-center">Cadastro de Computador</div>
+	<div class="panel-heading text-center">Cadastro de Equipamento</div>
 	
 		<div class="panel-body">
 	
@@ -25,7 +25,9 @@
 							<select class="form-control" id="status" name="status" required>
 								<option value="" >Selecione o Status</option>
 								<option value="" >Ativo</option>
+								<option value="" >Manutenção</option>
 								<option value="" >Inativo</option>
+								<option value="" >Descartado</option>
 							</select>
 						</div>
 					</div>
@@ -89,17 +91,23 @@
 				
 				<div class="row">
 					<div class=" col-sm-6">
-						<label class="form-label ages">valor </label> 
-						<input class="form-control" id="valor" name="valor"value="${param.modelo}" placeholder="1.550,00"  type="text" required>
+						<label class="form-label ages">Valor </label> 
+						<input class="form-control" id="valor" name="valor"value="${param.modelo}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
 					</div>
 					<div class=" col-sm-6">
 						<label class="form-label ages">Data Cadastro </label> 
-						<input class="form-control" id="dataCadastro" name="dataCadstro"value="01/01/2016" disabled="disabled" type="text" required>
+						<input class="form-control" id="dataCadastro" name="dataCadstro"value="01/01/2016" disabled="disabled" type="text" style="text-align: center;" required>
 					</div>
 				</div>
-				
-				<label class="form-label ages">Descrição: </label> 
-				<textarea class="form-control"  rows="4" id="descricao" name="descricao" value="${param.descricao}"></textarea>
+				<label class="form-label ages">Projeto <span class="red">*</span></label></label> 
+				<select class="form-control" id="projeto" name="projeto" value="${param.projeto}" type="text" required>
+					<option value="" >Selecione o Projeto</option>
+					<option value="" >Kill DeathStar</option>
+					<option value="" >Transposição Rio São Francisco</option>
+					<option value="" >Tomada de Constantinopla</option>
+				</select>
+				<label class="form-label ages">Observação: </label> 
+				<textarea class="form-control"  rows="2" id="descricao" name="descricao" value="${param.descricao}"></textarea>
 				
 			</div>
 			<p>		

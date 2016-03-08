@@ -12,61 +12,9 @@
 
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 
-			<div class="form-group"> <!-- a busca devera utilizar uma classe java para gerar o recordset -->
-				<div class="row">
-					<div class=" col-sm-4">
-						<label class="form-label ages">Numero Patrimonio</label> 
-						<input class="form-control" id="numeroPatrimonio" name="numeroPatrimonio"	value="${param.numeroPatrimonio}" type="text" required>
-					</div>
-					<div class=" col-sm-4">
-						<label class="form-label ages">Tipo Equipamento </label> 
-						<select class="form-control" id="tipoEquipamento" name="tipoEquipamento"value="${param.modelo}" placeholder="663,15"  type="text" required>
-							<option value="" >Selecione o Tipo</option>
-							<option value="" >Computador</option>
-							<option value="" >Periférico</option>
-							<option value="" >Dispositivo Móvekl</option>
-						</select>
-					</div>
-					<div class=" col-sm-4">
-						<label class="form-label ages">Marca</label> <!-- buscar a lista em uma classe -->
-						<select class="form-control" id="marca" name="marca"	value="${param.marca}" type="text" required>
-							<option value="" >Selecione a Marca</option>
-							<option value="" >Dell</option>
-							<option value="" >Hp</option>
-							<option value="" >Sony</option>
-						</select>
-					</div>
-					<div class=" col-sm-4">
-						<label class="form-label ages">Modelo </label> <!-- os modelos irão variar conforme a marca / buscar a lista em uma classe  -->
-						<select class="form-control" id="modelo" name="modelo"	value="${param.modelo}" type="text" required>
-						<option value="" >Selecione o Modelo</option>
-							<option value="" >Vaio</option>
-							<option value="" >Vaio F115</option>
-							<option value="" >Nexus</option>
-						</select>
-					</div>
-					<div class=" col-sm-4">
-						<label class="form-label ages">valor </label> 
-						<input class="form-control" id="valor" name="valor"value="${param.valor}" placeholder="663,15"  type="value" required>
-					</div>
-					<div class=" col-sm-4">
-						<label class="form-label ages">Data Cadastro:<span class="red">*</span></label> 
-						<div class='input-group date' id='dataCadastro'>
-							<input type='text' class="form-control" id='dtCadastro' name="dtCadastro" value="${param.dtCadastro}"/>
-							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-calendar"></span>
-							</span>
-					</div>
-					</div>
-					<div class=" col-sm-12">
-						<br>
-						<input class="btn btn-primary pull-right" type="submit" onclick="" value="Buscar Equipamento" />
-					</div>
-				</div>
-			</div>
-		</div>
+
 		<div class="table-responsive">
-			<table class="table table-hover table-striped table-bordered">
+			<table id="listaEquipamentos" class="table table-responsive table-striped table-hover table-condensed table-bordered">
 
 				<thead>
 					<tr>
@@ -76,7 +24,8 @@
 						<th style="text-align: center;">Data Cadastro</th>
 						<th style="text-align: center;">Valor</th>
 						<th style="text-align: center;">Detalhamento</th>
-						<th colspan="2" style="text-align: center;">Ações</th>
+						<th data-sortable="false" style="text-align: center; width:10px"></th>
+						<th data-sortable="false" style="text-align: center; width:10px"></th>
 					</tr>
 				</thead>
 
@@ -115,37 +64,30 @@
 						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
-					<!-- ***********************  -->
 				</tbody>
 			</table>
-
-			<div id="totalRegistros" class="total">
-				
-				<p hidden="">Nenhum livro encontrado.</p>
-
-				<p style="color: white;">Total de registros: 3  <!-- atualizado pelo total do recordset -->
-			</div>
-			<div align="center">
-			<ul class="pagination"> <!-- criar uma classe java para gerar a paginação -->
-				<li><a href="#">&laquo;</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-			</div>
-		</div>
 	</div>
+</div>
+</div>
 <jsp:include page="/template/foot.jsp"></jsp:include>
 <!-- Initialize the plugin: -->
-
-<script type="text/javascript">
-	$(function() {
-		$('#dataCadastro').datetimepicker({
-			locale : 'pt-br',
-			showTodayButton: true
-		});
+<script>
+$(document).ready(function(){
+	$('#listaEquipamentos').dataTable({
+	    "language": {
+            "lengthMenu": "Mostrando _MENU_ registros por página",
+            "zeroRecords": "Sem registros",
+            "info": "Mostrando _PAGE_ de _PAGES_ páginas",
+            "infoEmpty": "Nenhum registros encontrados!",
+            "infoFiltered": "(Filtrado _MAX_ do total deregistros)",
+            "search":"Busca",
+           	"paginate": {
+                "first":      "Primeiro",
+                "last":       "Último",
+                "next":       "Próximo",
+                "previous":   "Anterior"
+	        },
+        }
 	});
+});;
 </script>

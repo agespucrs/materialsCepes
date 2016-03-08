@@ -27,25 +27,16 @@
 						
 						<div class="row">
 							<div class="col-sm-6">
-								<label class="form-label ages">Projeto </label> 
+								<label class="form-label ages">Coordenador Projeto </label> 
 								<select class="form-control" id="listaResponsavel" name="listaResponsavel" value="${param.tipoEquipamento}" type="text" required>
-									<option value="" >Selecione o Responsável</option>
+									<option value="" >Selecione o Coordenador</option>
 									<option value="" >Professor 1</option>
 									<option value="" >Professor 2</option>
 									<option value="" >Professor 3</option>
 									<option value="" >Professor 4</option>
 								</select>
 							</div>
-							<div class="col-sm-6">
-								<label class="form-label ages">Projeto Pai </label> 
-								<select class="form-control" id="listaResponsavel" name="listaResponsavel" value="${param.tipoEquipamento}" type="text" required>
-									<option value="" >Selecione o Projeto Pai</option>
-									<option value="" >Kill DeathStar</option>
-									<option value="" >Transposição Rio São Francisco</option>
-									<option value="" >Tomada de Constantinopla</option>
-								</select>
-							</div>
-						</div>
+													</div>
 					</div>
 					<p>		
 					<span><sup class="red">*</sup> campos obrigatórios</span><br>

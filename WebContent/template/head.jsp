@@ -9,8 +9,9 @@
         <link rel="icon" href="img/favicon.ico">
         
         <!-- JQUERY -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="./js/jquery.mask.min.js"></script>
+        
 		<!-- BOOTSTRAP -->
 		<link rel="stylesheet" href="./css/bootstrap.min.css">
 		<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
@@ -18,6 +19,13 @@
 
 		<!-- STYLE -->
 		<link rel="stylesheet" href="./css/style.css">
+		
+		<!-- Include the plugin's CSS and JS: Cassio DataTable -->
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css">
+		
+		<!-- Include the plugin's CSS and JS: Cassio DataTable -->
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+ 		<script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
 		
 		<!-- Include the plugin's CSS and JS: Cassio -->
 		<!-- bootstrap submenu  -->
@@ -62,7 +70,7 @@
 				            	<li><a href="main?acao=telaEquipamento&tela=addProjeto">Cadastrar</a></li>
 				            	<li><a href="main?acao=telaEquipamento&tela=listProjeto">Listar</a></li>
 				            	<li><a href="main?acao=telaEquipamento&tela=equipeProjeto">Alocar Equipe</a></li>
-				            	<li><a href="main?acao=telaEquipamento&tela=equipamentoProjeto">Alocar Equipamento</a></li>
+				            	<!-- <li><a href="main?acao=telaEquipamento&tela=equipamentoProjeto">Alocar Equipamento</a></li> -->
 				            </ul>
 			        	<li class="dropdown">
 			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Equipamentos
@@ -70,11 +78,11 @@
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=telaEquipamento&tela=lista">Listar</a></li>
-				            	<li><a href="main?acao=telaEquipamento&tela=equipamento">Cadastrar EQUIPAMENTO</a></li>
-				            	<li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=equipamento">Cadastrar Equipamento</a></li>
+<!-- 				            <li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>
 				            	<li><a href="main?acao=telaEquipamento&tela=periferico">Cadastro Periférico</a></li>
-				            	<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li>
-				            	<li><a href="main?acao=telaEquipamento&tela=marcaModelo">Cadastro Marca</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li> -->
+				            	<li><a href="main?acao=telaEquipamento&tela=marca">Cadastro Marca</a></li>
 				            	 
 				          	</ul>
         				</li>

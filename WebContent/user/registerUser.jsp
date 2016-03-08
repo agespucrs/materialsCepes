@@ -9,20 +9,34 @@
 		<form action="main?acao=registerUser" method="post">
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 			<div class="form-group">
-				<label class="form-label ages">Matricula: <span class="red">*</span></label> 
-				<input class="form-control" id="matricula" name="matricula"	value="${param.matricula}" type="text" required>
+				<div class="row">
+					<div class="col-sm-6">
+						<label class="form-label ages">Matricula: <span class="red">*</span></label> 
+						<input class="form-control" id="matricula" name="matricula"	value="${param.matricula}" type="text" required>
+					</div>
+					<div class="col-sm-6">
+						<label class="form-label ages">CPF: <span class="red">*</span></label> 
+						<input class="form-control" id="cpf" name="cpf"	value="${param.matricula}" type="text" required>
+					</div>
+				</div>
 
 				<label class="form-label ages">Nome: <span class="red">*</span></label> 
 				<input class="form-control" id="nome" name="nome" value="${param.nome}" type="text" required>
-	
-				<label class="form-label ages">Usuário: <span class="red">*</span></label> 
-				<input class="form-control" id="usuario" name="usuario" value="${param.nome}" type="text" required>
-
-				<label class="form-label ages">Senha: <span class="red">*</span></label> 
-				<input class="form-control" id="senha" name="senha" value="${param.senha}" type="text" required>
 
 				<label class="form-label ages">E-Mail: <span class="red">*</span></label> 
 				<input class="form-control" id="email" name="email" value="${param.email}" type="text" required>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<label class="form-label ages">Usuário: <span class="red">*</span></label> 
+						<input class="form-control" id="usuario" name="usuario" value="${param.nome}" type="text" required>
+					</div>
+					<div class="col-sm-6">
+						<label class="form-label ages">Senha: <span class="red">*</span></label> 
+						<input class="form-control" id="senha" name="senha" value="${param.senha}" type="text" required>
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="form-label ages">Administrador: <span class="red">*</span></label> 
@@ -40,13 +54,12 @@
 							<option value="alunoDoutorando">Aluno Doutorando</option>
 							<option value="alunoMestrando">Aluno Mestrando</option>
 							<option value="alunoGraduando">Aluno Graduando</option>
+							<option value="alunoEspecializacao">Aluno Especialização</option>
 							<option value="tecnicoAdm">Técnico Administrativo</option>
-							<option value="usuarioSimples">Usuário Simples</option>
 						</select>
 					</div>
 				</div>
 			</div>
-				
 			<span><sup class="red">*</sup> campos obrigatórios</span><br>
 			<div class="text-center">
 				<input class="btn btn-warning btn-limpar pull-left" type="reset"  value="Limpar"  id="limpar" name="limpar" />
@@ -56,3 +69,4 @@
 	</div>
 </div>
 <jsp:include page="/template/foot.jsp"></jsp:include>
+

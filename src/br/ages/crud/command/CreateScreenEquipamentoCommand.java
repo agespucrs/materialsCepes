@@ -28,8 +28,8 @@ public class CreateScreenEquipamentoCommand implements Command {
 			case "movel":
 				this.proxima = "equipamento/addMovel.jsp";
 				break;
-			case "marcaModelo":
-				this.proxima = "equipamento/addMarcaModelo.jsp";
+			case "marca":
+				this.proxima = "equipamento/addMarca.jsp";
 				break;
 			case "copiaLivro":
 				this.proxima = "livro/addCopiaLivro.jsp";

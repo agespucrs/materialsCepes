@@ -5,7 +5,7 @@
 <%@ include file="/template/head.jsp"%>
 <div class="panel panel-primary panel-list">
 
-	<div class="panel-heading text-center">Lista Usuarios</div>
+	<div class="panel-heading text-center">Lista Usuários</div>
 
 	<div class="panel-body">
 
@@ -13,7 +13,7 @@
 
 		<div class="table-responsive">
 
-			<table class="table table-hover table-striped table-bordered">
+			<table id="listaUsuarios" class="table table-responsive table-striped table-hover table-condensed table-bordered">
 
 				<thead>
 				<tr>
@@ -23,15 +23,13 @@
 					<th style="text-align: center;">E-Mail</th>
 					<th style="text-align: center;">Usuário</th>
 					<th style="text-align: center;">ADM</th>
-					<th colspan="2" style="text-align: center;">Ações</th>
+					<th data-sortable="false" style="text-align: center; width:10px"></th>
+					<th data-sortable="false" style="text-align: center; width:10px"></th>
 				</tr>
 				</thead>
-
-			
 			<%
 				List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listaUsuarios");
 				int sizeListaUsuarios = listaUsuarios.size();
-				int tdChangeColor = 0;
 				
 				for (Usuario usuario : listaUsuarios) {
 			%>
@@ -49,22 +47,32 @@
 				}
 			%>
 			</table>
-			
-			<div id="totalRegistros" style="background: rgba(0,0,0,1)height: 40px;background: black;width: 100%;text-align: right;padding-right: 30px;line-height: 40px;"><%
-				if(sizeListaUsuarios == 0)
-				{
-					%> <p>Nenhum usuário encontrado.</p> <%	
-				}
-				%>	 
-				<p style="color: white;">Total de registros: <%= sizeListaUsuarios %></p>
-			</div>
 		</div>
 	</div>
 </div>
 
 <jsp:include page="/template/foot.jsp"></jsp:include>
 
-
+<script>
+$(document).ready(function(){
+	$('#listaUsuarios').dataTable({
+	    "language": {
+            "lengthMenu": "Mostrando _MENU_ registros por página",
+            "zeroRecords": "Sem registros",
+            "info": "Mostrando _PAGE_ de _PAGES_ páginas",
+            "infoEmpty": "Nenhum registros encontrados!",
+            "infoFiltered": "(Filtrado _MAX_ do total deregistros)",
+            "search":"Busca",
+           	"paginate": {
+                "first":      "Primeiro",
+                "last":       "Último",
+                "next":       "Próximo",
+                "previous":   "Anterior"
+	        },
+        }
+	});
+});;
+</script>
 
 
 

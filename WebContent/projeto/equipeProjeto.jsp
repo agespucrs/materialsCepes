@@ -7,7 +7,7 @@
 	
 	<div class="panel panel-primary panel-add">
 	
-		<div class="panel-heading text-center">Alocação de Equipamento em Projeto</div>
+		<div class="panel-heading text-center">Alocação de Equipe em Projeto</div>
 		
 			<div class="panel-body">
 		
@@ -34,9 +34,10 @@
 
 					<div class="col-md-12">
 						<select multiple="multiple" size="10" name="listaEquipe" class="listaEquipe" required>
-							<option value="" >Castelo Branco</option>
-							<option value="" >Afonso Pena</option>
-							<option value="" >Getulio Vargas</option>
+							<option value="" >Castelo Branco - </option>
+							<option value="" >Afonso Pena - 01/09/2015</option>
+							<option value="" selected="selected">Getulio Vargas - 15/01/2015</option>
+							<option value="" selected="selected">Médice - 25/01/2015</option>
 						</select>
 					</div>
 					<hr>
@@ -61,7 +62,11 @@
 		moveOnSelect : false,
 		nonSelectedFilter : '',
 		filterTextClear : 'Mostrar Todos',
-		infoTextEmpty : 'Sem Equipe '
+		infoTextEmpty : 'Sem Equipe ',
+		filterPlaceHolder:'Filtro',
+		infoText: 'Mostrando {0}',
+		infoTextFiltered:'<span class="label label-warning">Mostrando</span> {0} de {1}',
+		infoTextEmpty:'Lista vazia'
 	});
 </script>
 <script>
