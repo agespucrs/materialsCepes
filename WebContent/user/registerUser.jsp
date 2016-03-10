@@ -41,13 +41,13 @@
 					<div class="col-sm-6">
 						<label class="form-label ages">Administrador: <span class="red">*</span></label> 
 						<select class="form-control" id="adm" name="adm" required>
-							<option value="NAO" <%="NAO".equals(request.getParameter("adm")) ? "selected" : ""%>>NAO</option>
-							<option value="SIM" <%="SIM".equals(request.getParameter("adm")) ? "selected" : ""%>>SIM</option>
+							<option value="N" <%="N".equals(request.getParameter("adm")) ? "selected" : ""%>>NAO</option>
+							<option value="S" <%="S".equals(request.getParameter("adm")) ? "selected" : ""%>>SIM</option>
 						</select>
 					</div>
 					<div class="col-sm-6">
 						<label class="form-label ages">Tipo: <span class="red">*</span></label> 
-						<select class="form-control" id="adm" name="adm" required> <!-- essa lista deverá vir de uma tabela -->
+						<select class="form-control" id="tipo" name="tipo" required> <!-- essa lista deverá vir de uma tabela -->
 							<option value="">Selecione o Tipo</option>
 							<option value="coordenador">Professor Coordenador</option>
 							<option value="professor">Professor Colaborador</option>
