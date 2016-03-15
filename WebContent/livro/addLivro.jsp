@@ -101,7 +101,7 @@
 				</div>
 				<div class="row">	
 					<div class="col-sm-12">
-						<label class="checkbox-inline ages"><input type="checkbox" name="bruxuraRevista" value="${param.bruxuraRevista}">Broxura</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="bruxuraRevista" value="${param.bruxuraRevista}">Brochura</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="video" value="${param.video}">Video</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="cd_dvd" value="${param.cddvd}">CD/DVD</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="ebook" value="${param.ebook}">E-Book</label>
