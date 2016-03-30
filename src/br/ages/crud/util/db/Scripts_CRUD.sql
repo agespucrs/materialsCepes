@@ -8,7 +8,7 @@
 USE cepes_e;
 
 
--- Tabela usuarios e asuario de adm
+-- Tabelas
 
 CREATE TABLE tb_funcao (
   ID_FUNCAO int(11) NOT NULL AUTO_INCREMENT,
