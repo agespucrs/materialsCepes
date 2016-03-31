@@ -16,9 +16,9 @@ public class ComputadorBO {
 		computadorDAO = new ComputadorDAO();
 	}
 	
-	public void cadastraComputador(Computador computador) throws NegocioException, SQLException, ParseException {
+	public boolean cadastraComputador(Computador computador) throws NegocioException, SQLException, ParseException {
 		try {
-			computadorDAO.cadastrarComputador(computador);
+			return computadorDAO.cadastrarComputador(computador);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);

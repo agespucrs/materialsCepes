@@ -11,7 +11,7 @@
 	
 		<div class="panel-body">
 	
-			<form action="main?acao=add" method="post">
+			<form action="main?acao=addEquipamentos" method="post">
 				<jsp:include page="/template/msg.jsp"></jsp:include>
 				<div class="form-group">
 					<div class="row">	
@@ -34,7 +34,7 @@
 					<div class="row">
 						<div class=" col-sm-6">
 								<label class="form-label ages">Tipo Equipamento <span class="red">*</span></label> <!-- será buscado alista em um enum -->
-								<select class="form-control" id="tipo" name="tipo" required >
+								<select class="form-control" id="tipoEquipamento" name="tipoEquipamento" required >
 									<option value="" >Selecione o Tipo de Equipamento</option>
 									<option value="c" >Computador</option>
 									<option value="p" >Periférico</option>
@@ -43,7 +43,7 @@
 						</div>
 						<div class="col-sm-6 hidden" id="tipoComputador" >
 							<label class="form-label ages">Tipo de Computador<span class="red">*</span></label> <!-- será buscado alista em um enum -->
-							<select class="form-control" id="tipo" name="tipo" required>
+							<select class="form-control" id="tipoComputador" name="tipoComputador" required>
 								<option value="" >Selecione o Tipo</option>
 								<option value="" >Desktop</option>
 								<option value="" >Notebook</option>
@@ -52,7 +52,7 @@
 						</div>
 						<div class=" col-sm-6 hidden" id="tipoPeriferico" >
 							<label class="form-label ages">Tipo de Periférico<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
-							<select class="form-control" id="tipo" name="tipo" required>
+							<select class="form-control" id="tipoPeriferico" name="tipoPeriferico" required>
 								<option value="" >Selecione o Tipo</option>
 								<option value="" >Teclado</option>
 								<option value="" >Mouse</option>
@@ -66,7 +66,7 @@
 						</div>
 						<div class=" col-sm-6 hidden" id="tipoMovel">
 							<label class="form-label ages">Tipo Dispositivo Móvel<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
-							<select class="form-control" id="tipo" name="tipo" required>
+							<select class="form-control" id="tipoMobile" name="tipoMobile" required>
 								<option value="" >Selecione o Tipo</option>
 								<option value="" >Celular</option>
 								<option value="" >Tablet</option>
@@ -78,7 +78,7 @@
 					
 					<div class="">
 						<label class="form-label ages">Marca <span class="red">*</span></label> <!-- buscar a lista em uma classe -->
-						<select class="form-control" id="marca" name="marca"	value="${param.marca}" type="text" required>
+						<select class="form-control" id="marca" name="marca" value="${param.marca}" type="text" required>
 							<option value="" >Selecione a Marca</option>
 							<option value="" >Dell</option>
 							<option value="" >Hp</option>
@@ -87,16 +87,16 @@
 					</div>
 
 				<label class="form-label ages">Modelo </label> <!-- os modelos irão variar conforme a marca / buscar a lista em uma classe  -->
-				<input class="form-control" id="modelo" name="modelo"	value="${param.numeroPatrimonio}" type="text" required>
+				<input class="form-control" id="modelo" name="modelo" value="${param.numeroPatrimonio}" type="text" required>
 				
 				<div class="row">
 					<div class=" col-sm-6">
 						<label class="form-label ages">Valor </label> 
-						<input class="form-control" id="valor" name="valor"value="${param.modelo}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
+						<input class="form-control" id="valor" name="valor" value="${param.modelo}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
 					</div>
 					<div class=" col-sm-6">
 						<label class="form-label ages">Data Cadastro </label> 
-						<input class="form-control" id="dataCadastro" name="dataCadstro"value="01/01/2016" disabled="disabled" type="text" style="text-align: center;" required>
+						<input class="form-control" id="dataCadastro" name="dataCadstro" value="01/01/2016" disabled="disabled" type="text" style="text-align: center;" required>
 					</div>
 				</div>
 				<label class="form-label ages">Projeto <span class="red">*</span></label></label> 

@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import br.ages.crud.command.AddAutorCommand;
 import br.ages.crud.command.AddEditoraCommand;
+import br.ages.crud.command.AddEquipamentoCommand;
 import br.ages.crud.command.AddLivroCommand;
 import br.ages.crud.command.AddUserCommand;
 import br.ages.crud.command.AlterAutorCommand;
@@ -90,7 +91,7 @@ public class MainServlet extends HttpServlet {
 		
 		//EQUIPAMENTOS (Computador, Perifericos e Dispositivos Moveis)
 		comandos.put("telaEquipamento", new CreateScreenEquipamentoCommand());
-//		comandos.put("addEquipamento", new AddEquipamentoCommand());
+		comandos.put("addEquipamento", new AddEquipamentoCommand());
 //		comandos.put("listEquipamento", new ListEquipamentoCommand());
 //		comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
 //		comandos.put("consultarEquipamento", new ConsultarEquipamentoCommand());

@@ -6,8 +6,8 @@ import br.ages.crud.model.Computador;
 
 public class ComputadorDAO {
 
-	public void cadastrarComputador(Computador computador) {
-		// TODO Auto-generated method stub
+	public boolean cadastrarComputador(Computador computador) {
+		return false;
 	}
 
 	public List<Computador> listarComputadores() {
