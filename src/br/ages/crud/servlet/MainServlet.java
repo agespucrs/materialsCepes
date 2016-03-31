@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import br.ages.crud.command.AddAutorCommand;
+import br.ages.crud.command.AddMarcaCommand;
 import br.ages.crud.command.AddEditoraCommand;
 import br.ages.crud.command.AddEquipamentoCommand;
 import br.ages.crud.command.AddLivroCommand;
@@ -46,25 +47,23 @@ import br.ages.crud.util.LogParametrosSession;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
-	
-
 
 	private static final long serialVersionUID = 1L;
 	private Map<String, Command> comandos = new HashMap<String, Command>();
 
 	@Override
 	public void init() throws ServletException {
-	
+
 		// USUARIO
 		comandos.put("login", new LoginCommand());
 		comandos.put("logout", new LogoutCommand());
-		comandos.put("telaUser", new CreateScreenUserCommand());		
+		comandos.put("telaUser", new CreateScreenUserCommand());
 		comandos.put("registerUser", new AddUserCommand());
 		comandos.put("removerUser", new RemoveUserCommand());
 		comandos.put("consultarUser", new ConsultarUserCommand());
 		comandos.put("listUser", new ListUserCommand());
 		comandos.put("alterUser", new AlterUserCommand());
-		
+
 		// EDITORA
 		comandos.put("addEditora", new AddEditoraCommand());
 		comandos.put("listEditora", new ListEditoraCommand());
@@ -72,7 +71,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("consultarEditora", new ConsultarEditoraCommand());
 		comandos.put("telaEditora", new CreateScreenEditoraCommand());
 		comandos.put("alterEditora", new AlterEditoraCommand());
-		
+
 		// AUTOR
 		comandos.put("addAutor", new AddAutorCommand());
 		comandos.put("listAutor", new ListAutorCommand());
@@ -80,7 +79,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("consultarAutor", new ConsultarAutorCommand());
 		comandos.put("telaAutor", new CreateScreenAutorCommand());
 		comandos.put("alterAutor", new AlterAutorCommand());
-		
+
 		// LIVRO
 		comandos.put("addLivro", new AddLivroCommand());
 		comandos.put("listLivro", new ListLivroCommand());
@@ -88,19 +87,22 @@ public class MainServlet extends HttpServlet {
 		comandos.put("telaLivro", new CreateScreenLivroCommand());
 		comandos.put("consultarLivro", new ConsultarLivroCommand());
 		comandos.put("alterLivro", new AlterLivroCommand());
-		
-		//EQUIPAMENTOS (Computador, Perifericos e Dispositivos Moveis)
+
+		// EQUIPAMENTOS (Computador, Perifericos e Dispositivos Moveis)
 		comandos.put("telaEquipamento", new CreateScreenEquipamentoCommand());
 		comandos.put("addEquipamento", new AddEquipamentoCommand());
 //		comandos.put("listEquipamento", new ListEquipamentoCommand());
 //		comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
 //		comandos.put("consultarEquipamento", new ConsultarEquipamentoCommand());
 //		comandos.put("alterEquipamento", new AlterEquipamentoCommand());
-		
+
+		// MARCA
+		comandos.put("addMarca", new AddMarcaCommand());
 	}
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse reponse) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse reponse)
+			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
 		String proxima = null;
@@ -111,11 +113,11 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
 		}
-		
+
 		LogParametrosSession.logParametros(request);
-		
+
 		request.getRequestDispatcher(proxima).forward(request, reponse);
-		
+
 	}
 
 	private Command verificarComando(String acao) {
@@ -128,4 +130,3 @@ public class MainServlet extends HttpServlet {
 		return comando;
 	}
 }
-

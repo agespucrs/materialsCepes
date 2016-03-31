@@ -59,7 +59,9 @@ public class MensagemContantes {
 	public static final String MSG_SENHA_INVALIDA = "A senha do usuario é invalida: Deve ter no minimo 3 e no maximo 8 caracteres, apenas numeros e letras!";
 
 	public static final String MSG_SUC_ALTERADO_LIVRO = "LIVRO ? ALTERADO COM SUCESSO";
-
+	
+	public static final String MSG_SUC_CADASTRO_MARCA = "Marca ? cadastrada com sucesso!";
+	
 	public static final String MSG_SUC_CADASTRO_EQUIPAMENTO = "EQUIPAMENTO ? CADASTRADO COM SUCESSO";
 
 	public static final String MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE = "ERRO! Equipamento ? já existente";
