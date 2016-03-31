@@ -30,11 +30,15 @@ public class AddMarcaCommand implements Command {
 
 		String nome = request.getParameter("nome");
 
-		try {
-			marcaBO.cadastraMarca(new Marca(nome));
-			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_MARCA.replace("?", nome));
-		} catch (Exception e) {
-			request.setAttribute("msgErro", e.getMessage());
+		if (nome == null || nome.isEmpty()) {
+			request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Nome"));
+		} else {
+			try {
+				marcaBO.cadastraMarca(new Marca(nome));
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_MARCA.replace("?", nome));
+			} catch (Exception e) {
+				request.setAttribute("msgErro", e.getMessage());
+			}
 		}
 
 		return proxima;

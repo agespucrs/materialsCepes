@@ -15,11 +15,10 @@
 					<div class="col-md-12">
 						<label class="form-label ages">Marca <span class="red">*</span></label>
 						<div class="input-group">
-							<input class="form-control" type="text" placeholder=""
-								name="nome" value="${param.nome}" />
+							<input class="form-control" type="text" id="nome" name="nome"
+								value="${param.nome}" required>
 							<div class="input-group-btn">
-								   <a class="btn btn-info" href="#"
-									onclick="myForm.submit();"
+								<a class="btn btn-info" href="#" onclick="myForm.submit();"
 									data-toggle="tooltip"
 									title="Digite a Marca e click aqui para adicionar!"><span
 									class="glyphicon glyphicon-plus"></span> Marca </a>
