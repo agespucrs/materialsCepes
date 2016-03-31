@@ -1,28 +1,34 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
-<%@page import="br.ages.crud.model.Editora"%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="br.ages.crud.model.Marca"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <jsp:include page="/template/head.jsp"></jsp:include>
-	<div class="panel panel-primary panel-add-marcaModelo">
-		<div class="panel-heading text-center">Cadastro de Marca</div>
-		<div class="panel-body">
-			<form action="main?acao=addEditora" method="post">
-				<jsp:include page="/template/msg.jsp"></jsp:include>
-					
-				<div class="form-group">
+<div class="panel panel-primary panel-add-marcaModelo">
+	<div class="panel-heading text-center">Cadastro de Marca</div>
+	<div class="panel-body">
+		<form name="myForm" action="main?acao=addMarca" method="post">
+			<jsp:include page="/template/msg.jsp"></jsp:include>
+
+			<div class="form-group">
 				<div class="row">
 					<div class="col-md-12">
-						<label class="form-label ages">Marca <span class="red">*</span></label> 
+						<label class="form-label ages">Marca <span class="red">*</span></label>
 						<div class="input-group">
-						    <input class="form-control" type="text" placeholder="" name="marca"	value="${param.marca}" />
-						    <div class="input-group-btn">
-						        <a class="btn btn-info" href=""  data-toggle="tooltip" title="Digite a Marca e click aqui para adicionar!"><span class="glyphicon glyphicon-plus" ></span> Marca </a>
-						    </div>
+							<input class="form-control" type="text" placeholder=""
+								name="nome" value="${param.nome}" />
+							<div class="input-group-btn">
+								   <a class="btn btn-info" href="#"
+									onclick="myForm.submit();"
+									data-toggle="tooltip"
+									title="Digite a Marca e click aqui para adicionar!"><span
+									class="glyphicon glyphicon-plus"></span> Marca </a>
+							</div>
 						</div>
 					</div>
 				</div>
-				</div>
-			</form>
+			</div>
+		</form>
 		<div class="table-responsive">
 			<table class="table table-hover table-striped table-bordered">
 
@@ -41,8 +47,10 @@
 						<td><input type="checkbox" /></td>
 						<td>101</td>
 						<td class="col-sm-8">Sony</td>
-						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
+						<td align="center"><a href="" title="Editar"> <i
+								class="glyphicon glyphicon-pencil"></i></a>
+						<td align="center"><a href="" title="Deletar"> <i
+								class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -62,7 +70,12 @@
 	});
 </script>
 <script>
-	$(document).ready(function(){
-	    $('[data-toggle="tooltip"]').tooltip();   
+	function submeterForm() {
+		$('form#myForm').submit();
+	}
+</script>
+<script>
+	$(document).ready(function() {
+		$('[data-toggle="tooltip"]').tooltip();
 	});
 </script>

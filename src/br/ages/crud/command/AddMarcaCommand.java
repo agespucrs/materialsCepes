@@ -26,7 +26,7 @@ public class AddMarcaCommand implements Command {
 			throws SQLException, PersistenciaException, ParseException, NegocioException {
 
 		marcaBO = new MarcaBO();
-		proxima = "telaEquipamentos/addMarca.jsp";
+		proxima = "main?acao=telaEquipamento&tela=marca";
 
 		String nome = request.getParameter("nome");
 
