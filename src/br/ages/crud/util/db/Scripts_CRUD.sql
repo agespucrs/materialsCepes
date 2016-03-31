@@ -129,3 +129,17 @@ VALUES
 
 
 
+
+
+
+/***
+ * CADASTRO DE MARCAS
+ * 
+ */
+
+CREATE TABLE tb_marca (
+  ID_MARCA int(8) NOT NULL AUTO_INCREMENT,
+  NOME varchar(255) NOT NULL,
+  PRIMARY KEY (ID_MARCA)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
