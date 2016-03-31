@@ -26,7 +26,7 @@ public class CreateScreenLivroCommand implements Command {
 		autorBO = new AutorBO();
 		editoraBO = new EditoraBO();
 		try {
-			// Verifica se abre tela edição ou adição de livro.
+			// Verifica se abre tela edicao ou adicao de livro.
 			ArrayList<Autor> autores = (ArrayList<Autor>) autorBO.listarAutor();
 			ArrayList<Editora> editoras = (ArrayList<Editora>) editoraBO.listarEditora();
 			
