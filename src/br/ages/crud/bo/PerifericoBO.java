@@ -16,9 +16,9 @@ public class PerifericoBO {
 		perifericoDAO = new PerifericoDAO();
 	}
 	
-	public void cadastraPeriferico(Periferico periferico) throws NegocioException, SQLException, ParseException {
+	public boolean cadastraPeriferico(Periferico periferico) throws NegocioException, SQLException, ParseException {
 		try {
-			perifericoDAO.cadastrarPeriferico(periferico);
+			return perifericoDAO.cadastrarPeriferico(periferico);
 		} catch (Exception e) {
 			throw new NegocioException(e);
 		}

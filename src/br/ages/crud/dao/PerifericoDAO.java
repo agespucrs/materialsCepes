@@ -6,8 +6,9 @@ import br.ages.crud.model.Periferico;
 
 public class PerifericoDAO {
 
-	public void cadastrarPeriferico(Periferico periferico) {
+	public boolean cadastrarPeriferico(Periferico periferico) {
 		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public List<Periferico> listarPerifericos() {

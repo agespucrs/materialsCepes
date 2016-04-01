@@ -34,7 +34,7 @@
 					<div class="row">
 						<div class=" col-sm-6">
 								<label class="form-label ages">Tipo Equipamento <span class="red">*</span></label> <!-- será buscado alista em um enum -->
-								<select class="form-control" id="tipoEquipamento" name="tipoEquipamento" required >
+								<select class="form-control" id="tipo" name="tipo" required >
 									<option value="" >Selecione o Tipo de Equipamento</option>
 									<option value="c" >Computador</option>
 									<option value="p" >Periférico</option>

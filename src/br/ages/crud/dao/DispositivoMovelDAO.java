@@ -6,9 +6,9 @@ import br.ages.crud.model.DispositivoMovel;
 
 public class DispositivoMovelDAO {
 
-	public void cadastrarDispositivoMovel(DispositivoMovel dispositivoMovel) {
+	public boolean cadastrarDispositivoMovel(DispositivoMovel dispositivoMovel) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	public List<DispositivoMovel> listarDispositivosMoveis() {

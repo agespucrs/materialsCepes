@@ -6,6 +6,8 @@ import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.ComputadorBO;
+import br.ages.crud.bo.DispositivoMovelBO;
+import br.ages.crud.bo.PerifericoBO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Computador;
@@ -57,10 +59,43 @@ public class AddEquipamentoCommand implements Command {
 			
 		}
 		else if(tipoEquipamento.equals(TipoEquipamento.PERIFERICO.valor())) {
+			PerifericoBO perifericoBO = new PerifericoBO();
+			//TODO: chamar todos os metodos sets no objeto periferico. Aguardando definicao
+			//final do banco de dados
 			Periferico periferico = new Periferico();
+			
+			if (perifericoBO.cadastraPeriferico(periferico)) {
+				proxima = "main?acao=listEquipamento";
+				request.setAttribute("msgSucesso",
+						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
+								periferico.getTitulo()));
+			}
+			else {
+				proxima = "main?acao=addEquipamento";
+				request.setAttribute("msgErro",
+						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE
+								.replace("?", periferico.getTitulo()));
+			}
+			
 		}
 		else if(tipoEquipamento.equals(TipoEquipamento.DISPOSITIVO_MOVEL.valor())) {
+			DispositivoMovelBO mobileBO = new DispositivoMovelBO();
+			//TODO: chamar todos os metodos sets no objeto mobile. Aguardando definicao
+			//final do banco de dados
 			DispositivoMovel mobile = new DispositivoMovel();
+			
+			if(mobileBO.cadastraDispositivoMovel(mobile)) {
+				proxima = "main?acao=listEquipamento";
+				request.setAttribute("msgSucesso",
+						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
+								mobile.getTitulo()));
+			}
+			else {
+				proxima = "main?acao=addEquipamento";
+				request.setAttribute("msgErro",
+						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE
+								.replace("?", mobile.getTitulo()));
+			}
 		}
 		
 		return null;

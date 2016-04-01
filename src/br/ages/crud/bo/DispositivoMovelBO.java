@@ -16,9 +16,9 @@ public class DispositivoMovelBO {
 		dispositivoMovelDAO = new DispositivoMovelDAO();
 	}
 	
-	public void cadastraDispositivoMovel(DispositivoMovel dispositivoMovel) throws NegocioException, SQLException, ParseException {
+	public boolean cadastraDispositivoMovel(DispositivoMovel dispositivoMovel) throws NegocioException, SQLException, ParseException {
 		try {
-			dispositivoMovelDAO.cadastrarDispositivoMovel(dispositivoMovel);
+			return dispositivoMovelDAO.cadastrarDispositivoMovel(dispositivoMovel);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
