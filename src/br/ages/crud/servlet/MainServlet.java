@@ -34,6 +34,7 @@ import br.ages.crud.command.CreateScreenLivroCommand;
 import br.ages.crud.command.CreateScreenUserCommand;
 import br.ages.crud.command.ListAutorCommand;
 import br.ages.crud.command.ListEditoraCommand;
+import br.ages.crud.command.ListEquipamentoCommand;
 import br.ages.crud.command.ListLivroCommand;
 import br.ages.crud.command.ListUserCommand;
 import br.ages.crud.command.LoginCommand;
@@ -91,7 +92,7 @@ public class MainServlet extends HttpServlet {
 		// EQUIPAMENTOS (Computador, Perifericos e Dispositivos Moveis)
 		comandos.put("telaEquipamento", new CreateScreenEquipamentoCommand());
 		comandos.put("addEquipamento", new AddEquipamentoCommand());
-//		comandos.put("listEquipamento", new ListEquipamentoCommand());
+		comandos.put("listEquipamento", new ListEquipamentoCommand());
 //		comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
 //		comandos.put("consultarEquipamento", new ConsultarEquipamentoCommand());
 //		comandos.put("alterEquipamento", new AlterEquipamentoCommand());
