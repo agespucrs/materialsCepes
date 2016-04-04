@@ -49,19 +49,29 @@
 						for (Marca marca : lista) {
 					%>
 					<tr>
-						<td><input type="checkbox" id="<%=marca.getId()%>"/></td>
+						<td><input type="checkbox" id="<%=marca.getId()%>" /></td>
 						<td><%=marca.getId()%></td>
-						<td class="col-sm-8"><%=marca.getNome()%></td>
-						<td align="center"><a href="" title="Editar"> <i
+						<td class="col-sm-8"><input type="text"
+							id="nomeDigitado<%=marca.getId()%>" value="<%=marca.getNome()%>"
+							style="display: none;" /> <span id="nomeText<%=marca.getId()%>"
+							style="display: block"><%=marca.getNome()%></span></td>
+						<td align="center"><a href="#" id="alterar<%=marca.getId()%>"
+							onclick="alterarMarca(<%=marca.getId()%>)" title="Editar"> <i
 								class="glyphicon glyphicon-pencil"></i></a>
-						<td align="center"><a href="main?acao=removerMarca&id=<%=marca.getId()%>&nomeMensagem=<%=marca.getNome()%>" title="Deletar"> <i
-								class="glyphicon glyphicon-trash"></i></a></td>
+						<td align="center"><a
+							href="main?acao=removerMarca&id=<%=marca.getId()%>&nomeMensagem=<%=marca.getNome()%>"
+							title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
 					<%
 						}
 					%>
+
 				</tbody>
 			</table>
+			<form name="alterar" action="main?acao=alterarMarca" method="post">
+				<input type="hidden" id="idMarcaAlteracao" /> 
+				<input type="hidden" id="nomeAlteracao" />
+			</form>
 		</div>
 	</div>
 </div>
@@ -82,6 +92,25 @@
 		$('form#myForm').submit();
 	}
 </script>
+
+<script>
+	function alterarMarca(idItem) {
+		$('#nomeText'+idItem).hide();
+		$('#nomeDigitado'+idItem).show();
+		$('#alterar'+idItem).attr('onclick','alterarMarcaDois('+idItem+')');
+		
+	}
+	
+</script>
+<script>
+function alterarMarcaDois(idItem){
+	$('#idMarcaAlteracao').val(idItem);
+	var nome = $('#nomeDigitado'+idItem).val();
+	$('#nomeAlteracao').val(nome);
+	alterar.submit();
+}
+</script>
+
 <script>
 	$(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip();

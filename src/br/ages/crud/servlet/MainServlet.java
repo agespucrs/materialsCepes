@@ -21,6 +21,7 @@ import br.ages.crud.command.AddUserCommand;
 import br.ages.crud.command.AlterAutorCommand;
 import br.ages.crud.command.AlterEditoraCommand;
 import br.ages.crud.command.AlterLivroCommand;
+import br.ages.crud.command.AlterMarcaCommand;
 import br.ages.crud.command.AlterUserCommand;
 import br.ages.crud.command.Command;
 import br.ages.crud.command.ConsultarAutorCommand;
@@ -101,6 +102,7 @@ public class MainServlet extends HttpServlet {
 		// MARCA
 		comandos.put("addMarca", new AddMarcaCommand());
 		comandos.put("removerMarca", new RemoveMarcaCommand());
+		comandos.put("alterarMarca", new AlterMarcaCommand());
 	}
 
 	@Override

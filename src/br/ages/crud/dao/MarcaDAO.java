@@ -95,7 +95,7 @@ public class MarcaDAO {
 		return listaMarcas;
 
 	}
-	
+
 	/**
 	 * Método para remover uma marca.
 	 * 
@@ -104,7 +104,7 @@ public class MarcaDAO {
 	 * @throws PersistenciaException
 	 * @throws SQLException
 	 */
-	public boolean removerMarca(int id) throws PersistenciaException, SQLException{
+	public boolean removerMarca(int id) throws PersistenciaException, SQLException {
 		Connection conexao = null;
 
 		try {
@@ -116,17 +116,48 @@ public class MarcaDAO {
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-			
+
 			return true;
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
 	}
-	
-	
 
+	/**
+	 * Método para alterar uma marca.
+	 * 
+	 * @param id
+	 * @param nome
+	 * @return
+	 * @throws PersistenciaException
+	 * @throws SQLException
+	 * @throws ParseException
+	 */
+	public boolean alterarMarca(int id, String nome) throws PersistenciaException, SQLException, ParseException {
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_MARCA SET NOME=? WHERE ID_MARCA=?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+
+			statement.setInt(1, id);
+			statement.setString(2, nome);
+
+			statement.executeUpdate();
+
+			return true;
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+	}
 
 }

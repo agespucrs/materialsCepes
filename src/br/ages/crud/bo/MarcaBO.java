@@ -75,4 +75,23 @@ public class MarcaBO {
 			throw new NegocioException(e);
 		}
 	}
+
+	/**
+	 * Método para alterar uma marca.
+	 * 
+	 * @param id
+	 * @param nome
+	 * @return
+	 * @throws NegocioException
+	 * @throws SQLException
+	 * @throws ParseException
+	 */
+	public boolean alterarMarca(int id, String nome) throws NegocioException, SQLException, ParseException {
+		try {
+			return dao.alterarMarca(id, nome);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
 }
