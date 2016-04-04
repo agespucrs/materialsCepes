@@ -2,8 +2,11 @@ package br.ages.crud.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
@@ -16,6 +19,14 @@ import br.ages.crud.util.ConexaoUtil;
  *
  */
 public class MarcaDAO {
+
+	private List<Marca> listaMarcas;
+
+	public MarcaDAO() {
+
+		listaMarcas = new ArrayList<Marca>();
+
+	}
 
 	/**
 	 * Método responsável por salvar a marca no BD.
@@ -44,5 +55,78 @@ public class MarcaDAO {
 			conexao.close();
 		}
 	}
+
+	/**
+	 * Método para consultar todas as marcas.
+	 * 
+	 * @return
+	 * @throws PersistenciaException
+	 * @throws SQLException
+	 * @throws ParseException
+	 */
+	public List<Marca> consultarMarcas() throws PersistenciaException, SQLException, ParseException {
+
+		Connection conexao = null;
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_MARCA");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				Marca dto = new Marca();
+				dto.setId(resultset.getInt("ID_MARCA"));
+				dto.setNome(resultset.getString("NOME"));
+
+				listaMarcas.add(dto);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+		return listaMarcas;
+
+	}
+	
+	/**
+	 * Método para remover uma marca.
+	 * 
+	 * @param id
+	 * @return
+	 * @throws PersistenciaException
+	 * @throws SQLException
+	 */
+	public boolean removerMarca(int id) throws PersistenciaException, SQLException{
+		Connection conexao = null;
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("DELETE FROM TB_MARCA WHERE ID_MARCA=?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			
+			return true;
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+	}
+	
+	
+
 
 }

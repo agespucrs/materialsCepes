@@ -1,3 +1,4 @@
+<%@page import="br.ages.crud.bo.MarcaBO"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Marca"%>
@@ -41,16 +42,24 @@
 				</thead>
 
 				<tbody>
-					<!-- **** essas linhas abaixo  serão montadas por um array-->
+					<%
+						MarcaBO marcaBO = new MarcaBO();
+						List<Marca> lista = marcaBO.consultarMarcas();
+
+						for (Marca marca : lista) {
+					%>
 					<tr>
-						<td><input type="checkbox" /></td>
-						<td>101</td>
-						<td class="col-sm-8">Sony</td>
+						<td><input type="checkbox" id="<%=marca.getId()%>"/></td>
+						<td><%=marca.getId()%></td>
+						<td class="col-sm-8"><%=marca.getNome()%></td>
 						<td align="center"><a href="" title="Editar"> <i
 								class="glyphicon glyphicon-pencil"></i></a>
-						<td align="center"><a href="" title="Deletar"> <i
+						<td align="center"><a href="main?acao=removerMarca&id=<%=marca.getId()%>&nomeMensagem=<%=marca.getNome()%>" title="Deletar"> <i
 								class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
+					<%
+						}
+					%>
 				</tbody>
 			</table>
 		</div>

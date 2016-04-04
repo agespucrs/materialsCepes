@@ -43,6 +43,7 @@ import br.ages.crud.command.LogoutCommand;
 import br.ages.crud.command.RemoveAutorCommand;
 import br.ages.crud.command.RemoveEditoraCommand;
 import br.ages.crud.command.RemoveLivroCommand;
+import br.ages.crud.command.RemoveMarcaCommand;
 import br.ages.crud.command.RemoveUserCommand;
 import br.ages.crud.util.LogParametrosSession;
 
@@ -99,6 +100,7 @@ public class MainServlet extends HttpServlet {
 
 		// MARCA
 		comandos.put("addMarca", new AddMarcaCommand());
+		comandos.put("removerMarca", new RemoveMarcaCommand());
 	}
 
 	@Override

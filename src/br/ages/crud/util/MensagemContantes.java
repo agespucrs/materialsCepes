@@ -50,6 +50,8 @@ public class MensagemContantes {
 	
 	public static final String MSG_SUC_REMOVE_AUTOR = "Autor: ?, removido com sucesso!";
 	
+	public static final String MSG_SUC_REMOVE_MARCA = "Marca: ?, removido com sucesso!";
+	
 	public static final String MSG_SUC_REMOVE_LIVRO = "Livro: ?, removido com sucesso!";
 	
 	public static final String MSG_SUC_ATUALIZADA_PESSOA = "Atualização de Pessoa efetuada com sucesso!";

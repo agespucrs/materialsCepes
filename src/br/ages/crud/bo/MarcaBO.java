@@ -2,6 +2,7 @@ package br.ages.crud.bo;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.List;
 
 import br.ages.crud.dao.MarcaDAO;
 import br.ages.crud.exception.NegocioException;
@@ -37,5 +38,41 @@ public class MarcaBO {
 			throw new NegocioException(e);
 		}
 
+	}
+
+	/**
+	 * Método para consultar todas as marcas.
+	 * 
+	 * @return
+	 * @throws NegocioException
+	 * @throws SQLException
+	 * @throws ParseException
+	 */
+	public List<Marca> consultarMarcas() throws NegocioException, SQLException, ParseException {
+
+		try {
+			return dao.consultarMarcas();
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+
+	}
+
+	/**
+	 * Método para remover uma marca pelo ID.
+	 * 
+	 * @param id
+	 * @return
+	 * @throws NegocioException
+	 * @throws SQLException
+	 */
+	public boolean removerMarca(int id) throws NegocioException, SQLException {
+		try {
+			return dao.removerMarca(id);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
 	}
 }
