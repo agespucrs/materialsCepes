@@ -82,32 +82,32 @@ public class AutorDAO {
 	}
 	
 	public void alterarAutor(Autor autor) throws PersistenciaException,
-	SQLException, ParseException {
-	Connection conexao = null;
-	try {
-		Integer idAutor = null;
-	
-		conexao = ConexaoUtil.getConexao();
-	
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE TB_AUTOR SET NOME = ?, SOBRENOME = ? WHERE id_autor = ?");
+		SQLException, ParseException {
+		Connection conexao = null;
+		try {
+			Integer idAutor = null;
 		
-		PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-		statement.setString(1, autor.getNome());
-		statement.setString(2, autor.getSobrenome());
-		statement.setLong(3, autor.getId_autor());
-		statement.executeUpdate();
-	
-		ResultSet resultset = statement.getGeneratedKeys();
-		if (resultset.first()) {
-			idAutor = resultset.getInt(1);
+			conexao = ConexaoUtil.getConexao();
+		
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_AUTOR SET NOME = ?, SOBRENOME = ? WHERE id_autor = ?");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, autor.getNome());
+			statement.setString(2, autor.getSobrenome());
+			statement.setLong(3, autor.getId_autor());
+			statement.executeUpdate();
+		
+			ResultSet resultset = statement.getGeneratedKeys();
+			if (resultset.first()) {
+				idAutor = resultset.getInt(1);
+			}
+		
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
 		}
-	
-	} catch (ClassNotFoundException | SQLException e) {
-		throw new PersistenciaException(e);
-	} finally {
-		conexao.close();
-	}
 	}
 
 	public void removerAutor(Integer idAutor) throws PersistenciaException {

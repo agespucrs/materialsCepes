@@ -48,13 +48,13 @@ public class AddEquipamentoCommand implements Command {
 				proxima = "main?acao=listEquipamento";
 				request.setAttribute("msgSucesso",
 						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
-								computador.getTitulo()));
+								computador.getNumeroPatrimonio()));
 			} 
 			else {
 				proxima = "main?acao=addEquipamento";
 				request.setAttribute("msgErro",
 						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE
-								.replace("?", computador.getTitulo()));
+								.replace("?", computador.getNumeroPatrimonio()));
 			}
 			
 		}
@@ -68,13 +68,13 @@ public class AddEquipamentoCommand implements Command {
 				proxima = "main?acao=listEquipamento";
 				request.setAttribute("msgSucesso",
 						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
-								periferico.getTitulo()));
+								periferico.getNumeroPatrimonio()));
 			}
 			else {
 				proxima = "main?acao=addEquipamento";
 				request.setAttribute("msgErro",
 						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE
-								.replace("?", periferico.getTitulo()));
+								.replace("?", periferico.getNumeroPatrimonio()));
 			}
 			
 		}
@@ -88,13 +88,13 @@ public class AddEquipamentoCommand implements Command {
 				proxima = "main?acao=listEquipamento";
 				request.setAttribute("msgSucesso",
 						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
-								mobile.getTitulo()));
+								mobile.getNumeroPatrimonio()));
 			}
 			else {
 				proxima = "main?acao=addEquipamento";
 				request.setAttribute("msgErro",
 						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE
-								.replace("?", mobile.getTitulo()));
+								.replace("?", mobile.getNumeroPatrimonio()));
 			}
 		}
 		

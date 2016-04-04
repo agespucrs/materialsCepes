@@ -40,19 +40,19 @@ public class LoginFilter implements Filter {
 
 		/*
 		 * if (httpRequest.getRequestURI().endsWith("login.jsp")){
-		 * System.out.println("É uma jsp: " + httpRequest.getRequestURI()); }
-		 * else { System.out.println("NÃO é uma JSP: " +
+		 * System.out.println("Eh uma jsp: " + httpRequest.getRequestURI()); }
+		 * else { System.out.println("NAO eh uma JSP: " +
 		 * httpRequest.getRequestURL()); }
 		 */
 
 		String uri = httpRequest.getRequestURI();
 		
-		// trocado pelo método isURLToExclusao(uri) (!uri.endsWith("login.jsp") && !uri.endsWith(".css") 
+		// trocado pelo metodo isURLToExclusao(uri) (!uri.endsWith("login.jsp") && !uri.endsWith(".css") 
 	
 		if (!isURLToExclusao(uri, httpRequest)) {
 			HttpSession session = httpRequest.getSession();
 			if (session.getAttribute("usuarioSessao") == null) {
-				request.setAttribute("msgAviso", "Acesso negado! Você precisa logar primeiro");
+				request.setAttribute("msgAviso", "Acesso negado! Voce precisa logar primeiro");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
 				chain.doFilter(request, response);
