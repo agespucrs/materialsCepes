@@ -1,14 +1,16 @@
 package br.ages.crud.model;
 
+import java.util.Date;
+
 public class Equipamento {
 	int id;
-	String numeroPatrimonio;
+	int numeroPatrimonio;
 	String status;
 	String tipoEquipamento;
 	String marca;
 	String modelo;
-	String valor;
-	String dataCadastro;
+	Double valor;
+	Date dataCadastro;
 	String projeto;
 	String observacoes;
 	
@@ -20,11 +22,11 @@ public class Equipamento {
 		this.id = id;
 	}
 
-	public String getNumeroPatrimonio() {
+	public int getNumeroPatrimonio() {
 		return numeroPatrimonio;
 	}
 	
-	public void setNumeroPatrimonio(String numeroPatrimonio) {
+	public void setNumeroPatrimonio(int numeroPatrimonio) {
 		this.numeroPatrimonio = numeroPatrimonio;
 	}
 	
@@ -60,19 +62,19 @@ public class Equipamento {
 		this.modelo = modelo;
 	}
 	
-	public String getValor() {
+	public Double getValor() {
 		return valor;
 	}
 	
-	public void setValor(String valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 	
-	public String getDataCadastro() {
+	public Date getDataCadastro() {
 		return dataCadastro;
 	}
 	
-	public void setDataCadastro(String dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 	

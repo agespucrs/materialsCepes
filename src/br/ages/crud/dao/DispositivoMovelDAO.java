@@ -1,6 +1,7 @@
 package br.ages.crud.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,11 +32,11 @@ public class DispositivoMovelDAO {
 			sql.append("(           ?,      ?,      ?,               ?,             ?,          ?,        ?,          ?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, dispositivoMovel.getNumeroPatrimonio());
+			statement.setInt(1, dispositivoMovel.getNumeroPatrimonio());
 			statement.setString(2, dispositivoMovel.getStatus());
 			statement.setString(3, dispositivoMovel.getModelo());
-			statement.setString(4, dispositivoMovel.getValor());
-			statement.setString(5, dispositivoMovel.getDataCadastro());
+			statement.setDouble(4, dispositivoMovel.getValor());
+			statement.setDate(5, (Date) dispositivoMovel.getDataCadastro());
 			statement.setString(6, dispositivoMovel.getObservacoes());
 			statement.setString(7, dispositivoMovel.getMarca());
 			statement.setString(8, dispositivoMovel.getProjeto());
@@ -105,11 +106,11 @@ public class DispositivoMovelDAO {
 			sql.append("WHERE ID_EQUIPAMENTO = ?");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, dispositivoMovel.getNumeroPatrimonio());
+			statement.setInt(1, dispositivoMovel.getNumeroPatrimonio());
 			statement.setString(2, dispositivoMovel.getStatus());
 			statement.setString(3, dispositivoMovel.getModelo());
-			statement.setString(4, dispositivoMovel.getValor());
-			statement.setString(5, dispositivoMovel.getDataCadastro());
+			statement.setDouble(4, dispositivoMovel.getValor());
+			statement.setDate(5, (Date) dispositivoMovel.getDataCadastro());
 			statement.setString(6, dispositivoMovel.getObservacoes());
 			statement.setString(7, dispositivoMovel.getMarca());
 			statement.setString(8, dispositivoMovel.getProjeto());
