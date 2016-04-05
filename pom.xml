@@ -6,10 +6,7 @@
 	<version>0.0.${build.number}-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>CePESMaterials</name>
-
 	<description>Projeto CePESMaterials - FACIN - PUCRS</description>
-
-
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 	</properties>
