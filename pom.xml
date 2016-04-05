@@ -34,9 +34,9 @@
 			<id>homologacao</id>
 			<properties>
 				<build.number>SNAPSHOT</build.number>
-				<sgbd.url>jdbc:mysql://10.32.223.4:3306/ages_e</sgbd.url>
-				<sgbd.user>root</sgbd.user>
-				<sgbd.password>Ages123$$</sgbd.password>
+				<sgbd.url>jdbc:mysql://10.32.223.4:3306/material_e</sgbd.url>
+				<sgbd.user>material</sgbd.user>
+				<sgbd.password>material123_e#BD</sgbd.password>
 				<upload.path>/home/ages/uploadProjetos</upload.path>
 				<log.path>/home/ages/</log.path>
 			</properties>
