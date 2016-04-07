@@ -1,6 +1,7 @@
 package br.ages.crud.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,11 +32,11 @@ public class ComputadorDAO {
 			sql.append("(           ?,      ?,      ?,               ?,             ?,          ?,        ?,          ?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, computador.getNumeroPatrimonio());
+			statement.setInt(1, computador.getNumeroPatrimonio());
 			statement.setString(2, computador.getStatus());
 			statement.setString(3, computador.getModelo());
-			statement.setString(4, computador.getValor());
-			statement.setString(5, computador.getDataCadastro());
+			statement.setDouble(4, computador.getValor());
+			statement.setDate(5, (Date) computador.getDataCadastro());
 			statement.setString(6, computador.getObservacoes());
 			statement.setString(7, computador.getMarca());
 			statement.setString(8, computador.getProjeto());
@@ -105,11 +106,11 @@ public class ComputadorDAO {
 			sql.append("WHERE ID_EQUIPAMENTO = ?");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, computador.getNumeroPatrimonio());
+			statement.setInt(1, computador.getNumeroPatrimonio());
 			statement.setString(2, computador.getStatus());
 			statement.setString(3, computador.getModelo());
-			statement.setString(4, computador.getValor());
-			statement.setString(5, computador.getDataCadastro());
+			statement.setDouble(4, computador.getValor());
+			statement.setDate(5, (Date) computador.getDataCadastro());
 			statement.setString(6, computador.getObservacoes());
 			statement.setString(7, computador.getMarca());
 			statement.setString(8, computador.getProjeto());

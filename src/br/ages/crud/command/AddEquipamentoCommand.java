@@ -48,13 +48,13 @@ public class AddEquipamentoCommand implements Command {
 				proxima = "main?acao=listEquipamento";
 				request.setAttribute("msgSucesso",
 						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
-								computador.getNumeroPatrimonio()));
+								String.format("%d", computador.getNumeroPatrimonio())));
 			} 
 			else {
 				proxima = "main?acao=addEquipamento";
 				request.setAttribute("msgErro",
-						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE
-								.replace("?", computador.getNumeroPatrimonio()));
+						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE.replace("?", 
+								String.format("%d", computador.getNumeroPatrimonio())));
 			}
 			
 		}
@@ -68,13 +68,13 @@ public class AddEquipamentoCommand implements Command {
 				proxima = "main?acao=listEquipamento";
 				request.setAttribute("msgSucesso",
 						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
-								periferico.getNumeroPatrimonio()));
+								String.format("%d", periferico.getNumeroPatrimonio())));
 			}
 			else {
 				proxima = "main?acao=addEquipamento";
 				request.setAttribute("msgErro",
-						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE
-								.replace("?", periferico.getNumeroPatrimonio()));
+						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE.replace("?",
+								String.format("%d", periferico.getNumeroPatrimonio())));
 			}
 			
 		}
@@ -88,13 +88,13 @@ public class AddEquipamentoCommand implements Command {
 				proxima = "main?acao=listEquipamento";
 				request.setAttribute("msgSucesso",
 						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
-								mobile.getNumeroPatrimonio()));
+								String.format("%d", mobile.getNumeroPatrimonio())));
 			}
 			else {
 				proxima = "main?acao=addEquipamento";
 				request.setAttribute("msgErro",
-						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE
-								.replace("?", mobile.getNumeroPatrimonio()));
+						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE.replace("?", 
+								String.format("%d", mobile.getNumeroPatrimonio())));
 			}
 		}
 		

@@ -1,6 +1,7 @@
 package br.ages.crud.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,11 +31,11 @@ public class PerifericoDAO {
 			sql.append("(           ?,      ?,      ?,               ?,             ?,          ?,        ?,          ?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, periferico.getNumeroPatrimonio());
+			statement.setInt(1, periferico.getNumeroPatrimonio());
 			statement.setString(2, periferico.getStatus());
 			statement.setString(3, periferico.getModelo());
-			statement.setString(4, periferico.getValor());
-			statement.setString(5, periferico.getDataCadastro());
+			statement.setDouble(4, periferico.getValor());
+			statement.setDate(5, (Date)periferico.getDataCadastro());
 			statement.setString(6, periferico.getObservacoes());
 			statement.setString(7, periferico.getMarca());
 			statement.setString(8, periferico.getProjeto());
@@ -104,11 +105,11 @@ public class PerifericoDAO {
 			sql.append("WHERE ID_EQUIPAMENTO = ?");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, periferico.getNumeroPatrimonio());
+			statement.setInt(1, periferico.getNumeroPatrimonio());
 			statement.setString(2, periferico.getStatus());
 			statement.setString(3, periferico.getModelo());
-			statement.setString(4, periferico.getValor());
-			statement.setString(5, periferico.getDataCadastro());
+			statement.setDouble(4, periferico.getValor());
+			statement.setDate(5, (Date) periferico.getDataCadastro());
 			statement.setString(6, periferico.getObservacoes());
 			statement.setString(7, periferico.getMarca());
 			statement.setString(8, periferico.getProjeto());
