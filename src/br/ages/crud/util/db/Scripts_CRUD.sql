@@ -171,8 +171,8 @@ left join TB_COMPUTADOR as COMP on COMP.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
 left join TB_PERIFERICO as PERIF on PERIF.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
 left join TB_MOBILE AS MOB on MOB.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO;
 
-//Vinicius - Precisei fazer essas mudancas no banco. Do contrario nao consigo inserir mais de
-//um equipamento em um mesmo projeto
+/*Vinicius - Precisei fazer essas mudancas no banco. Do contrario nao consigo inserir mais de
+um equipamento em um mesmo projeto*/
 alter table tb_equipamentos drop foreign key fk_id_projeto;
 ALTER TABLE tb_equipamentos DROP INDEX id_projeto_unique;
 alter table tb_equipamentos drop foreign key fk_id_marca;

@@ -68,9 +68,9 @@
 
 				</tbody>
 			</table>
-			<form name="alterar" action="main?acao=alterarMarca" method="post">
-				<input type="hidden" id="idMarcaAlteracao" /> 
-				<input type="hidden" id="nomeAlteracao" />
+			<form name="alteracao" action="main?acao=alterarMarca" method="post">
+				<input type="hidden" id="idMarcaAlteracao" value="" /> <input
+					type="hidden" id="nomeAlteracao" value="" />
 			</form>
 		</div>
 	</div>
@@ -98,6 +98,7 @@
 		$('#nomeText'+idItem).hide();
 		$('#nomeDigitado'+idItem).show();
 		$('#alterar'+idItem).attr('onclick','alterarMarcaDois('+idItem+')');
+		$('#alteracao').attr('action','main?acao=alterarMarca&idMarcaAlteracao='+idItem+'&nomeAlteracao='+$('#nomeAlteracao').val()+'');
 		
 	}
 	
@@ -107,7 +108,7 @@ function alterarMarcaDois(idItem){
 	$('#idMarcaAlteracao').val(idItem);
 	var nome = $('#nomeDigitado'+idItem).val();
 	$('#nomeAlteracao').val(nome);
-	alterar.submit();
+	alteracao.submit();
 }
 </script>
 
