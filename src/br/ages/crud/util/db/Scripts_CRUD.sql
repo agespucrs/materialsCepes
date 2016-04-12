@@ -68,7 +68,7 @@ CREATE TABLE TB_EDITORA (
   PRIMARY KEY (ID_EDITORA)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE tb_livro (
+CREATE TABLE TB_LIVRO (
   ID_LIVRO int(11) NOT NULL,
   TITULO varchar(120) NOT NULL,
   SUBTITULO varchar(120) NOT NULL,
@@ -131,7 +131,7 @@ CREATE TABLE TB_EQUIPAMENTOS (
   CONSTRAINT `FK_ID_PROJETO` FOREIGN KEY (`ID_PROJETO`) REFERENCES `TB_PROJETOS` (`ID_PROJETO`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE tb_computador (
+CREATE TABLE TB_COMPUTADOR (
   ID_COMPUTADOR int(11) NOT NULL,
   TIPO_COMPUTADOR varchar(120) NOT NULL,
   ID_EQUIPAMENTO int(11) NOT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE tb_computador (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE tb_mobile (
+CREATE TABLE TB_MOBILE (
   ID_MOBILE int(11) NOT NULL AUTO_INCREMENT,
   TIPO_EQUIPAMENTO varchar(120) NOT NULL,
   ID_EQUIPAMENTO int(11) NOT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE tb_mobile (
   CONSTRAINT `FK_ID_EQUIP_MOVEL` FOREIGN KEY (`ID_EQUIPAMENTO`) REFERENCES `tb_equipamentos` (`ID_EQUIPAMENTO`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE tb_periferico (
+CREATE TABLE TB_PERIFERICO (
   ID_PERIFERICO int(11) NOT NULL AUTO_INCREMENT,
   TIPO_PERIFERICO varchar(120) NOT NULL,
   ID_EQUIPAMENTO int(11) NOT NULL,
@@ -173,11 +173,11 @@ left join TB_MOBILE AS MOB on MOB.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO;
 
 /*Vinicius - Precisei fazer essas mudancas no banco. Do contrario nao consigo inserir mais de
 um equipamento em um mesmo projeto*/
-alter table tb_equipamentos drop foreign key fk_id_projeto;
-ALTER TABLE tb_equipamentos DROP INDEX id_projeto_unique;
-alter table tb_equipamentos drop foreign key fk_id_marca;
-ALTER TABLE tb_equipamentos DROP INDEX id_marca_unique;
-alter table tb_mobile change Tipo_Equipamento Tipo_Mobile VARCHAR(120);
+alter table TB_EQUIPAMENTOS drop foreign key fk_id_projeto;
+ALTER TABLE TB_EQUIPAMENTOS DROP INDEX id_projeto_unique;
+alter table TB_EQUIPAMENTOS drop foreign key fk_id_marca;
+ALTER TABLE TB_EQUIPAMENTOS DROP INDEX id_marca_unique;
+alter table TB_MOBILE change Tipo_Equipamento Tipo_Mobile VARCHAR(120);
 
 /* SCRIPTS DE INSERCAO PRA FACILITAR TESTES */
 INSERT INTO TB_FUNCAO
