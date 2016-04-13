@@ -49,6 +49,11 @@ public class CreateScreenEquipamentoCommand implements Command {
 			case "addProjeto":
 				this.proxima = "projeto/addProjeto.jsp";
 				break;
+			case "listEquipamento":
+				ListEquipamentoCommand list = new ListEquipamentoCommand();
+				list.execute(request);
+				this.proxima = "equipamento/listEquipamentos.jsp";
+				break;
 
 			default:
 				this.proxima = "equipamento/listEquipamentos.jsp";

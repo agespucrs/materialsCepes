@@ -28,7 +28,7 @@ public class EquipamentoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM VW_EQUIPAMENTOS");
+			sql.append("SELECT * FROM cepes_e.VW_EQUIPAMENTOS");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
