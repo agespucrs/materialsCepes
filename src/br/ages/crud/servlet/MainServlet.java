@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
-
 import br.ages.crud.command.AddAutorCommand;
 import br.ages.crud.command.AddMarcaCommand;
 import br.ages.crud.command.AddEditoraCommand;
@@ -95,9 +93,10 @@ public class MainServlet extends HttpServlet {
 		comandos.put("telaEquipamento", new CreateScreenEquipamentoCommand());
 		comandos.put("addEquipamento", new AddEquipamentoCommand());
 		comandos.put("listEquipamento", new ListEquipamentoCommand());
-//		comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
-//		comandos.put("consultarEquipamento", new ConsultarEquipamentoCommand());
-//		comandos.put("alterEquipamento", new AlterEquipamentoCommand());
+		// comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
+		// comandos.put("consultarEquipamento", new
+		// ConsultarEquipamentoCommand());
+		// comandos.put("alterEquipamento", new AlterEquipamentoCommand());
 
 		// MARCA
 		comandos.put("addMarca", new AddMarcaCommand());

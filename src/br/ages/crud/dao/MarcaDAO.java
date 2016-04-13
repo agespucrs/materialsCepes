@@ -142,12 +142,12 @@ public class MarcaDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE TB_MARCA SET NOME=? WHERE ID_MARCA=?");
+			sql.append("UPDATE tb_marca SET NOME=? WHERE ID_MARCA=?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 
-			statement.setInt(1, id);
-			statement.setString(2, nome);
+			statement.setString(1, nome);
+			statement.setInt(2, id);
 
 			statement.executeUpdate();
 
