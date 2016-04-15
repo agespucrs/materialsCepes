@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class EquipamentoDAO {
 
 			while (resultset.next()) {
 				Equipamento equipamentoAtual = new Equipamento();
+				equipamentoAtual.setTipoEquipamento(resultset.getString("Tipo_Equipamento"));
 				equipamentoAtual.setNumeroPatrimonio(resultset.getInt("N_PATRIMONIO"));
 				equipamentoAtual.setDataCadastro(resultset.getDate("Data_Cadastro"));
 				equipamentoAtual.setValor(resultset.getDouble("Valor_Aquisicao"));
