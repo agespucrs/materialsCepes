@@ -70,7 +70,7 @@
 					</tr>
 					<tr>
 						<td>Brochura</td>
-						<td><%if(livro.getBruxura_revista()){%><input onclick="return false" type="checkbox" id="bruxuraRevista" name="bruxuraRevista" checked/><%} else { %><input type="checkbox" id="bruxuraRevista" name="bruxuraRevista"/><% %></td>						
+						<td><%if(livro.getBrochura()){%><input onclick="return false" type="checkbox" id="brochura" name="brochura" checked/><%} else { %><input type="checkbox" id="brochura" name="brochura"/><% %></td>						
 						<td>Video</td>
 						<td><%if(livro.isVideo()){%><input onclick="alert()" type="checkbox" id="video" name="video" checked/><%} else { %><input type="checkbox" id="video" name="video"/><%}%></td>
 					</tr>

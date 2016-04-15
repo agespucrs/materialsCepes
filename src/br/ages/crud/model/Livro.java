@@ -16,17 +16,25 @@ public class Livro implements Serializable {
 		private List<Autor> autores;
 		private String lingua;
 		private String codigoISBN;
-		private Integer edicao;
-		private Date ano;
-		private Integer paginas;
+		private int edicao;
+		private int ano;
+		private int paginas;
 		private boolean video;
 		private boolean cd_dvd;
 		private boolean e_book;
 		private String descricao;
-		private boolean bruxura;
+		private boolean brochura;
 		private boolean revista;
 		private boolean excluido; // determinar se livro esta ativo/exluido
 									
+		public boolean isExcluido() {
+			return excluido;
+		}
+
+		public void setExcluido(boolean excluido) {
+			this.excluido = excluido;
+		}
+
 		public Livro() {
 			excluido = false;
 		}
@@ -47,20 +55,20 @@ public class Livro implements Serializable {
 			this.titulo = titulo;
 		}
 
-		public boolean getBruxura() {
-			return bruxura;
+		public boolean getBrochura() {
+			return brochura;
 		}
 
-		public void setBruxura(boolean bruxura_revista) {
-			this.bruxura = bruxura_revista;
+		public void setBrochura(boolean brochura) {
+			this.brochura = brochura;
 		}
 		
 		public boolean getRevista() {
-			return bruxura;
+			return revista;
 		}
 
-		public void setRevista(boolean bruxura_revista) {
-			this.bruxura = bruxura_revista;
+		public void setRevista(boolean revista) {
+			this.revista = revista;
 		}
 
 		public String getSubtitulo() {
@@ -95,27 +103,27 @@ public class Livro implements Serializable {
 			this.codigoISBN = codigoISBN;
 		}
 
-		public Integer getEdicao() {
+		public int getEdicao() {
 			return edicao;
 		}
 
-		public void setEdicao(Integer edicao) {
+		public void setEdicao(int edicao) {
 			this.edicao = edicao;
 		}
 
-		public Date getAno() {
+		public int getAno() {
 			return ano;
 		}
 
-		public void setAno(Date ano) {
+		public void setAno(int ano) {
 			this.ano = ano;
 		}
 
-		public Integer getPaginas() {
+		public int getPaginas() {
 			return paginas;
 		}
 
-		public void setPaginas(Integer paginas) {
+		public void setPaginas(int paginas) {
 			this.paginas = paginas;
 		}
 

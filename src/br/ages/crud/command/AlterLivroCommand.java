@@ -48,18 +48,20 @@ public class AlterLivroCommand implements Command {
 		Integer edicao = sEdicao.equals("") ? null : Integer.parseInt(sEdicao);
 
 		String sAno = request.getParameter("ano");
-		SimpleDateFormat sdano = new SimpleDateFormat("yyyy");
-		Date ano = sAno.equals("") ? null : sdano.parse(sAno);
+		//SimpleDateFormat sdano = new SimpleDateFormat("yyyy");
+		//Date ano = sAno.equals("") ? null : sdano.parse(sAno);
+		Integer ano = sAno.equals("") ? null : Integer.parseInt(sAno);
 
 		String sPaginas = (request.getParameter("paginas"));
 		Integer paginas = sPaginas.equals("") ? null : Integer
 				.parseInt(sPaginas);
 
-		Boolean bruxura_revista = request.getParameter("bruxuraRevista") == null ? false : true;
+		Boolean brochura = request.getParameter("brochura") == null ? false : true;
 		Boolean video = request.getParameter("video") == null ? false : true;
 		Boolean cd_dvd = request.getParameter("cd_dvd") == null ? false : true;
 		Boolean e_book = request.getParameter("ebook") == null ? false : true;
 		String descricao = request.getParameter("descricao");
+		Boolean revista = request.getParameter("revista") == null ? false : true;
 
 		// Object receptor
 		Integer idEditora = Integer.parseInt(request.getParameter("editora"));
@@ -83,7 +85,8 @@ public class AlterLivroCommand implements Command {
 			livro.setCd_dvd(cd_dvd);
 			livro.setE_book(e_book);
 			livro.setDescricao(descricao);
-			livro.setBruxura_revista(bruxura_revista);
+			livro.setBrochura(brochura);
+			livro.setRevista(revista);
 			Editora editora = editoraBO.consultarEditora(idEditora);
 			livro.setEditora(editora);
 			ArrayList<Autor> autores = autorBO.consultarAutores(idAutores);
