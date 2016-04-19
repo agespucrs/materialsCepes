@@ -77,7 +77,7 @@
 				          		<span class="caret"></span>
 			          		</a>
 				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=telaEquipamento&tela=lista">Listar</a></li>
+				            	<li><a href="main?acao=telaEquipamento&tela=listEquipamento">Listar</a></li>
 				            	<li><a href="main?acao=telaEquipamento&tela=equipamento">Cadastrar Equipamento</a></li>
 <!-- 				            <li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>-->
 				            	<li><a href="main?acao=telaEquipamento&tela=periferico">Cadastro Periférico</a></li>

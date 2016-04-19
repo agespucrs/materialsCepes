@@ -1,6 +1,8 @@
-<%@page import="br.ages.crud.model.Editora"%>
+<%@page import="br.ages.crud.model.Equipamento"%>
 <%@page import="br.ages.crud.util.Util"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%@ include file="/template/head.jsp"%>
@@ -30,7 +32,23 @@
 				</thead>
 
 				<tbody>
-					<!-- **** essas linhas abaixo  serão montadas por um array-->
+					<%
+						List<Equipamento> listaEquipamentos = (List<Equipamento>) request.getAttribute("listaEquipamentos");
+						int sizeListaEquipamentos = listaEquipamentos.size();
+						for (Equipamento equipamento : listaEquipamentos) {
+					%>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td><%= equipamento.getTipoEquipamento() %></td>
+						<td><%= equipamento.getNumeroPatrimonio() %></td>
+						<td align="center"><%= equipamento.getDataCadastro() %></td>
+						<td align="right"><%= equipamento.getValor() %></td>
+						<td><%= equipamento.getObservacoes() %></td>
+
+						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
+					</tr>
+					<!--
 					<tr>
 						<td><input type="checkbox" /></td>
 						<td>Computador</td>
@@ -42,6 +60,10 @@
 						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
+					-->
+					<%
+						}
+					%>
 					<tr>
 						<td><input type="checkbox" /></td>
 						<td>Periférico</td>
