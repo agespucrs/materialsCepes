@@ -274,3 +274,8 @@ insert into TB_MOBILE
 (Id_Mobile, Tipo_Mobile, Id_Equipamento)
 values
 (1, "Celular", 3);
+
+/*Eduardo - Exclusão lógica de marca.*/
+
+ALTER TABLE tb_marca
+ADD ATIVO varchar(1) DEFAULT 'S';
