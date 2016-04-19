@@ -277,5 +277,5 @@ values
 
 /*Eduardo - Exclusão lógica de marca.*/
 
-ALTER TABLE tb_marca
+ALTER TABLE TB_MARCA
 ADD ATIVO varchar(1) DEFAULT 'S';
