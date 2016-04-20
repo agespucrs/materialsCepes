@@ -69,8 +69,8 @@
 				</tbody>
 			</table>
 			<form name="alteracao" action="main?acao=alterarMarca" method="post">
-				<input type="hidden" id="idMarcaAlteracao" value="" /> <input
-					type="hidden" id="nomeAlteracao" value="" />
+				<input type="hidden" id="idMarcaAlteracao" name="idMarcaAlteracao" value="" /> <input
+					type="hidden" id="nomeAlteracao" name="nomeAlteracao" value="" />
 			</form>
 		</div>
 	</div>

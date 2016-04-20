@@ -7,6 +7,7 @@ public class Equipamento {
 	int numeroPatrimonio;
 	String status;
 	String tipoEquipamento;
+	String subTipo;
 	String marca;
 	String modelo;
 	Double valor;
@@ -44,6 +45,14 @@ public class Equipamento {
 	
 	public void setTipoEquipamento(String tipoEquipamento) {
 		this.tipoEquipamento = tipoEquipamento;
+	}
+	
+	public String getSubTipo() {
+		return subTipo;
+	}
+
+	public void setSubTipo(String subTipo) {
+		this.subTipo = subTipo;
 	}
 	
 	public String getMarca() {

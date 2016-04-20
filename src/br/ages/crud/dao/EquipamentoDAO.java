@@ -29,7 +29,7 @@ public class EquipamentoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM cepes_e.VW_EQUIPAMENTOS");
+			sql.append("SELECT * FROM VW_EQUIPAMENTOS");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
@@ -38,10 +38,12 @@ public class EquipamentoDAO {
 			while (resultset.next()) {
 				Equipamento equipamentoAtual = new Equipamento();
 				equipamentoAtual.setTipoEquipamento(resultset.getString("Tipo_Equipamento"));
+				equipamentoAtual.setSubTipo(resultset.getString("Sub_Tipo"));
+				equipamentoAtual.setMarca(resultset.getString("Nome"));
+				equipamentoAtual.setModelo(resultset.getString("Modelo"));
 				equipamentoAtual.setNumeroPatrimonio(resultset.getInt("N_PATRIMONIO"));
 				equipamentoAtual.setDataCadastro(resultset.getDate("Data_Cadastro"));
 				equipamentoAtual.setValor(resultset.getDouble("Valor_Aquisicao"));
-				equipamentoAtual.setObservacoes(resultset.getString("Observacao"));
 				listarEquipamentos.add(equipamentoAtual);
 			}
 		} catch (ClassNotFoundException | SQLException e) {

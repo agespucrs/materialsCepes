@@ -27,11 +27,15 @@ public class AlterMarcaCommand implements Command {
 		int id = Integer.parseInt(request.getParameter("idMarcaAlteracao"));
 		String nome = request.getParameter("nomeAlteracao");
 
-		try {
-			marcaBO.alterarMarca(id, nome);
-			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_ALTERAR_MARCA);
-		} catch (Exception e) {
-			request.setAttribute("msgErro", e.getMessage());
+		if (nome != null && !nome.isEmpty()) {
+			try {
+				marcaBO.alterarMarca(id, nome);
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_ALTERAR_MARCA);
+			} catch (Exception e) {
+				request.setAttribute("msgErro", e.getMessage());
+			}
+		} else {
+			request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Nome"));
 		}
 
 		return proxima;

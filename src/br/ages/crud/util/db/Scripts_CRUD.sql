@@ -159,15 +159,19 @@ CREATE TABLE TB_PERIFERICO (
 
 CREATE OR REPLACE VIEW VW_EQUIPAMENTOS AS
 SELECT 
-if(Id_Mobile is not null, 'Dispositivo MÃ³vel', 
-  if(Id_Computador is not null, 'Computador', 'PerifÃ©rico')
+if(Id_Mobile is not null, 'Dispositivo Movel', 
+  if(Id_Computador is not null, 'Computador', 'Periferico')
 ) as Tipo_Equipamento,
-Id_Mobile, Id_Computador, Id_Periferico, N_Patrimonio, Data_Cadastro, Valor_Aquisicao, Observacao
+if(Id_Mobile is not null, Tipo_Mobile, 
+  if(Id_Computador is not null, TIPO_COMPUTADOR, TIPO_PERIFERICO)
+) as Sub_Tipo,
+Id_Mobile, Id_Computador, Id_Periferico, N_Patrimonio, Data_Cadastro, Valor_Aquisicao, MAR.Nome, Modelo
 FROM 
 TB_EQUIPAMENTOS as EQUIP
 left join TB_COMPUTADOR as COMP on COMP.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
 left join TB_PERIFERICO as PERIF on PERIF.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
-left join TB_MOBILE AS MOB on MOB.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO;
+left join TB_MOBILE AS MOB on MOB.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
+inner join TB_MARCA as MAR on MAR.ID_MARCA = EQUIP.ID_MARCA;
 
 
 
@@ -262,3 +266,8 @@ insert into TB_MOBILE
 (Id_Mobile, Tipo_Mobile, Id_Equipamento)
 values
 (1, "Celular", 3);
+
+/*Eduardo - Exclusão lógica de marca.*/
+
+ALTER TABLE TB_MARCA
+ADD ATIVO varchar(1) DEFAULT 'S';

@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%@ include file="/template/head.jsp"%>
@@ -33,60 +34,38 @@
 
 				<tbody>
 					<%
+						int sizeListaEquipamentos = 0;
 						List<Equipamento> listaEquipamentos = (List<Equipamento>) request.getAttribute("listaEquipamentos");
-						int sizeListaEquipamentos = listaEquipamentos.size();
-						for (Equipamento equipamento : listaEquipamentos) {
+						if (listaEquipamentos != null) {
+							sizeListaEquipamentos = listaEquipamentos.size();
+							for (Equipamento equipamento : listaEquipamentos) {
 					%>
 					<tr>
 						<td><input type="checkbox" /></td>
 						<td><%= equipamento.getTipoEquipamento() %></td>
 						<td><%= equipamento.getNumeroPatrimonio() %></td>
-						<td align="center"><%= equipamento.getDataCadastro() %></td>
+						<td align="center"><%
+							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+							String dataCadastro = df.format(equipamento.getDataCadastro());
+							%>
+							<%= dataCadastro %>
+						</td>
 						<td align="right"><%= equipamento.getValor() %></td>
-						<td><%= equipamento.getObservacoes() %></td>
+						<td><b><%= equipamento.getSubTipo() + " " %></b><%= equipamento.getMarca() + " - " + equipamento.getModelo() %></td>
 
 						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
-					<!--
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td>Computador</td>
-						<td>8912345</td>
-						<td align="center">01/01/2016</td>
-						<td align="right">3.990,00</td>
-						<td><b>Desktop</b> Dell - Optiplex </td>
-
-						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
-					</tr>
-					-->
 					<%
+							}
 						}
 					%>
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td>Periférico</td>
-						<td>8912350</td>
-						<td align="center">01/01/2016</td>
-						<td align="right">660,00</td>
-						<td><b>Impressora</b> HP - Deskjet Ink Advantage 1115 </td>
-
-						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td>Dispositivo Móvel</td>
-						<td>8912355</td>
-						<td align="center">01/01/2016</td>
-						<td align="right">1.990,00</td>
-						<td><b>Tablet</b> Apple - Air</td>
-
-						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
-					</tr>
 				</tbody>
+			</table>
+			<table class="table table-responsive table-striped table-condensed table-bordered">
+				<tr>
+					<td align="center"><%= sizeListaEquipamentos + " equipamentos no total" %></td>
+				</tr>
 			</table>
 	</div>
 </div>
