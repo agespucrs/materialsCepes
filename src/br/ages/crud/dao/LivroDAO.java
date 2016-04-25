@@ -53,6 +53,7 @@ public class LivroDAO {
 						+ " SET TITULO = ?,"
 						+ " SUBTITULO = ?,"
 						+ " PRECO = ?," 
+						+ " CODIGO_ISBN = ?,"
 						+ " EDICAO = ?,"
 						+ " ANO = ?," 
 						+ " PAGINAS = ?," 
@@ -71,15 +72,16 @@ public class LivroDAO {
 					statement.setString(1, livro.getTitulo());
 					statement.setString(2, livro.getSubtitulo());
 					statement.setLong(3, livro.getPreco());
-					statement.setInt(4, livro.getEdicao());
-					statement.setInt(5,  livro.getAno());
-					statement.setInt(6, livro.getPaginas());
-					statement.setBoolean(7, livro.isVideo());
-					statement.setBoolean(8, livro.isCd_dvd());
-					statement.setBoolean(9, livro.isE_book());
-					statement.setBoolean(10, livro.getBrochura());
-					statement.setString(11, livro.getDescricao());
-					statement.setBoolean(12, livro.getRevista());
+					statement.setString(4, livro.getCodigoISBN());
+					statement.setInt(5, livro.getEdicao());
+					statement.setInt(6,  livro.getAno());
+					statement.setInt(7, livro.getPaginas());
+					statement.setBoolean(8, livro.isVideo());
+					statement.setBoolean(9, livro.isCd_dvd());
+					statement.setBoolean(10, livro.isE_book());
+					statement.setBoolean(11, livro.getBrochura());
+					statement.setString(12, livro.getDescricao());
+					statement.setBoolean(13, livro.getRevista());
 					/**statement.setBoolean(15, false);
 					statement.setInt(16, livro.getIdLivro());*/
 
@@ -100,7 +102,7 @@ public class LivroDAO {
 				statement.setString(2, livro.getSubtitulo());
 				statement.setDate(3, dataCadastro);
 				statement.setLong(4, livro.getPreco());
-				statement.setString(5, livro.getLingua());
+				statement.setInt(5, livro.getLingua());
 				statement.setString(6, livro.getCodigoISBN());
 				statement.setInt(7, livro.getEdicao());
 				statement.setInt(8, livro.getAno());
@@ -210,7 +212,7 @@ public class LivroDAO {
 			sql.append("SELECT ID_LIVRO, TITULO, SUBTITULO, DATA_CADASTRO, PRECO, ");
 			sql.append("ID_IDIOMA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, ");
 			sql.append("E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA ");
-			sql.append("FROM TB_LIVRO WHERE 1=1");
+			sql.append("FROM TB_LIVRO");
 
 			PreparedStatement statement = conexao.prepareStatement(sql
 					.toString());
@@ -227,7 +229,7 @@ public class LivroDAO {
 					dto.setSubtitulo(resultset.getString("SUBTITULO"));
 					dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
 					dto.setPreco(resultset.getLong("PRECO"));
-					dto.setLingua(resultset.getString("LINGUA"));
+					dto.setLingua(resultset.getInt("ID_IDIOMA"));
 					dto.setCodigoISBN(resultset.getString("CODIGO_ISBN"));
 					dto.setEdicao(resultset.getInt("EDICAO"));
 					dto.setAno(resultset.getInt("ANO"));
@@ -276,7 +278,7 @@ public class LivroDAO {
 				dto.setSubtitulo(resultset.getString("SUBTITULO"));
 				dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
 				dto.setPreco(resultset.getLong("PRECO"));
-				dto.setLingua(resultset.getString("ID_IDIOMA"));
+				dto.setLingua(resultset.getInt("ID_IDIOMA"));
 				dto.setCodigoISBN(resultset.getString("CODIGO_ISBN"));
 				dto.setEdicao(resultset.getInt("EDICAO"));
 				dto.setAno(resultset.getInt("ANO"));
@@ -364,7 +366,7 @@ public class LivroDAO {
 			statement.setString(2, livro.getSubtitulo());
 			//statement.setDate(3, dataCadastro);
 			statement.setLong(3, livro.getPreco());
-			statement.setString(4, livro.getLingua());
+			statement.setInt(4, livro.getLingua());
 			statement.setInt(5, livro.getEdicao());
 			statement.setInt(6, livro.getAno());
 			statement.setInt(7, livro.getPaginas());

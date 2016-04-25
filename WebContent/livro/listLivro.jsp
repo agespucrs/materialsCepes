@@ -35,7 +35,7 @@
 				%>
 				<tr>
 					<td><input type="checkbox" /></td>
-					<td><%= livro.getCodigoISBN() %></td>
+					<%-- <td><%= livro.getCodigoISBN() %></td>--%>
 					<td><%= livro.getTitulo() %></td>
 					<td><%= livro.getEdicao() %></td><%-- 
 					<%if (livro.getAno() == null) 
