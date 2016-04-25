@@ -14,7 +14,7 @@ public class Livro implements Serializable {
 		private long preco;
 		private Editora editora;
 		private List<Autor> autores;
-		private String lingua;
+		private int lingua;
 		private String codigoISBN;
 		private int edicao;
 		private int ano;
@@ -171,11 +171,11 @@ public class Livro implements Serializable {
 			this.editora = editora;
 		}
 
-		public String getLingua() {
+		public int getLingua() {
 			return lingua;
 		}
 
-		public void setLingua(String lingua) {
+		public void setLingua(int lingua) {
 			this.lingua = lingua;
 		}
 
