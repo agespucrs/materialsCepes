@@ -57,11 +57,11 @@
 							<a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 						</td>
 						<td align="center">
-							<form action="main?acao=removerEquipamento&id_equipamento=<%= equipamento.getId() %>" method="post">
-								<button type="submit" class="btn btn-xs btn-info">
+							<a class="removerEquipamento" href="#" data-toggle="modal" data-id="<%= equipamento.getId() %>" data-target="#myModal">
+								<button type="button" class="btn btn-xs btn-info" >
 									<span class="glyphicon glyphicon-trash"></span>
 								</button>
-							</form>
+							</a>
 						</td>
 					</tr>
 					<%
@@ -77,11 +77,35 @@
 			</table>
 	</div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Remover Equipamento</h4>
+			</div>
+			<div class="modal-body">Tem certeza que deseja remover o Equipamento?</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+				<a id="botaoRemover" href="#"><button type="button" class="btn btn-primary">Sim</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+
 </div>
 <jsp:include page="/template/foot.jsp"></jsp:include>
 <!-- Initialize the plugin: -->
 <script>
 $(document).ready(function(){
+	$(document).on("click", ".removerEquipamento", function () {
+		var id = $(this).data('id');
+		$("#botaoRemover").attr('href', 'main?acao=removerEquipamento&id_equipamento='+id);
+	});
+		
 	$('#listaEquipamentos').dataTable({
 	    "language": {
             "lengthMenu": "Mostrando _MENU_ registros por página",
