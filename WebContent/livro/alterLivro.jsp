@@ -113,13 +113,13 @@
 				</div>	
 				<div class="row">	
 					<div class="col-sm-12">
-						<label class="checkbox-inline ages"><input type="checkbox" name="bruxuraRevista" value="<%=livro.getBruxura_revista()%>">Broxura</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="brochura" value="<%=livro.getBrochura()%>">Brochura</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="video" value="<%=livro.isVideo()%>">Video</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="cd_dvd" value="<%=livro.isCd_dvd()%>">CD/DVD</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="ebook" value="<%=livro.isE_book()%>">E-Book</label>
-						<label class="checkbox-inline ages"><input type="checkbox" name="capaDuara" value="">Capa Dura</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="capaDura" value="">Capa Dura</label>
 						<label class="checkbox-inline ages"><input type="checkbox" name="expiral" value="">Expiral</label>
-						<label class="checkbox-inline ages"><input type="checkbox" name="revista" value="">Revista</label>
+						<label class="checkbox-inline ages"><input type="checkbox" name="revista" value="<%=livro.getRevista()%>">Revista</label>
 					</div>           
 				</div>
 				<label class="form-label ages">Observação: </label> 

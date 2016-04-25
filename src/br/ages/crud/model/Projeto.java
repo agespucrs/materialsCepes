@@ -11,9 +11,9 @@ public class Projeto {
 	private String nome_projeto;
 	private String programa;
 	private String origem;
-	//private date data_cadastro;
+	private Date data_cadastro;
 	//verificar atributo
-	private List<Usuario> usuarios;
+	private int id_cordenador;
 	
 	
 	public Projeto() {
@@ -43,17 +43,17 @@ public class Projeto {
 	public void setOrigem(String origem) {
 		this.origem = origem;
 	}
-	//public date getData_cadastro() {
-	//	return data_cadastro;
-	//}
-	//public void setData_cadastro(Calendar data_cadastro) {
-	//	this.data_cadastro = data_cadastro;
-	//}
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	public Date getData_cadastro() {
+		return data_cadastro;
 	}
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setData_cadastro(Date data_cadastro) {
+		this.data_cadastro = data_cadastro;
+	}
+	public int getId_cordenador() {
+		return id_cordenador;
+	}
+	public void setId_cordenador(int id_cordenador) {
+		this.id_cordenador = id_cordenador;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

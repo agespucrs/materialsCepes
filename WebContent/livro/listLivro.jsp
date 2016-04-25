@@ -20,10 +20,10 @@
 						<th style="text-align: center;"></th>
 						<th style="text-align: center;">Código</th>
 						<th style="text-align: center;">Título</th>
-						<th style="text-align: center;">Edição</th>
+						<th style="text-align: center;">Edição</th><%--
 						<th style="text-align: center;">Ano</th>
 						<th style="text-align: center;">Data</th>
-						<th style="text-align: center;">Autor</th>
+						<th style="text-align: center;">Autor</th>--%>
 						<th data-sortable="false" style="text-align: center; width:10px"></th>
 						<th data-sortable="false" style="text-align: center; width:10px"></th>
 					</tr>
@@ -37,7 +37,7 @@
 					<td><input type="checkbox" /></td>
 					<td><%= livro.getCodigoISBN() %></td>
 					<td><%= livro.getTitulo() %></td>
-					<td><%= livro.getEdicao() %></td>
+					<td><%= livro.getEdicao() %></td><%-- 
 					<%if (livro.getAno() == null) 
 						{ %>
 						<td>Não Informado</td>
@@ -46,7 +46,7 @@
 						<td><%= Util.toAno(livro.getAno())%>
 						</td>
 					<%  } %>
-					<td><%= Util.toDataNormal(livro.getDataCadastro()) %></td>
+					<td><%= Util.toDataNormal(livro.getDataCadastro()) %></td>--%>
 					<%-- <%
 						for (Autor autor: livro.getAutores()) {
 							String nome=autor.getNome();
