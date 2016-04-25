@@ -69,4 +69,6 @@ public class MensagemContantes {
 	public static final String MSG_SUC_CADASTRO_EQUIPAMENTO = "EQUIPAMENTO ? CADASTRADO COM SUCESSO";
 
 	public static final String MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE = "ERRO! Equipamento ? já existente";
+	
+	public static final String MSG_SUC_REMOVE_EQUIPAMENTO = "Equipamento ? removido com sucesso!";
 }

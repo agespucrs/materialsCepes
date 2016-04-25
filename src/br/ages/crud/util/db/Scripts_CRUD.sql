@@ -164,10 +164,14 @@ SELECT
 if(Id_Mobile is not null, 'Dispositivo Movel', 
   if(Id_Computador is not null, 'Computador', 'Periferico')
 ) as Tipo_Equipamento,
+--
 if(Id_Mobile is not null, Tipo_Mobile, 
   if(Id_Computador is not null, TIPO_COMPUTADOR, TIPO_PERIFERICO)
 ) as Sub_Tipo,
-Id_Mobile, Id_Computador, Id_Periferico, N_Patrimonio, Data_Cadastro, Valor_Aquisicao, MAR.Nome, Modelo
+--
+EQUIP.Id_Equipamento,
+--
+Id_Computador, Id_Periferico, Id_Mobile, N_Patrimonio, Data_Cadastro, Valor_Aquisicao, MAR.Nome, Modelo, EQUIP.Ativo
 FROM 
 TB_EQUIPAMENTOS as EQUIP
 left join TB_COMPUTADOR as COMP on COMP.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
@@ -275,7 +279,14 @@ insert into TB_MOBILE
 values
 (1, "Celular", 3);
 
-/*Eduardo - Exclusão lógica de marca.*/
+/*Eduardo - Exclusao logica de marca.*/
 
 ALTER TABLE TB_MARCA
-ADD ATIVO varchar(1) DEFAULT 'S';
+ADD ATIVO varchar(1) DEFAULT 'S' NOT NULL;
+
+/*Luis, Vini - Exclusao logica de Equipamento.*/
+
+ALTER TABLE TB_EQUIPAMENTOS
+ADD ATIVO varchar(1) DEFAULT 'S' NOT NULL;
+
+

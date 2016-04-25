@@ -28,4 +28,8 @@ public class EquipamentoBO {
 
 		return listaEquipamentos;
 	}
+
+	public void removerEquipamento(Integer idEquipamento) throws PersistenciaException, SQLException {
+		equipamentoDAO.removerEquipamento(idEquipamento);
+	}
 }

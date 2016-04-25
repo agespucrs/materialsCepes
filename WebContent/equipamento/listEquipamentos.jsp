@@ -53,8 +53,16 @@
 						<td align="right"><%= equipamento.getValor() %></td>
 						<td><b><%= equipamento.getSubTipo() + " " %></b><%= equipamento.getMarca() + " - " + equipamento.getModelo() %></td>
 
-						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
+						<td align="center"> 
+							<a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+						</td>
+						<td align="center">
+							<form action="main?acao=removerEquipamento&id_equipamento=<%= equipamento.getId() %>" method="post">
+								<button type="submit" class="btn btn-xs btn-info">
+									<span class="glyphicon glyphicon-trash"></span>
+								</button>
+							</form>
+						</td>
 					</tr>
 					<%
 							}
