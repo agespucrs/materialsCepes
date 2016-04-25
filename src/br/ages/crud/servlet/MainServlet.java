@@ -41,6 +41,7 @@ import br.ages.crud.command.LoginCommandNovo;
 import br.ages.crud.command.LogoutCommand;
 import br.ages.crud.command.RemoveAutorCommand;
 import br.ages.crud.command.RemoveEditoraCommand;
+import br.ages.crud.command.RemoveEquipamentoCommand;
 import br.ages.crud.command.RemoveLivroCommand;
 import br.ages.crud.command.RemoveMarcaCommand;
 import br.ages.crud.command.RemoveUserCommand;
@@ -93,7 +94,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("telaEquipamento", new CreateScreenEquipamentoCommand());
 		comandos.put("addEquipamento", new AddEquipamentoCommand());
 		comandos.put("listEquipamento", new ListEquipamentoCommand());
-		// comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
+		comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
 		// comandos.put("consultarEquipamento", new
 		// ConsultarEquipamentoCommand());
 		// comandos.put("alterEquipamento", new AlterEquipamentoCommand());

@@ -29,6 +29,27 @@
 				</div>
 			</div>
 		</form>
+
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Remover Marca</h4>
+					</div>
+					<div class="modal-body">Tem certeza que deseja remover a Marca?</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+						<a id="botaoRemoverMarca" href="#"><button type="button" class="btn btn-primary">Sim</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="table-responsive">
 			<table class="table table-hover table-striped table-bordered">
 
@@ -59,8 +80,9 @@
 							onclick="alterarMarca(<%=marca.getId()%>)" title="Editar"> <i
 								class="glyphicon glyphicon-pencil"></i></a>
 						<td align="center"><a
-							href="main?acao=removerMarca&id=<%=marca.getId()%>&nomeMensagem=<%=marca.getNome()%>"
-							title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
+							href="#" class="removerMarca"
+							title="Deletar" data-id="<%=marca.getId()%>" data-nome="<%=marca.getNome()%>" data-toggle="modal" data-target="#myModal"> <i
+								class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
 					<%
 						}
@@ -69,8 +91,9 @@
 				</tbody>
 			</table>
 			<form name="alteracao" action="main?acao=alterarMarca" method="post">
-				<input type="hidden" id="idMarcaAlteracao" name="idMarcaAlteracao" value="" /> <input
-					type="hidden" id="nomeAlteracao" name="nomeAlteracao" value="" />
+				<input type="hidden" id="idMarcaAlteracao" name="idMarcaAlteracao"
+					value="" /> <input type="hidden" id="nomeAlteracao"
+					name="nomeAlteracao" value="" />
 			</form>
 		</div>
 	</div>
@@ -91,6 +114,15 @@
 	function submeterForm() {
 		$('form#myForm').submit();
 	}
+	
+	$(document).on("click", ".removerMarca", function () {
+	     var id = $(this).data('id');
+	     var nome = $(this).data('nome');
+	     $("#botaoRemoverMarca").attr('href', 'main?acao=removerMarca&id='+id+'&nomeMensagem='+nome+'');
+	     // As pointed out in comments, 
+	     // it is superfluous to have to manually call the modal.
+	     // $('#addBookDialog').modal('show');
+	});
 </script>
 
 <script>
