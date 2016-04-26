@@ -5,11 +5,13 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Marca;
 import br.ages.crud.model.Periferico;
 import br.ages.crud.util.ConexaoUtil;
 
@@ -22,59 +24,61 @@ public class PerifericoDAO {
 			Integer idEquipamento = null;
 			conexao = ConexaoUtil.getConexao();
 
-			//inicio de transacao
-			
+			// inicio de transacao
+
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO TB_EQUIPAMENTO ");
-			sql.append("(N_PATRIMONIO, STATUS, MODELO, VALOR_AQUISICAO, DATA_CADASTRO, OBSERVACAO, ID_MARCA, ID_PROJETO) ");
+			sql.append(
+					"(N_PATRIMONIO, STATUS, MODELO, VALOR_AQUISICAO, DATA_CADASTRO, OBSERVACAO, ID_MARCA, ID_PROJETO) ");
 			sql.append("VALUES ");
-			sql.append("(           ?,      ?,      ?,               ?,             ?,          ?,        ?,          ?)");
+			sql.append(
+					"(           ?,      ?,      ?,               ?,             ?,          ?,        ?,          ?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, periferico.getNumeroPatrimonio());
 			statement.setString(2, periferico.getStatus());
 			statement.setString(3, periferico.getModelo());
 			statement.setDouble(4, periferico.getValor());
-			statement.setDate(5, (Date)periferico.getDataCadastro());
+			statement.setDate(5, (Date) periferico.getDataCadastro());
 			statement.setString(6, periferico.getObservacoes());
 			statement.setString(7, periferico.getMarca());
 			statement.setString(8, periferico.getProjeto());
-			
+
 			statement.executeUpdate();
 
 			ResultSet resultset = statement.getGeneratedKeys();
 			if (resultset.first()) {
 				idEquipamento = resultset.getInt(1);
-				
+
 				sql = new StringBuilder();
 				sql.append("INSERT INTO TB_PERIFERICO ");
 				sql.append("(ID_EQUIPAMENTO, TIPO_PERIFERICO) ");
 				sql.append("VALUES ");
 				sql.append("(             ?,           ?)");
-				
+
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setInt(1, idEquipamento);
 				statement.setString(2, periferico.getTipoPeriferico());
-				
+
 				statement.executeUpdate();
-				
+
 				resultset = statement.getGeneratedKeys();
-				if(resultset.first()) {
-					//commit da transacao
+				if (resultset.first()) {
+					// commit da transacao
 					valorDeRetorno = true;
 				}
-				//else
-					//rollback
+				// else
+				// rollback
 			}
-			//else
-				//rollback
+			// else
+			// rollback
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
-		
+
 		return valorDeRetorno;
 	}
 
@@ -83,15 +87,44 @@ public class PerifericoDAO {
 		return null;
 	}
 
+	public List<String> listarTiposPerifericos() throws PersistenciaException, SQLException {
+		StringBuilder sql = new StringBuilder();
+		Connection conexao = null;
+		List<String> listaTipos = new ArrayList<String>();
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			sql.append("SELECT DISTINCT(TIPO_PERIFERICO)");
+			sql.append(" FROM TB_PERIFERICO WHERE 1=1");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				String nome = resultset.getString("TIPO_PERIFERICO");
+				listaTipos.add(nome);
+			}
+
+			return listaTipos;
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+	}
+
 	public boolean alterarPeriferico(Periferico periferico) throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		boolean valorDeRetorno = false;
 		try {
 			Integer idEquipamento = null;
 			conexao = ConexaoUtil.getConexao();
-			
-			//inicio de transacao
-			
+
+			// inicio de transacao
+
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE TB_EQUIPAMENTO ");
 			sql.append("SET N_PATRIMONIO = ?, ");
@@ -103,7 +136,7 @@ public class PerifericoDAO {
 			sql.append("SET ID_MARCA = ?, ");
 			sql.append("SET ID_PROJETO = ? ");
 			sql.append("WHERE ID_EQUIPAMENTO = ?");
-			
+
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, periferico.getNumeroPatrimonio());
 			statement.setString(2, periferico.getStatus());
@@ -115,38 +148,38 @@ public class PerifericoDAO {
 			statement.setString(8, periferico.getProjeto());
 			statement.setInt(9, periferico.getId());
 			statement.executeUpdate();
-		
+
 			ResultSet resultset = statement.getGeneratedKeys();
 			if (resultset.first()) {
 				idEquipamento = resultset.getInt(1);
-				
+
 				sql = new StringBuilder();
 				sql.append("UPDATE TB_PERIFERICO ");
 				sql.append("SET TIPO_PERIFERICO = ? ");
 				sql.append("WHERE ID_EQUIPAMENTO = ?");
-				
+
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setString(1, periferico.getTipoPeriferico());
 				statement.setInt(2, idEquipamento);
 				statement.executeUpdate();
-				
+
 				resultset = statement.getGeneratedKeys();
-				if(resultset.first()) {
-					//commit da transacao
+				if (resultset.first()) {
+					// commit da transacao
 					valorDeRetorno = true;
 				}
-				//else
-					//rollback
+				// else
+				// rollback
 			}
-			//else
-				//rollback
-		
+			// else
+			// rollback
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
-		
+
 		return valorDeRetorno;
 	}
 

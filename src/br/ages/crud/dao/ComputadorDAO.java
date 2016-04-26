@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Statement;
@@ -16,20 +17,23 @@ import br.ages.crud.util.ConexaoUtil;
 
 public class ComputadorDAO {
 
-	public boolean cadastrarComputador(Computador computador) throws PersistenciaException, SQLException, ParseException {
+	public boolean cadastrarComputador(Computador computador)
+			throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
 		boolean valorDeRetorno = false;
 		try {
 			Integer idEquipamento = null;
 			conexao = ConexaoUtil.getConexao();
 
-			//inicio de transacao
-			
+			// inicio de transacao
+
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO TB_EQUIPAMENTO ");
-			sql.append("(N_PATRIMONIO, STATUS, MODELO, VALOR_AQUISICAO, DATA_CADASTRO, OBSERVACAO, ID_MARCA, ID_PROJETO) ");
+			sql.append(
+					"(N_PATRIMONIO, STATUS, MODELO, VALOR_AQUISICAO, DATA_CADASTRO, OBSERVACAO, ID_MARCA, ID_PROJETO) ");
 			sql.append("VALUES ");
-			sql.append("(           ?,      ?,      ?,               ?,             ?,          ?,        ?,          ?)");
+			sql.append(
+					"(           ?,      ?,      ?,               ?,             ?,          ?,        ?,          ?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, computador.getNumeroPatrimonio());
@@ -40,42 +44,42 @@ public class ComputadorDAO {
 			statement.setString(6, computador.getObservacoes());
 			statement.setString(7, computador.getMarca());
 			statement.setString(8, computador.getProjeto());
-			
+
 			statement.executeUpdate();
 
 			ResultSet resultset = statement.getGeneratedKeys();
 			if (resultset.first()) {
 				idEquipamento = resultset.getInt(1);
-				
+
 				sql = new StringBuilder();
 				sql.append("INSERT INTO TB_COMPUTADOR ");
 				sql.append("(ID_EQUIPAMENTO, TIPO_COMPUTADOR) ");
 				sql.append("VALUES ");
 				sql.append("(             ?,               ?)");
-				
+
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setInt(1, idEquipamento);
 				statement.setString(2, computador.getTipoComputador());
-				
+
 				statement.executeUpdate();
-				
+
 				resultset = statement.getGeneratedKeys();
-				if(resultset.first()) {
-					//commit da transacao
+				if (resultset.first()) {
+					// commit da transacao
 					valorDeRetorno = true;
 				}
-				//else
-					//rollback
+				// else
+				// rollback
 			}
-			//else
-				//rollback
+			// else
+			// rollback
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
-		
+
 		return valorDeRetorno;
 	}
 
@@ -90,9 +94,9 @@ public class ComputadorDAO {
 		try {
 			Integer idEquipamento = null;
 			conexao = ConexaoUtil.getConexao();
-			
-			//inicio de transacao
-			
+
+			// inicio de transacao
+
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE TB_EQUIPAMENTO ");
 			sql.append("SET N_PATRIMONIO = ?, ");
@@ -104,7 +108,7 @@ public class ComputadorDAO {
 			sql.append("SET ID_MARCA = ?, ");
 			sql.append("SET ID_PROJETO = ? ");
 			sql.append("WHERE ID_EQUIPAMENTO = ?");
-			
+
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, computador.getNumeroPatrimonio());
 			statement.setString(2, computador.getStatus());
@@ -116,39 +120,68 @@ public class ComputadorDAO {
 			statement.setString(8, computador.getProjeto());
 			statement.setInt(9, computador.getId());
 			statement.executeUpdate();
-		
+
 			ResultSet resultset = statement.getGeneratedKeys();
 			if (resultset.first()) {
 				idEquipamento = resultset.getInt(1);
-				
+
 				sql = new StringBuilder();
 				sql.append("UPDATE TB_COMPUTADOR ");
 				sql.append("SET TIPO_COMPUTADOR = ? ");
 				sql.append("WHERE ID_EQUIPAMENTO = ?");
-				
+
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setString(1, computador.getTipoComputador());
 				statement.setInt(2, idEquipamento);
 				statement.executeUpdate();
-				
+
 				resultset = statement.getGeneratedKeys();
-				if(resultset.first()) {
-					//commit da transacao
+				if (resultset.first()) {
+					// commit da transacao
 					valorDeRetorno = true;
 				}
-				//else
-					//rollback
+				// else
+				// rollback
 			}
-			//else
-				//rollback
-		
+			// else
+			// rollback
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
-		
+
 		return valorDeRetorno;
+	}
+
+	public List<String> listarTiposComputadores() throws PersistenciaException, SQLException {
+		StringBuilder sql = new StringBuilder();
+		Connection conexao = null;
+		List<String> listaTipos = new ArrayList<String>();
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			sql.append("SELECT DISTINCT(TIPO_COMPUTADOR)");
+			sql.append(" FROM TB_COMPUTADOR WHERE 1=1");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				String nome = resultset.getString("TIPO_COMPUTADOR");
+				listaTipos.add(nome);
+			}
+
+			return listaTipos;
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
 	}
 
 }
