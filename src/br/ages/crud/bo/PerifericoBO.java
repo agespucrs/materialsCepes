@@ -11,11 +11,11 @@ import br.ages.crud.model.Periferico;
 
 public class PerifericoBO {
 	PerifericoDAO perifericoDAO = null;
-	
+
 	public PerifericoBO() {
 		perifericoDAO = new PerifericoDAO();
 	}
-	
+
 	public boolean cadastraPeriferico(Periferico periferico) throws NegocioException, SQLException, ParseException {
 		try {
 			return perifericoDAO.cadastrarPeriferico(periferico);
@@ -23,7 +23,7 @@ public class PerifericoBO {
 			throw new NegocioException(e);
 		}
 	}
-	
+
 	public List<Periferico> listarPeriferico() throws NegocioException {
 		List<Periferico> listPeriferico = null;
 		try {
@@ -34,10 +34,20 @@ public class PerifericoBO {
 		}
 		return listPeriferico;
 	}
-	
+
 	public void alterarPeriferico(Periferico periferico) throws NegocioException, SQLException, ParseException {
 		try {
 			perifericoDAO.alterarPeriferico(periferico);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
+
+	public List<String> listarTiposPerifericos() throws NegocioException {
+
+		try {
+			return perifericoDAO.listarTiposPerifericos();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
