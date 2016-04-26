@@ -168,13 +168,15 @@ if(Id_Mobile is not null, Tipo_Mobile,
 --
 EQUIP.Id_Equipamento,
 --
-Id_Computador, Id_Periferico, Id_Mobile, N_Patrimonio, Data_Cadastro, Valor_Aquisicao, MAR.Nome, Modelo, EQUIP.Ativo
+Id_Computador, Id_Periferico, Id_Mobile, N_Patrimonio, EQUIP.Data_Cadastro, Valor_Aquisicao, MAR.Nome, Modelo, 
+EQUIP.Ativo, Observacao, Nome_Projeto
 FROM 
 TB_EQUIPAMENTOS as EQUIP
 left join TB_COMPUTADOR as COMP on COMP.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
 left join TB_PERIFERICO as PERIF on PERIF.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
 left join TB_MOBILE AS MOB on MOB.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
-inner join TB_MARCA as MAR on MAR.ID_MARCA = EQUIP.ID_MARCA;
+inner join TB_MARCA as MAR on MAR.ID_MARCA = EQUIP.ID_MARCA
+inner join TB_PROJETOS as PROJ on PROJ.ID_PROJETO = EQUIP.ID_PROJETO;
 
 
 
