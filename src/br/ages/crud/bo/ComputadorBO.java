@@ -11,11 +11,11 @@ import br.ages.crud.model.Computador;
 
 public class ComputadorBO {
 	ComputadorDAO computadorDAO = null;
-	
+
 	public ComputadorBO() {
 		computadorDAO = new ComputadorDAO();
 	}
-	
+
 	public boolean cadastraComputador(Computador computador) throws NegocioException, SQLException, ParseException {
 		try {
 			return computadorDAO.cadastrarComputador(computador);
@@ -24,7 +24,7 @@ public class ComputadorBO {
 			throw new NegocioException(e);
 		}
 	}
-	
+
 	public List<Computador> listarComputador() throws NegocioException {
 		List<Computador> listComputador = null;
 		try {
@@ -35,10 +35,20 @@ public class ComputadorBO {
 		}
 		return listComputador;
 	}
-	
+
 	public void alterarComputador(Computador computador) throws NegocioException, SQLException, ParseException {
 		try {
 			computadorDAO.alterarComputador(computador);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
+
+	public List<String> listarTiposComputadores() throws NegocioException {
+
+		try {
+			return computadorDAO.listarTiposComputadores();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);

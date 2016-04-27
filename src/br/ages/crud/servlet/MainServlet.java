@@ -18,6 +18,7 @@ import br.ages.crud.command.AddLivroCommand;
 import br.ages.crud.command.AddUserCommand;
 import br.ages.crud.command.AlterAutorCommand;
 import br.ages.crud.command.AlterEditoraCommand;
+import br.ages.crud.command.AlterEquipamentoCommand;
 import br.ages.crud.command.AlterLivroCommand;
 import br.ages.crud.command.AlterMarcaCommand;
 import br.ages.crud.command.AlterUserCommand;
@@ -97,7 +98,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
 		// comandos.put("consultarEquipamento", new
 		// ConsultarEquipamentoCommand());
-		// comandos.put("alterEquipamento", new AlterEquipamentoCommand());
+		comandos.put("alterEquipamento", new AlterEquipamentoCommand());
 
 		// MARCA
 		comandos.put("addMarca", new AddMarcaCommand());

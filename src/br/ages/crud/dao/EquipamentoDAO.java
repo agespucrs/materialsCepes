@@ -105,5 +105,48 @@ public class EquipamentoDAO {
 				conexao.close();
 			}
 		}
+
+		public Equipamento consultarEquipamento(Integer idEquipamento) throws PersistenciaException, SQLException {
+			Connection conexao = null;
+			Equipamento equipamentoAtual = null;
+			try {
+				conexao = ConexaoUtil.getConexao();
+
+				StringBuilder sql = new StringBuilder();
+				sql.append("SELECT * FROM VW_EQUIPAMENTOS where Id_Equipamento=?");
+
+				PreparedStatement statement = conexao.prepareStatement(sql.toString());
+				statement.setInt(1, idEquipamento);
+				ResultSet resultset = statement.executeQuery();
+
+				while (resultset.next()) {
+					equipamentoAtual = new Equipamento();
+					equipamentoAtual.setId(resultset.getInt("Id_Equipamento"));
+					equipamentoAtual.setNumeroPatrimonio(resultset.getInt("N_PATRIMONIO"));
+					
+					//Vinicius: aguardando resultado da discussao com Jean e Joao
+					//equipamentoAtual.setStatus(resultset.getInt("Status"));
+					//equipamentoAtual.setAtivo(resultset.getString("Nome"));
+					
+					equipamentoAtual.setModelo(resultset.getString("Modelo"));
+					equipamentoAtual.setValor(resultset.getDouble("Valor_Aquisicao"));
+					equipamentoAtual.setDataCadastro(resultset.getDate("Data_Cadastro"));
+					equipamentoAtual.setObservacoes(resultset.getString("Observacao"));
+					
+					
+					equipamentoAtual.setMarca(resultset.getString("Nome"));
+					equipamentoAtual.setProjeto(resultset.getString("Nome_Projeto"));
+					
+					
+					equipamentoAtual.setTipoEquipamento(resultset.getString("Tipo_Equipamento"));
+					equipamentoAtual.setSubTipo(resultset.getString("Sub_Tipo"));
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				throw new PersistenciaException(e);
+			} finally {
+				conexao.close();
+			}
+			return equipamentoAtual;
+		}
 }
 
