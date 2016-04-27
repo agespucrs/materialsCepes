@@ -19,7 +19,6 @@ import br.ages.crud.util.ConexaoUtil;
 import br.ages.crud.util.MensagemContantes;
 
 import com.mysql.jdbc.Statement;
-import com.sun.javafx.geom.transform.GeneralTransform3D;
 
 public class LivroDAO {
 
