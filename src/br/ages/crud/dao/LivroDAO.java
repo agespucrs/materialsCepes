@@ -32,8 +32,7 @@ public class LivroDAO {
 		listarLivros = new ArrayList<>();
 	}
 
-	public boolean cadastrarLivro(Livro livro) throws PersistenciaException,
-			SQLException, ParseException {
+	public boolean cadastrarLivro(Livro livro) throws PersistenciaException, SQLException, ParseException {
 
 		Connection conexao = null;
 		try {
@@ -49,24 +48,12 @@ public class LivroDAO {
 
 			if (consultaCodigoISBNExistente(livro, conexao)) {
 
-				sql.append("UPDATE TB_LIVRO "
-						+ " SET TITULO = ?,"
-						+ " SUBTITULO = ?,"
-						+ " PRECO = ?," 
-						+ " CODIGO_ISBN = ?,"
-						+ " EDICAO = ?,"
-						+ " ANO = ?," 
-						+ " PAGINAS = ?," 
-						+ " VIDEO = ?,"
-						+ " CD_DVD = ?,"
-						+ " E_BOOK = ?," 
-						+ " BROCHURA = ?,"
-						+ " DESCRICAO = ?,"
-						+ " REVISTA = ?,"
+				sql.append("UPDATE TB_LIVRO " + " SET TITULO = ?," + " SUBTITULO = ?," + " PRECO = ?,"
+						+ " CODIGO_ISBN = ?," + " EDICAO = ?," + " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?,"
+						+ " CD_DVD = ?," + " E_BOOK = ?," + " BROCHURA = ?," + " DESCRICAO = ?," + " REVISTA = ?,"
 						+ " WHERE CODIGO_ISBN = ?");
 
-				PreparedStatement statement = conexao.prepareStatement(sql
-						.toString());
+				PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
 				if (livroEstaExcluido(livro, conexao)) {
 					statement.setString(1, livro.getTitulo());
@@ -74,7 +61,7 @@ public class LivroDAO {
 					statement.setLong(3, livro.getPreco());
 					statement.setString(4, livro.getCodigoISBN());
 					statement.setInt(5, livro.getEdicao());
-					statement.setInt(6,  livro.getAno());
+					statement.setInt(6, livro.getAno());
 					statement.setInt(7, livro.getPaginas());
 					statement.setBoolean(8, livro.isVideo());
 					statement.setBoolean(9, livro.isCd_dvd());
@@ -82,8 +69,10 @@ public class LivroDAO {
 					statement.setBoolean(11, livro.getBrochura());
 					statement.setString(12, livro.getDescricao());
 					statement.setBoolean(13, livro.getRevista());
-					/**statement.setBoolean(15, false);
-					statement.setInt(16, livro.getIdLivro());*/
+					/**
+					 * statement.setBoolean(15, false); statement.setInt(16,
+					 * livro.getIdLivro());
+					 */
 
 					statement.executeUpdate();
 
@@ -93,11 +82,11 @@ public class LivroDAO {
 				}
 				// END TO DO
 			} else {
-				sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, ID_IDIOMA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA)");
+				sql.append(
+						"INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, ID_IDIOMA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA)");
 				sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-				PreparedStatement statement = conexao.prepareStatement(
-						sql.toString(), Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setString(1, livro.getTitulo());
 				statement.setString(2, livro.getSubtitulo());
 				statement.setDate(3, dataCadastro);
@@ -139,8 +128,7 @@ public class LivroDAO {
 		}
 	}
 
-	private boolean consultaCodigoISBNExistente(Livro livro, Connection conexao)
-			throws SQLException {
+	private boolean consultaCodigoISBNExistente(Livro livro, Connection conexao) throws SQLException {
 		Integer codISBN = null;
 
 		Livro livroISBNExistente = new Livro();
@@ -163,8 +151,7 @@ public class LivroDAO {
 		return true;
 	}
 
-	private boolean livroEstaExcluido(Livro livro, Connection conexao)
-			throws SQLException {
+	private boolean livroEstaExcluido(Livro livro, Connection conexao) throws SQLException {
 
 		Integer excluido = 0;
 
@@ -186,22 +173,55 @@ public class LivroDAO {
 		return true;
 	}
 
-	private void cadastraAutoresLivros(int IdLivro,
-			ArrayList<Integer> idAutores, Connection conexao)
+	private void cadastraAutoresLivros(int IdLivro, ArrayList<Integer> idAutores, Connection conexao)
 			throws SQLException {
 		for (Integer idAutor : idAutores) {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO TB_LIVRO_AUTOR (ID_LIVRO, ID_AUTOR) VALUES (?,?)");
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, IdLivro);
 			statement.setInt(2, idAutor);
 			statement.executeUpdate();
 		}
 	}
 
-	public List<Livro> listarLivros() throws PersistenciaException,
-			SQLException, NegocioException, ParseException {
+	private List<Autor> consultarAutoresLivro(int idLivro) throws PersistenciaException, SQLException {
+		List<Autor> lista = new ArrayList<Autor>();
+		Connection conexao = null;
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+
+			sql.append("SELECT AUT.NOME as NOME, AUT.SOBRENOME as SOBRENOME FROM TB_AUTOR AUT, ");
+			sql.append("TB_LIVRO_AUTOR LIV ");
+			sql.append("WHERE AUT.ID_AUTOR = LIV.ID_AUTOR AND ");
+			sql.append("LIV.ID_LIVRO = ? ");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			statement.setInt(1, idLivro);
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				Autor dto = new Autor();
+				dto.setNome(resultset.getString("NOME"));
+				dto.setSobrenome(resultset.getString("SOBRENOME"));
+				lista.add(dto);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+		return lista;
+	}
+
+	public List<Livro> listarLivros() throws PersistenciaException, SQLException, NegocioException, ParseException {
 
 		Connection conexao = null;
 
@@ -214,11 +234,9 @@ public class LivroDAO {
 			sql.append("E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA ");
 			sql.append("FROM TB_LIVRO");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
 			ResultSet resultset = statement.executeQuery();
-
 
 			while (resultset.next()) {
 				if (!resultset.getBoolean("EXCLUIDO")) {
@@ -241,6 +259,7 @@ public class LivroDAO {
 					dto.setBrochura(resultset.getBoolean("BROCHURA"));
 					dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
 					dto.setRevista(resultset.getBoolean("REVISTA"));
+					dto.setAutores(consultarAutoresLivro(dto.getIdLivro()));
 					listarLivros.add(dto);
 				}
 			}
@@ -253,8 +272,8 @@ public class LivroDAO {
 		return listarLivros;
 	}
 
-	public Livro consultarLivro(Integer idLivro) throws PersistenciaException,
-			SQLException, NegocioException, ParseException {
+	public Livro consultarLivro(Integer idLivro)
+			throws PersistenciaException, SQLException, NegocioException, ParseException {
 
 		Connection conexao = null;
 
@@ -265,8 +284,7 @@ public class LivroDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_LIVRO WHERE ID_LIVRO = ? ");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
 			ResultSet resultset = statement.executeQuery();
 
@@ -288,8 +306,7 @@ public class LivroDAO {
 				dto.setE_book(resultset.getBoolean("E_BOOK"));
 				dto.setBrochura(resultset.getBoolean("BROCHURA"));
 				dto.setDescricao(resultset.getString("DESCRICAO"));
-				dto.setEditora(editora.consultarEditora(resultset
-						.getInt("ID_EDITORA")));
+				dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
 				dto.setExcluido(resultset.getBoolean("EXCLUIDO"));
 				dto.setRevista(resultset.getBoolean("REVISTA"));
 				dto.setAutores(consultarAutoresLivros(idLivro, conexao));
@@ -304,8 +321,7 @@ public class LivroDAO {
 		return consultarLivro;
 	}
 
-	private ArrayList<Autor> consultarAutoresLivros(Integer IdLivro,
-			Connection conexao) throws SQLException {
+	private ArrayList<Autor> consultarAutoresLivros(Integer IdLivro, Connection conexao) throws SQLException {
 		ArrayList<Integer> listaIdAutor = new ArrayList<Integer>();
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT ID_AUTOR FROM TB_LIVRO_AUTOR WHERE ID_LIVRO = ?");
@@ -318,15 +334,13 @@ public class LivroDAO {
 		return consultarAutores(listaIdAutor, conexao);
 	}
 
-	private ArrayList<Autor> consultarAutores(ArrayList<Integer> idAutores,
-			Connection conexao) throws SQLException {
+	private ArrayList<Autor> consultarAutores(ArrayList<Integer> idAutores, Connection conexao) throws SQLException {
 		ArrayList<Autor> listaAutores = new ArrayList<Autor>();
 		for (Integer idAutor : idAutores) {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_AUTOR WHERE ID_AUTOR = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idAutor);
 
 			ResultSet resultset = statement.executeQuery();
@@ -341,30 +355,27 @@ public class LivroDAO {
 		return listaAutores;
 	}
 
-	public void alterarLivro (Livro livro) throws PersistenciaException, SQLException, ParseException {
+	public void alterarLivro(Livro livro) throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
-		
+
 		try {
 
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			
-			//java.util.Date utilDate = new java.util.Date();
-			//java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
-					
-				
-			sql.append("UPDATE TB_LIVRO SET TITULO = ?,"
-					+ " SUBTITULO = ?,"
-					+ " PRECO = ?," + " LINGUA = ?," + " EDICAO = ?,"
-					+ " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?,"
-					+ " CD_DVD = ?," + " E_BOOK = ?," + " DESCRICAO = ?,"
-					+ " BROCHURA = ?," + " ID_EDITORA = ?,"
-					+ " EXCLUIDO = ?" + " REVISTA = ?" + " WHERE ID_LIVRO = ?");
+
+			// java.util.Date utilDate = new java.util.Date();
+			// java.sql.Date dataCadastro = new
+			// java.sql.Date(utilDate.getTime());
+
+			sql.append("UPDATE TB_LIVRO SET TITULO = ?," + " SUBTITULO = ?," + " PRECO = ?," + " LINGUA = ?,"
+					+ " EDICAO = ?," + " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?," + " CD_DVD = ?," + " E_BOOK = ?,"
+					+ " DESCRICAO = ?," + " BROCHURA = ?," + " ID_EDITORA = ?," + " EXCLUIDO = ?" + " REVISTA = ?"
+					+ " WHERE ID_LIVRO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, livro.getTitulo());
 			statement.setString(2, livro.getSubtitulo());
-			//statement.setDate(3, dataCadastro);
+			// statement.setDate(3, dataCadastro);
 			statement.setLong(3, livro.getPreco());
 			statement.setInt(4, livro.getLingua());
 			statement.setInt(5, livro.getEdicao());
@@ -381,7 +392,7 @@ public class LivroDAO {
 			statement.setInt(16, livro.getIdLivro());
 
 			statement.executeUpdate();
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
@@ -397,8 +408,7 @@ public class LivroDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE TB_LIVRO SET EXCLUIDO='1' WHERE ID_LIVRO = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
 			statement.execute();
 
