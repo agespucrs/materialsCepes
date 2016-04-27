@@ -41,7 +41,7 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Remover Marca</h4>
 					</div>
-					<div class="modal-body">Tem certeza que deseja remover a Marca?</div>
+					<div class="modal-body">Tem certeza que deseja remover esta marca?</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
 						<a id="botaoRemoverMarca" href="#"><button type="button" class="btn btn-primary">Sim</button></a>

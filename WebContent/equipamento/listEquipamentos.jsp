@@ -52,9 +52,12 @@
 						</td>
 						<td align="right"><%= equipamento.getValor() %></td>
 						<td><b><%= equipamento.getSubTipo() + " " %></b><%= equipamento.getMarca() + " - " + equipamento.getModelo() %></td>
-
-						<td align="center"> 
-							<a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+						<td align="center">
+							<a href="main?acao=alterEquipamento&id_equipamento=<%= equipamento.getId() %>" >
+								<button type="button" class="btn btn-xs btn-info" >
+									<span class="glyphicon glyphicon-pencil"></span>
+								</button>
+							</a>
 						</td>
 						<td align="center">
 							<a class="removerEquipamento" href="#" data-toggle="modal" data-id="<%= equipamento.getId() %>" data-target="#myModal">
@@ -87,7 +90,7 @@
 				</button>
 				<h4 class="modal-title" id="myModalLabel">Remover Equipamento</h4>
 			</div>
-			<div class="modal-body">Tem certeza que deseja remover o Equipamento?</div>
+			<div class="modal-body">Tem certeza que deseja remover este equipamento?</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
 				<a id="botaoRemover" href="#"><button type="button" class="btn btn-primary">Sim</button></a>
@@ -112,7 +115,7 @@ $(document).ready(function(){
             "zeroRecords": "Sem registros",
             "info": "Mostrando _PAGE_ de _PAGES_ páginas",
             "infoEmpty": "Nenhum registros encontrados!",
-            "infoFiltered": "(Filtrado _MAX_ do total deregistros)",
+            "infoFiltered": "(Filtrado _MAX_ do total de registros)",
             "search":"Busca",
            	"paginate": {
                 "first":      "Primeiro",
