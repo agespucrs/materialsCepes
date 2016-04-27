@@ -72,7 +72,7 @@ public class MarcaDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_MARCA WHERE ATIVO = 'S'");
+			sql.append("SELECT * FROM TB_MARCA WHERE STATUS = 1");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
@@ -111,7 +111,7 @@ public class MarcaDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE TB_MARCA SET ATIVO = 'N' WHERE ID_MARCA=?");
+			sql.append("UPDATE TB_MARCA SET STATUS = 0 WHERE ID_MARCA=?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, id);

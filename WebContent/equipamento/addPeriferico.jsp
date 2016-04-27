@@ -1,6 +1,6 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
-<%@page import="br.ages.crud.model.Editora"%>
+<%@page import="br.ages.crud.model.Periferico"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <jsp:include page="/template/head.jsp"></jsp:include>
