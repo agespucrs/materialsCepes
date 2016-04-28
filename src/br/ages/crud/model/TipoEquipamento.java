@@ -1,9 +1,9 @@
 package br.ages.crud.model;
 
 public enum TipoEquipamento {
-    COMPUTADOR("c"),
-    PERIFERICO("p"),
-    DISPOSITIVO_MOVEL("m");
+    COMPUTADOR("C"),
+    PERIFERICO("P"),
+    DISPOSITIVO_MOVEL("P");
 	
     private String valor;
 
