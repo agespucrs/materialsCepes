@@ -1,20 +1,11 @@
--- NOVA TABELA TB_TIPO
--- ID_TIPO int
--- IDENT_TIPO varchar(1) = 'C' - Computador, 'M' - Mobile, 'P' - Periferico
--- NOME varchar(255)
+/**
+ * Projeto CePESMaterials
+ * Script de criação de banco de dados
+ * Criação: 09/09/2015 - Cassio
+ */
 
-use cepes_e;
-
-/***
-* Scripts para criaacao e insersao de dados
-* Base de Dados do CePES Material 
-* Casssio Trindade
-* 09/09/2015
-***/
 
 USE cepes_e;
-
--- Tabelas
 
 CREATE TABLE TB_FUNCAO (
   ID_FUNCAO int(11) NOT NULL AUTO_INCREMENT,
@@ -163,97 +154,13 @@ CREATE TABLE TB_PERIFERICO (
   CONSTRAINT `FK_ID_EQUIP_PERI` FOREIGN KEY (`ID_EQUIPAMENTO`) REFERENCES `TB_EQUIPAMENTOS` (`ID_EQUIPAMENTO`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-/* SCRIPTS DE INSERCAO PRA FACILITAR TESTES */
-INSERT INTO TB_FUNCAO
-(ID_FUNCAO, NOME, DESCRICAO)
-VALUES
-('1', 'PROF', 'PROF DA PUC');
-
-INSERT INTO TB_USUARIO
-(ID_USUARIO,USUARIO,SENHA,ADMINISTRADOR,MATRICULA,NOME,EMAIL,DATA_CADASTRO, ID_FUNCAO, CPF)
-VALUES
-('10', 'admin', 'admin', '1', '00000', 'Cassio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00', '1', '12345789999');
-
-INSERT INTO TB_IDIOMA
-(ID_IDIOMA, PAIS, NOME)
-VALUES
-(1, 'BRASIL', 'PORTUGUES');
-
-INSERT INTO TB_AUTOR
-(ID_AUTOR,NOME,SOBRENOME)
-VALUES
-( 1, 'Paulo', 'Coelho');
-
-INSERT INTO TB_EDITORA
-(ID_EDITORA,NOME)
-VALUES
-( 1, 'Abril');
-
-INSERT INTO TB_EDITORA
-(ID_EDITORA,NOME)
-VALUES
-( 2, 'Saraiva');
-
-INSERT INTO TB_LIVRO
-(ID_LIVRO,TITULO,SUBTITULO,DATA_CADASTRO,ID_IDIOMA,CODIGO_ISBN,EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA)
-VALUES
-( 1, 'A arte da guerra', '--', '2015-10-01 00:00:00', 1, 111111111111, 1, 1990, 100, 1, 0, 1, 1, 'NOVO LIVRO', 2, 0, 0);
-
-INSERT INTO TB_LIVRO_AUTOR
-(ID_LIVRO,ID_AUTOR)
-VALUES
-(1, 1);
-
-INSERT INTO TB_LIVRO_AUTOR
-(ID_LIVRO,ID_AUTOR)
-VALUES
-(1, 1);
-
-INSERT INTO TB_MARCA
-(ID_MARCA, NOME)
-VALUES
-(1, 'SAMSUNG');
-
-insert into TB_PROJETOS
-(Id_Projeto, Nome_Projeto, Programa, Origem, Data_Cadastro, Id_Cordenador)
-values
-(1, "Projeto Teste", "Desenvolvimento AGES", "TESTES", "2016-04-05", 10);
-
-insert into TB_EQUIPAMENTOS
-(Id_Equipamento, N_Patrimonio, Status, Modelo, 
-Valor_Aquisicao, Data_Cadastro, Observacao, Id_Marca, Id_Projeto)
-VALUES
-(1, 123, 1, "Inspiron 15R", 
-2500, '2016-04-05', "Observacao 1", 1, 1);
-
-insert into TB_EQUIPAMENTOS
-(Id_Equipamento, N_Patrimonio, Status, Modelo, 
-Valor_Aquisicao, Data_Cadastro, Observacao, Id_Marca, Id_Projeto)
-VALUES
-(2, 456, 1, "HP", 
-1000, '2016-04-05', "Observacao 2", 1, 1);
-
-insert into TB_EQUIPAMENTOS
-(Id_Equipamento, N_Patrimonio, Status, Modelo, 
-Valor_Aquisicao, Data_Cadastro, Observacao, Id_Marca, Id_Projeto)
-VALUES
-(3, 789, 1, "Galaxy", 
-750, '2016-04-05', "Observacao 3", 1, 1);
-
-/*Eduardo - Exclusao logica de marca.*/
-
 ALTER TABLE TB_MARCA
 ADD ATIVO varchar(1) DEFAULT 'S' NOT NULL;
-
-/*Luis, Vini - Exclusao logica de Equipamento.*/
 
 ALTER TABLE TB_EQUIPAMENTOS
 ADD ATIVO varchar(1) DEFAULT 'S' NOT NULL;
 
-/* Criação da tabela de tipos. Karéu e IBM
-*/
-create table TB_TIPO(
+CREATE TABLE TB_TIPO(
 ID_TIPO INT(11) NOT NULL AUTO_INCREMENT,
 IDENT_TIPO VARCHAR(1),
 NOME VARCHAR(255),
