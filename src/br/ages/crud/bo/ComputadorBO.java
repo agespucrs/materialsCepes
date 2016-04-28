@@ -44,14 +44,5 @@ public class ComputadorBO {
 			throw new NegocioException(e);
 		}
 	}
-
-	public List<String> listarTiposComputadores() throws NegocioException {
-
-		try {
-			return computadorDAO.listarTiposComputadores();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new NegocioException(e);
-		}
-	}
+	
 }

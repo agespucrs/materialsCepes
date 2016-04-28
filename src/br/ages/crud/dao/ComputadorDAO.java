@@ -155,33 +155,4 @@ public class ComputadorDAO {
 		return valorDeRetorno;
 	}
 
-	public List<String> listarTiposComputadores() throws PersistenciaException, SQLException {
-		StringBuilder sql = new StringBuilder();
-		Connection conexao = null;
-		List<String> listaTipos = new ArrayList<String>();
-
-		try {
-			conexao = ConexaoUtil.getConexao();
-
-			sql.append("SELECT DISTINCT(TIPO_COMPUTADOR)");
-			sql.append(" FROM TB_COMPUTADOR WHERE 1=1");
-
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
-
-			ResultSet resultset = statement.executeQuery();
-
-			while (resultset.next()) {
-				String nome = resultset.getString("TIPO_COMPUTADOR");
-				listaTipos.add(nome);
-			}
-
-			return listaTipos;
-		} catch (ClassNotFoundException | SQLException e) {
-			throw new PersistenciaException(e);
-		} finally {
-			conexao.close();
-		}
-
-	}
-
 }

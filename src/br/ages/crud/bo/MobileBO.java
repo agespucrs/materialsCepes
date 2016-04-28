@@ -13,14 +13,4 @@ public class MobileBO {
 		mobileDAO = new MobileDAO();
 	}
 
-	public List<String> listarTiposMobile() throws NegocioException {
-
-		try {
-			return mobileDAO.listarTiposMobile();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new NegocioException(e);
-		}
-	}
-
 }

@@ -44,13 +44,4 @@ public class PerifericoBO {
 		}
 	}
 
-	public List<String> listarTiposPerifericos() throws NegocioException {
-
-		try {
-			return perifericoDAO.listarTiposPerifericos();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new NegocioException(e);
-		}
-	}
 }
