@@ -1,3 +1,10 @@
+-- NOVA TABELA TB_TIPO
+-- ID_TIPO int
+-- IDENT_TIPO varchar(1) = 'C' - Computador, 'M' - Mobile, 'P' - Periferico
+-- NOME varchar(255)
+
+use cepes_e;
+
 /***
 * Scripts para criaacao e insersao de dados
 * Base de Dados do CePES Material 
@@ -156,29 +163,6 @@ CREATE TABLE TB_PERIFERICO (
   CONSTRAINT `FK_ID_EQUIP_PERI` FOREIGN KEY (`ID_EQUIPAMENTO`) REFERENCES `TB_EQUIPAMENTOS` (`ID_EQUIPAMENTO`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE OR REPLACE VIEW VW_EQUIPAMENTOS AS
-SELECT 
-if(Id_Mobile is not null, 'Dispositivo Movel', 
-  if(Id_Computador is not null, 'Computador', 'Periferico')
-) as Tipo_Equipamento,
---
-if(Id_Mobile is not null, Tipo_Mobile, 
-  if(Id_Computador is not null, TIPO_COMPUTADOR, TIPO_PERIFERICO)
-) as Sub_Tipo,
---
-EQUIP.Id_Equipamento,
---
-Id_Computador, Id_Periferico, Id_Mobile, N_Patrimonio, EQUIP.Data_Cadastro, Valor_Aquisicao, MAR.Nome, Modelo, 
-EQUIP.Ativo, Observacao, Nome_Projeto
-FROM 
-TB_EQUIPAMENTOS as EQUIP
-left join TB_COMPUTADOR as COMP on COMP.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
-left join TB_PERIFERICO as PERIF on PERIF.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
-left join TB_MOBILE AS MOB on MOB.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
-inner join TB_MARCA as MAR on MAR.ID_MARCA = EQUIP.ID_MARCA
-inner join TB_PROJETOS as PROJ on PROJ.ID_PROJETO = EQUIP.ID_PROJETO;
-
-
 
 /* SCRIPTS DE INSERCAO PRA FACILITAR TESTES */
 INSERT INTO TB_FUNCAO
@@ -257,21 +241,6 @@ VALUES
 (3, 789, 1, "Galaxy", 
 750, '2016-04-05', "Observacao 3", 1, 1);
 
-insert into TB_COMPUTADOR
-(Id_Computador, Tipo_Computador, Id_Equipamento)
-values
-(1, "Notebook", 1);
-
-insert into TB_PERIFERICO
-(Id_Periferico, Tipo_Periferico, Id_Equipamento)
-values
-(1, "Impressora", 2);
-
-insert into TB_MOBILE
-(Id_Mobile, Tipo_Mobile, Id_Equipamento)
-values
-(1, "Celular", 3);
-
 /*Eduardo - Exclusao logica de marca.*/
 
 ALTER TABLE TB_MARCA
@@ -285,8 +254,62 @@ ADD ATIVO varchar(1) DEFAULT 'S' NOT NULL;
 /* Criação da tabela de tipos. Karéu e IBM
 */
 create table TB_TIPO(
-ID_TIPO INT(11) NOT NULL,
+ID_TIPO INT(11) NOT NULL AUTO_INCREMENT,
 IDENT_TIPO VARCHAR(1),
 NOME VARCHAR(255),
 PRIMARY KEY (ID_TIPO)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;   
+
+ALTER TABLE TB_PERIFERICO MODIFY COLUMN TIPO_PERIFERICO INT (11) NOT NULL;
+
+ALTER TABLE TB_COMPUTADOR MODIFY COLUMN TIPO_COMPUTADOR INT (11) NOT NULL;
+
+ALTER TABLE TB_MOBILE MODIFY COLUMN TIPO_MOBILE INT(11) NOT NULL;
+
+ALTER TABLE TB_PERIFERICO CHANGE TIPO_PERIFERICO ID_TIPO INT(11) NOT NULL;
+
+ALTER TABLE TB_COMPUTADOR CHANGE TIPO_COMPUTADOR ID_TIPO INT(11) NOT NULL;
+
+ALTER TABLE TB_MOBILE CHANGE TIPO_MOBILE ID_TIPO INT(11) NOT NULL;
+
+ALTER TABLE TB_PERIFERICO
+ADD CONSTRAINT fk_PerTip
+FOREIGN KEY (ID_TIPO)
+REFERENCES TB_TIPO(ID_TIPO);
+
+ALTER TABLE TB_MOBILE
+ADD CONSTRAINT fk_MobTip
+FOREIGN KEY (ID_TIPO)
+REFERENCES TB_TIPO(ID_TIPO);
+
+ALTER TABLE TB_COMPUTADOR
+ADD CONSTRAINT fk_ComTip
+FOREIGN KEY (ID_TIPO)
+REFERENCES TB_TIPO(ID_TIPO);
+
+
+/**
+ * NECESSARIO FAZER MANUTENÇÃO NA VIEW DEVIDO A MELHORA NA TABELA DE COMPUTADOR, MOBILE E PERIFERICO
+ * QUALQUER COISA EU ALTERO... EDUARDO
+ */
+CREATE OR REPLACE VIEW VW_EQUIPAMENTOS AS
+SELECT 
+if(Id_Mobile is not null, 'Dispositivo Movel', 
+  if(Id_Computador is not null, 'Computador', 'Periferico')
+) as Tipo_Equipamento,
+--
+if(Id_Mobile is not null, Tipo_Mobile, 
+  if(Id_Computador is not null, TIPO_COMPUTADOR, TIPO_PERIFERICO)
+) as Sub_Tipo,
+--
+EQUIP.Id_Equipamento,
+--
+Id_Computador, Id_Periferico, Id_Mobile, N_Patrimonio, EQUIP.Data_Cadastro, Valor_Aquisicao, MAR.Nome, Modelo, 
+EQUIP.Ativo, Observacao, Nome_Projeto
+FROM 
+TB_EQUIPAMENTOS as EQUIP
+left join TB_COMPUTADOR as COMP on COMP.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
+left join TB_PERIFERICO as PERIF on PERIF.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
+left join TB_MOBILE AS MOB on MOB.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
+inner join TB_MARCA as MAR on MAR.ID_MARCA = EQUIP.ID_MARCA
+inner join TB_PROJETOS as PROJ on PROJ.ID_PROJETO = EQUIP.ID_PROJETO;
