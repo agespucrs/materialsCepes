@@ -32,7 +32,7 @@ public class EquipamentoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM VW_EQUIPAMENTOS where Ativo='S'");
+			sql.append("SELECT * FROM VW_EQUIPAMENTOS where Status=1");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
@@ -64,7 +64,7 @@ public class EquipamentoDAO {
 			conexao = ConexaoUtil.getConexao();
 	
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE TB_EQUIPAMENTOS SET ATIVO = 'N' WHERE ID_EQUIPAMENTO=?");
+			sql.append("UPDATE TB_EQUIPAMENTOS SET Status = 0 WHERE ID_EQUIPAMENTO=?");
 	
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, id);
@@ -124,9 +124,7 @@ public class EquipamentoDAO {
 					equipamentoAtual.setId(resultset.getInt("Id_Equipamento"));
 					equipamentoAtual.setNumeroPatrimonio(resultset.getInt("N_PATRIMONIO"));
 					
-					//Vinicius: aguardando resultado da discussao com Jean e Joao
-					//equipamentoAtual.setStatus(resultset.getInt("Status"));
-					//equipamentoAtual.setAtivo(resultset.getString("Nome"));
+					equipamentoAtual.setStatus(resultset.getInt("Status"));
 					
 					equipamentoAtual.setModelo(resultset.getString("Modelo"));
 					equipamentoAtual.setValor(resultset.getDouble("Valor_Aquisicao"));

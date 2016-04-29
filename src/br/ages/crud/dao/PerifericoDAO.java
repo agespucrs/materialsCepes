@@ -36,7 +36,7 @@ public class PerifericoDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, periferico.getNumeroPatrimonio());
-			statement.setString(2, periferico.getStatus());
+			statement.setInt(2, periferico.getStatus());
 			statement.setString(3, periferico.getModelo());
 			statement.setDouble(4, periferico.getValor());
 			statement.setDate(5, (Date) periferico.getDataCadastro());
@@ -110,7 +110,7 @@ public class PerifericoDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, periferico.getNumeroPatrimonio());
-			statement.setString(2, periferico.getStatus());
+			statement.setInt(2, periferico.getStatus());
 			statement.setString(3, periferico.getModelo());
 			statement.setDouble(4, periferico.getValor());
 			statement.setDate(5, (Date) periferico.getDataCadastro());

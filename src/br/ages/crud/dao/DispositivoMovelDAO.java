@@ -33,7 +33,7 @@ public class DispositivoMovelDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, dispositivoMovel.getNumeroPatrimonio());
-			statement.setString(2, dispositivoMovel.getStatus());
+			statement.setInt(2, dispositivoMovel.getStatus());
 			statement.setString(3, dispositivoMovel.getModelo());
 			statement.setDouble(4, dispositivoMovel.getValor());
 			statement.setDate(5, (Date) dispositivoMovel.getDataCadastro());
@@ -107,7 +107,7 @@ public class DispositivoMovelDAO {
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, dispositivoMovel.getNumeroPatrimonio());
-			statement.setString(2, dispositivoMovel.getStatus());
+			statement.setInt(2, dispositivoMovel.getStatus());
 			statement.setString(3, dispositivoMovel.getModelo());
 			statement.setDouble(4, dispositivoMovel.getValor());
 			statement.setDate(5, (Date) dispositivoMovel.getDataCadastro());

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Equipamento {
 	int id;
 	int numeroPatrimonio;
-	String status;
+	int status;
 	String tipoEquipamento;
 	String subTipo;
 	String marca;
@@ -31,12 +31,12 @@ public class Equipamento {
 		this.numeroPatrimonio = numeroPatrimonio;
 	}
 	
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 	
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(int i) {
+		this.status = i;
 	}
 	
 	public String getTipoEquipamento() {

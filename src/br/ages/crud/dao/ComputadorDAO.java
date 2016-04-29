@@ -37,7 +37,7 @@ public class ComputadorDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, computador.getNumeroPatrimonio());
-			statement.setString(2, computador.getStatus());
+			statement.setInt(2, computador.getStatus());
 			statement.setString(3, computador.getModelo());
 			statement.setDouble(4, computador.getValor());
 			statement.setDate(5, (Date) computador.getDataCadastro());
@@ -111,7 +111,7 @@ public class ComputadorDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, computador.getNumeroPatrimonio());
-			statement.setString(2, computador.getStatus());
+			statement.setInt(2, computador.getStatus());
 			statement.setString(3, computador.getModelo());
 			statement.setDouble(4, computador.getValor());
 			statement.setDate(5, (Date) computador.getDataCadastro());

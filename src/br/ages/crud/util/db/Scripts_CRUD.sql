@@ -206,7 +206,7 @@ if(Id_Mobile is not null, Tipo_Mobile,
 EQUIP.Id_Equipamento,
 --
 Id_Computador, Id_Periferico, Id_Mobile, N_Patrimonio, EQUIP.Data_Cadastro, Valor_Aquisicao, MAR.Nome, Modelo, 
-EQUIP.Ativo, Observacao, Nome_Projeto
+EQUIP.Status, Observacao, Nome_Projeto
 FROM 
 TB_EQUIPAMENTOS as EQUIP
 left join TB_COMPUTADOR as COMP on COMP.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
@@ -216,10 +216,11 @@ inner join TB_MARCA as MAR on MAR.ID_MARCA = EQUIP.ID_MARCA
 inner join TB_PROJETOS as PROJ on PROJ.ID_PROJETO = EQUIP.ID_PROJETO;
 
 
-ALTER TABLE TB_TIPO
-ADD STATUS tinyint(1) default 1 NOT NULL;
+ALTER TABLE TB_TIPO ADD STATUS tinyint(1) default 1 NOT NULL;
 
-ALTER TABLE TB_MARCA CHANGE ATIVO STATUS tinyint(1) default 1 NOT NULL;
+ALTER TABLE TB_MARCA add STATUS tinyint(1) default 1 NOT NULL;
+update TB_MARCA set STATUS = 0 where ativo = 'N';
+ALTER TABLE TB_MARCA drop ativo;
 
 
 
