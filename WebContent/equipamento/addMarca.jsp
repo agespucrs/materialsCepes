@@ -41,24 +41,27 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Remover Marca</h4>
 					</div>
-					<div class="modal-body">Tem certeza que deseja remover esta marca?</div>
+					<div class="modal-body">Tem certeza que deseja remover esta
+						marca?</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-						<a id="botaoRemoverMarca" href="#"><button type="button" class="btn btn-primary">Sim</button></a>
+						<a id="botaoRemoverMarca" href="#"><button type="button"
+								class="btn btn-primary">Sim</button></a>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="table-responsive">
-			<table class="table table-hover table-striped table-bordered">
+			<table id="listaMarcas" class="table table-responsive table-striped table-hover table-condensed table-bordered">
 
 				<thead>
 					<tr>
 						<th style="text-align: center;"></th>
 						<th style="text-align: center;">ID</th>
 						<th style="text-align: center;">Marca</th>
-						<th colspan="2" style="text-align: center;">Ações</th>
+						<th data-sortable="false" style="text-align: center; width:10px"></th>
+						<th data-sortable="false" style="text-align: center; width:10px"></th>
 					</tr>
 				</thead>
 
@@ -79,10 +82,10 @@
 						<td align="center"><a href="#" id="alterar<%=marca.getId()%>"
 							onclick="alterarMarca(<%=marca.getId()%>)" title="Editar"> <i
 								class="glyphicon glyphicon-pencil"></i></a>
-						<td align="center"><a
-							href="#" class="removerMarca"
-							title="Deletar" data-id="<%=marca.getId()%>" data-nome="<%=marca.getNome()%>" data-toggle="modal" data-target="#myModal"> <i
-								class="glyphicon glyphicon-trash"></i></a></td>
+						<td align="center"><a href="#" class="removerMarca"
+							title="Deletar" data-id="<%=marca.getId()%>"
+							data-nome="<%=marca.getNome()%>" data-toggle="modal"
+							data-target="#myModal"> <i class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
 					<%
 						}
@@ -147,5 +150,22 @@ function alterarMarcaDois(idItem){
 <script>
 	$(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip();
+		
+		$('#listaMarcas').dataTable({
+		    "language": {
+		        "lengthMenu": "Mostrando _MENU_ registros por página",
+		        "zeroRecords": "Sem registros",
+		        "info": "Mostrando _PAGE_ de _PAGES_ páginas",
+		        "infoEmpty": "Nenhum registros encontrados!",
+		        "infoFiltered": "(Filtrado _MAX_ do total de registros)",
+		        "search":"Busca",
+		       	"paginate": {
+		            "first":      "Primeiro",
+		            "last":       "Último",
+		            "next":       "Próximo",
+		            "previous":   "Anterior"
+		        }
+		    }
+		});
 	});
 </script>
