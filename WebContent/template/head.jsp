@@ -89,10 +89,10 @@
 							<li><a href="main?acao=telaEquipamento&tela=listEquipamento">Listar</a></li>
 							<li><a href="main?acao=telaEquipamento&tela=equipamento">Cadastrar
 									Equipamento</a></li>
-							<!-- 				            <li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>-->
-							<li><a href="main?acao=telaPeriferico">Cadastro
-									Periférico</a></li>
-							<!--       	<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li> -->
+							<!--
+							<li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>
+							<li><a href="main?acao=telaPeriferico">Cadastro Periférico</a></li>
+							<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li> -->
 							<li><a href="main?acao=telaEquipamento&tela=marca">Cadastro
 									Marca</a></li>
 
