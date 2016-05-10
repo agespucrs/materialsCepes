@@ -1,6 +1,8 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Editora"%>
+<%@page import="br.ages.crud.model.Marca"%>
+<%@page import="br.ages.crud.bo.MarcaBO"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <jsp:include page="/template/head.jsp"></jsp:include>
@@ -24,10 +26,10 @@
 							<label class="form-label ages">Status <span class="red">*</span></label> 
 							<select class="form-control" id="status" name="status" required>
 								<option value="" >Selecione o Status</option>
-								<option value="" >Ativo</option>
-								<option value="" >Manutenção</option>
-								<option value="" >Inativo</option>
-								<option value="" >Descartado</option>
+								<option value="1" >Ativo</option>
+								<option value="3" >Manutenção</option>
+								<option value="0" >Inativo</option>
+								<option value="2" >Descartado</option>
 							</select>
 						</div>
 					</div>
@@ -36,30 +38,28 @@
 								<label class="form-label ages">Tipo Equipamento <span class="red">*</span></label> <!-- será buscado alista em um enum -->
 								<select class="form-control" id="tipo" name="tipo" required >
 									<option value="" >Selecione o Tipo de Equipamento</option>
-									<option value="c" >Computador</option>
-									<option value="p" >Periférico</option>
-									<option value="m" >Dispositivo Móvel</option>
+									<option value="A" >Acessorio</option>
+									<option value="C" >Computador</option>
+									<option value="M" >Dispositivo Móvel</option>
+									<option value="P" >Periférico</option>
 								</select>
 						</div>
 						<div class="col-sm-6 hidden" id="tipoComputador" >
 							<label class="form-label ages">Tipo de Computador<span class="red">*</span></label> <!-- será buscado alista em um enum -->
 							<select class="form-control" id="tipoComputador" name="tipoComputador" required>
 								<option value="" >Selecione o Tipo</option>
-								<option value="" >Desktop</option>
-								<option value="" >Notebook</option>
-								<option value="" >Servidor</option>
+								<option value="1" >Desktop</option>
+								<option value="2" >Notebook</option>
+								<option value="3" >Servidor</option>
 							</select>
 						</div>
 						<div class=" col-sm-6 hidden" id="tipoPeriferico" >
 							<label class="form-label ages">Tipo de Periférico<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
 							<select class="form-control" id="tipoPeriferico" name="tipoPeriferico" required>
 								<option value="" >Selecione o Tipo</option>
-								<option value="" >Teclado</option>
-								<option value="" >Mouse</option>
 								<option value="" >Monitor</option>
 								<option value="" >TV</option>
 								<option value="" >Impressora</option>
-								<option value="" >Hard drive</option>
 								<option value="" >Switch</option>
 								<option value="" >Outros</option>
 							</select>
@@ -80,9 +80,15 @@
 						<label class="form-label ages">Marca <span class="red">*</span></label> <!-- buscar a lista em uma classe -->
 						<select class="form-control" id="marca" name="marca" value="${param.marca}" type="text" required>
 							<option value="" >Selecione a Marca</option>
-							<option value="" >Dell</option>
-							<option value="" >Hp</option>
-							<option value="" >Sony</option>
+							<%
+								MarcaBO marcaBO = new MarcaBO();
+								List<Marca> lista = marcaBO.consultarMarcas();
+								for (Marca marca : lista) {
+							%>
+							<option value="<%= marca.getId() %>>" ><%= marca.getNome() %></option>
+							<!-- <option value="" >Hp</option>
+							<option value="" >Sony</option> -->
+							<%	} %>
 						</select>
 					</div>
 
@@ -125,25 +131,23 @@
 $('#tipo').on('change', function() {
 	var tipo =   $(this).val()
 	switch (tipo) {
-	case 'c':
-	  $('#tipoComputador').removeClass('hidden');
-	  $('#tipoPeriferico').addClass('hidden');
-	  $('#tipoMovel').addClass('hidden');
-	break;
-	case 'p':
-	  $('#tipoComputador').addClass('hidden');
-	  $('#tipoPeriferico').removeClass('hidden');
-	  $('#tipoMovel').addClass('hidden');
-	break;
-	case 'm':
-	  $('#tipoComputador').addClass('hidden');
-	  $('#tipoPeriferico').addClass('hidden');
-	  $('#tipoMovel').removeClass('hidden');
-	break;
-
-	default:
-		break;
-	}
-	//alert( tipo ); // or 
-	});
+		case 'C':
+			$('#tipoComputador').removeClass('hidden');
+			$('#tipoPeriferico').addClass('hidden');
+			$('#tipoMovel').addClass('hidden');
+			break;
+		case 'P':
+			$('#tipoComputador').addClass('hidden');
+			$('#tipoPeriferico').removeClass('hidden');
+			$('#tipoMovel').addClass('hidden');
+			break;
+		case 'M':
+			$('#tipoComputador').addClass('hidden');
+			$('#tipoPeriferico').addClass('hidden');
+			$('#tipoMovel').removeClass('hidden');
+			break;
+		default:
+			break;
+	} 
+});
 </script>

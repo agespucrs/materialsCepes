@@ -72,7 +72,7 @@ public class MarcaDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_MARCA WHERE STATUS = 1");
+			sql.append("SELECT * FROM TB_MARCA WHERE STATUS = 1 ORDER BY NOME");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
