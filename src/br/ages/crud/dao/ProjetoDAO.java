@@ -44,11 +44,11 @@ public class ProjetoDAO {
 			sql.append("VALUES (?,?,?,?,?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, projeto.getNome_projeto());
+			statement.setString(1, projeto.getNome());
 			statement.setString(2, projeto.getPrograma());
 			statement.setString(3, projeto.getOrigem());
-			statement.setDate(4,  (Date) projeto.getData_cadastro());
-			statement.setInt(5, projeto.getId_cordenador());
+			statement.setDate(4,  (Date) projeto.getDataCadastro());
+			statement.setInt(5, projeto.getIdCordenador());
 			statement.executeUpdate();		
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -82,12 +82,12 @@ public class ProjetoDAO {
 
 			while (resultset.next()) {
 				Projeto dto = new Projeto();
-				dto.setId_projeto(resultset.getInt("ID_PROJETO"));
-				dto.setNome_projeto(resultset.getString("NOME_PROJETO"));
+				dto.setId(resultset.getInt("ID_PROJETO"));
+				dto.setNome(resultset.getString("NOME_PROJETO"));
 				dto.setPrograma(resultset.getString("PROGRAMA"));
 				dto.setOrigem(resultset.getString("ORIGEM"));
-				dto.setData_cadastro(resultset.getDate("DATA_CADASTRO"));
-				dto.setId_cordenador(resultset.getInt("ID_CORDENADOR"));
+				dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
+				dto.setIdCordenador(resultset.getInt("ID_CORDENADOR"));
 
 				listaProjetos.add(dto);
 			}

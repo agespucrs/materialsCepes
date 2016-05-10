@@ -7,29 +7,29 @@ public class Projeto {
 
 	private static final long serialVersionUID = 1L;
 	
-	private int id_projeto;
-	private String nome_projeto;
+	private int id;
+	private String nome;
 	private String programa;
 	private String origem;
-	private Date data_cadastro;
+	private Date dataCadastro;
 	//verificar atributo
-	private int id_cordenador;
+	private int idCordenador;
 	
 	
 	public Projeto() {
 		super();
 	}
-	public int getId_projeto() {
-		return id_projeto;
+	public int getId() {
+		return id;
 	}
-	public void setId_projeto(int id_projeto) {
-		this.id_projeto = id_projeto;
+	public void setId(int id_projeto) {
+		this.id = id_projeto;
 	}
-	public String getNome_projeto() {
-		return nome_projeto;
+	public String getNome() {
+		return nome;
 	}
-	public void setNome_projeto(String nome_projeto) {
-		this.nome_projeto = nome_projeto;
+	public void setNome(String nome_projeto) {
+		this.nome = nome_projeto;
 	}
 	public String getPrograma() {
 		return programa;
@@ -43,17 +43,17 @@ public class Projeto {
 	public void setOrigem(String origem) {
 		this.origem = origem;
 	}
-	public Date getData_cadastro() {
-		return data_cadastro;
+	public Date getDataCadastro() {
+		return dataCadastro;
 	}
-	public void setData_cadastro(Date data_cadastro) {
-		this.data_cadastro = data_cadastro;
+	public void setDataCadastro(Date data_cadastro) {
+		this.dataCadastro = data_cadastro;
 	}
-	public int getId_cordenador() {
-		return id_cordenador;
+	public int getIdCordenador() {
+		return idCordenador;
 	}
-	public void setId_cordenador(int id_cordenador) {
-		this.id_cordenador = id_cordenador;
+	public void setIdCordenador(int id_cordenador) {
+		this.idCordenador = id_cordenador;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
