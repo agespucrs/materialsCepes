@@ -86,8 +86,6 @@
 								for (Marca marca : lista) {
 							%>
 							<option value="<%= marca.getId() %>>" ><%= marca.getNome() %></option>
-							<!-- <option value="" >Hp</option>
-							<option value="" >Sony</option> -->
 							<%	} %>
 						</select>
 					</div>
