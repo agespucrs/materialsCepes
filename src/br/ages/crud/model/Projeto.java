@@ -1,4 +1,5 @@
 package br.ages.crud.model;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.*;
@@ -6,58 +7,73 @@ import java.util.*;
 public class Projeto {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int id;
-	private String nome;
+	private String nomeProjeto;
 	private String programa;
 	private String origem;
 	private Date dataCadastro;
-	//verificar atributo
+	// verificar atributo
 	private int idCordenador;
-	
-	
-	public Projeto() {
-		super();
+
+	public Projeto(){
+		
 	}
+	
+	public Projeto(String nomeProjeto, String programa, String origem, Date dataCadastro, int idCordenador) {
+		this.nomeProjeto = nomeProjeto;
+		this.programa = programa;
+		this.origem = origem;
+		this.dataCadastro = dataCadastro;
+		this.idCordenador = idCordenador;
+	}
+
 	public int getId() {
 		return id;
 	}
-	public void setId(int id_projeto) {
-		this.id = id_projeto;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+
+	public String getNomeProjeto() {
+		return nomeProjeto;
 	}
-	public void setNome(String nome_projeto) {
-		this.nome = nome_projeto;
+
+	public void setNomeProjeto(String nomeProjeto) {
+		this.nomeProjeto = nomeProjeto;
 	}
+
 	public String getPrograma() {
 		return programa;
 	}
+
 	public void setPrograma(String programa) {
 		this.programa = programa;
 	}
+
 	public String getOrigem() {
 		return origem;
 	}
+
 	public void setOrigem(String origem) {
 		this.origem = origem;
 	}
+
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
-	public void setDataCadastro(Date data_cadastro) {
-		this.dataCadastro = data_cadastro;
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
+
 	public int getIdCordenador() {
 		return idCordenador;
 	}
-	public void setIdCordenador(int id_cordenador) {
-		this.idCordenador = id_cordenador;
+
+	public void setIdCordenador(int idCordenador) {
+		this.idCordenador = idCordenador;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
+
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.ages.crud.command.AddAutorCommand;
+import br.ages.crud.command.AddCopiaLivroCommand;
 import br.ages.crud.command.AddMarcaCommand;
 import br.ages.crud.command.AddEditoraCommand;
 import br.ages.crud.command.AddEquipamentoCommand;
@@ -27,6 +28,7 @@ import br.ages.crud.command.ConsultarAutorCommand;
 import br.ages.crud.command.ConsultarEditoraCommand;
 import br.ages.crud.command.ConsultarLivroCommand;
 import br.ages.crud.command.ConsultarUserCommand;
+import br.ages.crud.command.CopiaLivroCommand;
 import br.ages.crud.command.CreateScreenAutorCommand;
 import br.ages.crud.command.CreateScreenEquipamentoCommand;
 import br.ages.crud.command.CreateScreenEditoraCommand;
@@ -90,6 +92,9 @@ public class MainServlet extends HttpServlet {
 		comandos.put("telaLivro", new CreateScreenLivroCommand());
 		comandos.put("consultarLivro", new ConsultarLivroCommand());
 		comandos.put("alterLivro", new AlterLivroCommand());
+
+		comandos.put("copiaLivro", new CopiaLivroCommand());
+		comandos.put("addCopia", new AddCopiaLivroCommand());
 
 		// EQUIPAMENTOS (Computador, Perifericos e Dispositivos Moveis)
 		comandos.put("telaEquipamento", new CreateScreenEquipamentoCommand());

@@ -89,10 +89,10 @@
 							<li><a href="main?acao=telaEquipamento&tela=listEquipamento">Listar</a></li>
 							<li><a href="main?acao=telaEquipamento&tela=equipamento">Cadastrar
 									Equipamento</a></li>
-							<!--
-							<li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>
-							<li><a href="main?acao=telaPeriferico">Cadastro Periférico</a></li>
-							<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li> -->
+							<!-- 				            <li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>-->
+							<li><a href="main?acao=telaPeriferico">Cadastro
+									Periférico</a></li>
+							<!--       	<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li> -->
 							<li><a href="main?acao=telaEquipamento&tela=marca">Cadastro
 									Marca</a></li>
 
@@ -106,8 +106,7 @@
 							<li class="divider"></li>
 							<li><a tabindex="0" href="main?acao=listLivro">Listar</a></li>
 							<li><a tabindex="0" href="main?acao=telaLivro&isEdit=">Cadastrar</a></li>
-							<li><a tabindex="0"
-								href="main?acao=telaEquipamento&tela=copiaLivro">Adicionar
+							<li><a tabindex="0" href="main?acao=copiaLivro">Adicionar
 									Cópia</a></li>
 							<li class="divider"></li>
 							<li class="dropdown-submenu"><a tabindex="0">Autores</a>
