@@ -221,6 +221,64 @@ public class LivroDAO {
 		return lista;
 	}
 
+	public List<Livro> listarCopias(int idLivro)
+			throws PersistenciaException, SQLException, NegocioException, ParseException {
+
+		Connection conexao = null;
+		List<Livro> lista = new ArrayList<Livro>();
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+
+			sql.append("SELECT ID_LIVRO, TITULO, SUBTITULO, DATA_CADASTRO, PRECO, ID_IDIOMA, ");
+			sql.append("CODIGO, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, ");
+			sql.append("EXCLUIDO, REVISTA FROM TB_LIVRO LI ");
+			sql.append("INNER JOIN TB_LIVRO_COPIA LC ON LI.ID_LIVRO = LC.FK_ID_LIVRO ");
+			sql.append("WHERE LI.ID_LIVRO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			statement.setInt(1, idLivro);
+
+			ResultSet resultset = statement.executeQuery();
+			
+			while (resultset.next()) {
+				if (!resultset.getBoolean("EXCLUIDO")) {
+					Livro dto = new Livro();
+					dto.setTitulo(resultset.getString("TITULO"));
+					EditoraBO editora = new EditoraBO();
+					dto.setIdLivro(resultset.getInt("ID_LIVRO"));
+					dto.setSubtitulo(resultset.getString("SUBTITULO"));
+					dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
+					dto.setPreco(resultset.getLong("PRECO"));
+					dto.setLingua(resultset.getInt("ID_IDIOMA"));
+					dto.setCodigoISBN(resultset.getString("CODIGO"));
+					dto.setEdicao(resultset.getInt("EDICAO"));
+					dto.setAno(resultset.getInt("ANO"));
+					dto.setPaginas(resultset.getInt("PAGINAS"));
+					dto.setVideo(resultset.getBoolean("VIDEO"));
+					dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
+					dto.setE_book(resultset.getBoolean("E_BOOK"));
+					dto.setDescricao(resultset.getString("DESCRICAO"));
+					dto.setBrochura(resultset.getBoolean("BROCHURA"));
+					dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
+					dto.setRevista(resultset.getBoolean("REVISTA"));
+					dto.setAutores(consultarAutoresLivro(dto.getIdLivro()));
+					lista.add(dto);
+				}
+			}
+
+			return lista;
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		
+	}
+
 	public List<Livro> listarLivros() throws PersistenciaException, SQLException, NegocioException, ParseException {
 
 		Connection conexao = null;
@@ -261,6 +319,11 @@ public class LivroDAO {
 					dto.setRevista(resultset.getBoolean("REVISTA"));
 					dto.setAutores(consultarAutoresLivro(dto.getIdLivro()));
 					listarLivros.add(dto);
+
+					List<Livro> copias = listarCopias(dto.getIdLivro());
+					if (copias != null && copias.size() > 0) {
+						listarLivros.addAll(copias);
+					}
 				}
 			}
 
