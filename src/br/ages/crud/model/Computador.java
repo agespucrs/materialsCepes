@@ -1,9 +1,13 @@
 package br.ages.crud.model;
 
 public class Computador extends Equipamento {
-	String tipoComputador;
+	int tipoComputador;
 
-	public String getTipoComputador() {
+	public int getTipoComputador() {
 		return tipoComputador;
+	}
+
+	public void setTipoComputador(int tipoComputador2) {
+		this.tipoComputador = tipoComputador2;
 	}
 }

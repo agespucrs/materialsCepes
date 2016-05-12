@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class ComputadorDAO {
 			// inicio de transacao
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_EQUIPAMENTO ");
+			sql.append("INSERT INTO TB_EQUIPAMENTOS ");
 			sql.append(
 					"(N_PATRIMONIO, STATUS, MODELO, VALOR_AQUISICAO, DATA_CADASTRO, OBSERVACAO, ID_MARCA, ID_PROJETO) ");
 			sql.append("VALUES ");
@@ -40,10 +41,11 @@ public class ComputadorDAO {
 			statement.setInt(2, computador.getStatus());
 			statement.setString(3, computador.getModelo());
 			statement.setDouble(4, computador.getValor());
-			statement.setDate(5, (Date) computador.getDataCadastro());
+			//statement.setDate(5, (Date) computador.getDataCadastro());
+			statement.setTimestamp(5, new Timestamp(computador.getDataCadastro().getTime()));
 			statement.setString(6, computador.getObservacoes());
-			statement.setString(7, computador.getMarca());
-			statement.setString(8, computador.getProjeto());
+			statement.setInt(7, computador.getMarca());
+			statement.setInt(8, computador.getProjeto());
 
 			statement.executeUpdate();
 
@@ -59,7 +61,7 @@ public class ComputadorDAO {
 
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setInt(1, idEquipamento);
-				statement.setString(2, computador.getTipoComputador());
+				statement.setInt(2, computador.getTipoComputador());
 
 				statement.executeUpdate();
 
@@ -116,8 +118,8 @@ public class ComputadorDAO {
 			statement.setDouble(4, computador.getValor());
 			statement.setDate(5, (Date) computador.getDataCadastro());
 			statement.setString(6, computador.getObservacoes());
-			statement.setString(7, computador.getMarca());
-			statement.setString(8, computador.getProjeto());
+			statement.setInt(7, computador.getMarca());
+			statement.setInt(8, computador.getProjeto());
 			statement.setInt(9, computador.getId());
 			statement.executeUpdate();
 
@@ -131,7 +133,7 @@ public class ComputadorDAO {
 				sql.append("WHERE ID_EQUIPAMENTO = ?");
 
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-				statement.setString(1, computador.getTipoComputador());
+				statement.setInt(1, computador.getTipoComputador());
 				statement.setInt(2, idEquipamento);
 				statement.executeUpdate();
 

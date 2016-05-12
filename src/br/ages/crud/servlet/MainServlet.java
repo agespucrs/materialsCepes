@@ -90,7 +90,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("telaLivro", new CreateScreenLivroCommand());
 		comandos.put("consultarLivro", new ConsultarLivroCommand());
 		comandos.put("alterLivro", new AlterLivroCommand());
-
+		
 		// EQUIPAMENTOS (Computador, Perifericos e Dispositivos Moveis)
 		comandos.put("telaEquipamento", new CreateScreenEquipamentoCommand());
 		comandos.put("addEquipamento", new AddEquipamentoCommand());

@@ -43,7 +43,7 @@ public class EquipamentoDAO {
 				equipamentoAtual.setId(resultset.getInt("Id_Equipamento"));
 				equipamentoAtual.setTipoEquipamento(resultset.getString("Tipo_Equipamento"));
 				equipamentoAtual.setSubTipo(resultset.getString("Sub_Tipo"));
-				equipamentoAtual.setMarca(resultset.getString("Nome"));
+				//equipamentoAtual.setMarca(Integer.parseInt(resultset.getString("Nome")));
 				equipamentoAtual.setModelo(resultset.getString("Modelo"));
 				equipamentoAtual.setNumeroPatrimonio(resultset.getInt("N_PATRIMONIO"));
 				equipamentoAtual.setDataCadastro(resultset.getDate("Data_Cadastro"));
@@ -132,8 +132,8 @@ public class EquipamentoDAO {
 					equipamentoAtual.setObservacoes(resultset.getString("Observacao"));
 					
 					
-					equipamentoAtual.setMarca(resultset.getString("Nome"));
-					equipamentoAtual.setProjeto(resultset.getString("Nome_Projeto"));
+					//equipamentoAtual.setMarca(Integer.parseInt(resultset.getString("Nome")));
+					//equipamentoAtual.setProjeto(resultset.getString("Nome_Projeto"));
 					
 					
 					equipamentoAtual.setTipoEquipamento(resultset.getString("Tipo_Equipamento"));

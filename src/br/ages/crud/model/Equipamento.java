@@ -7,12 +7,14 @@ public class Equipamento {
 	int numeroPatrimonio;
 	int status;
 	String tipoEquipamento;
+	//subTipo tem o valor TIPO_MOBILE, TIPO_COMPUTADOR, ou TIPO_PERIFERICO,
+	//dependendo do tipoEquipamento
 	String subTipo;
-	String marca;
+	int marca;
 	String modelo;
 	Double valor;
 	Date dataCadastro;
-	String projeto;
+	int projeto;
 	String observacoes;
 	
 	public int getId() {
@@ -55,11 +57,11 @@ public class Equipamento {
 		this.subTipo = subTipo;
 	}
 	
-	public String getMarca() {
+	public int getMarca() {
 		return marca;
 	}
 	
-	public void setMarca(String marca) {
+	public void setMarca(int marca) {
 		this.marca = marca;
 	}
 	
@@ -87,11 +89,11 @@ public class Equipamento {
 		this.dataCadastro = dataCadastro;
 	}
 	
-	public String getProjeto() {
+	public int getProjeto() {
 		return projeto;
 	}
 	
-	public void setProjeto(String projeto) {
+	public void setProjeto(int projeto) {
 		this.projeto = projeto;
 	}
 	

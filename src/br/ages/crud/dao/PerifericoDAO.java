@@ -41,8 +41,8 @@ public class PerifericoDAO {
 			statement.setDouble(4, periferico.getValor());
 			statement.setDate(5, (Date) periferico.getDataCadastro());
 			statement.setString(6, periferico.getObservacoes());
-			statement.setString(7, periferico.getMarca());
-			statement.setString(8, periferico.getProjeto());
+			statement.setInt(7, periferico.getMarca());
+			statement.setInt(8, periferico.getProjeto());
 
 			statement.executeUpdate();
 
@@ -115,8 +115,8 @@ public class PerifericoDAO {
 			statement.setDouble(4, periferico.getValor());
 			statement.setDate(5, (Date) periferico.getDataCadastro());
 			statement.setString(6, periferico.getObservacoes());
-			statement.setString(7, periferico.getMarca());
-			statement.setString(8, periferico.getProjeto());
+			statement.setInt(7, periferico.getMarca());
+			statement.setInt(8, periferico.getProjeto());
 			statement.setInt(9, periferico.getId());
 			statement.executeUpdate();
 

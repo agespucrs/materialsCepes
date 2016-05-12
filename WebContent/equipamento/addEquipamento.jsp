@@ -2,7 +2,9 @@
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Editora"%>
 <%@page import="br.ages.crud.model.Marca"%>
+<%@page import="br.ages.crud.model.Projeto"%>
 <%@page import="br.ages.crud.bo.MarcaBO"%>
+<%@page import="br.ages.crud.bo.ProjetoBO"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <jsp:include page="/template/head.jsp"></jsp:include>
@@ -13,7 +15,7 @@
 	
 		<div class="panel-body">
 	
-			<form action="main?acao=addEquipamentos" method="post">
+			<form action="main?acao=addEquipamento" method="post">
 				<jsp:include page="/template/msg.jsp"></jsp:include>
 				<div class="form-group">
 					<div class="row">	
@@ -36,7 +38,7 @@
 					<div class="row">
 						<div class=" col-sm-6">
 								<label class="form-label ages">Tipo Equipamento <span class="red">*</span></label> <!-- será buscado alista em um enum -->
-								<select class="form-control" id="tipo" name="tipo" required >
+								<select class="form-control" id="tipoEquipamento" name="tipoEquipamento" required >
 									<option value="" >Selecione o Tipo de Equipamento</option>
 									<option value="A" >Acessorio</option>
 									<option value="C" >Computador</option>
@@ -46,7 +48,7 @@
 						</div>
 						<div class="col-sm-6 hidden" id="tipoComputador" >
 							<label class="form-label ages">Tipo de Computador<span class="red">*</span></label> <!-- será buscado alista em um enum -->
-							<select class="form-control" id="tipoComputador" name="tipoComputador" required>
+							<select class="form-control" id="selectComputador" name="tipoComputador" required>
 								<option value="" >Selecione o Tipo</option>
 								<option value="1" >Desktop</option>
 								<option value="2" >Notebook</option>
@@ -55,7 +57,7 @@
 						</div>
 						<div class=" col-sm-6 hidden" id="tipoPeriferico" >
 							<label class="form-label ages">Tipo de Periférico<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
-							<select class="form-control" id="tipoPeriferico" name="tipoPeriferico" required>
+							<select class="form-control" id="selectPeriferico" name="tipoPeriferico" required>
 								<option value="" >Selecione o Tipo</option>
 								<option value="" >Monitor</option>
 								<option value="" >TV</option>
@@ -66,7 +68,7 @@
 						</div>
 						<div class=" col-sm-6 hidden" id="tipoMovel">
 							<label class="form-label ages">Tipo Dispositivo Móvel<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
-							<select class="form-control" id="tipoMobile" name="tipoMobile" required>
+							<select class="form-control" id="selectMobile" name="tipoMobile" required>
 								<option value="" >Selecione o Tipo</option>
 								<option value="" >Celular</option>
 								<option value="" >Tablet</option>
@@ -85,7 +87,7 @@
 								List<Marca> lista = marcaBO.consultarMarcas();
 								for (Marca marca : lista) {
 							%>
-							<option value="<%= marca.getId() %>>" ><%= marca.getNome() %></option>
+							<option value="<%= marca.getId() %>" ><%= marca.getNome() %></option>
 							<%	} %>
 						</select>
 					</div>
@@ -100,15 +102,21 @@
 					</div>
 					<div class=" col-sm-6">
 						<label class="form-label ages">Data Cadastro </label> 
-						<input class="form-control" id="dataCadastro" name="dataCadstro" value="01/01/2016" disabled="disabled" type="text" style="text-align: center;" required>
+						<input class="form-control" id="dataCadastro" name="dataCadastro" value="01/01/2016" type="text" style="text-align: center;" required>
 					</div>
 				</div>
 				<label class="form-label ages">Projeto <span class="red">*</span></label></label> 
 				<select class="form-control" id="projeto" name="projeto" value="${param.projeto}" type="text" required>
 					<option value="" >Selecione o Projeto</option>
-					<option value="" >Kill DeathStar</option>
-					<option value="" >Transposição Rio São Francisco</option>
-					<option value="" >Tomada de Constantinopla</option>
+					<%
+						ProjetoBO projetoBO = new ProjetoBO();
+						List<Projeto> listaDeProjetos = projetoBO.listarProjetos();
+						for (Projeto projeto : listaDeProjetos) {
+					%>
+					<option value="<%= projeto.getId() %>"><%= projeto.getNome() %></option>
+					<%
+						}
+					%>
 				</select>
 				<label class="form-label ages">Observação: </label> 
 				<textarea class="form-control"  rows="2" id="descricao" name="descricao" value="${param.descricao}"></textarea>
@@ -126,23 +134,35 @@
 </div>
 <jsp:include page="/template/foot.jsp"></jsp:include>
 <script>
-$('#tipo').on('change', function() {
+$('#tipoEquipamento').on('change', function() {
 	var tipo =   $(this).val()
 	switch (tipo) {
 		case 'C':
 			$('#tipoComputador').removeClass('hidden');
 			$('#tipoPeriferico').addClass('hidden');
 			$('#tipoMovel').addClass('hidden');
+			
+			$('#selectComputador').attr("required");
+			$('#selectPeriferico').removeAttr("required");
+			$('#selectMobile').removeAttr("required");
 			break;
 		case 'P':
 			$('#tipoComputador').addClass('hidden');
 			$('#tipoPeriferico').removeClass('hidden');
 			$('#tipoMovel').addClass('hidden');
+			
+			$('#selectComputador').removeAttr("required");
+			$('#selectPeriferico').attr("required");
+			$('#selectMobile').removeAttr("required");
 			break;
 		case 'M':
 			$('#tipoComputador').addClass('hidden');
 			$('#tipoPeriferico').addClass('hidden');
 			$('#tipoMovel').removeClass('hidden');
+			
+			$('#selectComputador').removeAttr("required");
+			$('#selectPeriferico').removeAttr("required");
+			$('#selectMobile').attr("required");
 			break;
 		default:
 			break;

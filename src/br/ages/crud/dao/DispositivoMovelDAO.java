@@ -38,8 +38,8 @@ public class DispositivoMovelDAO {
 			statement.setDouble(4, dispositivoMovel.getValor());
 			statement.setDate(5, (Date) dispositivoMovel.getDataCadastro());
 			statement.setString(6, dispositivoMovel.getObservacoes());
-			statement.setString(7, dispositivoMovel.getMarca());
-			statement.setString(8, dispositivoMovel.getProjeto());
+			statement.setInt(7, dispositivoMovel.getMarca());
+			statement.setInt(8, dispositivoMovel.getProjeto());
 			
 			statement.executeUpdate();
 
@@ -112,8 +112,8 @@ public class DispositivoMovelDAO {
 			statement.setDouble(4, dispositivoMovel.getValor());
 			statement.setDate(5, (Date) dispositivoMovel.getDataCadastro());
 			statement.setString(6, dispositivoMovel.getObservacoes());
-			statement.setString(7, dispositivoMovel.getMarca());
-			statement.setString(8, dispositivoMovel.getProjeto());
+			statement.setInt(7, dispositivoMovel.getMarca());
+			statement.setInt(8, dispositivoMovel.getProjeto());
 			statement.setInt(9, dispositivoMovel.getId());
 			statement.executeUpdate();
 		
