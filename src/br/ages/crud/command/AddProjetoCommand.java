@@ -26,20 +26,20 @@ public class AddProjetoCommand implements Command{
 		projetoBO = new ProjetoBO();
 		
 		
-		String nome_projeto = request.getParameter("NOME_PROJETO");
+		String nomeProjeto = request.getParameter("NOME_PROJETO");
 		String programa = request.getParameter("PROGRAMA");
 		String origem = request.getParameter("ORIGEM");
-		String data_cadastro = request.getParameter("DATE_CADASTRO");
-		String id_cordenador = request.getParameter("ID_CORDENADOR");
+		String dataCadastro = request.getParameter("DATE_CADASTRO");
+		String idCordenador = request.getParameter("ID_CORDENADOR");
 		Date datanow = new Date(System.currentTimeMillis());
 
 			try {				
 				Projeto projeto = new Projeto();
-				projeto.setNome_projeto(nome_projeto);
+				projeto.setNomeProjeto(nomeProjeto);
 				projeto.setPrograma(programa);
 				projeto.setOrigem(origem);
-				projeto.setData_cadastro(datanow);
-				projeto.setId_cordenador(1);
+				projeto.setDataCadastro(datanow);
+				projeto.setIdCordenador(1);
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", "nome_projeto"));
 				proxima = "main?acao=listProjeto";
 			} catch (Exception e) {

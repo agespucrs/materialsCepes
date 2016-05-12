@@ -100,9 +100,17 @@
 						<label class="form-label ages">Valor </label> 
 						<input class="form-control" id="valor" name="valor" value="${param.modelo}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
 					</div>
-					<div class=" col-sm-6">
+					<div class=" col-sm-6"> 
 						<label class="form-label ages">Data Cadastro </label> 
 						<input class="form-control" id="dataCadastro" name="dataCadastro" value="01/01/2016" type="text" style="text-align: center;" required>
+						<!--
+		                <div class='input-group date' id='dataCadastro'>
+		                    <input class="form-control" name="dataCadastro" value="01/01/2016" type='text' style="text-align: center;" required />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		                 -->
 					</div>
 				</div>
 				<label class="form-label ages">Projeto <span class="red">*</span></label></label> 
@@ -113,7 +121,7 @@
 						List<Projeto> listaDeProjetos = projetoBO.listarProjetos();
 						for (Projeto projeto : listaDeProjetos) {
 					%>
-					<option value="<%= projeto.getId() %>"><%= projeto.getNome() %></option>
+					<option value="<%= projeto.getId() %>"><%= projeto.getNomeProjeto() %></option>
 					<%
 						}
 					%>
@@ -134,6 +142,10 @@
 </div>
 <jsp:include page="/template/foot.jsp"></jsp:include>
 <script>
+$(function () {
+    $('#dataCadastro').datepicker();
+});
+
 $('#tipoEquipamento').on('change', function() {
 	var tipo =   $(this).val()
 	switch (tipo) {
