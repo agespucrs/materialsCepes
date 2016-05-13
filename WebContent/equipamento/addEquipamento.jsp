@@ -62,11 +62,11 @@
 							<label class="form-label ages">Tipo de Periférico<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
 							<select class="form-control" id="selectPeriferico" name="tipoPeriferico" required>
 								<option value="" >Selecione o Tipo</option>
-								<option value="" >Monitor</option>
-								<option value="" >TV</option>
-								<option value="" >Impressora</option>
-								<option value="" >Switch</option>
-								<option value="" >Outros</option>
+								<option value="1" >Monitor</option>
+								<option value="2" >TV</option>
+								<option value="3" >Impressora</option>
+								<option value="4" >Switch</option>
+								<option value="5" >Outros</option>
 							</select>
 						</div>
 						<div class=" col-sm-6 hidden" id="tipoMovel">

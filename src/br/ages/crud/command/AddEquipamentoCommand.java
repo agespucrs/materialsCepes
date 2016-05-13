@@ -29,9 +29,6 @@ public class AddEquipamentoCommand implements Command {
 		int numeroPatrimonio = Integer.parseInt(request.getParameter("numeroPatrimonio"));
 		int status = Integer.parseInt(request.getParameter("status"));
 		String tipoEquipamento = request.getParameter("tipoEquipamento");
-		int tipoComputador = Integer.parseInt(request.getParameter("tipoComputador"));
-		String tipoPeriferico = request.getParameter("tipoPeriferico");
-		String tipoMobile = request.getParameter("tipoMobile");
 		int marca = Integer.parseInt(request.getParameter("marca"));
 		String modelo = request.getParameter("modelo");
 		double valor = Double.parseDouble(request.getParameter("valor"));
@@ -43,6 +40,7 @@ public class AddEquipamentoCommand implements Command {
 		
 		if (tipoEquipamento.equals(TipoEquipamento.COMPUTADOR.valor())) {
 			ComputadorBO computadorBO = new ComputadorBO();
+			int tipoComputador = Integer.parseInt(request.getParameter("tipoComputador"));
 
 			Computador computador = new Computador();
 			computador.setNumeroPatrimonio(numeroPatrimonio);
@@ -71,9 +69,18 @@ public class AddEquipamentoCommand implements Command {
 		}
 		else if(tipoEquipamento.equals(TipoEquipamento.PERIFERICO.valor())) {
 			PerifericoBO perifericoBO = new PerifericoBO();
-			//TODO: chamar todos os metodos sets no objeto periferico. Aguardando definicao
-			//final do banco de dados
+			int tipoPeriferico = Integer.parseInt(request.getParameter("tipoPeriferico"));
+			
 			Periferico periferico = new Periferico();
+			periferico.setNumeroPatrimonio(numeroPatrimonio);
+			periferico.setStatus(status);
+			periferico.setTipoPeriferico(tipoPeriferico);
+			periferico.setMarca(marca);
+			periferico.setModelo(modelo);
+			periferico.setValor(valor);
+			periferico.setDataCadastro(dataCadastro);
+			periferico.setProjeto(projeto);
+			periferico.setObservacoes(observacao);
 			
 			if (perifericoBO.cadastraPeriferico(periferico)) {
 				proxima = "main?acao=listEquipamento";
@@ -94,6 +101,7 @@ public class AddEquipamentoCommand implements Command {
 			//TODO: chamar todos os metodos sets no objeto mobile. Aguardando definicao
 			//final do banco de dados
 			DispositivoMovel mobile = new DispositivoMovel();
+			String tipoMobile = request.getParameter("tipoMobile");
 			
 			if(mobileBO.cadastraDispositivoMovel(mobile)) {
 				proxima = "main?acao=listEquipamento";

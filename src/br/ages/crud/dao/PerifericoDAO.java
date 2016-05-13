@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class PerifericoDAO {
 			// inicio de transacao
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_EQUIPAMENTO ");
+			sql.append("INSERT INTO TB_EQUIPAMENTOS ");
 			sql.append(
 					"(N_PATRIMONIO, STATUS, MODELO, VALOR_AQUISICAO, DATA_CADASTRO, OBSERVACAO, ID_MARCA, ID_PROJETO) ");
 			sql.append("VALUES ");
@@ -39,7 +40,8 @@ public class PerifericoDAO {
 			statement.setInt(2, periferico.getStatus());
 			statement.setString(3, periferico.getModelo());
 			statement.setDouble(4, periferico.getValor());
-			statement.setDate(5, (Date) periferico.getDataCadastro());
+			//statement.setDate(5, (Date) periferico.getDataCadastro());
+			statement.setTimestamp(5, new Timestamp(periferico.getDataCadastro().getTime()));
 			statement.setString(6, periferico.getObservacoes());
 			statement.setInt(7, periferico.getMarca());
 			statement.setInt(8, periferico.getProjeto());
@@ -52,13 +54,13 @@ public class PerifericoDAO {
 
 				sql = new StringBuilder();
 				sql.append("INSERT INTO TB_PERIFERICO ");
-				sql.append("(ID_EQUIPAMENTO, TIPO_PERIFERICO) ");
+				sql.append("(ID_EQUIPAMENTO, ID_TIPO) ");
 				sql.append("VALUES ");
 				sql.append("(             ?,           ?)");
 
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setInt(1, idEquipamento);
-				statement.setString(2, periferico.getTipoPeriferico());
+				statement.setInt(2, periferico.getTipoPeriferico());
 
 				statement.executeUpdate();
 
@@ -130,7 +132,7 @@ public class PerifericoDAO {
 				sql.append("WHERE ID_EQUIPAMENTO = ?");
 
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-				statement.setString(1, periferico.getTipoPeriferico());
+				statement.setInt(1, periferico.getTipoPeriferico());
 				statement.setInt(2, idEquipamento);
 				statement.executeUpdate();
 

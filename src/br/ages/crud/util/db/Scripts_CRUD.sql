@@ -200,7 +200,7 @@ if(Id_Mobile is not null, 'Dispositivo Movel',
 ) as Tipo_Equipamento,
 --
 if(Id_Mobile is not null, Tipo_Mobile, 
-  if(Id_Computador is not null, TIPO_COMPUTADOR, TIPO_PERIFERICO)
+  if(Id_Computador is not null, COMP.ID_TIPO, PERIF.ID_TIPO)
 ) as Sub_Tipo,
 --
 EQUIP.Id_Equipamento,

@@ -1,13 +1,13 @@
 package br.ages.crud.model;
 
 public class Periferico extends Equipamento {
-	String tipoPeriferico;
+	int tipoPeriferico;
 
-	public String getTipoPeriferico() {
+	public int getTipoPeriferico() {
 		return tipoPeriferico;
 	}
 
-//	public String getTitulo() {
-//		return "";
-//	}
+	public void setTipoPeriferico(int tipoPeriferico2) {
+		this.tipoPeriferico = tipoPeriferico2;
+	}
 }
