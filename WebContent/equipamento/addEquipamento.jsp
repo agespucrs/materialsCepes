@@ -1,5 +1,8 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="br.ages.crud.model.Editora"%>
 <%@page import="br.ages.crud.model.Marca"%>
 <%@page import="br.ages.crud.model.Projeto"%>
@@ -101,16 +104,12 @@
 						<input class="form-control" id="valor" name="valor" value="${param.modelo}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
 					</div>
 					<div class=" col-sm-6"> 
-						<label class="form-label ages">Data Cadastro </label> 
-						<input class="form-control" id="dataCadastro" name="dataCadastro" value="01/01/2016" type="text" style="text-align: center;" required>
-						<!--
-		                <div class='input-group date' id='dataCadastro'>
-		                    <input class="form-control" name="dataCadastro" value="01/01/2016" type='text' style="text-align: center;" required />
-		                    <span class="input-group-addon">
-		                        <span class="glyphicon glyphicon-calendar"></span>
-		                    </span>
-		                </div>
-		                 -->
+						<label class="form-label ages">Data Cadastro </label>
+						<%
+						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						Date hoje = new Date();
+						%>
+						<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%= dateFormat.format(hoje) %>" type="text" style="text-align: center;" required>
 					</div>
 				</div>
 				<label class="form-label ages">Projeto <span class="red">*</span></label></label> 
@@ -142,10 +141,6 @@
 </div>
 <jsp:include page="/template/foot.jsp"></jsp:include>
 <script>
-$(function () {
-    $('#dataCadastro').datepicker();
-});
-
 $('#tipoEquipamento').on('change', function() {
 	var tipo =   $(this).val()
 	switch (tipo) {
