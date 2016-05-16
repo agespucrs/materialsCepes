@@ -103,14 +103,19 @@
 						<label class="form-label ages">Valor </label> 
 						<input class="form-control" id="valor" name="valor" value="${param.modelo}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
 					</div>
-					<div class=" col-sm-6"> 
-						<label class="form-label ages">Data Cadastro </label>
-						<%
-						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						Date hoje = new Date();
-						%>
-						<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%= dateFormat.format(hoje) %>" type="text" style="text-align: center;" required>
-					</div>
+					
+					<div class="col-sm-6">
+							<label class="form-label ages">Data Cadastro:<span class="red">*</span></label> 
+							<div class='input-group date' id='dataCadastro'>
+								<input type='text' class="form-control" id='dtCadastro' name="dtCadastro" value="${param.dtCadastro}"/>
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						
+						
+						
 				</div>
 				<label class="form-label ages">Projeto <span class="red">*</span></label></label> 
 				<select class="form-control" id="projeto" name="projeto" value="${param.projeto}" type="text" required>
@@ -174,5 +179,12 @@ $('#tipoEquipamento').on('change', function() {
 		default:
 			break;
 	} 
+});
+
+$(function() {
+	$('#dataCadastro').datetimepicker({
+		locale : 'pt-br',
+		showTodayButton: true
+	});
 });
 </script>
