@@ -73,16 +73,16 @@
 							<label class="form-label ages">Tipo Dispositivo Móvel<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
 							<select class="form-control" id="selectMobile" name="tipoMobile" required>
 								<option value="" >Selecione o Tipo</option>
-								<option value="" >Celular</option>
-								<option value="" >Tablet</option>
-								<option value="" >Smartphone</option>
-								<option value="" >Outros</option>
+								<option value="1" >Celular</option>
+								<option value="2" >Tablet</option>
+								<option value="3" >Smartphone</option>
+								<option value="4" >Outros</option>
 							</select>
 						</div>
 					</div>
 					
 					<div class="">
-						<label class="form-label ages">Marca <span class="red">*</span></label> <!-- buscar a lista em uma classe -->
+						<label class="form-label ages">Marca <span class="red">*</span></label>
 						<select class="form-control" id="marca" name="marca" value="${param.marca}" type="text" required>
 							<option value="" >Selecione a Marca</option>
 							<%

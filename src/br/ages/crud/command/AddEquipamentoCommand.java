@@ -98,10 +98,18 @@ public class AddEquipamentoCommand implements Command {
 		}
 		else if(tipoEquipamento.equals(TipoEquipamento.DISPOSITIVO_MOVEL.valor())) {
 			DispositivoMovelBO mobileBO = new DispositivoMovelBO();
-			//TODO: chamar todos os metodos sets no objeto mobile. Aguardando definicao
-			//final do banco de dados
+			int tipoMobile = Integer.parseInt(request.getParameter("tipoMobile"));
+			
 			DispositivoMovel mobile = new DispositivoMovel();
-			String tipoMobile = request.getParameter("tipoMobile");
+			mobile.setNumeroPatrimonio(numeroPatrimonio);
+			mobile.setStatus(status);
+			mobile.setTipoDispositivoMovel(tipoMobile);
+			mobile.setMarca(marca);
+			mobile.setModelo(modelo);
+			mobile.setValor(valor);
+			mobile.setDataCadastro(dataCadastro);
+			mobile.setProjeto(projeto);
+			mobile.setObservacoes(observacao);
 			
 			if(mobileBO.cadastraDispositivoMovel(mobile)) {
 				proxima = "main?acao=listEquipamento";

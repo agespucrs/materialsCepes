@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class DispositivoMovelDAO {
 			//inicio de transacao
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_EQUIPAMENTO ");
+			sql.append("INSERT INTO TB_EQUIPAMENTOS ");
 			sql.append("(N_PATRIMONIO, STATUS, MODELO, VALOR_AQUISICAO, DATA_CADASTRO, OBSERVACAO, ID_MARCA, ID_PROJETO) ");
 			sql.append("VALUES ");
 			sql.append("(           ?,      ?,      ?,               ?,             ?,          ?,        ?,          ?)");
@@ -36,7 +37,7 @@ public class DispositivoMovelDAO {
 			statement.setInt(2, dispositivoMovel.getStatus());
 			statement.setString(3, dispositivoMovel.getModelo());
 			statement.setDouble(4, dispositivoMovel.getValor());
-			statement.setDate(5, (Date) dispositivoMovel.getDataCadastro());
+			statement.setTimestamp(5, new Timestamp(dispositivoMovel.getDataCadastro().getTime()));
 			statement.setString(6, dispositivoMovel.getObservacoes());
 			statement.setInt(7, dispositivoMovel.getMarca());
 			statement.setInt(8, dispositivoMovel.getProjeto());
@@ -49,13 +50,13 @@ public class DispositivoMovelDAO {
 				
 				sql = new StringBuilder();
 				sql.append("INSERT INTO TB_MOBILE ");
-				sql.append("(ID_EQUIPAMENTO, TIPO_MOBILE) ");
+				sql.append("(ID_EQUIPAMENTO, ID_TIPO) ");
 				sql.append("VALUES ");
 				sql.append("(             ?,           ?)");
 				
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setInt(1, idEquipamento);
-				statement.setString(2, dispositivoMovel.getTipoDispositivoMovel());
+				statement.setInt(2, dispositivoMovel.getTipoDispositivoMovel());
 				
 				statement.executeUpdate();
 				
@@ -127,7 +128,7 @@ public class DispositivoMovelDAO {
 				sql.append("WHERE ID_EQUIPAMENTO = ?");
 				
 				statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-				statement.setString(1, dispositivoMovel.getTipoDispositivoMovel());
+				statement.setInt(1, dispositivoMovel.getTipoDispositivoMovel());
 				statement.setInt(2, idEquipamento);
 				statement.executeUpdate();
 				
