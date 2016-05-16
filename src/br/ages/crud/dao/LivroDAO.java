@@ -14,6 +14,7 @@ import br.ages.crud.bo.EditoraBO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Autor;
+import br.ages.crud.model.CopiaLivro;
 import br.ages.crud.model.Livro;
 import br.ages.crud.util.ConexaoUtil;
 import br.ages.crud.util.MensagemContantes;
@@ -283,6 +284,8 @@ public class LivroDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_LIVRO WHERE ID_LIVRO = ? ");
 
+			
+			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
 			ResultSet resultset = statement.executeQuery();
@@ -409,6 +412,30 @@ public class LivroDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
+			statement.execute();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void cadastrarCopia(CopiaLivro copia) throws PersistenciaException{
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO TB_LIVRO_COPIA (FK_ID_LIVRO, CODIGO) VALUES (?, ?)");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, copia.getIdLivro());
+			statement.setString(2, copia.getCodigo_isbn());
 			statement.execute();
 
 		} catch (ClassNotFoundException | SQLException e) {

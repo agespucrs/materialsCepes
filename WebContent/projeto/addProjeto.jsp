@@ -11,7 +11,7 @@
 		
 			<div class="panel-body">
 				
-				<form action="main?acao=addEditora" method="post">
+				<form action="main?acao=addProjeto" method="post">
 					<jsp:include page="/template/msg.jsp"></jsp:include>
 						
 					<div class="form-group">
@@ -30,7 +30,7 @@
 								<label class="form-label ages">Coordenador Projeto </label> 
 								<select class="form-control" id="listaResponsavel" name="listaResponsavel" value="${param.tipoEquipamento}" type="text" required>
 									<option value="" >Selecione o Coordenador</option>
-									<option value="" >Professor 1</option>
+									<option value="1" >Professor 1</option>
 									<option value="" >Professor 2</option>
 									<option value="" >Professor 3</option>
 									<option value="" >Professor 4</option>

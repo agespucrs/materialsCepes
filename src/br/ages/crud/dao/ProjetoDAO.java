@@ -26,9 +26,9 @@ public class ProjetoDAO {
 	}
 	
 	/**
-	 * Método responsável por salvar a marca no BD.
+	 * Método responsável por salvar a projeto no BD.
 	 * 
-	 * @param marca
+	 * @param projeto
 	 * @throws PersistenciaException
 	 * @throws SQLException
 	 * @throws ParseException
@@ -43,11 +43,13 @@ public class ProjetoDAO {
 			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO,PROGRAMA,ORIGEM,DATA_CADASTRO,iD_CORDENADOR)");
 			sql.append("VALUES (?,?,?,?,?)");
 
+			Date data = new Date(System.currentTimeMillis());
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, projeto.getNome_projeto());
 			statement.setString(2, projeto.getPrograma());
 			statement.setString(3, projeto.getOrigem());
-			statement.setDate(4,  (Date) projeto.getData_cadastro());
+			statement.setDate(4, data);
+			//statement.setDate(4,  (Date) projeto.getData_cadastro());
 			statement.setInt(5, projeto.getId_cordenador());
 			statement.executeUpdate();		
 

@@ -17,7 +17,11 @@ public class Projeto {
 	
 	
 	public Projeto() {
-		super();
+		this.nome_projeto = nome_projeto;
+		this.programa = programa;
+		this.origem = origem;
+		this.data_cadastro = data_cadastro;
+		this.id_cordenador = id_cordenador;
 	}
 	public int getId_projeto() {
 		return id_projeto;

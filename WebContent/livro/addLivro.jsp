@@ -117,7 +117,7 @@
 				</p>
 				</div>
 				<div class="text-center">
-					<input class="btn btn-warning btn-limpar pull-left" type="reset" value="Limpar"> 
+					<input class="btn btn-warning btn-limpar pull-left" type="reset" value="Limpar" id="limpar" name="limpar" />
 					<input class="btn btn-primary btn-add pull-right" type="submit"	value="Cadastrar">
 				</div>		
 			</form>

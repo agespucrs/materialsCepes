@@ -9,6 +9,7 @@ import java.util.Map;
 import br.ages.crud.dao.LivroDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.CopiaLivro;
 import br.ages.crud.model.Livro;
 import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.LoginValidator;
@@ -77,6 +78,14 @@ public class LivroBO {
 			throw new NegocioException(e);
 		}
 	}
-
+	
+	public void cadastrarCopia(CopiaLivro copia) throws NegocioException {
+		try {
+			livroDAO.cadastrarCopia(copia);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
 }
 
