@@ -498,7 +498,7 @@ public class LivroDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, copia.getIdLivro());
-			statement.setString(2, copia.getCodigo_isbn());
+			statement.setString(2, copia.getCodigoIsbn());
 			statement.execute();
 
 		} catch (ClassNotFoundException | SQLException e) {
