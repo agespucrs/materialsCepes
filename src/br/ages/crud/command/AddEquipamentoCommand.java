@@ -51,7 +51,7 @@ public class AddEquipamentoCommand implements Command {
 			computador.setValor(valor);
 			computador.setDataCadastro(dataCadastro);
 			computador.setProjeto(projeto);
-			computador.setObservacoes(observacao);			
+			computador.setObservacoes(observacao);
 			
 			if (computadorBO.cadastraComputador(computador)) {
 				proxima = "main?acao=listEquipamento";

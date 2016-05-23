@@ -107,7 +107,7 @@
 					<div class="col-sm-6">
 							<label class="form-label ages">Data Cadastro:<span class="red">*</span></label> 
 							<div class='input-group date' id='dataCadastro'>
-								<input type='text' class="form-control" id='dtCadastro' name="dtCadastro" value="${param.dtCadastro}"/>
+								<input type='text' class="form-control" name="dataCadastro" value="${param.dataCadastro}"/>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -184,7 +184,8 @@ $('#tipoEquipamento').on('change', function() {
 $(function() {
 	$('#dataCadastro').datetimepicker({
 		locale : 'pt-br',
-		showTodayButton: true
+		showTodayButton: true,
+		format: 'DD/MM/YYYY'
 	});
 });
 </script>

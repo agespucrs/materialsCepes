@@ -54,7 +54,7 @@ public class ComputadorDAO {
 
 				sql = new StringBuilder();
 				sql.append("INSERT INTO TB_COMPUTADOR ");
-				sql.append("(ID_EQUIPAMENTO, TIPO_COMPUTADOR) ");
+				sql.append("(ID_EQUIPAMENTO, ID_TIPO) ");
 				sql.append("VALUES ");
 				sql.append("(             ?,               ?)");
 
