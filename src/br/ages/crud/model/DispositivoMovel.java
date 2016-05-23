@@ -1,13 +1,13 @@
 package br.ages.crud.model;
 
 public class DispositivoMovel extends Equipamento {
-	String tipoDispositivoMovel;
+	int tipoDispositivoMovel;
 
-	public String getTipoDispositivoMovel() {
+	public int getTipoDispositivoMovel() {
 		return tipoDispositivoMovel;
 	}
-
-//	public String getTitulo() {
-//		return "";
-//	}
+	
+	public void setTipoDispositivoMovel(int tipoDisposMovel) {
+		this.tipoDispositivoMovel = tipoDisposMovel;
+	}
 }

@@ -41,7 +41,6 @@ public class ComputadorDAO {
 			statement.setInt(2, computador.getStatus());
 			statement.setString(3, computador.getModelo());
 			statement.setDouble(4, computador.getValor());
-			//statement.setDate(5, (Date) computador.getDataCadastro());
 			statement.setTimestamp(5, new Timestamp(computador.getDataCadastro().getTime()));
 			statement.setString(6, computador.getObservacoes());
 			statement.setInt(7, computador.getMarca());

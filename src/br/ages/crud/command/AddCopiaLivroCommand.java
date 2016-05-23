@@ -25,7 +25,7 @@ public class AddCopiaLivroCommand implements Command {
 		copiaL.setIdLivro(idLivro);
 		copiaL.setCodigo_isbn(copia);
 
-		if (copiaL.getCodigo_isbn().length() > 11) {
+		if (copiaL.getCodigoIsbn().length() > 11) {
 			request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CAMPO_CODIGO_ISBN_MAIOR);
 		} else {
 
@@ -34,7 +34,7 @@ public class AddCopiaLivroCommand implements Command {
 			try {
 				bo.cadastrarCopia(copiaL);
 				request.setAttribute("msgSucesso",
-						MensagemContantes.MSG_SUC_CADASTRO_COPIA.replace("?", copiaL.getCodigo_isbn()));
+						MensagemContantes.MSG_SUC_CADASTRO_COPIA.replace("?", copiaL.getCodigoIsbn()));
 			} catch (Exception e) {
 				request.setAttribute("msgErro", e.getMessage());
 			}

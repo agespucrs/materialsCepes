@@ -3,7 +3,7 @@ package br.ages.crud.model;
 public enum TipoEquipamento {
     COMPUTADOR("C"),
     PERIFERICO("P"),
-    DISPOSITIVO_MOVEL("P");
+    DISPOSITIVO_MOVEL("M");
 	
     private String valor;
 

@@ -199,7 +199,7 @@ if(Id_Mobile is not null, 'Dispositivo Movel',
   if(Id_Computador is not null, 'Computador', 'Periferico')
 ) as Tipo_Equipamento,
 --
-if(Id_Mobile is not null, Tipo_Mobile, 
+if(Id_Mobile is not null, MOB.ID_TIPO, 
   if(Id_Computador is not null, COMP.ID_TIPO, PERIF.ID_TIPO)
 ) as Sub_Tipo,
 --

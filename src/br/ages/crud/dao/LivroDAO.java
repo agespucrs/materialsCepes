@@ -347,6 +347,8 @@ public class LivroDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_LIVRO WHERE ID_LIVRO = ? ");
 
+			
+			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
 			ResultSet resultset = statement.executeQuery();
@@ -485,8 +487,8 @@ public class LivroDAO {
 			}
 		}
 	}
-
-	public void cadastrarCopia(CopiaLivro copia) throws PersistenciaException {
+	
+	public void cadastrarCopia(CopiaLivro copia) throws PersistenciaException{
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
@@ -496,7 +498,7 @@ public class LivroDAO {
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, copia.getIdLivro());
-			statement.setString(2, copia.getCodigo_isbn());
+			statement.setString(2, copia.getCodigoIsbn());
 			statement.execute();
 
 		} catch (ClassNotFoundException | SQLException e) {

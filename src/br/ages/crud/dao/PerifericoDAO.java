@@ -40,7 +40,6 @@ public class PerifericoDAO {
 			statement.setInt(2, periferico.getStatus());
 			statement.setString(3, periferico.getModelo());
 			statement.setDouble(4, periferico.getValor());
-			//statement.setDate(5, (Date) periferico.getDataCadastro());
 			statement.setTimestamp(5, new Timestamp(periferico.getDataCadastro().getTime()));
 			statement.setString(6, periferico.getObservacoes());
 			statement.setInt(7, periferico.getMarca());

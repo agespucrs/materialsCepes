@@ -77,8 +77,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="main?acao=telaEquipamento&tela=addProjeto">Cadastrar</a></li>
 							<li><a href="main?acao=telaEquipamento&tela=listProjeto">Listar</a></li>
-							<li><a href="main?acao=telaEquipamento&tela=equipeProjeto">Alocar
-									Equipe</a></li>
+							<li><a href="main?acao=telaEquipamento&tela=equipeProjeto">Alocar Equipe</a></li>
 							<!-- <li><a href="main?acao=telaEquipamento&tela=equipamentoProjeto">Alocar Equipamento</a></li> -->
 						</ul>
 					<li class="dropdown"><a class="dropdown-toggle"
@@ -87,15 +86,8 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="main?acao=telaEquipamento&tela=listEquipamento">Listar</a></li>
-							<li><a href="main?acao=telaEquipamento&tela=equipamento">Cadastrar
-									Equipamento</a></li>
-							<!-- 				            <li><a href="main?acao=telaEquipamento&tela=computador">Cadastro Computador</a></li>-->
-							<li><a href="main?acao=telaPeriferico">Cadastro
-									Periférico</a></li>
-							<!--       	<li><a href="main?acao=telaEquipamento&tela=movel">Cadastro Dispositivo Móvel</a></li> -->
-							<li><a href="main?acao=telaEquipamento&tela=marca">Cadastro
-									Marca</a></li>
-
+							<li><a href="main?acao=telaEquipamento&tela=equipamento">Cadastrar Equipamento</a></li>
+							<li><a href="main?acao=telaEquipamento&tela=marca">Cadastro Marca</a></li>
 						</ul></li>
 					<li class="dropdown"><a data-submenu="" data-toggle="dropdown"
 						tabindex="0"> Livros <span class="caret"></span>
@@ -106,19 +98,20 @@
 							<li class="divider"></li>
 							<li><a tabindex="0" href="main?acao=listLivro">Listar</a></li>
 							<li><a tabindex="0" href="main?acao=telaLivro&isEdit=">Cadastrar</a></li>
-							<li><a tabindex="0" href="main?acao=copiaLivro">Adicionar
-									Cópia</a></li>
+							<li><a tabindex="0" href="main?acao=copiaLivro">Adicionar Cópia</a></li>
 							<li class="divider"></li>
 							<li class="dropdown-submenu"><a tabindex="0">Autores</a>
 								<ul class="dropdown-menu">
 									<li><a tabindex="0" href="main?acao=listAutor">Listar</a></li>
 									<li><a tabindex="0" href="main?acao=telaAutor">cadastrar</a></li>
-								</ul></li>
+								</ul>
+							</li>
 							<li class="dropdown-submenu"><a tabindex="0">Editoras</a>
 								<ul class="dropdown-menu">
 									<li><a tabindex="0" href="main?acao=listEditora">Listar</a></li>
 									<li><a tabindex="0" href="main?acao=telaEditora">Cadastrar</a></li>
-								</ul></li>
+								</ul>
+							</li>
 						</ul></li>
 				</ul>
 

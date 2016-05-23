@@ -60,7 +60,7 @@
 						<%
 					}else{
 					%>
-					<td>Sem autores.</td>
+					<td>Sem autores</td>
 					<% } %>
 					<td align="center"><a
 						href="/CePESMaterials/main?acao=telaLivro&id_livro=<%=livro.getIdLivro()%>&isEdit=sim"
