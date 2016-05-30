@@ -159,9 +159,9 @@
 						<label class="checkbox-inline ages"><input type="checkbox"
 							name="video" value="<%=livro.isVideo()%>">Video</label> <label
 							class="checkbox-inline ages"><input type="checkbox"
-							name="cd_dvd" value="<%=livro.isCd_dvd()%>">CD/DVD</label> <label
+							name="cd_dvd" value="<%=livro.isCdDvd()%>">CD/DVD</label> <label
 							class="checkbox-inline ages"><input type="checkbox"
-							name="ebook" value="<%=livro.isE_book()%>">E-Book</label> <label
+							name="ebook" value="<%=livro.iseBook()%>">E-Book</label> <label
 							class="checkbox-inline ages"><input type="checkbox"
 							name="capaDura" value="">Capa Dura</label> <label
 							class="checkbox-inline ages"><input type="checkbox"
