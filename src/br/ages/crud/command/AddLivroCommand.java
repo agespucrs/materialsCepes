@@ -36,10 +36,16 @@ public class AddLivroCommand implements Command {
 		Date dataCadastro = new Date();
 
 		String sPreco = (request.getParameter("preco"));
-		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco); // resolver problema das casas decimais.
+		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco); // resolver
+																		// problema
+																		// das
+																		// casas
+																		// decimais.
 
 		String sLingua = (request.getParameter("lingua"));
+
 		Integer lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);
+
 		String codigoISBN = request.getParameter("isbn");
 
 		String sEdicao = (request.getParameter("edicao"));
@@ -49,8 +55,7 @@ public class AddLivroCommand implements Command {
 		Integer ano = sAno.equals("") ? null : Integer.parseInt(sAno);
 
 		String sPaginas = (request.getParameter("paginas"));
-		Integer paginas = sPaginas.equals("") ? null : Integer
-				.parseInt(sPaginas);
+		Integer paginas = sPaginas.equals("") ? null : Integer.parseInt(sPaginas);
 
 		Boolean brochura = request.getParameter("brochura") == null ? false : true;
 		Boolean revista = request.getParameter("revista") == null ? false : true;
@@ -78,8 +83,8 @@ public class AddLivroCommand implements Command {
 			livro.setAno(ano);
 			livro.setPaginas(paginas);
 			livro.setVideo(video);
-			livro.setCd_dvd(cd_dvd);
-			livro.setE_book(e_book);
+			livro.setCdDvd(cd_dvd);
+			livro.seteBook(e_book);
 			livro.setDescricao(descricao);
 			livro.setBrochura(brochura);
 			livro.setRevista(revista);
@@ -94,17 +99,15 @@ public class AddLivroCommand implements Command {
 			 * MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS); } else { //
 			 * cadastro de pessoa com sucesso
 			 */
-			
+
 			if (livroBO.cadastrarLivro(livro)) {
 				proxima = "main?acao=listLivro";
 				request.setAttribute("msgSucesso",
-						MensagemContantes.MSG_SUC_CADASTRO_LIVRO.replace("?",
-								livro.getTitulo()));
+						MensagemContantes.MSG_SUC_CADASTRO_LIVRO.replace("?", livro.getTitulo()));
 			} else {
 				proxima = "main?acao=addLivro";
 				request.setAttribute("msgErro",
-						MensagemContantes.MSG_ERR_CADASTRO_LIVRO_EXISTENTE
-								.replace("?", livro.getTitulo()));
+						MensagemContantes.MSG_ERR_CADASTRO_LIVRO_EXISTENTE.replace("?", livro.getTitulo()));
 			}
 			/**/
 

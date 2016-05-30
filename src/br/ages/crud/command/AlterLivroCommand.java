@@ -13,6 +13,7 @@ import br.ages.crud.bo.EditoraBO;
 import br.ages.crud.bo.LivroBO;
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.model.Autor;
+import br.ages.crud.model.CopiaLivro;
 import br.ages.crud.model.Editora;
 import br.ages.crud.model.Livro;
 import br.ages.crud.model.Usuario;
@@ -20,14 +21,13 @@ import br.ages.crud.util.MensagemContantes;
 
 public class AlterLivroCommand implements Command {
 
-
 	private String proxima;
 
 	private LivroBO livroBO;
 
 	@Override
 	public String execute(HttpServletRequest request) throws ParseException {
-		
+
 		this.livroBO = new LivroBO();
 		EditoraBO editoraBO = new EditoraBO();
 		AutorBO autorBO = new AutorBO();
@@ -43,20 +43,19 @@ public class AlterLivroCommand implements Command {
 
 		String sLingua = (request.getParameter("lingua"));
 		Integer lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);
-		
+
 		String codigoISBN = request.getParameter("isbn");
 
 		String sEdicao = (request.getParameter("edicao"));
 		Integer edicao = sEdicao.equals("") ? null : Integer.parseInt(sEdicao);
 
 		String sAno = request.getParameter("ano");
-		//SimpleDateFormat sdano = new SimpleDateFormat("yyyy");
-		//Date ano = sAno.equals("") ? null : sdano.parse(sAno);
+		// SimpleDateFormat sdano = new SimpleDateFormat("yyyy");
+		// Date ano = sAno.equals("") ? null : sdano.parse(sAno);
 		Integer ano = sAno.equals("") ? null : Integer.parseInt(sAno);
 
 		String sPaginas = (request.getParameter("paginas"));
-		Integer paginas = sPaginas.equals("") ? null : Integer
-				.parseInt(sPaginas);
+		Integer paginas = sPaginas.equals("") ? null : Integer.parseInt(sPaginas);
 
 		Boolean brochura = request.getParameter("brochura") == null ? false : true;
 		Boolean video = request.getParameter("video") == null ? false : true;
@@ -69,23 +68,28 @@ public class AlterLivroCommand implements Command {
 		Integer idEditora = Integer.parseInt(request.getParameter("editora"));
 		ArrayList<Integer> idAutores = new ArrayList<Integer>();
 		Integer idAutor = Integer.parseInt(request.getParameter("autor"));
+		Integer idCopia = Integer.parseInt(request.getParameter("idCopia"));
 		idAutores.add(idAutor);
 
 		try {
 
+			CopiaLivro copia = new CopiaLivro();
+
+			copia.setIdCopiaLivro(idCopia);
+			copia.setCodigo_isbn(codigoISBN);
 			Livro livro = new Livro();
 			livro.setTitulo(titulo);
 			livro.setSubtitulo(subtitulo);
-			//livro.setDataCadastro(dataCadastro);
+			// livro.setDataCadastro(dataCadastro);
 			livro.setPreco(preco);
 			livro.setLingua(lingua);
-			livro.setCodigoISBN(codigoISBN);
+			// livro.setCodigoISBN(codigoISBN);
 			livro.setEdicao(edicao);
 			livro.setAno(ano);
 			livro.setPaginas(paginas);
 			livro.setVideo(video);
-			livro.setCd_dvd(cd_dvd);
-			livro.setE_book(e_book);
+			livro.setCdDvd(cd_dvd);
+			livro.seteBook(e_book);
 			livro.setDescricao(descricao);
 			livro.setBrochura(brochura);
 			livro.setRevista(revista);
@@ -94,33 +98,18 @@ public class AlterLivroCommand implements Command {
 			ArrayList<Autor> autores = autorBO.consultarAutores(idAutores);
 			livro.setAutores(autores);
 			livro.setIdLivro(id_livro);
-			
-			livroBO.alterarLivro(livro);
-			proxima = "main?acao=listLivro";
-			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_ALTERADO_LIVRO.replace("?", livro.getTitulo()));
 
-			
+			livroBO.alterarLivro(livro);
+			livroBO.atualizarCopia(copia);
+			proxima = "main?acao=listLivro";
+			request.setAttribute("msgSucesso",
+					MensagemContantes.MSG_SUC_ALTERADO_LIVRO.replace("?", livro.getTitulo()));
+
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
-			//proxima = "main?acao=addUser";
+			// proxima = "main?acao=addUser";
 		}
 
 		return proxima;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

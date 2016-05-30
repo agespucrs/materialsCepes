@@ -1,4 +1,5 @@
 package br.ages.crud.model;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.*;
@@ -6,193 +7,201 @@ import java.util.*;
 public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-		
-		private int idLivro;
-		private String titulo;
-		private String subtitulo;
-		private Date dataCadastro;
-		private long preco;
-		private Editora editora;
-		private List<Autor> autores;
-		private int lingua;
-		private String codigoISBN;
-		private int edicao;
-		private int ano;
-		private int paginas;
-		private boolean video;
-		private boolean cd_dvd;
-		private boolean e_book;
-		private String descricao;
-		private boolean brochura;
-		private boolean revista;
-		private boolean excluido; // determinar se livro esta ativo/exluido
-									
-		public boolean isExcluido() {
-			return excluido;
-		}
 
-		public void setExcluido(boolean excluido) {
-			this.excluido = excluido;
-		}
+	private int idLivro;
+	private String titulo;
+	private String subtitulo;
+	private Date dataCadastro;
+	private long preco;
+	private Editora editora;
+	private List<Autor> autores;
+	private Integer lingua;
+	private String codigoISBN;
+	private int edicao;
+	private int ano;
+	private int paginas;
+	private boolean video;
+	private boolean cdDvd;
+	private boolean eBook;
+	private String descricao;
+	private boolean brochura;
+	private int idCopia;
+	private boolean revista;
+	private boolean excluido; // determinar se livro esta ativo/exluido
 
-		public Livro() {
-			excluido = false;
-		}
-		
-		public int getIdLivro() {
-			return idLivro;
-		}
+	public boolean isExcluido() {
+		return excluido;
+	}
 
-		public void setIdLivro(int idLivro) {
-			this.idLivro = idLivro;
-		}
+	public void setExcluido(boolean excluido) {
+		this.excluido = excluido;
+	}
 
-		public String getTitulo() {
-			return titulo;
-		}
+	public Livro() {
+		excluido = false;
+	}
 
-		public void setTitulo(String titulo) {
-			this.titulo = titulo;
-		}
+	public int getIdLivro() {
+		return idLivro;
+	}
 
-		public boolean getBrochura() {
-			return brochura;
-		}
+	public void setIdLivro(int idLivro) {
+		this.idLivro = idLivro;
+	}
 
-		public void setBrochura(boolean brochura) {
-			this.brochura = brochura;
-		}
-		
-		public boolean getRevista() {
-			return revista;
-		}
+	public int getIdCopia() {
+		return idCopia;
+	}
 
-		public void setRevista(boolean revista) {
-			this.revista = revista;
-		}
+	public void setIdCopia(int idCopia) {
+		this.idCopia = idCopia;
+	}
 
-		public String getSubtitulo() {
-			return subtitulo;
-		}
+	public String getTitulo() {
+		return titulo;
+	}
 
-		public void setSubtitulo(String subtitulo) {
-			this.subtitulo = subtitulo;
-		}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-		public Date getDataCadastro() {
-			return dataCadastro;
-		}
+	public boolean getBrochura() {
+		return brochura;
+	}
 
-		public void setDataCadastro(Date dataCadastro) {
-			this.dataCadastro = dataCadastro;
-		}
+	public void setBrochura(boolean brochura) {
+		this.brochura = brochura;
+	}
 
-		public long getPreco() {
-			return preco;
-		}
+	public boolean getRevista() {
+		return revista;
+	}
 
-		public void setPreco(long preco) {
-			this.preco = preco;
-		}
+	public void setRevista(boolean revista) {
+		this.revista = revista;
+	}
 
-		public String getCodigoISBN() {
-			return codigoISBN;
-		}
+	public String getSubtitulo() {
+		return subtitulo;
+	}
 
-		public void setCodigoISBN(String codigoISBN) {
-			this.codigoISBN = codigoISBN;
-		}
+	public void setSubtitulo(String subtitulo) {
+		this.subtitulo = subtitulo;
+	}
 
-		public int getEdicao() {
-			return edicao;
-		}
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
 
-		public void setEdicao(int edicao) {
-			this.edicao = edicao;
-		}
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
-		public int getAno() {
-			return ano;
-		}
+	public long getPreco() {
+		return preco;
+	}
 
-		public void setAno(int ano) {
-			this.ano = ano;
-		}
+	public void setPreco(long preco) {
+		this.preco = preco;
+	}
 
-		public int getPaginas() {
-			return paginas;
-		}
+	public String getCodigoISBN() {
+		return codigoISBN;
+	}
 
-		public void setPaginas(int paginas) {
-			this.paginas = paginas;
-		}
+	public void setCodigoISBN(String codigoISBN) {
+		this.codigoISBN = codigoISBN;
+	}
 
-		public boolean isVideo() {
-			return video;
-		}
+	public int getEdicao() {
+		return edicao;
+	}
 
-		public void setVideo(boolean video) {
-			this.video = video;
-		}
+	public void setEdicao(int edicao) {
+		this.edicao = edicao;
+	}
 
-		public boolean isCd_dvd() {
-			return cd_dvd;
-		}
+	public int getAno() {
+		return ano;
+	}
 
-		public void setCd_dvd(boolean cd_dvd) {
-			this.cd_dvd = cd_dvd;
-		}
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
 
-		public boolean isE_book() {
-			return e_book;
-		}
+	public int getPaginas() {
+		return paginas;
+	}
 
-		public void setE_book(boolean e_book) {
-			this.e_book = e_book;
-		}
+	public void setPaginas(int paginas) {
+		this.paginas = paginas;
+	}
 
-		public String getDescricao() {
-			return descricao;
-		}
+	public boolean isVideo() {
+		return video;
+	}
 
-		public void setDescricao(String descricao) {
-			this.descricao = descricao;
-		}
+	public void setVideo(boolean video) {
+		this.video = video;
+	}
 
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
-		
-		public Editora getEditora() {
-			return editora;
-		}
+	public boolean isCdDvd() {
+		return cdDvd;
+	}
 
-		public void setEditora(Editora editora) {
-			this.editora = editora;
-		}
+	public void setCdDvd(boolean cdDvd) {
+		this.cdDvd = cdDvd;
+	}
 
-		public int getLingua() {
-			return lingua;
-		}
+	public boolean iseBook() {
+		return eBook;
+	}
 
-		public void setLingua(int lingua) {
-			this.lingua = lingua;
-		}
+	public void seteBook(boolean eBook) {
+		this.eBook = eBook;
+	}
 
-		public List<Autor> getAutores() {
-			return autores;
-		}
+	public String getDescricao() {
+		return descricao;
+	}
 
-		public void setAutores(List<Autor> autores) {
-			this.autores = autores;
-		}
-		
-		public void setStatus(boolean excluido) {
-			this.excluido = excluido;
-		}
-		
-		public boolean getStatus() {
-			return excluido;
-		}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Editora getEditora() {
+		return editora;
+	}
+
+	public void setEditora(Editora editora) {
+		this.editora = editora;
+	}
+
+	public Integer getLingua() {
+		return lingua;
+	}
+
+	public void setLingua(Integer lingua) {
+		this.lingua = lingua;
+	}
+
+	public List<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
+	}
+
+	public void setStatus(boolean excluido) {
+		this.excluido = excluido;
+	}
+
+	public boolean getStatus() {
+		return excluido;
+	}
 }
-
