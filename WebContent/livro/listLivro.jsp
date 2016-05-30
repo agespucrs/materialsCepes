@@ -37,41 +37,46 @@
 				%>
 				<tr>
 					<td><input type="checkbox" /></td>
-					<td><%= livro.getCodigoISBN() %></td>
-					<td><%= livro.getTitulo() %></td>
-					<td><%= livro.getEdicao() %></td>
-					<%if ((Integer)livro.getAno() == null)
-						{ %>
+					<td><%=livro.getCodigoISBN()%></td>
+					<td><%=livro.getTitulo()%></td>
+					<td><%=livro.getEdicao()%></td>
+					<%
+						if ((Integer) livro.getAno() == null) {
+					%>
 					<td>Não Informado</td>
 					<%
-						} else {  %>
-					<td><%=livro.getAno() %></td>
-					<%  } %>
-					<td><%= Util.toDataNormal(livro.getDataCadastro()) %></td>
+						} else {
+					%>
+					<td><%=livro.getAno()%></td>
 					<%
-					if (livro.getAutores() != null && !livro.getAutores().isEmpty()){
-						String nomes = "";
-						for (Autor autor: livro.getAutores()) {
-							nomes += autor.getNome() + " " + autor.getSobrenome() + "<br/>";	
 						}
-						%>
-						
-						<td><%=nomes %></td>
-						<%
-					}else{
+					%>
+					<td><%=Util.toDataNormal(livro.getDataCadastro())%></td>
+					<%
+						if (livro.getAutores() != null && !livro.getAutores().isEmpty()) {
+								String nomes = "";
+								for (Autor autor : livro.getAutores()) {
+									nomes += autor.getNome() + " " + autor.getSobrenome() + "<br/>";
+								}
+					%>
+
+					<td><%=nomes%></td>
+					<%
+						} else {
 					%>
 					<td>Sem autores</td>
-					<% } %>
+					<%
+						}
+					%>
 					<td align="center"><a
-						href="/CePESMaterials/main?acao=telaLivro&id_livro=<%=livro.getIdLivro()%>&isEdit=sim"
+						href="/CePESMaterials/main?acao=telaLivro&id_livro=<%=livro.getIdLivro()%>&id_copia=<%=livro.getIdCopia()%>&isEdit=sim"
 						title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
 					<td align="center"><a
-						href="/CePESMaterials/main?acao=removerLivro&id_livro=<%=livro.getIdLivro()%>"
+						href="/CePESMaterials/main?acao=removerLivro&id_copia=<%=livro.getIdCopia()%>"
 						title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 				</tr>
 				<%
 					}
-					
 				%>
 			</table>
 		</div>
