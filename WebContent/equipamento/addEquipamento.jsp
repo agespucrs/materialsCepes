@@ -22,11 +22,16 @@
 				<jsp:include page="/template/msg.jsp"></jsp:include>
 				<div class="form-group">
 					<div class="row">	
-						<div class=" col-sm-6">
+						<div class=" col-sm-6" id="numeroPatrimonio">
 							<label class="form-label ages">Numero Patrimonio <span class="red">*</span></label> 
-							<input class="form-control" id="numeroPatrimonio" name="numeroPatrimonio"	value="${param.numeroPatrimonio}" type="text" required>
+							<input class="form-control" name="numeroPatrimonio"	value="${param.numeroPatrimonio}" type="text" required>
 						</div>
-				
+						
+						<div class="col-sm-6 hidden" id="quantidade">
+							<label class="form-label ages">Quantidade <span class="red">*</span></label> 
+							<input class="form-control" name="quantidade" value="${param.quantidade}" type="text" required>
+						</div>
+						
 						<div class=" col-sm-6">
 							<label class="form-label ages">Status <span class="red">*</span></label> 
 							<select class="form-control" id="status" name="status" required>
@@ -37,8 +42,7 @@
 								<option value="2" >Descartado</option>
 							</select>
 						</div>
-					</div>
-					<div class="row">
+						
 						<div class=" col-sm-6">
 								<label class="form-label ages">Tipo Equipamento <span class="red">*</span></label> <!-- será buscado alista em um enum -->
 								<select class="form-control" id="tipoEquipamento" name="tipoEquipamento" required >
@@ -48,6 +52,10 @@
 									<option value="M" >Dispositivo Móvel</option>
 									<option value="P" >Periférico</option>
 								</select>
+						</div>
+						<div class="col-sm-6 hidden" id="tipoAcessorio" >
+							<label class="form-label ages">Tipo de Acessório<span class="red">*</span></label>
+							<input class="form-control" name="tipoAcessorio" value="${param.tipoAcessorio}" type="text" required>
 						</div>
 						<div class="col-sm-6 hidden" id="tipoComputador" >
 							<label class="form-label ages">Tipo de Computador<span class="red">*</span></label> <!-- será buscado alista em um enum -->
@@ -95,13 +103,13 @@
 						</select>
 					</div>
 
-				<label class="form-label ages">Modelo </label> <!-- os modelos irão variar conforme a marca / buscar a lista em uma classe  -->
-				<input class="form-control" id="modelo" name="modelo" value="${param.numeroPatrimonio}" type="text" required>
+				<label class="form-label ages">Modelo </label>
+				<input class="form-control" id="modelo" name="modelo" value="${param.modelo}" type="text" required>
 				
 				<div class="row">
 					<div class=" col-sm-6">
 						<label class="form-label ages">Valor </label> 
-						<input class="form-control" id="valor" name="valor" value="${param.modelo}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
+						<input class="form-control" id="valor" name="valor" value="${param.valor}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
 					</div>
 					
 					<div class="col-sm-6">
@@ -150,36 +158,54 @@ $('#tipoEquipamento').on('change', function() {
 	var tipo =   $(this).val()
 	switch (tipo) {
 		case 'C':
+			escondeElementos();
 			$('#tipoComputador').removeClass('hidden');
-			$('#tipoPeriferico').addClass('hidden');
-			$('#tipoMovel').addClass('hidden');
+			$('#numeroPatrimonio').removeClass('hidden');
 			
 			$('#selectComputador').attr("required");
 			$('#selectPeriferico').removeAttr("required");
 			$('#selectMobile').removeAttr("required");
 			break;
 		case 'P':
-			$('#tipoComputador').addClass('hidden');
+			escondeElementos();
 			$('#tipoPeriferico').removeClass('hidden');
-			$('#tipoMovel').addClass('hidden');
+			$('#numeroPatrimonio').removeClass('hidden');
 			
 			$('#selectComputador').removeAttr("required");
 			$('#selectPeriferico').attr("required");
 			$('#selectMobile').removeAttr("required");
 			break;
 		case 'M':
-			$('#tipoComputador').addClass('hidden');
-			$('#tipoPeriferico').addClass('hidden');
+			escondeElementos();
 			$('#tipoMovel').removeClass('hidden');
+			$('#numeroPatrimonio').removeClass('hidden');
 			
 			$('#selectComputador').removeAttr("required");
 			$('#selectPeriferico').removeAttr("required");
 			$('#selectMobile').attr("required");
 			break;
+		case 'A':
+			escondeElementos();
+			$('#tipoAcessorio').removeClass('hidden');
+			$('#quantidade').removeClass('hidden');
+			
+			$('#selectComputador').removeAttr("required");
+			$('#selectPeriferico').removeAttr("required");
+			$('#selectMobile').removeAttr("required");
 		default:
 			break;
 	} 
 });
+
+function escondeElementos() {
+	$('#tipoComputador').addClass('hidden');
+	$('#tipoPeriferico').addClass('hidden');
+	$('#tipoMovel').addClass('hidden');
+	$('#tipoAcessorio').addClass('hidden');
+	
+	$('#numeroPatrimonio').addClass('hidden');
+	$('#quantidade').addClass('hidden');
+}
 
 $(function() {
 	$('#dataCadastro').datetimepicker({

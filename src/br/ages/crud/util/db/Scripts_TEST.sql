@@ -83,3 +83,20 @@ VALUES
 (3, 789, 1, "Galaxy", 
 750, '2016-04-05', "Observacao 3", 1, 1);
 
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Desktop', 'C');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Notebook', 'C');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Servidor', 'C');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Tablet', 'M');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Celular', 'M');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Smartphone', 'M');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Outros', 'M');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Monitor', 'P');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('TV', 'P');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Impressora', 'P');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Switch', 'P');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Outros', 'P');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Mouse', 'A');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Teclado', 'A');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Caixa de Som', 'A');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Cabos (HDMI, VGA, etc)', 'A');
+insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Hard Drive', 'A');

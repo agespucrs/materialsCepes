@@ -76,9 +76,9 @@
 					</tr>
 					<tr>
 						<td>CD/DVD</td>
-						<td><%if(livro.isE_book()){%><input onclick="return false" type="checkbox" id="cd_dvd" name="cd_dvd" checked /><%} else { %><input type="checkbox" id="cd_dvd" name="cd_dvd"/><%}%></td></td>
+						<td><%if(livro.iseBook()){%><input onclick="return false" type="checkbox" id="cd_dvd" name="cd_dvd" checked /><%} else { %><input type="checkbox" id="cd_dvd" name="cd_dvd"/><%}%></td></td>
 						<td>e-book</td>
-						<td><%if(livro.isE_book()){%><input onclick="return false" type="checkbox" id="ebook" name="ebook" checked/><%} else { %><input type="checkbox" id="ebook" name="ebook"/><%}%></td>
+						<td><%if(livro.iseBook()){%><input onclick="return false" type="checkbox" id="ebook" name="ebook" checked/><%} else { %><input type="checkbox" id="ebook" name="ebook"/><%}%></td>
 					</tr>
 					<tr>
 						<td>Descrição</td>
