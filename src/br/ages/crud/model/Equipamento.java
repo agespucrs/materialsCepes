@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Equipamento {
 	int id;
-	int numeroPatrimonio;
 	int status;
 	String tipoEquipamento;
 	//subTipo tem o valor TIPO_MOBILE, TIPO_COMPUTADOR, ou TIPO_PERIFERICO,
@@ -23,14 +22,6 @@ public class Equipamento {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getNumeroPatrimonio() {
-		return numeroPatrimonio;
-	}
-	
-	public void setNumeroPatrimonio(int numeroPatrimonio) {
-		this.numeroPatrimonio = numeroPatrimonio;
 	}
 	
 	public int getStatus() {

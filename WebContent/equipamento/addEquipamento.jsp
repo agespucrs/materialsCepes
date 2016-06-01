@@ -6,8 +6,11 @@
 <%@page import="br.ages.crud.model.Editora"%>
 <%@page import="br.ages.crud.model.Marca"%>
 <%@page import="br.ages.crud.model.Projeto"%>
+<%@page import="br.ages.crud.model.Tipo"%>
+<%@page import="br.ages.crud.model.TipoEquipamento"%>
 <%@page import="br.ages.crud.bo.MarcaBO"%>
 <%@page import="br.ages.crud.bo.ProjetoBO"%>
+<%@page import="br.ages.crud.bo.TipoBO"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <jsp:include page="/template/head.jsp"></jsp:include>
@@ -58,33 +61,40 @@
 							<input class="form-control" name="tipoAcessorio" value="${param.tipoAcessorio}" type="text" required>
 						</div>
 						<div class="col-sm-6 hidden" id="tipoComputador" >
-							<label class="form-label ages">Tipo de Computador<span class="red">*</span></label> <!-- será buscado alista em um enum -->
+							<label class="form-label ages">Tipo de Computador<span class="red">*</span></label>
 							<select class="form-control" id="selectComputador" name="tipoComputador" required>
 								<option value="" >Selecione o Tipo</option>
-								<option value="1" >Desktop</option>
-								<option value="2" >Notebook</option>
-								<option value="3" >Servidor</option>
+								<%
+									TipoBO tipoBO = new TipoBO();
+									List<Tipo> listaDeTipos = tipoBO.consultarPeloTipo(TipoEquipamento.COMPUTADOR);
+									for (Tipo tipo : listaDeTipos) {
+								%>
+								<option value="<%= tipo.getId() %>" ><%= tipo.getNome() %></option>
+								<%	} %>
 							</select>
 						</div>
 						<div class=" col-sm-6 hidden" id="tipoPeriferico" >
-							<label class="form-label ages">Tipo de Periférico<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
+							<label class="form-label ages">Tipo de Periférico<span class="red">*</span></label>
 							<select class="form-control" id="selectPeriferico" name="tipoPeriferico" required>
 								<option value="" >Selecione o Tipo</option>
-								<option value="1" >Monitor</option>
-								<option value="2" >TV</option>
-								<option value="3" >Impressora</option>
-								<option value="4" >Switch</option>
-								<option value="5" >Outros</option>
+								<%
+									listaDeTipos = tipoBO.consultarPeloTipo(TipoEquipamento.PERIFERICO);
+									for (Tipo tipo : listaDeTipos) {
+								%>
+								<option value="<%= tipo.getId() %>" ><%= tipo.getNome() %></option>
+								<%	} %>
 							</select>
 						</div>
 						<div class=" col-sm-6 hidden" id="tipoMovel">
-							<label class="form-label ages">Tipo Dispositivo Móvel<span class="red">*</span></label> <!-- sera buscado a lista em um enum -->
+							<label class="form-label ages">Tipo Dispositivo Móvel<span class="red">*</span></label>
 							<select class="form-control" id="selectMobile" name="tipoMobile" required>
 								<option value="" >Selecione o Tipo</option>
-								<option value="1" >Celular</option>
-								<option value="2" >Tablet</option>
-								<option value="3" >Smartphone</option>
-								<option value="4" >Outros</option>
+								<%
+									listaDeTipos = tipoBO.consultarPeloTipo(TipoEquipamento.DISPOSITIVO_MOVEL);
+									for (Tipo tipo : listaDeTipos) {
+								%>
+								<option value="<%= tipo.getId() %>" ><%= tipo.getNome() %></option>
+								<%	} %>
 							</select>
 						</div>
 					</div>

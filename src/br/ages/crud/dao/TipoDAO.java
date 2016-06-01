@@ -33,7 +33,7 @@ public class TipoDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_TIPO WHERE ");
-			sql.append("IDENT_TIPO = ?");
+			sql.append("TIPO_EQUIPAMENTO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, tipo.valor().toUpperCase());
