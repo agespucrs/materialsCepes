@@ -129,11 +129,11 @@
 							class="checkbox-inline ages"><input type="checkbox"
 							name="ebook" value="${param.ebook}">E-Book</label> <label
 							class="checkbox-inline ages"><input type="checkbox"
-							name="capaDuara" value="">Capa Dura</label> <label
+							name="capaDuara" value="${param.dura}">Capa Dura</label> <label
 							class="checkbox-inline ages"><input type="checkbox"
-							name="expiral" value="">Expiral</label> <label
+							name="expiral" value="${param.expiral}">Expiral</label> <label
 							class="checkbox-inline ages"><input type="checkbox"
-							name="revista" value="">Revista</label>
+							name="revista" value="${param.revista}">Revista</label>
 					</div>
 				</div>
 				<label class="form-label ages">Observação: </label>

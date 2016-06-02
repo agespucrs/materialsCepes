@@ -27,6 +27,8 @@ public class Livro implements Serializable {
 	private boolean brochura;
 	private int idCopia;
 	private boolean revista;
+	private boolean expiral;
+	private boolean dura;
 	private boolean excluido; // determinar se livro esta ativo/exluido
 
 	public boolean isExcluido() {
@@ -198,7 +200,23 @@ public class Livro implements Serializable {
 	}
 
 	public void setStatus(boolean excluido) {
-		this.excluido = excluido;
+		
+	}	
+
+	public boolean isExpiral() {
+		return expiral;
+	}
+
+	public void setExpiral(boolean expiral) {
+		this.expiral = expiral;
+	}
+
+	public boolean isDura() {
+		return dura;
+	}
+
+	public void setDura(boolean dura) {
+		this.dura = dura;
 	}
 
 	public boolean getStatus() {

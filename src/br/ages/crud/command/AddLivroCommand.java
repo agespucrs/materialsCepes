@@ -35,16 +35,22 @@ public class AddLivroCommand implements Command {
 		String subtitulo = request.getParameter("subtitulo");
 		Date dataCadastro = new Date();
 
-		String sPreco = (request.getParameter("preco"));
-		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco); // resolver
+//		String sPreco = (request.getParameter("preco"));
+//		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco); // resolver
 																		// problema
 																		// das
 																		// casas
 																		// decimais.
 
 		String sLingua = (request.getParameter("lingua"));
+		Integer lingua = null;
+		if(sLingua.equals("pt")){
+			lingua = 1;
+		} else if(sLingua.equals("en")){
+			lingua = 2;
+		}else lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);
 
-		Integer lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);
+//		Integer lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);
 
 		String codigoISBN = request.getParameter("isbn");
 
@@ -62,6 +68,8 @@ public class AddLivroCommand implements Command {
 		Boolean video = request.getParameter("video") == null ? false : true;
 		Boolean cd_dvd = request.getParameter("cd_dvd") == null ? false : true;
 		Boolean e_book = request.getParameter("ebook") == null ? false : true;
+		Boolean expiral = request.getParameter("expiral") == null ? false : true;
+		Boolean dura = request.getParameter("dura") == null ? false : true;
 		String descricao = request.getParameter("descricao");
 
 		// Object receptor
@@ -76,7 +84,7 @@ public class AddLivroCommand implements Command {
 			livro.setTitulo(titulo);
 			livro.setSubtitulo(subtitulo);
 			livro.setDataCadastro(dataCadastro);
-			livro.setPreco(preco);
+//			livro.setPreco(preco);
 			livro.setLingua(lingua);
 			livro.setCodigoISBN(codigoISBN);
 			livro.setEdicao(edicao);
@@ -88,6 +96,8 @@ public class AddLivroCommand implements Command {
 			livro.setDescricao(descricao);
 			livro.setBrochura(brochura);
 			livro.setRevista(revista);
+			livro.setExpiral(expiral);
+			livro.setDura(dura);
 			Editora editora = editoraBO.consultarEditora(idEditora);
 			livro.setEditora(editora);
 			ArrayList<Autor> autores = autorBO.consultarAutores(idAutores);
