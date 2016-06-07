@@ -92,7 +92,7 @@ public class UsuarioDAO {
 				dto.setEmail(resultset.getString("EMAIL"));
 				dto.setUsuario(resultset.getString("USUARIO"));
 				dto.setSenha(resultset.getString("SENHA"));
-				dto.setAdministrador(resultset.getString("ADMINISTRADOR"));
+				dto.setAdministrador(resultset.getInt("ADMINISTRADOR"));
 
 				listarUsuarios.add(dto);
 			}
@@ -154,7 +154,7 @@ public class UsuarioDAO {
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
-			statement.setString(3, usuario.getAdministrador());
+			statement.setInt(3, usuario.getAdministrador());
 			statement.setString(4, usuario.getMatricula());
 			statement.setString(5, usuario.getNome());
 			statement.setString(6, usuario.getEmail());
@@ -227,7 +227,8 @@ public class UsuarioDAO {
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setAdministrador(resultset.getString("ADMINISTRADOR"));
+				usuario.setAdministrador(resultset.getInt("ADMINISTRADOR"));
+				usuario.setIdFuncao(resultset.getInt("ID_FUNCAO"));
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);

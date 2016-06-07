@@ -6,9 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.List;
 
+import br.ages.crud.bo.FuncaoBO;
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.exception.NegocioException;
+import br.ages.crud.model.Funcao;
 import br.ages.crud.model.Usuario;
 
 public class CreateScreenUserCommand implements Command {
@@ -26,8 +29,10 @@ public class CreateScreenUserCommand implements Command {
 		if (isEdit != null && "sim".equals(isEdit)) {
 
 			Usuario usuario = usuarioBO.consultarUsuario(request.getParameter("id_usuario"));
-			
+			List<Funcao> funcoes = new FuncaoBO().listarFuncoes();
+
 			request.setAttribute("usuario", usuario);
+			request.setAttribute("funcoes", funcoes);
 
 			proxima = "user/alterUser.jsp";
 
