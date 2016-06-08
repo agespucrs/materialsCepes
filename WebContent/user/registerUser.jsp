@@ -49,13 +49,13 @@
 						<label class="form-label ages">Tipo: <span class="red">*</span></label> 
 						<select class="form-control" id="tipo" name="tipo" required> <!-- essa lista deverá vir de uma tabela -->
 							<option value="">Selecione o Tipo</option>
-							<option value="coordenador">Professor Coordenador</option>
-							<option value="professor">Professor Colaborador</option>
-							<option value="alunoDoutorando">Aluno Doutorando</option>
-							<option value="alunoMestrando">Aluno Mestrando</option>
-							<option value="alunoGraduando">Aluno Graduando</option>
-							<option value="alunoEspecializacao">Aluno Especialização</option>
-							<option value="tecnicoAdm">Técnico Administrativo</option>
+							<option value="1">Professor Coordenador</option>
+							<option value="2">Professor Colaborador</option>
+							<option value="3">Aluno Doutorando</option>
+							<option value="4">Aluno Mestrando</option>
+							<option value="5">Aluno Graduando</option>
+							<option value="6">Aluno Especialização</option>
+							<option value="7">Técnico Administrativo</option>
 						</select>
 					</div>
 				</div>

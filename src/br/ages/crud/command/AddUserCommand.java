@@ -25,7 +25,7 @@ public class AddUserCommand implements Command {
 		String matricula = request.getParameter("matricula");
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
-		String administrador = request.getParameter("adm");
+		Integer administrador = Integer.parseInt(request.getParameter("adm"));
 		
 		Date dataCadastro = new Date();
 	

@@ -1,3 +1,4 @@
+<%@page import="br.ages.crud.model.Funcao"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Usuario"%>
@@ -5,6 +6,8 @@
 
 <%
 	Usuario usuario = (Usuario) request.getAttribute("usuario");
+
+	List<Funcao> funcoes = (List<Funcao>) request.getAttribute("funcoes");
 %>
 <script type="text/javascript">
 	function alterar() {
@@ -40,12 +43,11 @@
 				<label class="form-label ages">Tipo: <span class="red">*</span></label> 
 					<select class="form-control" id="adm" name="adm" required> <!-- essa lista deverá vir de uma tabela -->
 						<option value="">Selecione o Tipo</option>
-						<option value="coordenador">Professor Coordenador</option>
-						<option value="professor">Professor</option>
-						<option value="alunoBolsista">Aluno Bolsista</option>
-						<option value="tecnicoAdm">Técnico Administrativo</option>
-						<option value="usuarioSimples">Usuário Simples</option>
-					</select>	
+						<% for (Funcao funcao : funcoes){ %>
+							<option value="<%= funcao.getId() %>" <%=(usuario.getIdFuncao() == funcao.getId()) ? "selected" : "" %>><%= funcao.getNome() %></option>
+						
+						<% } %>
+						</select>	
 				<span><sup class="red">*</sup> campos obrigatórios</span><br>
 				<div class="text-center">
 					<input class="btn btn-warning btn-limpar pull-left" type="reset"  value="Limpar"  id="limpar" name="limpar" />

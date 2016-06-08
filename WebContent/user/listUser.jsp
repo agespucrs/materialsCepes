@@ -39,7 +39,7 @@
 					<td class="alignLeft"><%=usuario.getNome()%></td>
 					<td class="alignLeft"><%=usuario.getEmail()%></td>
 					<td class="alignLeft"><%=usuario.getUsuario()%></td>
-					<td class="alignCenter"><%=usuario.getAdministrador()%></td>
+					<td class="alignCenter"><%=(usuario.getAdministrador() == 1) ? "Sim" : "Não" %></td>
 					<td align="center"><a href="/CePESMaterials/main?acao=telaUser&id_usuario=<%=usuario.getIdUsuario()%>&isEdit=sim" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
 					<td align="center"><a href="/CePESMaterials/main?acao=removerUser&id_usuario=<%=usuario.getIdUsuario()%>" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 				</tr>

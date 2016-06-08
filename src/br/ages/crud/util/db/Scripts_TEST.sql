@@ -100,3 +100,11 @@ insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Teclado', 'A');
 insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Caixa de Som', 'A');
 insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Cabos (HDMI, VGA, etc)', 'A');
 insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Hard Drive', 'A');
+
+insert into tb_funcao values(1, 'Professor Coordenador', '');
+insert into tb_funcao values(2, 'Professor Colaborador', '');
+insert into tb_funcao values(3, 'Aluno Doutorando', '');
+insert into tb_funcao values(4, 'Aluno Mestrando', '');
+insert into tb_funcao values(5, 'Aluno Graduando', '');
+insert into tb_funcao values(6, 'Aluno Especialização', '');
+insert into tb_funcao values(7, 'Técnico Administrativo', '');
