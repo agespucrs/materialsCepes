@@ -39,7 +39,7 @@ public class AlterLivroCommand implements Command {
 		Date dataCadastro = new Date();
 
 		String sPreco = (request.getParameter("preco"));
-		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco);
+		float preco = (float) (sPreco.equals("") ? 0.0 : Float.parseFloat(sPreco));
 
 		String sLingua = (request.getParameter("lingua"));
 		Integer lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);

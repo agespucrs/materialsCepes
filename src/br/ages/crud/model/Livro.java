@@ -12,7 +12,7 @@ public class Livro implements Serializable {
 	private String titulo;
 	private String subtitulo;
 	private Date dataCadastro;
-	private long preco;
+	private float preco;
 	private Editora editora;
 	private List<Autor> autores;
 	private Integer lingua;
@@ -99,11 +99,11 @@ public class Livro implements Serializable {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public long getPreco() {
+	public float getPreco() {
 		return preco;
 	}
 
-	public void setPreco(long preco) {
+	public void setPreco(float preco) {
 		this.preco = preco;
 	}
 

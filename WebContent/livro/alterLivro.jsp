@@ -37,8 +37,39 @@
 				<label class="form-label ages">Sub-Titulo: <span class="red">*</span></label>
 				<input class="form-control" id="subtitulo" name="subtitulo"
 					value="<%=livro.getSubtitulo()%>" type="text" maxlength="120"
-					required>
+					required><br />
+				
+				<label class="form-label ages">Autor (es): <span class="red">*</span></label>
+				<form action="">
+					<table id="listaLivros"
+						class="table table-responsive table-striped table-hover table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th style="text-align: center;">Autor</th>
+								
+								<th style="text-align: center;">Remover</th>
+							</tr>
+						</thead>
 
+						<%
+							List<Autor> listaAut = (List<Autor>) request.getAttribute("autoresLivro");
+							int sizeListaAut = listaAut.size();
+							for (Autor autor : listaAut) {
+						%>
+						
+						<tr>								
+							
+							<td style="text-align: center;"><%=autor.getNome() + " " + autor.getSobrenome()%>
+							<td align="center"><a
+						href="#"
+						title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
+						</tr>
+						<%
+							}
+						%>
+						</tr>
+					</table>
+				</form>
 				<div class="row">
 					<div class="col-sm-6">
 						<%
@@ -50,11 +81,11 @@
 						<label class="form-label ages">Autor: <span class="red">*</span></label>
 						<div class="input-group">
 							<select class="form-control" id="autor" name="autor" required>
-								<option value="<%=livroIdAutor%>"><%=livroNomeAutor%></option>
+								<!-- <option value="<%=livroIdAutor%>"><%=livroNomeAutor%></option>-->
 								<%
-									List<Autor> listaAutores = (List<Autor>) request.getAttribute("autores");
-									int sizeListaAutores = listaAutores.size();
-									for (Autor autor : listaAutores) {
+									List<Autor> listaAutoresLivro = (List<Autor>) request.getAttribute("autores");
+									int sizeListaAutores = listaAutoresLivro.size();
+									for (Autor autor : listaAutoresLivro) {
 								%>
 								<option value="<%=autor.getId_autor()%>"
 									<%=(autor.getNome() + " " + autor.getSobrenome()).equals(request.getParameter("autor"))
@@ -70,7 +101,9 @@
 									class="glyphicon glyphicon-plus"></span> Autor </a>
 							</div>
 						</div>
+
 					</div>
+
 					<div class="col-sm-6">
 						<label class="form-label ages">Editora: <span class="red">*</span></label>
 						<div class="input-group">
@@ -87,14 +120,11 @@
 									}
 								%>
 							</select>
-							<div class="input-group-btn">
-								<a class="btn btn-info" href="" data-toggle="tooltip"
-									title="Click aqui para adicionar uma Editora!"><span
-									class="glyphicon glyphicon-plus"></span> Editora</a>
-							</div>
 						</div>
 					</div>
 				</div>
+
+
 				<div class="row">
 					<div class="col-sm-4">
 						<label class="form-label ages">Codigo Biblioteca: <span
@@ -141,7 +171,7 @@
 							value="<%=livro.getEdicao()%>" type="text">
 					</div>
 					<div class="col-sm-4">
-						<label class="form-label ages">Data Entrada: </label> <input
+						<label class="form-label ages"> Ano: </label> <input
 							class="form-control" id="ano" name="ano"
 							value="<%=livro.getAno()%>" type="text"
 							style="text-align: right;">

@@ -35,12 +35,8 @@ public class AddLivroCommand implements Command {
 		String subtitulo = request.getParameter("subtitulo");
 		Date dataCadastro = new Date();
 
-//		String sPreco = (request.getParameter("preco"));
-//		long preco = sPreco.equals("") ? 0 : Long.parseLong(sPreco); // resolver
-																		// problema
-																		// das
-																		// casas
-																		// decimais.
+		String sPreco = (request.getParameter("preco"));
+		float preco = (float) (sPreco.equals("") ? 0.0 : Float.parseFloat(sPreco)); 
 
 		String sLingua = (request.getParameter("lingua"));
 		Integer lingua = null;

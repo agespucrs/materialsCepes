@@ -49,6 +49,21 @@
 							</div>
 						</div>
 					</div>
+					<div class="cl-sm-6">
+					<table id="listaAutores"
+				class="table table-responsive table-striped table-hover table-condensed table-bordered">
+				<thead>
+					<tr>
+						<th style="text-align: center;"></th>
+						<th style="text-align: center;">Autores</th>
+						<th data-sortable="false" style="text-align: center; width: 10px"></th>
+					</tr>
+					<tr>
+						<th style="text-align: center;">Autores teste</th>
+					</tr>
+				</thead>
+			</table>
+					</div>
 					<div class="col-sm-6">
 						<label class="form-label ages">Editora: <span class="red">*</span></label>
 						<div class="input-group">

@@ -32,21 +32,22 @@ public class CreateScreenLivroCommand implements Command {
 		idiomaBO = new IdiomaBO();
 		try {
 			// Verifica se abre tela edicao ou adicao de livro.
-			ArrayList<Autor> autores = (ArrayList<Autor>) autorBO.listarAutor();
+			ArrayList<Autor> autores = (ArrayList<Autor>) autorBO.listarTodosAutor();
 			ArrayList<Editora> editoras = (ArrayList<Editora>) editoraBO.listarEditora();
 			ArrayList<Idioma> idiomas = (ArrayList<Idioma>) idiomaBO.consultarIdiomas();
-
 			String isEdit = request.getParameter("isEdit");
 			if (isEdit != null && "sim".equals(isEdit)) {
 				Integer idLivro = Integer.parseInt(request.getParameter("id_livro"));
 				Integer idCopia = Integer.parseInt(request.getParameter("id_copia"));
 				Livro livro = livroBO.consultarLivro(idLivro);
+				ArrayList<Autor> autoresLivro = (ArrayList<Autor>) autorBO.listarAutorLivro(livro);
 				CopiaLivro copia = livroBO.buscarCopia(idCopia);
 				request.setAttribute("livro", livro);
 				request.setAttribute("copia", copia);
 				request.setAttribute("autores", autores);
 				request.setAttribute("editoras", editoras);
 				request.setAttribute("idiomas", idiomas);
+				request.setAttribute("autoresLivro", autoresLivro);
 				proxima = "livro/alterLivro.jsp";
 
 			} else {

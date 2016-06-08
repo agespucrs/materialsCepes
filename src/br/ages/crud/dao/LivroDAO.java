@@ -58,7 +58,7 @@ public class LivroDAO {
 				if (livroEstaExcluido(livro, conexao)) {
 					statement.setString(1, livro.getTitulo());
 					statement.setString(2, livro.getSubtitulo());
-					statement.setLong(3, livro.getPreco());
+					statement.setFloat(3, livro.getPreco());
 					statement.setString(4, livro.getCodigoISBN());
 					statement.setInt(5, livro.getEdicao());
 					statement.setInt(6, livro.getAno());
@@ -92,7 +92,7 @@ public class LivroDAO {
 				statement.setString(1, livro.getTitulo());
 				statement.setString(2, livro.getSubtitulo());
 				statement.setDate(3, dataCadastro);
-				statement.setLong(4, livro.getPreco());
+				statement.setFloat(4, livro.getPreco());
 				statement.setInt(5, livro.getLingua());
 				statement.setString(6, livro.getCodigoISBN());
 				statement.setInt(7, livro.getEdicao());
@@ -448,13 +448,12 @@ public class LivroDAO {
 			sql.append("UPDATE TB_LIVRO SET TITULO = ?," + " SUBTITULO = ?," + " PRECO = ?," + " LINGUA = ?,"
 					+ " EDICAO = ?," + " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?," + " CD_DVD = ?," + " E_BOOK = ?,"
 					+ " DESCRICAO = ?," + " BROCHURA = ?," + " ID_EDITORA = ?," + " EXCLUIDO = ?" + " REVISTA = ?" + " EXPIRAL = ?" + " DURA = ?"
-					+ " WHERE ID_LIVRO = ?");
+					+ "WHERE ID_LIVRO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, livro.getTitulo());
 			statement.setString(2, livro.getSubtitulo());
-			// statement.setDate(3, dataCadastro);
-			statement.setLong(3, livro.getPreco());
+			statement.setFloat(3, livro.getPreco());
 			statement.setInt(4, livro.getLingua());
 			statement.setInt(5, livro.getEdicao());
 			statement.setInt(6, livro.getAno());
@@ -470,6 +469,7 @@ public class LivroDAO {
 			statement.setBoolean(16, livro.isExpiral());
 			statement.setBoolean(17, livro.isDura());
 			statement.setInt(18, livro.getIdLivro());
+			
 
 			statement.executeUpdate();
 
