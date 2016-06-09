@@ -233,4 +233,42 @@ public class UsuarioDAO {
 		}
 		return usuario;
 	}
+	
+	public List<Usuario> consultarUsuariosProjeto(Integer idProjeto) throws PersistenciaException, SQLException {
+		List<Usuario> retorno = new ArrayList<>();
+		
+		Connection conexao = null;
+		Usuario usuario = new Usuario();
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_USUARIO us, TB_USUARIO_PROJETO up"
+					+ " ON us.ID_USUARIO = up.ID_USUARIO"
+					+ " WHERE up.ID_PROJETO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idProjeto);
+
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				usuario.setMatricula(resultset.getString("MATRICULA"));
+				usuario.setNome(resultset.getString("NOME"));
+				usuario.setEmail(resultset.getString("EMAIL"));
+				usuario.setUsuario(resultset.getString("USUARIO"));
+				usuario.setSenha(resultset.getString("SENHA"));
+				usuario.setAdministrador(resultset.getInt("ADMINISTRADOR"));
+				usuario.setIdFuncao(resultset.getInt("ID_FUNCAO"));
+				retorno.add(usuario);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		
+		return retorno;
+		
+	}
 }
