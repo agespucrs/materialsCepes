@@ -22,7 +22,7 @@ public class ListAutorCommand implements Command {
 		String idLivroString = request.getParameter("id_livro");
 		
 		try {
-			List<Autor> listaAutores = autorBO.listarTodosAutor();
+			List<Autor> listaAutores = autorBO.listarTodosAutores();
 			request.setAttribute("listaAutores", listaAutores);
 			
 			int idLivro = Integer.parseInt(idLivroString);
