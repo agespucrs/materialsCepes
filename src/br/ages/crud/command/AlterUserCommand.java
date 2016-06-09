@@ -23,6 +23,8 @@ public class AlterUserCommand implements Command {
 		String matricula = request.getParameter("matricula");
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
+		Integer funcao = Integer.parseInt(request.getParameter("tipo"));
+		Integer administrador = Integer.parseInt(request.getParameter("adm"));
 		Integer idUsuario = Integer.parseInt(request.getParameter("id_usuario"));
 		
 		try {
@@ -33,6 +35,8 @@ public class AlterUserCommand implements Command {
 			user.setUsuario(usuario);
 			user.setSenha(senha);
 			user.setIdUsuario(idUsuario);
+			user.setIdFuncao(funcao);
+			user.setAdministrador(administrador);
 			
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
 			if (!isValido) {

@@ -102,7 +102,7 @@
 							<li class="divider"></li>
 							<li class="dropdown-submenu"><a tabindex="0">Autores</a>
 								<ul class="dropdown-menu">
-									<li><a tabindex="0" href="main?acao=listAutor">Listar</a></li>
+									<li><a tabindex="0" href="main?acao=listAutor&listarTodos=S">Listar</a></li>
 									<li><a tabindex="0" href="main?acao=telaAutor">cadastrar</a></li>
 								</ul>
 							</li>

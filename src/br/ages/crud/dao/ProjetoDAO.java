@@ -13,6 +13,7 @@ import com.mysql.jdbc.Statement;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
+import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
 public class ProjetoDAO {
@@ -50,7 +51,7 @@ public class ProjetoDAO {
 			statement.setString(3, projeto.getOrigem());
 			statement.setDate(4, data);
 			// statement.setDate(4, (Date) projeto.getData_cadastro());
-			statement.setInt(5, projeto.getIdCordenador());
+			statement.setInt(5, projeto.getIdCoordenador());
 			statement.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -76,7 +77,8 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_PROJETOS");
+			sql.append("SELECT * FROM TB_PROJETOS pr, TB_USUARIO usr"
+					+ " WHERE pr.ID_CORDENADOR = usr.ID_USUARIO");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
@@ -89,8 +91,10 @@ public class ProjetoDAO {
 				dto.setPrograma(resultset.getString("PROGRAMA"));
 				dto.setOrigem(resultset.getString("ORIGEM"));
 				dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
-				dto.setIdCordenador(resultset.getInt("ID_CORDENADOR"));
-
+				dto.setIdCoordenador(resultset.getInt("ID_CORDENADOR"));
+				dto.setNomeCoordenador(resultset.getString("NOME"));
+				dto.setUsuarios(new ArrayList<Usuario>());
+				dto.getUsuarios().addAll(new UsuarioDAO().consultarUsuariosProjeto(dto.getId()));
 				listaProjetos.add(dto);
 			}
 

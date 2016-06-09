@@ -14,18 +14,19 @@ public class Projeto {
 	private String origem;
 	private Date dataCadastro;
 	// verificar atributo
-	private int idCordenador;
+	private Integer idCoordenador;
+	private String nomeCoordenador;
+	private List<Usuario> usuarios;
 
-	public Projeto(){
-		
+	public Projeto() {
+
 	}
-	
+
 	public Projeto(String nomeProjeto, String programa, String origem, Date dataCadastro, int idCordenador) {
 		this.nomeProjeto = nomeProjeto;
 		this.programa = programa;
 		this.origem = origem;
 		this.dataCadastro = dataCadastro;
-		this.idCordenador = idCordenador;
 	}
 
 	public int getId() {
@@ -34,6 +35,22 @@ public class Projeto {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Integer getIdCoordenador() {
+		return idCoordenador;
+	}
+
+	public void setIdCoordenador(Integer idCoordenador) {
+		this.idCoordenador = idCoordenador;
+	}
+
+	public String getNomeCoordenador() {
+		return nomeCoordenador;
+	}
+
+	public void setNomeCoordenador(String nomeCoordenador) {
+		this.nomeCoordenador = nomeCoordenador;
 	}
 
 	public String getNomeProjeto() {
@@ -68,12 +85,12 @@ public class Projeto {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public int getIdCordenador() {
-		return idCordenador;
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setIdCordenador(int idCordenador) {
-		this.idCordenador = idCordenador;
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 }

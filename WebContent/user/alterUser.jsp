@@ -41,13 +41,20 @@
 				<input class="form-control"    type="password" id="senha" name="senha" maxlength="8" value="<%=usuario.getSenha()%>" />
 
 				<label class="form-label ages">Tipo: <span class="red">*</span></label> 
-					<select class="form-control" id="adm" name="adm" required> <!-- essa lista deverá vir de uma tabela -->
-						<option value="">Selecione o Tipo</option>
-						<% for (Funcao funcao : funcoes){ %>
-							<option value="<%= funcao.getId() %>" <%=(usuario.getIdFuncao() == funcao.getId()) ? "selected" : "" %>><%= funcao.getNome() %></option>
+				<select class="form-control" id="tipo" name="tipo" required> <!-- essa lista deverá vir de uma tabela -->
+					<option value="">Selecione o Tipo</option>
+					<% for (Funcao funcao : funcoes){ %>
+						<option value="<%= funcao.getId() %>" <%=(funcao.getId() == usuario.getIdFuncao()) ? "selected" : "" %>><%= funcao.getNome() %></option>
 						
-						<% } %>
-						</select>	
+					<% } %>
+				</select>
+				
+				<label class="form-label ages">Administrador: <span class="red">*</span></label> 
+						<select class="form-control" id="adm" name="adm" required>
+							<option value="0" <%=0 == usuario.getAdministrador() ? "selected" : ""%>>Não</option>
+							<option value="1" <%=1 == usuario.getAdministrador() ? "selected" : ""%>>Sim</option>
+						</select>
+					
 				<span><sup class="red">*</sup> campos obrigatórios</span><br>
 				<div class="text-center">
 					<input class="btn btn-warning btn-limpar pull-left" type="reset"  value="Limpar"  id="limpar" name="limpar" />

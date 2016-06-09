@@ -40,16 +40,14 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 */
 
-	public boolean validarUsuario(Usuario usuarioDTO)
-			throws PersistenciaException {
+	public boolean validarUsuario(Usuario usuarioDTO) throws PersistenciaException {
 		try {
 			Connection conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO ");
 			sql.append("WHERE USUARIO = ? AND SENHA = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, usuarioDTO.getUsuario());
 			statement.setString(2, usuarioDTO.getSenha());
 
@@ -70,8 +68,7 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 * @throws SQLException
 	 */
-	public List<Usuario> listarUsuarios() throws PersistenciaException,
-			SQLException {
+	public List<Usuario> listarUsuarios() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 
 		try {
@@ -80,8 +77,7 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
@@ -105,25 +101,26 @@ public class UsuarioDAO {
 		return listarUsuarios;
 	}
 
-	public void alterarUsuario(Usuario usuario) throws PersistenciaException,
-			SQLException, ParseException {
+	public void alterarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE TB_USUARIO SET USUARIO = ?, SENHA = ?, MATRICULA = ?, NOME = ?, EMAIL = ?");
+			sql.append(
+					"UPDATE TB_USUARIO SET USUARIO = ?, SENHA = ?, MATRICULA = ?, NOME = ?, EMAIL = ?, ADMINISTRADOR = ?, ID_FUNCAO = ? ");
 			sql.append("WHERE ID_USUARIO = ?;");
 
 			// altera o usuario com os parametros da classe
-			PreparedStatement statement = conexao.prepareStatement(
-					sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, usuario.getMatricula());
 			statement.setString(4, usuario.getNome());
 			statement.setString(5, usuario.getEmail());
-			statement.setInt(6, usuario.getIdUsuario());
+			statement.setInt(6, usuario.getAdministrador());
+			statement.setInt(7, usuario.getIdFuncao());
+			statement.setInt(8, usuario.getIdUsuario());
 
 			statement.executeUpdate();
 
@@ -134,8 +131,7 @@ public class UsuarioDAO {
 		}
 	}
 
-	public void cadastrarUsuario(Usuario usuario) throws PersistenciaException,
-			SQLException, ParseException {
+	public void cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
 		try {
 			Integer idUsuario = null;
@@ -143,8 +139,9 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
-			sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
+			sql.append(
+					"INSERT INTO TB_USUARIO (USUARIO, SENHA, CPF, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO, ID_FUNCAO) ");
+			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 			// converte a data para data Juliana, data que o banco reconhece;
 			java.util.Date utilDate = new java.util.Date();
@@ -154,11 +151,13 @@ public class UsuarioDAO {
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
-			statement.setInt(3, usuario.getAdministrador());
-			statement.setString(4, usuario.getMatricula());
-			statement.setString(5, usuario.getNome());
-			statement.setString(6, usuario.getEmail());
-			statement.setDate(7, dataCadastro);
+			statement.setString(3, usuario.getCpf());
+			statement.setInt(4, usuario.getAdministrador());
+			statement.setString(5, usuario.getMatricula());
+			statement.setString(6, usuario.getNome());
+			statement.setString(7, usuario.getEmail());
+			statement.setDate(8, dataCadastro);
+			statement.setInt(9, usuario.getIdFuncao());
 
 			statement.executeUpdate();
 
@@ -188,8 +187,7 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("DELETE FROM TB_USUARIO WHERE ID_USUARIO= ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idUsuario);
 
 			statement.execute();
@@ -205,8 +203,7 @@ public class UsuarioDAO {
 		}
 	}
 
-	public Usuario consultaUsuario(String idUsuario)
-			throws PersistenciaException, SQLException {
+	public Usuario consultaUsuario(String idUsuario) throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		Usuario usuario = new Usuario();
 		try {
@@ -215,8 +212,7 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO WHERE ID_USUARIO = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, idUsuario);
 
 			ResultSet resultset = statement.executeQuery();
@@ -236,5 +232,43 @@ public class UsuarioDAO {
 			conexao.close();
 		}
 		return usuario;
+	}
+	
+	public List<Usuario> consultarUsuariosProjeto(Integer idProjeto) throws PersistenciaException, SQLException {
+		List<Usuario> retorno = new ArrayList<>();
+		
+		Connection conexao = null;
+		Usuario usuario = new Usuario();
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_USUARIO us, TB_USUARIO_PROJETO up"
+					+ " ON us.ID_USUARIO = up.ID_USUARIO"
+					+ " WHERE up.ID_PROJETO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idProjeto);
+
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				usuario.setMatricula(resultset.getString("MATRICULA"));
+				usuario.setNome(resultset.getString("NOME"));
+				usuario.setEmail(resultset.getString("EMAIL"));
+				usuario.setUsuario(resultset.getString("USUARIO"));
+				usuario.setSenha(resultset.getString("SENHA"));
+				usuario.setAdministrador(resultset.getInt("ADMINISTRADOR"));
+				usuario.setIdFuncao(resultset.getInt("ID_FUNCAO"));
+				retorno.add(usuario);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		
+		return retorno;
+		
 	}
 }

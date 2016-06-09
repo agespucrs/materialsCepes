@@ -38,6 +38,7 @@ import br.ages.crud.command.ListAutorCommand;
 import br.ages.crud.command.ListEditoraCommand;
 import br.ages.crud.command.ListEquipamentoCommand;
 import br.ages.crud.command.ListLivroCommand;
+import br.ages.crud.command.ListProjetosCommand;
 import br.ages.crud.command.ListUserCommand;
 import br.ages.crud.command.LoginCommand;
 import br.ages.crud.command.LoginCommandNovo;
@@ -109,6 +110,8 @@ public class MainServlet extends HttpServlet {
 		comandos.put("addMarca", new AddMarcaCommand());
 		comandos.put("removerMarca", new RemoveMarcaCommand());
 		comandos.put("alterarMarca", new AlterMarcaCommand());
+		
+		comandos.put("listProjeto", new ListProjetosCommand());
 	}
 
 	@Override

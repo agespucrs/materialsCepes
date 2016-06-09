@@ -53,7 +53,7 @@ public class AutorBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public List<Autor> listarTodosAutor() throws NegocioException   {
+	public List<Autor> listarTodosAutores() throws NegocioException   {
 
 		List<Autor> listAutor = null;
 

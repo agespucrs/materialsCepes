@@ -32,7 +32,7 @@ public class CreateScreenLivroCommand implements Command {
 		idiomaBO = new IdiomaBO();
 		try {
 			// Verifica se abre tela edicao ou adicao de livro.
-			ArrayList<Autor> autores = (ArrayList<Autor>) autorBO.listarTodosAutor();
+			ArrayList<Autor> autores = (ArrayList<Autor>) autorBO.listarTodosAutores();
 			ArrayList<Editora> editoras = (ArrayList<Editora>) editoraBO.listarEditora();
 			ArrayList<Idioma> idiomas = (ArrayList<Idioma>) idiomaBO.consultarIdiomas();
 			String isEdit = request.getParameter("isEdit");

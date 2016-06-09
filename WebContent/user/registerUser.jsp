@@ -1,7 +1,10 @@
+<%@page import="br.ages.crud.model.Funcao"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Usuario"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<% 
+	List<Funcao> funcoes = (List<Funcao>) request.getAttribute("funcoes"); %>
 <jsp:include page="/template/head.jsp"></jsp:include>
 <div class="panel panel-primary panel-add">
 	<div class="panel-heading text-center">Cadastro de Usuario</div>
@@ -12,28 +15,28 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="form-label ages">Matricula: <span class="red">*</span></label> 
-						<input class="form-control" id="matricula" name="matricula"	value="${param.matricula}" type="text" required>
+						<input class="form-control" id="matricula" name="matricula" type="text" required>
 					</div>
 					<div class="col-sm-6">
 						<label class="form-label ages">CPF: <span class="red">*</span></label> 
-						<input class="form-control" id="cpf" name="cpf"	value="${param.matricula}" type="text" required>
+						<input class="form-control" id="cpf" name="cpf"	type="text" required>
 					</div>
 				</div>
 
 				<label class="form-label ages">Nome: <span class="red">*</span></label> 
-				<input class="form-control" id="nome" name="nome" value="${param.nome}" type="text" required>
+				<input class="form-control" id="nome" name="nome" type="text" required>
 
 				<label class="form-label ages">E-Mail: <span class="red">*</span></label> 
-				<input class="form-control" id="email" name="email" value="${param.email}" type="text" required>
+				<input class="form-control" id="email" name="email" type="text" required>
 
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="form-label ages">Usuário: <span class="red">*</span></label> 
-						<input class="form-control" id="usuario" name="usuario" value="${param.nome}" type="text" required>
+						<input class="form-control" id="usuario" name="usuario" type="text" required>
 					</div>
 					<div class="col-sm-6">
 						<label class="form-label ages">Senha: <span class="red">*</span></label> 
-						<input class="form-control" id="senha" name="senha" value="${param.senha}" type="text" required>
+						<input class="form-control" id="senha" name="senha" type="text" required>
 					</div>
 				</div>
 
@@ -41,22 +44,19 @@
 					<div class="col-sm-6">
 						<label class="form-label ages">Administrador: <span class="red">*</span></label> 
 						<select class="form-control" id="adm" name="adm" required>
-							<option value="N" <%="N".equals(request.getParameter("adm")) ? "selected" : ""%>>NAO</option>
-							<option value="S" <%="S".equals(request.getParameter("adm")) ? "selected" : ""%>>SIM</option>
+							<option value="0">Não</option>
+							<option value="1">Sim</option>
 						</select>
 					</div>
 					<div class="col-sm-6">
 						<label class="form-label ages">Tipo: <span class="red">*</span></label> 
-						<select class="form-control" id="tipo" name="tipo" required> <!-- essa lista deverá vir de uma tabela -->
-							<option value="">Selecione o Tipo</option>
-							<option value="1">Professor Coordenador</option>
-							<option value="2">Professor Colaborador</option>
-							<option value="3">Aluno Doutorando</option>
-							<option value="4">Aluno Mestrando</option>
-							<option value="5">Aluno Graduando</option>
-							<option value="6">Aluno Especialização</option>
-							<option value="7">Técnico Administrativo</option>
-						</select>
+						<select class="form-control" id="tipo" name="tipo" required>
+						<option value="">Selecione o Tipo</option>
+						<% for (Funcao funcao : funcoes){ %>
+							<option value="<%= funcao.getId() %>"><%= funcao.getNome() %></option>
+						
+						<% } %>
+					</select>
 					</div>
 				</div>
 			</div>
