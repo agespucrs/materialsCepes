@@ -7,14 +7,18 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import br.ages.crud.bo.AcessorioBO;
 import br.ages.crud.bo.ComputadorBO;
 import br.ages.crud.bo.DispositivoMovelBO;
 import br.ages.crud.bo.PerifericoBO;
+import br.ages.crud.bo.TipoBO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Acessorio;
 import br.ages.crud.model.Computador;
 import br.ages.crud.model.DispositivoMovel;
 import br.ages.crud.model.Periferico;
+import br.ages.crud.model.Tipo;
 import br.ages.crud.model.TipoEquipamento;
 import br.ages.crud.util.MensagemContantes;
 
@@ -26,7 +30,6 @@ public class AddEquipamentoCommand implements Command {
 	public String execute(HttpServletRequest request)
 			throws SQLException, PersistenciaException, ParseException, NegocioException {
 		
-		int numeroPatrimonio = Integer.parseInt(request.getParameter("numeroPatrimonio"));
 		int status = Integer.parseInt(request.getParameter("status"));
 		String tipoEquipamento = request.getParameter("tipoEquipamento");
 		int marca = Integer.parseInt(request.getParameter("marca"));
@@ -43,6 +46,7 @@ public class AddEquipamentoCommand implements Command {
 			int tipoComputador = Integer.parseInt(request.getParameter("tipoComputador"));
 
 			Computador computador = new Computador();
+			int numeroPatrimonio = Integer.parseInt(request.getParameter("numeroPatrimonio"));
 			computador.setNumeroPatrimonio(numeroPatrimonio);
 			computador.setStatus(status);
 			computador.setTipoComputador(tipoComputador);
@@ -72,6 +76,7 @@ public class AddEquipamentoCommand implements Command {
 			int tipoPeriferico = Integer.parseInt(request.getParameter("tipoPeriferico"));
 			
 			Periferico periferico = new Periferico();
+			int numeroPatrimonio = Integer.parseInt(request.getParameter("numeroPatrimonio"));
 			periferico.setNumeroPatrimonio(numeroPatrimonio);
 			periferico.setStatus(status);
 			periferico.setTipoPeriferico(tipoPeriferico);
@@ -101,6 +106,7 @@ public class AddEquipamentoCommand implements Command {
 			int tipoMobile = Integer.parseInt(request.getParameter("tipoMobile"));
 			
 			DispositivoMovel mobile = new DispositivoMovel();
+			int numeroPatrimonio = Integer.parseInt(request.getParameter("numeroPatrimonio"));
 			mobile.setNumeroPatrimonio(numeroPatrimonio);
 			mobile.setStatus(status);
 			mobile.setTipoDispositivoMovel(tipoMobile);
@@ -122,6 +128,41 @@ public class AddEquipamentoCommand implements Command {
 				request.setAttribute("msgErro",
 						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE.replace("?", 
 								String.format("%d", mobile.getNumeroPatrimonio())));
+			}
+		}
+		else if(tipoEquipamento.equals(TipoEquipamento.ACESSORIO.valor())) {
+			AcessorioBO acessorioBO = new AcessorioBO();
+			
+			String tipoAcessorio = request.getParameter("tipoAcessorio");
+			TipoBO tipoBO = new TipoBO();
+			Tipo tipo = tipoBO.consultarPeloNome(tipoAcessorio);
+			if(tipo == null) {
+				tipo.setTipoEquipamento("A");
+				tipo.setNome(tipoAcessorio);
+				tipoBO.cadastrar(tipo);
+			}
+			
+			Acessorio acessorio = new Acessorio();
+			acessorio.setStatus(status);
+			acessorio.setTipoAcessorio(tipo.getId());
+			acessorio.setMarca(marca);
+			acessorio.setModelo(modelo);
+			acessorio.setValor(valor);
+			acessorio.setDataCadastro(dataCadastro);
+			acessorio.setProjeto(projeto);
+			acessorio.setObservacoes(observacao);
+			
+			if(acessorioBO.cadastraAcessorio(acessorio)) {
+				proxima = "main?acao=listEquipamento";
+				request.setAttribute("msgSucesso",
+						MensagemContantes.MSG_SUC_CADASTRO_EQUIPAMENTO.replace("?",
+								String.format("%d", acessorio.getTipoAcessorio())));
+			}
+			else {
+				proxima = "main?acao=addEquipamento";
+				request.setAttribute("msgErro",
+						MensagemContantes.MSG_ERR_CADASTRO_EQUIPAMENTO_EXISTENTE.replace("?", 
+								String.format("%d", acessorio.getTipoAcessorio())));
 			}
 		}
 		

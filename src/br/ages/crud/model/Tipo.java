@@ -7,6 +7,7 @@ public class Tipo implements Serializable{
 	
 	private Integer id;
 	private String nome;
+	private String tipoEquipamento;
 
 	public String getNome() {
 		return nome;
@@ -24,4 +25,11 @@ public class Tipo implements Serializable{
 		this.id = id;
 	}
 
+	public String getTipoEquipamento() {
+		return tipoEquipamento;
+	}
+
+	public void setTipoEquipamento(String tipoEquipamento) {
+		this.tipoEquipamento = tipoEquipamento;
+	}
 }

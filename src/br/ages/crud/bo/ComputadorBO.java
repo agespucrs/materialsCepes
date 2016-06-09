@@ -6,7 +6,6 @@ import java.util.List;
 
 import br.ages.crud.dao.ComputadorDAO;
 import br.ages.crud.exception.NegocioException;
-import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Computador;
 
 public class ComputadorBO {

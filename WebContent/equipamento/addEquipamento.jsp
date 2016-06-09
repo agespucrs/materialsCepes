@@ -202,6 +202,7 @@ $('#tipoEquipamento').on('change', function() {
 			$('#selectComputador').removeAttr("required");
 			$('#selectPeriferico').removeAttr("required");
 			$('#selectMobile').removeAttr("required");
+			$('#numeroPatrimonio').removeAttr("required");
 		default:
 			break;
 	} 

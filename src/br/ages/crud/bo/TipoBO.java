@@ -26,5 +26,22 @@ public class TipoBO {
 			throw new NegocioException(e);
 		}
 	}
+	
+	public Tipo consultarPeloNome(String nome) throws NegocioException, SQLException, ParseException {
+		try {
+			return dao.consultarPeloNome(nome);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
 
+	public int cadastrar(Tipo tipo) throws SQLException, NegocioException {
+		try {
+			return dao.cadastrar(tipo);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
 }
