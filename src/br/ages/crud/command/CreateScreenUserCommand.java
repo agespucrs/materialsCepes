@@ -24,15 +24,16 @@ public class CreateScreenUserCommand implements Command {
 
 		usuarioBO = new UsuarioBO();
 
+		List<Funcao> funcoes = new FuncaoBO().listarFuncoes();
+		request.setAttribute("funcoes", funcoes);
+
 		// Verifica se abre tela edição de pessoa ou de adição de pessoa.
 		String isEdit = request.getParameter("isEdit");
 		if (isEdit != null && "sim".equals(isEdit)) {
 
 			Usuario usuario = usuarioBO.consultarUsuario(request.getParameter("id_usuario"));
-			List<Funcao> funcoes = new FuncaoBO().listarFuncoes();
 
 			request.setAttribute("usuario", usuario);
-			request.setAttribute("funcoes", funcoes);
 
 			proxima = "user/alterUser.jsp";
 

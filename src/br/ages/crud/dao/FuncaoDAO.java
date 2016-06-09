@@ -28,7 +28,7 @@ public class FuncaoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ID_FUNCAO, NOME FROM TB_FUNCOES");
+			sql.append("SELECT ID_FUNCAO, NOME FROM TB_FUNCAO");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();

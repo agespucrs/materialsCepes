@@ -26,6 +26,8 @@ public class AddUserCommand implements Command {
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
 		Integer administrador = Integer.parseInt(request.getParameter("adm"));
+		Integer funcao = Integer.parseInt(request.getParameter("tipo"));
+		String cpf = request.getParameter("cpf");
 		
 		Date dataCadastro = new Date();
 	
@@ -38,8 +40,9 @@ public class AddUserCommand implements Command {
 			user.setUsuario(usuario);
 			user.setSenha(senha);
 			user.setAdministrador(administrador);
-			
+			user.setIdFuncao(funcao);
 			user.setDataCadastro(dataCadastro);
+			user.setCpf(cpf);
 			
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
 			if (!isValido) {

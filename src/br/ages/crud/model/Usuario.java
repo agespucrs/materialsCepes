@@ -15,6 +15,7 @@ public class Usuario implements Serializable {
 	private int idUsuario;
 	private String usuario;
 	private String senha;
+	private String cpf;
 	private Integer administrador;
 	private String matricula;
 	private String nome;
@@ -28,6 +29,14 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario() {
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public int getIdUsuario() {
