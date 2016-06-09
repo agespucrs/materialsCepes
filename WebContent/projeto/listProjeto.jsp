@@ -1,3 +1,4 @@
+<%@page import="br.ages.crud.model.Projeto"%>
 <%@page import="br.ages.crud.model.Editora"%>
 <%@page import="br.ages.crud.util.Util"%>
 <%@page import="java.util.List"%>
@@ -30,47 +31,31 @@
 				</thead>
 
 				<tbody>
+				<%
+					List<Projeto> listaProjetos = (List<Projeto>) request.getAttribute("listaProjetos");
+					int sizeListaProjetos = listaProjetos.size();
+					for (Projeto projeto : listaProjetos) {
+				%>
 					<tr>
 						<td><input type="checkbox" /></td>
-						<td>Kill DeathStar</td>
-						<td>Nova Repulica</td>
-						<td>DELL</td>
-						<td>Professor 1</td>
+						<td><%=projeto.getNomeProjeto() %></td>
+						<td><%=projeto.getPrograma() %></td>
+						<td><%=projeto.getOrigem() %></td>
+						<td><%=projeto.getNomeCoordenador() %></td>
 						<td align="center">
-							<button data-toggle="collapse" data-target="#usuarios1">3</button>
+							<button data-toggle="collapse" data-target="#usuarios1"><%=projeto.getUsuarios().size() %></button>
 							<div id="usuarios1" class="collapse">
 								<div class="row">
-									<div align="left" class="col-sm-12" >* Gen Akbar</div>
-									<div align="left" class="col-sm-12" >* Han Solo</div>
-									<div align="left" class="col-sm-12" >* Princesa Leia</div>
+								<%for (Usuario usr : projeto.getUsuarios()) { %>
+									<div align="left" class="col-sm-12" >* <%=usr.getNome() %></div>
+									<%} %>
 								</div>
 							</div>
 						</td>
 						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
 						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
-					
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td>Transposicao Rio Sao Francisco</td>
-						<td>PAC</td>
-						<td>Povo</td>
-						<td>Professor 2</td>
-						<td align="center">
-							<button data-toggle="collapse" data-target="#usuarios2">4</button>
-							<div id="usuarios2" class="collapse">
-								<div class="row">
-									<div align="left" class="col-sm-12" >* JK</div>
-									<div align="left" class="col-sm-12" >* Ranieri Mazzilli</div>
-									<div align="left" class="col-sm-12" >* Janio Quadros</div>
-									<div align="left" class="col-sm-12" >* Jango</div>
-								</div>
-							</div>
-						</td>
-						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
-						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
-					</tr>
-
+					<% } %>
 				</tbody>
 			</table>
 		</div>
