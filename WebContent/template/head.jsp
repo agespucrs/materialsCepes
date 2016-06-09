@@ -76,7 +76,7 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="main?acao=telaEquipamento&tela=addProjeto">Cadastrar</a></li>
-							<li><a href="main?acao=telaEquipamento&tela=listProjeto">Listar</a></li>
+							<li><a href="main?acao=listProjeto">Listar</a></li>
 							<li><a href="main?acao=telaEquipamento&tela=equipeProjeto">Alocar Equipe</a></li>
 							<!-- <li><a href="main?acao=telaEquipamento&tela=equipamentoProjeto">Alocar Equipamento</a></li> -->
 						</ul>

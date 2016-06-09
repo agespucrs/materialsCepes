@@ -244,8 +244,8 @@ public class UsuarioDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO us, TB_USUARIO_PROJETO up"
-					+ " ON us.ID_USUARIO = up.ID_USUARIO"
-					+ " WHERE up.ID_PROJETO = ?");
+					+ " WHERE us.ID_USUARIO = up.ID_USUARIO"
+					+ " AND up.ID_PROJETO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idProjeto);
