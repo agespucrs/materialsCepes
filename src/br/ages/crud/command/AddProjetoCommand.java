@@ -37,7 +37,7 @@ public class AddProjetoCommand implements Command {
 			projeto.setPrograma(programa);
 			projeto.setOrigem(origem);
 			projeto.setDataCadastro(datanow);
-			projeto.setIdCordenador(1);
+			projeto.setIdCoordenador(1);
 			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", "nome_projeto"));
 			proxima = "main?acao=listProjeto";
 		} catch (Exception e) {

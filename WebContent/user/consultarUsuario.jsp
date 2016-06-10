@@ -48,7 +48,7 @@
 						<td><input onclick="javascript: void(0)" type="radio" id="adm" name="adm" value="1" <%= 1 == usuario.getAdministrador() ? "checked" : "" %>/>SIM <input type="radio" id="adm" name="adm" value="N" onclick="javascript: void(0)"/>NÃO</td>
 						<% }else{ %>
 						<td><input onclick="javascript: void(0)" type="radio" id="adm" name="adm" value="0" <%= 0 == usuario.getAdministrador() ? "checked" : "" %>/>NÃO <input type="radio" id="adm" name="adm" value="S" onclick="javascript: void(0)"/>SIM</td>
-						<%} %>    
+						<%} %>
 					</tr>
 				</table>
 	</div>
