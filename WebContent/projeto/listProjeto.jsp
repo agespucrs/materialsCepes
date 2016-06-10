@@ -43,8 +43,8 @@
 						<td><%=projeto.getOrigem() %></td>
 						<td><%=projeto.getNomeCoordenador() %></td>
 						<td align="center">
-							<button data-toggle="collapse" data-target="#usuarios1"><%=projeto.getUsuarios().size() %></button>
-							<div id="usuarios1" class="collapse">
+							<button data-toggle="collapse" data-target="#usuarios<%=projeto.getId() %>"><%=projeto.getUsuarios().size() %></button>
+							<div id="usuarios<%=projeto.getId() %>" class="collapse">
 								<div class="row">
 								<%for (Usuario usr : projeto.getUsuarios()) { %>
 									<div align="left" class="col-sm-12" >* <%=usr.getNome() %></div>

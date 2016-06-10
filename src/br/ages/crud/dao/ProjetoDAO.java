@@ -77,8 +77,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_PROJETOS pr, TB_USUARIO usr"
-					+ " WHERE pr.ID_CORDENADOR = usr.ID_USUARIO");
+			sql.append("SELECT * FROM TB_PROJETOS pr, TB_USUARIO usr WHERE pr.ID_CORDENADOR = usr.ID_USUARIO");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
