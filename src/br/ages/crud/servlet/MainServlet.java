@@ -49,6 +49,7 @@ import br.ages.crud.command.RemoveEquipamentoCommand;
 import br.ages.crud.command.RemoveLivroCommand;
 import br.ages.crud.command.RemoveMarcaCommand;
 import br.ages.crud.command.RemoveUserCommand;
+import br.ages.crud.command.RemoverAutorLivroCommand;
 import br.ages.crud.util.LogParametrosSession;
 
 @WebServlet("/main")
@@ -85,6 +86,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("consultarAutor", new ConsultarAutorCommand());
 		comandos.put("telaAutor", new CreateScreenAutorCommand());
 		comandos.put("alterAutor", new AlterAutorCommand());
+		comandos.put("removerAutorLivro", new RemoverAutorLivroCommand());
 
 		// LIVRO
 		comandos.put("addLivro", new AddLivroCommand());

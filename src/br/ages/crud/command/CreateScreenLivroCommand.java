@@ -37,8 +37,8 @@ public class CreateScreenLivroCommand implements Command {
 			ArrayList<Idioma> idiomas = (ArrayList<Idioma>) idiomaBO.consultarIdiomas();
 			String isEdit = request.getParameter("isEdit");
 			if (isEdit != null && "sim".equals(isEdit)) {
-				Integer idLivro = Integer.parseInt(request.getParameter("id_livro"));
-				Integer idCopia = Integer.parseInt(request.getParameter("id_copia"));
+				Integer idLivro = Integer.parseInt(request.getParameter("idLivro"));
+				Integer idCopia = Integer.parseInt(request.getParameter("idCopia"));
 				Livro livro = livroBO.consultarLivro(idLivro);
 				ArrayList<Autor> autoresLivro = (ArrayList<Autor>) autorBO.listarAutorLivro(livro);
 				CopiaLivro copia = livroBO.buscarCopia(idCopia);

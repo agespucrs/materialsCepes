@@ -52,6 +52,7 @@
 						</thead>
 
 						<%
+						
 							List<Autor> listaAut = (List<Autor>) request.getAttribute("autoresLivro");
 							int sizeListaAut = listaAut.size();
 							for (Autor autor : listaAut) {
@@ -60,9 +61,7 @@
 						<tr>								
 							
 							<td style="text-align: center;"><%=autor.getNome() + " " + autor.getSobrenome()%>
-							<td align="center"><a
-						href="#"
-						title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
+							<td align="center"><a href="main?acao=removerAutorLivro&idAutor=<%=autor.getId_autor()%>&idLivro=<%=livro.getIdLivro() %>&idCopia=<%=copia.getIdCopiaLivro() %>" title="Deletar"> <i id="#" class="glyphicon glyphicon-trash"></i></a></td>
 						</tr>
 						<%
 							}
@@ -72,16 +71,10 @@
 				</form>
 				<div class="row">
 					<div class="col-sm-6">
-						<%
-							int livroIdAutor = livro.getAutores().get(0).getId_autor();
-						%>
-						<%
-							String livroNomeAutor = livro.getAutores().get(0).getNome();
-						%>
+						
 						<label class="form-label ages">Autor: <span class="red">*</span></label>
 						<div class="input-group">
 							<select class="form-control" id="autor" name="autor" required>
-								<!-- <option value="<%=livroIdAutor%>"><%=livroNomeAutor%></option>-->
 								<%
 									List<Autor> listaAutoresLivro = (List<Autor>) request.getAttribute("autores");
 									int sizeListaAutores = listaAutoresLivro.size();

@@ -81,9 +81,10 @@ public class AutorBO {
 		}
 	}
 	
-	public void removerAutoresLivro(Integer idAutor) throws NegocioException {
+	public void removerAutoresLivro(Integer idAutor, Integer idLivro) throws NegocioException {
 		try {
-			autorDAO.removerAutoresLivro(idAutor);
+			autorDAO.removerAutoresLivro(idAutor, idLivro);
+			
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);

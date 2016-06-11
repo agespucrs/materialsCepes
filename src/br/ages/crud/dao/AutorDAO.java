@@ -176,17 +176,18 @@ public class AutorDAO {
 		}
 	}
 	
-	public void removerAutoresLivro(Integer idAutor) throws PersistenciaException {
+	public void removerAutoresLivro(Integer idAutor, Integer idLivro) throws PersistenciaException {
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("DELETE FROM TB_LIVRO_AUTOR WHERE ID_AUTOR= ?");
+			sql.append("DELETE FROM TB_LIVRO_AUTOR WHERE ID_AUTOR= ? AND ID_LIVRO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idAutor);
-
+			statement.setInt(2, idLivro);
+			
 			statement.execute();
 			
 		} catch (ClassNotFoundException | SQLException e) {

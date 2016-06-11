@@ -69,7 +69,7 @@
 						}
 					%>
 					<td align="center"><a
-						href="/CePESMaterials/main?acao=telaLivro&id_livro=<%=livro.getIdLivro()%>&id_copia=<%=livro.getIdCopia()%>&isEdit=sim"
+						href="/CePESMaterials/main?acao=telaLivro&idLivro=<%=livro.getIdLivro()%>&idCopia=<%=livro.getIdCopia()%>&isEdit=sim"
 						title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
 					<td align="center"><a
 						href="/CePESMaterials/main?acao=removerLivro&id_copia=<%=livro.getIdCopia()%>"
