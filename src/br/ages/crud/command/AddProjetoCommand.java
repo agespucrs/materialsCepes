@@ -24,11 +24,10 @@ public class AddProjetoCommand implements Command {
 
 		projetoBO = new ProjetoBO();
 
-		String nomeProjeto = request.getParameter("NOME_PROJETO");
-		String programa = request.getParameter("PROGRAMA");
-		String origem = request.getParameter("ORIGEM");
-		String dataCadastro = request.getParameter("DATE_CADASTRO");
-		String idCordenador = request.getParameter("ID_CORDENADOR");
+		String nomeProjeto = request.getParameter("nome");
+		String programa = request.getParameter("programa");
+		String origem = request.getParameter("origem");
+		Integer coordenador = Integer.parseInt(request.getParameter("coordenador"));
 		Date datanow = new Date(System.currentTimeMillis());
 
 		try {
@@ -37,11 +36,12 @@ public class AddProjetoCommand implements Command {
 			projeto.setPrograma(programa);
 			projeto.setOrigem(origem);
 			projeto.setDataCadastro(datanow);
-			projeto.setIdCoordenador(1);
-			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", "nome_projeto"));
+			projeto.setIdCoordenador(coordenador);
+			projetoBO.cadastraProjeto(projeto);
+			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
 			proxima = "main?acao=listProjeto";
 		} catch (Exception e) {
-			request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CADASTRO_PROJETO.replace("?", "nome_projeto"));
+			request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CADASTRO_PROJETO.replace("?", nomeProjeto));
 			proxima = "main?acao=addProjeto";
 		}
 

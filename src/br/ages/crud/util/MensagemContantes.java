@@ -58,6 +58,8 @@ public class MensagemContantes {
 
 	public static final String MSG_SUC_REMOVE_LIVRO = "Livro: ?, removido com sucesso!";
 
+	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto: ?, removido com sucesso!";
+
 	public static final String MSG_SUC_ATUALIZADA_PESSOA = "Atualização de Pessoa efetuada com sucesso!";
 
 	public static final String MSG_INF_LOGOUT = "Logout do Usuario efetuado com sucesso!";

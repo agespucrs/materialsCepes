@@ -239,5 +239,13 @@ public class UsuarioBO {
 			throw new NegocioException(e);
 		}
 	}
+	
+	public List<Usuario> consultarCoordenadores() throws NegocioException, SQLException, ParseException {
+		try{
+			return usuarioDAO.consultarCoordenadores();
+		} catch (PersistenciaException e) {
+			throw new NegocioException(e);
+		}
+	}
 
 }

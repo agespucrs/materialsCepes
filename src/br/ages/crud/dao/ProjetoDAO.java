@@ -41,7 +41,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO,PROGRAMA,ORIGEM,DATA_CADASTRO,iD_CORDENADOR)");
+			sql.append("INSERT INTO TB_PROJETOS (NOME_PROJETO,PROGRAMA,ORIGEM,DATA_CADASTRO,ID_CORDENADOR)");
 			sql.append("VALUES (?,?,?,?,?)");
 
 			Date data = new Date(System.currentTimeMillis());

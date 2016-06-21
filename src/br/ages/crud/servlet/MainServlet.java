@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.ages.crud.command.AddAutorCommand;
 import br.ages.crud.command.AddCopiaLivroCommand;
 import br.ages.crud.command.AddMarcaCommand;
+import br.ages.crud.command.AddProjetoCommand;
 import br.ages.crud.command.AddEditoraCommand;
 import br.ages.crud.command.AddEquipamentoCommand;
 import br.ages.crud.command.AddLivroCommand;
@@ -33,6 +34,7 @@ import br.ages.crud.command.CreateScreenAutorCommand;
 import br.ages.crud.command.CreateScreenEquipamentoCommand;
 import br.ages.crud.command.CreateScreenEditoraCommand;
 import br.ages.crud.command.CreateScreenLivroCommand;
+import br.ages.crud.command.CreateScreenProjetoCommand;
 import br.ages.crud.command.CreateScreenUserCommand;
 import br.ages.crud.command.ListAutorCommand;
 import br.ages.crud.command.ListEditoraCommand;
@@ -48,6 +50,7 @@ import br.ages.crud.command.RemoveEditoraCommand;
 import br.ages.crud.command.RemoveEquipamentoCommand;
 import br.ages.crud.command.RemoveLivroCommand;
 import br.ages.crud.command.RemoveMarcaCommand;
+import br.ages.crud.command.RemoveProjetoCommand;
 import br.ages.crud.command.RemoveUserCommand;
 import br.ages.crud.command.RemoverAutorLivroCommand;
 import br.ages.crud.util.LogParametrosSession;
@@ -113,7 +116,10 @@ public class MainServlet extends HttpServlet {
 		comandos.put("removerMarca", new RemoveMarcaCommand());
 		comandos.put("alterarMarca", new AlterMarcaCommand());
 		
+		comandos.put("telaProjeto", new CreateScreenProjetoCommand());
+		comandos.put("addProjeto", new AddProjetoCommand());
 		comandos.put("listProjeto", new ListProjetosCommand());
+		comandos.put("removerProjeto", new RemoveProjetoCommand());
 	}
 
 	@Override

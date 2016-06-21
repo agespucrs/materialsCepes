@@ -271,4 +271,30 @@ public class UsuarioDAO {
 		return retorno;
 		
 	}
+	
+	public List<Usuario> consultarCoordenadores() throws PersistenciaException, SQLException {
+		Connection conexao = null;
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ID_USUARIO, NOME FROM TB_USUARIO WHERE ID_FUNCAO = 1");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				Usuario usuario = new Usuario();
+				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				usuario.setNome(resultset.getString("NOME"));
+				usuarios.add(usuario);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return usuarios;
+	}
 }
