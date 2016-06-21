@@ -1,3 +1,4 @@
+<%@page import="br.ages.crud.model.Usuario"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Editora"%>
@@ -17,26 +18,25 @@
 			<div class="form-group">
 				<label class="form-label ages">Nome Projeto: <span
 					class="red">*</span></label> <input class="form-control" id="nome"
-					name="nome" value="${param.Nome}" type="text" required> <label
+					name="nome" type="text" required> <label
 					class="form-label ages">Programa: <span class="red">*</span></label>
-				<input class="form-control" id="programa" name="programa"
-					value="${param.programa}" type="text" required> <label
+				<input class="form-control" id="programa" name="programa"  type="text" required> <label
 					class="form-label ages">Origem: <span class="red">*</span></label>
-				<input class="form-control" id="origem" name="programa"
-					value="${param.origem}" type="text" required>
+				<input class="form-control" id="origem" name="origem" type="text" required>
 
 
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="form-label ages">Coordenador Projeto </label> <select
-							class="form-control" id="listaResponsavel"
-							name="listaResponsavel" value="${param.tipoEquipamento}"
+							class="form-control" id="coordenador"
+							name="coordenador"
 							type="text" required>
 							<option value="">Selecione o Coordenador</option>
-							<option value="1">Professor 1</option>
-							<option value="">Professor 2</option>
-							<option value="">Professor 3</option>
-							<option value="">Professor 4</option>
+							<%
+							List<Usuario> coordenadores = (List<Usuario>)request.getAttribute("listaCoordenadores");
+							for (Usuario usuario : coordenadores){ %>
+							<option value="<%=usuario.getIdUsuario() %>"><%=usuario.getNome() %></option>
+							<%} %>
 						</select>
 					</div>
 				</div>

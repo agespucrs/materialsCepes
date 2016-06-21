@@ -52,8 +52,8 @@
 								</div>
 							</div>
 						</td>
-						<td align="center"><a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
-						<td align="center"><a href="" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
+						<td align="center"><a href="main?acao=alterProjeto&id=<%=projeto.getId() %>" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
+						<td align="center"><a href="main?acao=removerProjeto&id=<%=projeto.getId() %>&nomeMensagem=<%=projeto.getNomeProjeto() %>" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
 					</tr>
 					<% } %>
 				</tbody>
