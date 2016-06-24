@@ -26,6 +26,45 @@ public class ProjetoDAO {
 
 	}
 
+	
+	public Projeto buscarProjeto (Integer id) throws PersistenciaException, SQLException, ParseException {
+		Connection conexao = null;
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_PROJETOS WHERE ID_PROJETO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, id);
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				Projeto projeto = new Projeto();
+				
+				projeto.setId(resultset.getInt("ID_PROJETO"));
+				projeto.setNomeProjeto(resultset.getString("NOME_PROJETO"));
+				projeto.setPrograma(resultset.getString("PROGRAMA"));
+				projeto.setOrigem(resultset.getString("ORIGEM"));
+				projeto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
+				projeto.setIdCoordenador(resultset.getInt("ID_CORDENADOR"));
+				projeto.setNomeCoordenador(resultset.getString("NOME"));
+				projeto.setUsuarios(new ArrayList<Usuario>());
+				projeto.getUsuarios().addAll(new UsuarioDAO().consultarUsuariosProjeto(projeto.getId()));
+				return projeto;
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+		return null;
+	}
+	
 	/**
 	 * Método responsável por salvar a projeto no BD.
 	 * 

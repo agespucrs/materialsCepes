@@ -23,6 +23,7 @@ import br.ages.crud.command.AlterEditoraCommand;
 import br.ages.crud.command.AlterEquipamentoCommand;
 import br.ages.crud.command.AlterLivroCommand;
 import br.ages.crud.command.AlterMarcaCommand;
+import br.ages.crud.command.AlterProjetoCommand;
 import br.ages.crud.command.AlterUserCommand;
 import br.ages.crud.command.Command;
 import br.ages.crud.command.ConsultarAutorCommand;
@@ -118,6 +119,7 @@ public class MainServlet extends HttpServlet {
 		
 		comandos.put("telaProjeto", new CreateScreenProjetoCommand());
 		comandos.put("addProjeto", new AddProjetoCommand());
+		comandos.put("alterProjeto", new AlterProjetoCommand());
 		comandos.put("listProjeto", new ListProjetosCommand());
 		comandos.put("removerProjeto", new RemoveProjetoCommand());
 	}

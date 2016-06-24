@@ -17,6 +17,15 @@ public class ProjetoBO {
 		dao = new ProjetoDAO();		
 	}
 	
+	public Projeto buscarProjeto(Integer idProjeto) throws NegocioException, SQLException, ParseException {
+		try {
+			return dao.buscarProjeto(idProjeto);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
+	
 	/**
 	 * Método para salvar na projeto no BD.
 	 * 
