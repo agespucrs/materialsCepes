@@ -50,7 +50,6 @@ public class ProjetoDAO {
 				projeto.setOrigem(resultset.getString("ORIGEM"));
 				projeto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
 				projeto.setIdCoordenador(resultset.getInt("ID_CORDENADOR"));
-				projeto.setNomeCoordenador(resultset.getString("NOME"));
 				projeto.setUsuarios(new ArrayList<Usuario>());
 				projeto.getUsuarios().addAll(new UsuarioDAO().consultarUsuariosProjeto(projeto.getId()));
 				return projeto;
@@ -79,20 +78,36 @@ public class ProjetoDAO {
 		try {
 			conexao = ConexaoUtil.getConexao();
 
-			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_PROJETOS (NOME_PROJETO,PROGRAMA,ORIGEM,DATA_CADASTRO,ID_CORDENADOR)");
-			sql.append("VALUES (?,?,?,?,?)");
+			if (null != (Integer)projeto.getId()){
+				StringBuilder sql = new StringBuilder();
+				sql.append("UPDATE TB_PROJETOS SET NOME_PROJETO = ?, PROGRAMA = ?, ORIGEM = ?, ID_CORDENADOR = ?");
+				sql.append(" WHERE ID_PROJETO = ?");
+				
+				PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+				statement.setString(1, projeto.getNomeProjeto());
+				statement.setString(2, projeto.getPrograma());
+				statement.setString(3, projeto.getOrigem());
+				statement.setInt(4, projeto.getIdCoordenador());
+				statement.setInt(5, projeto.getId());
+				statement.executeUpdate();
+				
+			} else{
+				StringBuilder sql = new StringBuilder();
+				sql.append("INSERT INTO TB_PROJETOS (NOME_PROJETO,PROGRAMA,ORIGEM,DATA_CADASTRO,ID_CORDENADOR)");
+				sql.append("VALUES (?,?,?,?,?)");
 
-			Date data = new Date(System.currentTimeMillis());
-			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, projeto.getNomeProjeto());
-			statement.setString(2, projeto.getPrograma());
-			statement.setString(3, projeto.getOrigem());
-			statement.setDate(4, data);
-			// statement.setDate(4, (Date) projeto.getData_cadastro());
-			statement.setInt(5, projeto.getIdCoordenador());
-			statement.executeUpdate();
-
+				Date data = new Date(System.currentTimeMillis());
+				PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+				statement.setString(1, projeto.getNomeProjeto());
+				statement.setString(2, projeto.getPrograma());
+				statement.setString(3, projeto.getOrigem());
+				statement.setDate(4, data);
+				// statement.setDate(4, (Date) projeto.getData_cadastro());
+				statement.setInt(5, projeto.getIdCoordenador());
+				statement.executeUpdate();
+			}
+			
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {

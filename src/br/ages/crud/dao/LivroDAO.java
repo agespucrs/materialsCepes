@@ -1,6 +1,7 @@
 package br.ages.crud.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -71,10 +72,7 @@ public class LivroDAO {
 					statement.setBoolean(13, livro.getRevista());
 					statement.setBoolean(14, livro.isExpiral());
 					statement.setBoolean(15, livro.isDura());
-					/**
-					 * statement.setBoolean(15, false); statement.setInt(16,
-					 * livro.getIdLivro());
-					 */
+					
 
 					statement.executeUpdate();
 
@@ -85,30 +83,30 @@ public class LivroDAO {
 				// END TO DO
 			} else {
 				sql.append(
-						"INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, ID_IDIOMA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA, EXPIRAL, DURA)");
+						"INSERT INTO TB_LIVRO (TITULO, SUBTITULO, PRECO, ID_IDIOMA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA, EXPIRAL, DURA, DATA_CADASTRO)");
 				sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 				PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setString(1, livro.getTitulo());
 				statement.setString(2, livro.getSubtitulo());
-				statement.setDate(3, dataCadastro);
-				statement.setFloat(4, livro.getPreco());
-				statement.setInt(5, livro.getLingua());
-				statement.setString(6, livro.getCodigoISBN());
-				statement.setInt(7, livro.getEdicao());
-				statement.setInt(8, livro.getAno());
-				statement.setInt(9, livro.getPaginas());
-				statement.setBoolean(10, livro.isVideo());
-				statement.setBoolean(11, livro.isCdDvd());
-				statement.setBoolean(12, livro.iseBook());
-				statement.setBoolean(13, livro.getBrochura());
-				statement.setString(14, livro.getDescricao());
-				statement.setInt(15, livro.getEditora().getIdEditora());
-				statement.setBoolean(16, livro.getStatus());
-				statement.setBoolean(17, livro.getRevista());
-				statement.setBoolean(18, livro.isExpiral());
-				statement.setBoolean(19, livro.isDura());
-
+				statement.setFloat(3, livro.getPreco());
+				statement.setInt(4, livro.getLingua());
+				statement.setString(5, livro.getCodigoISBN());
+				statement.setInt(6, livro.getEdicao());
+				statement.setInt(7, livro.getAno());
+				statement.setInt(8, livro.getPaginas());
+				statement.setBoolean(9, livro.isVideo());
+				statement.setBoolean(10, livro.isCdDvd());
+				statement.setBoolean(11, livro.iseBook());
+				statement.setBoolean(12, livro.getBrochura());
+				statement.setString(13, livro.getDescricao());
+				statement.setInt(14, livro.getEditora().getIdEditora());
+				statement.setBoolean(15, livro.getStatus());
+				statement.setBoolean(16, livro.getRevista());
+				statement.setBoolean(17, livro.isExpiral());
+				statement.setBoolean(18, livro.isDura());
+				statement.setDate(19, new Date(new java.util.Date().getTime()));
+				
 				// add copia
 			//	CopiaLivro copia = new CopiaLivro();
 			//	copia.setCodigo_isbn(livro.getCodigoISBN());
@@ -125,7 +123,7 @@ public class LivroDAO {
 
 				CopiaLivro copia = new CopiaLivro();
 				copia.setCodigo_isbn(livro.getCodigoISBN());
-				copia.setIdLivro(livro.getIdLivro());
+				copia.setIdLivro(idLivro);
 				cadastrarCopia(copia);
 
 				
@@ -532,11 +530,12 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_LIVRO_COPIA (FK_ID_LIVRO, CODIGO) VALUES (?, ?)");
+			sql.append("INSERT INTO TB_LIVRO_COPIA (FK_ID_LIVRO, CODIGO, EXCLUIDO) VALUES (?, ?, ?)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, copia.getIdLivro());
 			statement.setString(2, copia.getCodigoIsbn());
+			statement.setInt(3, 0);
 			statement.execute();
 
 		} catch (ClassNotFoundException | SQLException e) {

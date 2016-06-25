@@ -7,15 +7,6 @@
 use cepes_e;
 
 /* SCRIPTS DE INSERCAO PRA FACILITAR TESTES */
-INSERT INTO TB_FUNCAO
-(ID_FUNCAO, NOME, DESCRICAO)
-VALUES
-('1', 'PROF', 'PROF DA PUC');
-
-INSERT INTO TB_USUARIO
-(ID_USUARIO,USUARIO,SENHA,ADMINISTRADOR,MATRICULA,NOME,EMAIL,DATA_CADASTRO, ID_FUNCAO, CPF)
-VALUES
-('10', 'admin', 'admin', '1', '00000', 'Cassio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00', '1', '12345789999');
 
 INSERT INTO TB_IDIOMA
 (ID_IDIOMA, PAIS, NOME)
@@ -56,6 +47,20 @@ INSERT INTO TB_MARCA
 (ID_MARCA, NOME)
 VALUES
 (1, 'SAMSUNG');
+
+insert into tb_funcao values(1, 'Professor Coordenador', '');
+insert into tb_funcao values(2, 'Professor Colaborador', '');
+insert into tb_funcao values(3, 'Aluno Doutorando', '');
+insert into tb_funcao values(4, 'Aluno Mestrando', '');
+insert into tb_funcao values(5, 'Aluno Graduando', '');
+insert into tb_funcao values(6, 'Aluno Especialização', '');
+insert into tb_funcao values(7, 'Técnico Administrativo', '');
+
+INSERT INTO TB_USUARIO
+(ID_USUARIO,USUARIO,SENHA,ADMINISTRADOR,MATRICULA,NOME,EMAIL,DATA_CADASTRO, ID_FUNCAO, CPF)
+VALUES
+('10', 'admin', 'admin', '1', '00000', 'Cassio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00', '1', '12345789999');
+
 
 insert into TB_PROJETOS
 (Id_Projeto, Nome_Projeto, Programa, Origem, Data_Cadastro, Id_Cordenador)
@@ -100,11 +105,3 @@ insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Teclado', 'A');
 insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Caixa de Som', 'A');
 insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Cabos (HDMI, VGA, etc)', 'A');
 insert into TB_TIPO (Nome, Tipo_Equipamento) values ('Hard Drive', 'A');
-
-insert into tb_funcao values(1, 'Professor Coordenador', '');
-insert into tb_funcao values(2, 'Professor Colaborador', '');
-insert into tb_funcao values(3, 'Aluno Doutorando', '');
-insert into tb_funcao values(4, 'Aluno Mestrando', '');
-insert into tb_funcao values(5, 'Aluno Graduando', '');
-insert into tb_funcao values(6, 'Aluno Especialização', '');
-insert into tb_funcao values(7, 'Técnico Administrativo', '');

@@ -71,6 +71,8 @@ public class MensagemContantes {
 	public static final String MSG_SUC_CADASTRO_MARCA = "Marca ? cadastrada com sucesso!";
 
 	public static final String MSG_SUC_ALTERAR_MARCA = "Atualização de marca com sucesso!";
+	
+	public static final String MSG_SUC_ALTERAR_PROJETO = "Projeto ? alterado com sucesso!";
 
 	public static final String MSG_SUC_CADASTRO_EQUIPAMENTO = "EQUIPAMENTO ? CADASTRADO COM SUCESSO";
 

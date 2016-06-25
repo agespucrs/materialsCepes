@@ -37,7 +37,6 @@ public class IdiomaDAO {
 				dto.setId(resultset.getInt("ID_IDIOMA"));
 				dto.setNome(resultset.getString("NOME"));
 				dto.setPais(resultset.getString("PAIS"));
-				dto.setIdentificador(resultset.getString("IDENTIFICADOR"));
 				lista.add(dto);
 			}
 
@@ -72,7 +71,6 @@ public class IdiomaDAO {
 				dto.setId(resultset.getInt("ID_IDIOMA"));
 				dto.setNome(resultset.getString("NOME"));
 				dto.setPais(resultset.getString("PAIS"));
-				dto.setIdentificador(resultset.getString("IDENTIFICADOR"));
 				return dto;
 			}
 
@@ -105,7 +103,6 @@ public class IdiomaDAO {
 				dto.setId(resultset.getInt("ID_IDIOMA"));
 				dto.setNome(resultset.getString("NOME"));
 				dto.setPais(resultset.getString("PAIS"));
-				dto.setIdentificador(resultset.getString("IDENTIFICADOR"));
 				return dto;
 			}
 

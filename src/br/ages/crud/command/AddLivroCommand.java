@@ -4,11 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.AutorBO;
 import br.ages.crud.bo.LivroBO;
+import br.ages.crud.dao.LivroDAO;
 import br.ages.crud.bo.EditoraBO;
 import br.ages.crud.model.Editora;
 import br.ages.crud.model.Livro;
@@ -33,21 +35,13 @@ public class AddLivroCommand implements Command {
 
 		String titulo = request.getParameter("titulo");
 		String subtitulo = request.getParameter("subtitulo");
-		Date dataCadastro = new Date();
 
 		String sPreco = (request.getParameter("preco"));
-		float preco = (float) (sPreco.equals("") ? 0.0 : Float.parseFloat(sPreco)); 
+		Float preco = (float) (sPreco.isEmpty() ? 0.0 : Float.parseFloat(sPreco.replace(".", "").replace(",", "."))); 
 
 		String sLingua = (request.getParameter("lingua"));
-		Integer lingua = null;
-		if(sLingua.equals("pt")){
-			lingua = 1;
-		} else if(sLingua.equals("en")){
-			lingua = 2;
-		}else lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);
-
-//		Integer lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);
-
+		Integer lingua = sLingua.equals("") ? null : Integer.parseInt(sLingua);
+		
 		String codigoISBN = request.getParameter("isbn");
 
 		String sEdicao = (request.getParameter("edicao"));
@@ -58,46 +52,57 @@ public class AddLivroCommand implements Command {
 
 		String sPaginas = (request.getParameter("paginas"));
 		Integer paginas = sPaginas.equals("") ? null : Integer.parseInt(sPaginas);
-
-		Boolean brochura = request.getParameter("brochura") == null ? false : true;
-		Boolean revista = request.getParameter("revista") == null ? false : true;
-		Boolean video = request.getParameter("video") == null ? false : true;
-		Boolean cd_dvd = request.getParameter("cd_dvd") == null ? false : true;
-		Boolean e_book = request.getParameter("ebook") == null ? false : true;
-		Boolean expiral = request.getParameter("expiral") == null ? false : true;
-		Boolean dura = request.getParameter("dura") == null ? false : true;
+		
 		String descricao = request.getParameter("descricao");
+		
+		Boolean brochura = isChecked(request.getParameter("brochura"));
+		Boolean revista = isChecked(request.getParameter("revista"));
+		Boolean video = isChecked(request.getParameter("video")); 
+		Boolean cd_dvd = isChecked(request.getParameter("cd_dvd")); 
+		Boolean e_book = isChecked(request.getParameter("ebook")); 
+		Boolean expiral = isChecked(request.getParameter("expiral")); 
+		Boolean dura = isChecked(request.getParameter("dura")); 
+		
 
 		// Object receptor
 		Integer idEditora = Integer.parseInt(request.getParameter("editora"));
 		ArrayList<Integer> idAutores = new ArrayList<Integer>();
-		Integer idAutor = Integer.parseInt(request.getParameter("autor"));
-		idAutores.add(idAutor);
-
+		
 		try {
 
 			Livro livro = new Livro();
 			livro.setTitulo(titulo);
 			livro.setSubtitulo(subtitulo);
-			livro.setDataCadastro(dataCadastro);
-//			livro.setPreco(preco);
+			livro.setPreco(preco);
 			livro.setLingua(lingua);
 			livro.setCodigoISBN(codigoISBN);
 			livro.setEdicao(edicao);
 			livro.setAno(ano);
 			livro.setPaginas(paginas);
+			livro.setDescricao(descricao);
+			livro.setBrochura(brochura);
 			livro.setVideo(video);
 			livro.setCdDvd(cd_dvd);
 			livro.seteBook(e_book);
-			livro.setDescricao(descricao);
-			livro.setBrochura(brochura);
 			livro.setRevista(revista);
 			livro.setExpiral(expiral);
 			livro.setDura(dura);
 			Editora editora = editoraBO.consultarEditora(idEditora);
 			livro.setEditora(editora);
-			ArrayList<Autor> autores = autorBO.consultarAutores(idAutores);
-			livro.setAutores(autores);
+			
+			ArrayList<Integer> listaIds = new ArrayList<>();
+			String[] autores = request.getParameterValues("autores");
+			
+			for (String autor : autores){
+				Integer idAutor = Integer.parseInt(autor);
+				
+				if (listaIds.contains(idAutor));
+					listaIds.add(idAutor);
+			}
+			
+			ArrayList<Autor> autoresBanco = autorBO.consultarAutores(listaIds);
+			
+			livro.setAutores(autoresBanco);
 
 			/*
 			 * boolean isValido = usuarioBO.validaCadastroUsuarioA(user); if
@@ -107,6 +112,7 @@ public class AddLivroCommand implements Command {
 			 */
 
 			if (livroBO.cadastrarLivro(livro)) {
+				
 				proxima = "main?acao=listLivro";
 				request.setAttribute("msgSucesso",
 						MensagemContantes.MSG_SUC_CADASTRO_LIVRO.replace("?", livro.getTitulo()));
@@ -126,5 +132,9 @@ public class AddLivroCommand implements Command {
 
 	public boolean isNulo(HttpServletRequest request, String parameter) {
 		return request.getParameter(parameter) == null;
+	}
+	
+	private Boolean isChecked (String value) {
+		return null != value && "check".equals(value);
 	}
 }
