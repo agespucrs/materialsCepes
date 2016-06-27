@@ -252,6 +252,7 @@ public class UsuarioDAO {
 
 			ResultSet resultset = statement.executeQuery();
 			while (resultset.next()) {
+				usuario = new Usuario();
 				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
 				usuario.setMatricula(resultset.getString("MATRICULA"));
 				usuario.setNome(resultset.getString("NOME"));

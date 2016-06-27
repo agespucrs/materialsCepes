@@ -11,9 +11,11 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
+import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Usuario;
+import br.ages.crud.model.UsuarioProjeto;
 import br.ages.crud.util.ConexaoUtil;
 
 public class ProjetoDAO {
@@ -26,8 +28,7 @@ public class ProjetoDAO {
 
 	}
 
-	
-	public Projeto buscarProjeto (Integer id) throws PersistenciaException, SQLException, ParseException {
+	public Projeto buscarProjeto(Integer id) throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
 
 		try {
@@ -43,7 +44,7 @@ public class ProjetoDAO {
 
 			while (resultset.next()) {
 				Projeto projeto = new Projeto();
-				
+
 				projeto.setId(resultset.getInt("ID_PROJETO"));
 				projeto.setNomeProjeto(resultset.getString("NOME_PROJETO"));
 				projeto.setPrograma(resultset.getString("PROGRAMA"));
@@ -63,7 +64,7 @@ public class ProjetoDAO {
 
 		return null;
 	}
-	
+
 	/**
 	 * Método responsável por salvar a projeto no BD.
 	 * 
@@ -78,11 +79,11 @@ public class ProjetoDAO {
 		try {
 			conexao = ConexaoUtil.getConexao();
 
-			if (null != (Integer)projeto.getId()){
+			if (null != (Integer) projeto.getId()) {
 				StringBuilder sql = new StringBuilder();
 				sql.append("UPDATE TB_PROJETOS SET NOME_PROJETO = ?, PROGRAMA = ?, ORIGEM = ?, ID_CORDENADOR = ?");
 				sql.append(" WHERE ID_PROJETO = ?");
-				
+
 				PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setString(1, projeto.getNomeProjeto());
 				statement.setString(2, projeto.getPrograma());
@@ -90,8 +91,8 @@ public class ProjetoDAO {
 				statement.setInt(4, projeto.getIdCoordenador());
 				statement.setInt(5, projeto.getId());
 				statement.executeUpdate();
-				
-			} else{
+
+			} else {
 				StringBuilder sql = new StringBuilder();
 				sql.append("INSERT INTO TB_PROJETOS (NOME_PROJETO,PROGRAMA,ORIGEM,DATA_CADASTRO,ID_CORDENADOR)");
 				sql.append("VALUES (?,?,?,?,?)");
@@ -106,8 +107,7 @@ public class ProjetoDAO {
 				statement.setInt(5, projeto.getIdCoordenador());
 				statement.executeUpdate();
 			}
-			
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
@@ -192,12 +192,91 @@ public class ProjetoDAO {
 
 	}
 
-	/**
-	 * Método para remover um projeto.
-	 * 
-	 * @param id
-	 * @return
-	 * @throws PersistenciaException
-	 * @throws SQLException
-	 */
+	public List<UsuarioProjeto> consultarUsuariosProjeto(Integer idProjeto) throws PersistenciaException, SQLException {
+
+		Connection conexao = null;
+
+		List<UsuarioProjeto> usuariosIntegrantes = new ArrayList<>();
+
+		try {
+
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append(
+					"SELECT up.ID_USUARIO as ID_USUARIO, us.NOME as NOME, up.DATA_ALOCACAO as DATA_ALOCACAO FROM TB_USUARIO_PROJETO up, TB_USUARIO us "
+							+ "WHERE up.ID_USUARIO = us.ID_USUARIO AND up.ID_PROJETO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setInt(1, idProjeto);
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				UsuarioProjeto dto = new UsuarioProjeto();
+				dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				dto.setNomeUsuario(resultset.getString("NOME"));
+				dto.setDataAlocacao(resultset.getDate("DATA_ALOCACAO"));
+				usuariosIntegrantes.add(dto);
+			}
+
+		} catch (Exception e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+		return usuariosIntegrantes;
+	}
+
+	public void removerUsuariosProjeto(Integer idProjeto) throws PersistenciaException, SQLException {
+
+		Connection conexao = null;
+
+		try {
+
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("DELETE FROM TB_USUARIO_PROJETO WHERE ID_PROJETO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setInt(1, idProjeto);
+
+			statement.execute();
+
+		} catch (Exception e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+	}
+	
+	public void inserirUsuarioProjeto(UsuarioProjeto usuarioProjeto) throws NegocioException, SQLException, PersistenciaException{
+
+		Connection conexao = null;
+
+		try {
+
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO TB_USUARIO_PROJETO (ID_USUARIO, ID_PROJETO, DATA_ALOCACAO)");
+			sql.append("VALUES (?,?,?)");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setInt(1, usuarioProjeto.getIdUsuario());
+			statement.setInt(2, usuarioProjeto.getIdProjeto());
+			statement.setDate(3, new Date(new java.util.Date().getTime()));
+
+			statement.executeUpdate();
+
+		} catch (Exception e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+	}
 }

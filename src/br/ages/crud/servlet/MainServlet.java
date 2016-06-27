@@ -16,6 +16,7 @@ import br.ages.crud.command.AddMarcaCommand;
 import br.ages.crud.command.AddProjetoCommand;
 import br.ages.crud.command.AddEditoraCommand;
 import br.ages.crud.command.AddEquipamentoCommand;
+import br.ages.crud.command.AddEquipeProjetoCommand;
 import br.ages.crud.command.AddLivroCommand;
 import br.ages.crud.command.AddUserCommand;
 import br.ages.crud.command.AlterAutorCommand;
@@ -33,6 +34,7 @@ import br.ages.crud.command.ConsultarUserCommand;
 import br.ages.crud.command.CopiaLivroCommand;
 import br.ages.crud.command.CreateScreenAutorCommand;
 import br.ages.crud.command.CreateScreenEquipamentoCommand;
+import br.ages.crud.command.CreateScreenEquipeProjetoCommand;
 import br.ages.crud.command.CreateScreenEditoraCommand;
 import br.ages.crud.command.CreateScreenLivroCommand;
 import br.ages.crud.command.CreateScreenProjetoCommand;
@@ -122,6 +124,8 @@ public class MainServlet extends HttpServlet {
 		comandos.put("alterProjeto", new AlterProjetoCommand());
 		comandos.put("listProjeto", new ListProjetosCommand());
 		comandos.put("removerProjeto", new RemoveProjetoCommand());
+		comandos.put("equipeProjeto", new CreateScreenEquipeProjetoCommand());
+		comandos.put("addEquipeProjeto", new AddEquipeProjetoCommand());
 	}
 
 	@Override

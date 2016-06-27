@@ -3,6 +3,8 @@ package br.ages.crud.util;
 public class MensagemContantes {
 
 	public static final String MSG_ERR_CAMPO_OBRIGATORIO = "Campo ? obrigatório!";
+	
+	public static final String MSG_ERR_ALOCAR_EQUIPE = "Ocorreu um erro ao alocar equipe!";
 
 	public static final String MSG_ERR_CAMPO_NOME_OBRIGATORIO = "Campo Nome obrigatório!";
 
@@ -41,6 +43,8 @@ public class MensagemContantes {
 	public static final String MSG_SUC_CADASTRO_COPIA = "Cadastro copia: ?, efetuado com sucesso!";
 
 	public static final String MSG_SUC_CADASTRO_LIVRO = "Cadastro livro: ?, efetuado com sucesso!";
+	
+	public static final String MSG_SUC_CADASTRO_EQUIPE = "Alocação de equipe efetuada com sucesso!";
 
 	public static final String MSG_ERR_CADASTRO_LIVRO_EXISTENTE = "ERRO! Livro ? já existente";
 

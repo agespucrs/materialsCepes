@@ -1,3 +1,7 @@
+<%@page import="br.ages.crud.model.UsuarioProjeto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.ages.crud.model.Usuario"%>
+<%@page import="br.ages.crud.model.Projeto"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Editora"%>
@@ -13,15 +17,21 @@
 		
 				<div class="table-responsive">
 				
-				<form action="main?acao=addEditora" method="post">
+				<form action="main?acao=addEquipeProjeto" method="post">
 					<jsp:include page="/template/msg.jsp"></jsp:include>
 					
-					<label class="form-label ages">Projeto </label> 
+					<label class="form-label ages">Projeto </label>
 					<select class="form-control" id="projeto" name="projeto" value="${param.projeto}" type="text" required>
 						<option value="" >Selecione o Projeto</option>
-						<option value="" >Kill DeathStar</option>
-						<option value="" >Transposição Rio São Francisco</option>
-						<option value="" >Tomada de Constantinopla</option>
+						<%
+						Integer projetoSelecionado = null;
+						if (null != request.getParameter("idProjeto")){
+							projetoSelecionado = Integer.parseInt(request.getAttribute("idProjeto").toString());
+						}
+						List<Projeto> projetos = (List<Projeto>)request.getAttribute("projetos");
+						for (Projeto projeto : projetos) {%>
+						<option value="<%=projeto.getId() %>" <%= (null != projetoSelecionado && projetoSelecionado == projeto.getId()) ? "selected" : "" %>><%=projeto.getNomeProjeto() %></option>
+						<%} %>
 					</select>
 							
 					<label class="form-label ages">Data Alocação:<span class="red">*</span></label> 
@@ -33,12 +43,30 @@
 					</div>
 
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaEquipe" class="listaEquipe" required>
-							<option value="" >Castelo Branco - </option>
-							<option value="" >Afonso Pena - 01/09/2015</option>
-							<option value="" selected="selected">Getulio Vargas - 15/01/2015</option>
-							<option value="" selected="selected">Médice - 25/01/2015</option>
-						</select>
+						<select multiple="multiple" size="10" id="listaEquipe" name="listaEquipe" class="listaEquipe" required>
+						
+							<% 
+							List<Usuario> usuarios = new ArrayList<>();
+							List<UsuarioProjeto> integrantes = new ArrayList<>();
+							
+							if (null != request.getAttribute("usuarios")){
+								usuarios = (List<Usuario>)request.getAttribute("usuarios");
+							}
+							
+							if (null != request.getAttribute("integrantes")){
+								integrantes = (List<UsuarioProjeto>) request.getAttribute("integrantes");
+							}
+							
+							for (Usuario usr : usuarios) { %>
+							<option value="<%=usr.getIdUsuario()%>" ><%=usr.getNome()%></option>
+							
+							<%}
+							
+							for (UsuarioProjeto usrProjeto : integrantes) { %>
+							<option value="<%=usrProjeto.getIdUsuario()%>" selected><%=usrProjeto.getNomeUsuario()%></option>
+							
+							<%} %>
+							</select>
 					</div>
 					<hr>
 					<p>		
@@ -88,5 +116,13 @@
 			locale : 'pt-br',
 			showTodayButton: true
 		});
+		
+		$('#projeto').on('change', function () {
+	          var url = "main?acao=equipeProjeto&idProjeto="+$(this).val(); // get selected value
+	          if (url) { // require a URL
+	              window.location = url; // redirect
+	          }
+	          return false;
+	      });
 	});
 </script>
