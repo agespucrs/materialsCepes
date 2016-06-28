@@ -17,7 +17,7 @@ public class TipoBO {
 	public TipoBO() {
 		dao = new TipoDAO();
 	}
-
+	
 	public List<Tipo> consultarPeloTipo(TipoEquipamento tipo) throws NegocioException, SQLException, ParseException {
 		try {
 			return dao.consultarPeloTipo(tipo);

@@ -6,8 +6,7 @@ public class Equipamento {
 	int id;
 	int status;
 	String tipoEquipamento;
-	//subTipo tem o valor TIPO_MOBILE, TIPO_COMPUTADOR, ou TIPO_PERIFERICO,
-	//dependendo do tipoEquipamento
+	//subTipo tem o nome do tipo do equipamento, proveniente da tabela TB_TIPOS
 	String subTipo;
 	int marca;
 	String nomeMarca;

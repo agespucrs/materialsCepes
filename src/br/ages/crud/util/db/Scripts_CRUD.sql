@@ -208,9 +208,10 @@ if(Id_Mobile is not null, 'Dispositivo Movel',
     if(Id_Periferico is not null, 'Periferico', 'Acessorio')
 )) as Tipo_Equipamento,
 --
-if(Id_Mobile is not null, MOB.ID_TIPO, 
-  if(Id_Computador is not null, COMP.ID_TIPO, PERIF.ID_TIPO)
-) as Sub_Tipo,
+if(Id_Computador is not null, TIP1.NOME, 
+  if(Id_Periferico is not null, TIP2.NOME, 
+    if(Id_Mobile is not null, TIP3.NOME, "---")
+)) as Sub_Tipo,
 --
 EQUIP.Id_Equipamento,
 --
@@ -221,6 +222,9 @@ TB_EQUIPAMENTOS as EQUIP
 left join TB_COMPUTADOR as COMP on COMP.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
 left join TB_PERIFERICO as PERIF on PERIF.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
 left join TB_MOBILE AS MOB on MOB.ID_EQUIPAMENTO = EQUIP.ID_EQUIPAMENTO
+left join TB_TIPO as TIP1 on TIP1.ID_TIPO = COMP.ID_TIPO
+left join TB_TIPO as TIP2 on TIP2.ID_TIPO = PERIF.ID_TIPO
+left join TB_TIPO as TIP3 on TIP3.ID_TIPO = MOB.ID_TIPO
 inner join TB_MARCA as MAR on MAR.ID_MARCA = EQUIP.ID_MARCA
 inner join TB_PROJETOS as PROJ on PROJ.ID_PROJETO = EQUIP.ID_PROJETO;
 

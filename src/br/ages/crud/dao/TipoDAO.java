@@ -4,16 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
-import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
-import br.ages.crud.model.Marca;
 import br.ages.crud.model.Tipo;
 import br.ages.crud.model.TipoEquipamento;
 import br.ages.crud.util.ConexaoUtil;
@@ -48,19 +44,19 @@ public class TipoDAO {
 
 				lista.add(dto);
 			}
-
-			return lista;
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
+		
+		return lista;
 	}
 	
 	public Tipo consultarPeloNome(String nome) throws PersistenciaException, SQLException {
+		Tipo tipo = new Tipo();
 		try {
 			conexao = ConexaoUtil.getConexao();
-			Tipo tipo = new Tipo();
 			
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_TIPO WHERE ");
@@ -75,17 +71,16 @@ public class TipoDAO {
 				tipo.setId(resultset.getInt("ID_TIPO"));
 				tipo.setNome(nome);
 			}
-
-			return tipo;
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
+		return tipo;
 	}
 	
 	public int cadastrar(Tipo tipo) throws PersistenciaException, SQLException {
-	
+		int idNovoTipo = -1;	
 		try {
 			conexao = ConexaoUtil.getConexao();
 
@@ -99,18 +94,16 @@ public class TipoDAO {
 			statement.setString(1, tipo.getTipoEquipamento());
 			statement.setString(2, tipo.getNome());
 
-			int idNovoTipo = -1;
 			ResultSet resultset = statement.executeQuery();
 			while (resultset.next()) {
 				idNovoTipo = resultset.getInt(1);
 				tipo.setId(idNovoTipo);
 			}
-
-			return idNovoTipo;
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
+		return idNovoTipo;
 	}
 }
