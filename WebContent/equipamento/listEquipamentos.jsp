@@ -51,7 +51,7 @@
 							<%= dataCadastro %>
 						</td>
 						<td align="right"><%= equipamento.getValor() %></td>
-						<td><b><%= equipamento.getSubTipo() + " " %></b><%= equipamento.getMarca() + " - " + equipamento.getModelo() %></td>
+						<td><b><%= equipamento.getSubTipo() + " " %></b><%= equipamento.getNomeMarca() + " - " + equipamento.getModelo() %></td>
 						<td align="center">
 							<a href="main?acao=alterEquipamento&id_equipamento=<%= equipamento.getId() %>" >
 								<button type="button" class="btn btn-xs btn-info" >

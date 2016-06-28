@@ -10,6 +10,7 @@ public class Equipamento {
 	//dependendo do tipoEquipamento
 	String subTipo;
 	int marca;
+	String nomeMarca;
 	String modelo;
 	Double valor;
 	Date dataCadastro;
@@ -55,6 +56,14 @@ public class Equipamento {
 	
 	public void setMarca(int marca) {
 		this.marca = marca;
+	}
+	
+	public String getNomeMarca() {
+		return nomeMarca;
+	}
+	
+	public void setNomeMarca(String nomeMarca) {
+		this.nomeMarca = nomeMarca;
 	}
 	
 	public String getModelo() {
