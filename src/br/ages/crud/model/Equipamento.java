@@ -15,6 +15,7 @@ public class Equipamento {
 	Date dataCadastro;
 	int projeto;
 	String observacoes;
+	int numeroPatrimonio;
 	
 	public int getId() {
 		return id;
@@ -95,4 +96,12 @@ public class Equipamento {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
+	
+	public int getNumeroPatrimonio() {
+		return numeroPatrimonio;
+	}
+	
+	public void setNumeroPatrimonio(int numeroPatrimonio) {
+		this.numeroPatrimonio = numeroPatrimonio;
+	}	
 }

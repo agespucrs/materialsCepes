@@ -45,7 +45,7 @@ public class EquipamentoDAO {
 				equipamentoAtual.setSubTipo(resultset.getString("Sub_Tipo"));
 				//equipamentoAtual.setMarca(Integer.parseInt(resultset.getString("Nome")));
 				equipamentoAtual.setModelo(resultset.getString("Modelo"));
-				//equipamentoAtual.setNumeroPatrimonio(resultset.getInt("N_PATRIMONIO"));
+				equipamentoAtual.setNumeroPatrimonio(resultset.getInt("N_PATRIMONIO"));
 				equipamentoAtual.setDataCadastro(resultset.getDate("Data_Cadastro"));
 				equipamentoAtual.setValor(resultset.getDouble("Valor_Aquisicao"));
 				listarEquipamentos.add(equipamentoAtual);

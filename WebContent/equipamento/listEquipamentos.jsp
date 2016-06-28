@@ -43,7 +43,7 @@
 					<tr>
 						<td><input type="checkbox" /></td>
 						<td><%= equipamento.getTipoEquipamento() %></td>
-						<td></td>
+						<td><%= equipamento.getNumeroPatrimonio() %></td>
 						<td align="center"><%
 							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 							String dataCadastro = df.format(equipamento.getDataCadastro());
