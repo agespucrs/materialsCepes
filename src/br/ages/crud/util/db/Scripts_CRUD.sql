@@ -204,8 +204,9 @@ REFERENCES TB_TIPO(ID_TIPO);
 CREATE OR REPLACE VIEW VW_EQUIPAMENTOS AS
 SELECT 
 if(Id_Mobile is not null, 'Dispositivo Movel', 
-  if(Id_Computador is not null, 'Computador', 'Periferico')
-) as Tipo_Equipamento,
+  if(Id_Computador is not null, 'Computador', 
+    if(Id_Periferico is not null, 'Periferico', 'Acessorio')
+)) as Tipo_Equipamento,
 --
 if(Id_Mobile is not null, MOB.ID_TIPO, 
   if(Id_Computador is not null, COMP.ID_TIPO, PERIF.ID_TIPO)
