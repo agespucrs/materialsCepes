@@ -43,7 +43,7 @@
 					<tr>
 						<td><input type="checkbox" /></td>
 						<td><%= equipamento.getTipoEquipamento() %></td>
-						<td></td>
+						<td><%= equipamento.getNumeroPatrimonio() %></td>
 						<td align="center"><%
 							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 							String dataCadastro = df.format(equipamento.getDataCadastro());
@@ -51,7 +51,7 @@
 							<%= dataCadastro %>
 						</td>
 						<td align="right"><%= equipamento.getValor() %></td>
-						<td><b><%= equipamento.getSubTipo() + " " %></b><%= equipamento.getMarca() + " - " + equipamento.getModelo() %></td>
+						<td><b><%= equipamento.getSubTipo() + " " %></b><%= equipamento.getNomeMarca() + " - " + equipamento.getModelo() %></td>
 						<td align="center">
 							<a href="main?acao=alterEquipamento&id_equipamento=<%= equipamento.getId() %>" >
 								<button type="button" class="btn btn-xs btn-info" >

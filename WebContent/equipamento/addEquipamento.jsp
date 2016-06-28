@@ -27,12 +27,12 @@
 					<div class="row">	
 						<div class=" col-sm-6" id="numeroPatrimonio">
 							<label class="form-label ages">Numero Patrimonio <span class="red">*</span></label> 
-							<input class="form-control" name="numeroPatrimonio"	value="${param.numeroPatrimonio}" type="text" required>
+							<input class="form-control" id="inputNumeroPatrimonio" name="numeroPatrimonio"	value="${param.numeroPatrimonio}" type="text" required>
 						</div>
 						
 						<div class="col-sm-6 hidden" id="quantidade">
 							<label class="form-label ages">Quantidade <span class="red">*</span></label> 
-							<input class="form-control" name="quantidade" value="${param.quantidade}" type="text" required>
+							<input class="form-control" id="inputQuantidade" name="quantidade" value="${param.quantidade}" type="text" required>
 						</div>
 						
 						<div class=" col-sm-6">
@@ -58,7 +58,7 @@
 						</div>
 						<div class="col-sm-6 hidden" id="tipoAcessorio" >
 							<label class="form-label ages">Tipo de Acessório<span class="red">*</span></label>
-							<input class="form-control" name="tipoAcessorio" value="${param.tipoAcessorio}" type="text" required>
+							<input class="form-control" id="inputTipoAcessorio" name="tipoAcessorio" value="${param.tipoAcessorio}" type="text" required>
 						</div>
 						<div class="col-sm-6 hidden" id="tipoComputador" >
 							<label class="form-label ages">Tipo de Computador<span class="red">*</span></label>
@@ -175,6 +175,8 @@ $('#tipoEquipamento').on('change', function() {
 			$('#selectComputador').attr("required");
 			$('#selectPeriferico').removeAttr("required");
 			$('#selectMobile').removeAttr("required");
+			$('#inputQuantidade').removeAttr("required");
+			$('#inputTipoAcessorio').removeAttr("required");
 			break;
 		case 'P':
 			escondeElementos();
@@ -184,6 +186,8 @@ $('#tipoEquipamento').on('change', function() {
 			$('#selectComputador').removeAttr("required");
 			$('#selectPeriferico').attr("required");
 			$('#selectMobile').removeAttr("required");
+			$('#inputQuantidade').removeAttr("required");
+			$('#inputTipoAcessorio').removeAttr("required");
 			break;
 		case 'M':
 			escondeElementos();
@@ -193,6 +197,8 @@ $('#tipoEquipamento').on('change', function() {
 			$('#selectComputador').removeAttr("required");
 			$('#selectPeriferico').removeAttr("required");
 			$('#selectMobile').attr("required");
+			$('#inputQuantidade').removeAttr("required");
+			$('#inputTipoAcessorio').removeAttr("required");
 			break;
 		case 'A':
 			escondeElementos();
@@ -202,7 +208,7 @@ $('#tipoEquipamento').on('change', function() {
 			$('#selectComputador').removeAttr("required");
 			$('#selectPeriferico').removeAttr("required");
 			$('#selectMobile').removeAttr("required");
-			$('#numeroPatrimonio').removeAttr("required");
+			$('#inputNumeroPatrimonio').removeAttr("required");
 		default:
 			break;
 	} 

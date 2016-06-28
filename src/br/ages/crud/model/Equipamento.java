@@ -6,15 +6,16 @@ public class Equipamento {
 	int id;
 	int status;
 	String tipoEquipamento;
-	//subTipo tem o valor TIPO_MOBILE, TIPO_COMPUTADOR, ou TIPO_PERIFERICO,
-	//dependendo do tipoEquipamento
+	//subTipo tem o nome do tipo do equipamento, proveniente da tabela TB_TIPOS
 	String subTipo;
 	int marca;
+	String nomeMarca;
 	String modelo;
 	Double valor;
 	Date dataCadastro;
 	int projeto;
 	String observacoes;
+	int numeroPatrimonio;
 	
 	public int getId() {
 		return id;
@@ -56,6 +57,14 @@ public class Equipamento {
 		this.marca = marca;
 	}
 	
+	public String getNomeMarca() {
+		return nomeMarca;
+	}
+	
+	public void setNomeMarca(String nomeMarca) {
+		this.nomeMarca = nomeMarca;
+	}
+	
 	public String getModelo() {
 		return modelo;
 	}
@@ -95,4 +104,12 @@ public class Equipamento {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
+	
+	public int getNumeroPatrimonio() {
+		return numeroPatrimonio;
+	}
+	
+	public void setNumeroPatrimonio(int numeroPatrimonio) {
+		this.numeroPatrimonio = numeroPatrimonio;
+	}	
 }
