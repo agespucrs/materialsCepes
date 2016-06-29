@@ -105,13 +105,11 @@ public class MainServlet extends HttpServlet {
 		comandos.put("addCopia", new AddCopiaLivroCommand());
 		//comandos.put("addAutorLivro", new AddAutorLivroCommand());
 		
-		// EQUIPAMENTOS (Computador, Perifericos e Dispositivos Moveis)
+		// EQUIPAMENTOS (Computador, Perifericos, Dispositivos Moveis, e Acessorios)
 		comandos.put("telaEquipamento", new CreateScreenEquipamentoCommand());
 		comandos.put("addEquipamento", new AddEquipamentoCommand());
 		comandos.put("listEquipamento", new ListEquipamentoCommand());
 		comandos.put("removerEquipamento", new RemoveEquipamentoCommand());
-		// comandos.put("consultarEquipamento", new
-		// ConsultarEquipamentoCommand());
 		comandos.put("alterEquipamento", new AlterEquipamentoCommand());
 
 		// MARCA

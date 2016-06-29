@@ -14,6 +14,7 @@ public class Equipamento {
 	Double valor;
 	Date dataCadastro;
 	int projeto;
+	String nomeProjeto;
 	String observacoes;
 	int numeroPatrimonio;
 	
@@ -95,6 +96,14 @@ public class Equipamento {
 	
 	public void setProjeto(int projeto) {
 		this.projeto = projeto;
+	}
+	
+	public String getNomeProjeto() {
+		return nomeProjeto;
+	}
+	
+	public void setNomeProjeto(String nome) {
+		this.nomeProjeto = nome;
 	}
 	
 	public String getObservacoes() {

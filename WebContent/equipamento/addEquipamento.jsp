@@ -25,9 +25,30 @@
 				<jsp:include page="/template/msg.jsp"></jsp:include>
 				<div class="form-group">
 					<div class="row">	
+						<%
+						String numeroPatrimonio = "";
+						if (request.getAttribute("numeroPatrimonio") != null)
+							numeroPatrimonio = request.getAttribute("numeroPatrimonio").toString();
+						
+						String subTipo = "";
+						if (request.getAttribute("subTipo") != null)
+							subTipo = request.getAttribute("subTipo").toString();
+						
+						String valor = "";
+						if (request.getAttribute("valor") != null)
+							valor = request.getAttribute("valor").toString();
+						
+						String dataCadastro = "";
+						if (request.getAttribute("dataCadastro") != null) {
+							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+							dataCadastro = df.format(request.getAttribute("dataCadastro"));
+						}
+						%>
+					
+					
 						<div class=" col-sm-6" id="numeroPatrimonio">
 							<label class="form-label ages">Numero Patrimonio <span class="red">*</span></label> 
-							<input class="form-control" id="inputNumeroPatrimonio" name="numeroPatrimonio"	value="${param.numeroPatrimonio}" type="text" required>
+							<input class="form-control" id="inputNumeroPatrimonio" name="numeroPatrimonio"	value="<%= numeroPatrimonio %>" type="text" required>
 						</div>
 						
 						<div class="col-sm-6 hidden" id="quantidade">
@@ -58,7 +79,7 @@
 						</div>
 						<div class="col-sm-6 hidden" id="tipoAcessorio" >
 							<label class="form-label ages">Tipo de Acessório<span class="red">*</span></label>
-							<input class="form-control" id="inputTipoAcessorio" name="tipoAcessorio" value="${param.tipoAcessorio}" type="text" required>
+							<input class="form-control" id="inputTipoAcessorio" name="tipoAcessorio" value="<%= subTipo %>" type="text" required>
 						</div>
 						<div class="col-sm-6 hidden" id="tipoComputador" >
 							<label class="form-label ages">Tipo de Computador<span class="red">*</span></label>
@@ -119,13 +140,13 @@
 				<div class="row">
 					<div class=" col-sm-6">
 						<label class="form-label ages">Valor </label> 
-						<input class="form-control" id="valor" name="valor" value="${param.valor}" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
+						<input class="form-control" id="valor" name="valor" value="<%= valor %>" placeholder="R$ 1.550,00"  type="text" style="text-align: right;" >
 					</div>
 					
 					<div class="col-sm-6">
 							<label class="form-label ages">Data Cadastro:<span class="red">*</span></label> 
 							<div class='input-group date' id='dataCadastro'>
-								<input type='text' class="form-control" name="dataCadastro" value="${param.dataCadastro}"/>
+								<input type='text' class="form-control" name="dataCadastro" value="<%= dataCadastro %>"/>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-calendar"></span>
 								</span>

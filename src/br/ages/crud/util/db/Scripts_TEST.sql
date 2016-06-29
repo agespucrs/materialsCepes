@@ -48,13 +48,13 @@ INSERT INTO TB_MARCA
 VALUES
 (1, 'SAMSUNG');
 
-insert into tb_funcao values(1, 'Professor Coordenador', '');
-insert into tb_funcao values(2, 'Professor Colaborador', '');
-insert into tb_funcao values(3, 'Aluno Doutorando', '');
-insert into tb_funcao values(4, 'Aluno Mestrando', '');
-insert into tb_funcao values(5, 'Aluno Graduando', '');
-insert into tb_funcao values(6, 'Aluno Especialização', '');
-insert into tb_funcao values(7, 'Técnico Administrativo', '');
+insert into TB_FUNCAO values(1, 'Professor Coordenador', '');
+insert into TB_FUNCAO values(2, 'Professor Colaborador', '');
+insert into TB_FUNCAO values(3, 'Aluno Doutorando', '');
+insert into TB_FUNCAO values(4, 'Aluno Mestrando', '');
+insert into TB_FUNCAO values(5, 'Aluno Graduando', '');
+insert into TB_FUNCAO values(6, 'Aluno Especialização', '');
+insert into TB_FUNCAO values(7, 'Técnico Administrativo', '');
 
 INSERT INTO TB_USUARIO
 (ID_USUARIO,USUARIO,SENHA,ADMINISTRADOR,MATRICULA,NOME,EMAIL,DATA_CADASTRO, ID_FUNCAO, CPF)
