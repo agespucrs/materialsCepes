@@ -2,6 +2,7 @@ package br.ages.crud.command;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,6 +29,22 @@ public class AlterEquipamentoCommand implements Command {
 		try {
 			int idEquipamento = Integer.parseInt(request.getParameter("id_equipamento"));
 			Equipamento equip = equipamentoBO.consultarEquipamento(idEquipamento);
+			
+			int numeroPatrimonio = equip.getNumeroPatrimonio();
+			request.setAttribute("numeroPatrimonio", numeroPatrimonio);
+			
+			int status = equip.getStatus();
+			request.setAttribute("status", status);
+			
+			Double valor = equip.getValor();
+			request.setAttribute("valor", valor);
+			
+			Date dataCadastro = equip.getDataCadastro();
+			request.setAttribute("dataCadastro", dataCadastro);
+			
+			String subTipo = equip.getSubTipo();
+			request.setAttribute("subTipo", subTipo);
+			
 			//setar parametro para ser usado na tela de edicao posteriormente
 			//a partir daqui tambem devemos decidir qual tela (parametro tela) devemos ir
 			
