@@ -2,9 +2,27 @@ body{
 	background-color: #EEE;
 }
 
+.main{
+	width: 600px;
+	height: 500px;
+	color: white;
+	}
+
+.logoIndex{
+	position:relative;
+	width:450px;
+    height:175px;
+    background:#f8f5f7;
+    left:270px;
+    top:300px;
+    border-radius: 40px;
+    -moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+}	
+	
 .fundo {
 	background-image:url('../img/banner.jpg');
-	height: 710px;
+	/* height: 710px; */
 }
 .logo {
 	width: 30%;
@@ -23,7 +41,34 @@ body{
 }
 
 .panel-add{
-	max-width: 450px;
+	max-width: 500px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.panel-list-equipamento{
+	max-width: 650px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+.panel-list-livro{
+	max-width: 750px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.panel-add-listaProjetos{
+	max-width: 700px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.panel-add-marcaModelo{
+	max-width: 600px;
 	float: none;
 	margin-left: auto;
 	margin-right: auto;
@@ -34,6 +79,15 @@ body{
 	float: none;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.panel-add-emprestimo{
+	max-width: 680px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	
+	/* ## style="width: 600px; height: 567px; padding: 10px 15px; */
 }
 
 .panel-list{
@@ -70,7 +124,7 @@ body{
 
 .welcome {
     text-align: center;
-    color: #446CB3;
+    color: #fff;
     font-size: 28px; 
     margin-top: 10px;
 }
@@ -96,4 +150,14 @@ body{
 .img {
 	width: 10%;
 	padding: 1px;
+}
+
+.total {
+	background: rgba(0, 0, 0, 1);
+	height: 40px; 
+	background: black; 
+	width: 100%; 
+	text-align: right; 
+	padding-right: 30px; 
+	line-height: 40px;
 }

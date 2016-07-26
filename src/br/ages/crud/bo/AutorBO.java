@@ -12,6 +12,7 @@ import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Autor;
 import br.ages.crud.model.Editora;
+import br.ages.crud.model.Livro;
 import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.LoginValidator;
 import br.ages.crud.validator.SenhaValidator;
@@ -52,7 +53,7 @@ public class AutorBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public List<Autor> listarAutor() throws NegocioException   {
+	public List<Autor> listarTodosAutores() throws NegocioException   {
 
 		List<Autor> listAutor = null;
 
@@ -66,6 +67,7 @@ public class AutorBO {
 		return listAutor;
 
 	}
+	
 	/**
 	 * @param idUsuario
 	 * @throws NegocioException
@@ -73,6 +75,16 @@ public class AutorBO {
 	public void removerAutor(Integer idAutor) throws NegocioException {
 		try {
 			autorDAO.removerAutor(idAutor);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
+	
+	public void removerAutoresLivro(Integer idAutor, Integer idLivro) throws NegocioException {
+		try {
+			autorDAO.removerAutoresLivro(idAutor, idLivro);
+			
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
@@ -110,6 +122,22 @@ public class AutorBO {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
+
+	}
+	
+	public List<Autor> listarAutorLivro(Livro livro) throws NegocioException   {
+
+		List<Autor> listAutor = null;
+
+
+		try {
+			listAutor = autorDAO.listarAutoresLivro(livro);
+		} catch (PersistenciaException | SQLException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+
+		return listAutor;
 
 	}
 	

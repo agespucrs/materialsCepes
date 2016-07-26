@@ -11,6 +11,7 @@ import java.util.List;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Autor;
 import br.ages.crud.model.Editora;
+import br.ages.crud.model.Livro;
 import br.ages.crud.util.ConexaoUtil;
 
 import com.mysql.jdbc.Statement;
@@ -19,9 +20,13 @@ import com.mysql.jdbc.Statement;
 public class AutorDAO {
 
 	private ArrayList<Autor> listarAutores;
+	private ArrayList<Autor> listarAutoresLivro;
+
 
 	public AutorDAO() {
 		listarAutores = new ArrayList<>();
+		listarAutoresLivro = new ArrayList<>();
+
 	}
 
 	public List<Autor> listarAutores() throws PersistenciaException, SQLException {
@@ -50,6 +55,43 @@ public class AutorDAO {
 			conexao.close();
 		}
 		return listarAutores;
+	}
+	
+	public List<Autor> listarAutoresLivro(Livro livro) throws PersistenciaException, SQLException {
+		Connection conexao = null;
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT A.ID_AUTOR, NOME, SOBRENOME "); 
+			sql.append("FROM TB_AUTOR A ");
+			sql.append("INNER JOIN TB_LIVRO_AUTOR LV ON A.ID_AUTOR = LV.ID_AUTOR ");
+			sql.append("WHERE ID_LIVRO = ?;");
+			
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			
+			statement.setInt(1, livro.getIdLivro());
+			
+			ResultSet resultset = statement.executeQuery();
+			
+			
+			
+			while (resultset.next()) {
+				Autor dto = new Autor();
+				dto.setId_autor(resultset.getInt("ID_AUTOR"));
+				dto.setNome(resultset.getString("NOME"));
+				dto.setSobrenome(resultset.getString("SOBRENOME"));
+				listarAutoresLivro.add(dto);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return listarAutoresLivro;
 	}
 
 	public void cadastrarAutor(Autor autor) throws PersistenciaException, SQLException, ParseException {
@@ -82,32 +124,32 @@ public class AutorDAO {
 	}
 	
 	public void alterarAutor(Autor autor) throws PersistenciaException,
-	SQLException, ParseException {
-	Connection conexao = null;
-	try {
-		Integer idAutor = null;
-	
-		conexao = ConexaoUtil.getConexao();
-	
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE TB_AUTOR SET NOME = ?, SOBRENOME = ? WHERE id_autor = ?");
+		SQLException, ParseException {
+		Connection conexao = null;
+		try {
+			Integer idAutor = null;
 		
-		PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-		statement.setString(1, autor.getNome());
-		statement.setString(2, autor.getSobrenome());
-		statement.setLong(3, autor.getId_autor());
-		statement.executeUpdate();
-	
-		ResultSet resultset = statement.getGeneratedKeys();
-		if (resultset.first()) {
-			idAutor = resultset.getInt(1);
+			conexao = ConexaoUtil.getConexao();
+		
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_AUTOR SET NOME = ?, SOBRENOME = ? WHERE id_autor = ?");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, autor.getNome());
+			statement.setString(2, autor.getSobrenome());
+			statement.setLong(3, autor.getId_autor());
+			statement.executeUpdate();
+		
+			ResultSet resultset = statement.getGeneratedKeys();
+			if (resultset.first()) {
+				idAutor = resultset.getInt(1);
+			}
+		
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
 		}
-	
-	} catch (ClassNotFoundException | SQLException e) {
-		throw new PersistenciaException(e);
-	} finally {
-		conexao.close();
-	}
 	}
 
 	public void removerAutor(Integer idAutor) throws PersistenciaException {
@@ -121,6 +163,31 @@ public class AutorDAO {
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idAutor);
 
+			statement.execute();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void removerAutoresLivro(Integer idAutor, Integer idLivro) throws PersistenciaException {
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("DELETE FROM TB_LIVRO_AUTOR WHERE ID_AUTOR= ? AND ID_LIVRO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idAutor);
+			statement.setInt(2, idLivro);
+			
 			statement.execute();
 			
 		} catch (ClassNotFoundException | SQLException e) {

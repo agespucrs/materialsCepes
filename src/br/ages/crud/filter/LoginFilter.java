@@ -13,11 +13,15 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet Filter implementation class LoginFilter
  */
 @WebFilter("/*")
 public class LoginFilter implements Filter {
+	
+	Logger logger = Logger.getLogger("filter.LoginFilter");
 	
 	private static final String[] URLS_TO_EXCLUDE = {".css", ".js", ".jpg", ".png", ".gif","login.jsp","/CePESMaterials/"};
 
@@ -25,7 +29,7 @@ public class LoginFilter implements Filter {
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		System.out.println("Filtro de Login Finalizado " + new Date());
+		logger.debug("Filtro de Login Finalizado " + new Date());
 	}
 
 	/**
@@ -36,23 +40,24 @@ public class LoginFilter implements Filter {
 
 		/*
 		 * if (httpRequest.getRequestURI().endsWith("login.jsp")){
-		 * System.out.println("É uma jsp: " + httpRequest.getRequestURI()); }
-		 * else { System.out.println("NÃO é uma JSP: " +
+		 * System.out.println("Eh uma jsp: " + httpRequest.getRequestURI()); }
+		 * else { System.out.println("NAO eh uma JSP: " +
 		 * httpRequest.getRequestURL()); }
 		 */
 
 		String uri = httpRequest.getRequestURI();
 		
-		// trocado pelo método isURLToExclusao(uri) (!uri.endsWith("login.jsp") && !uri.endsWith(".css") 
+		// trocado pelo metodo isURLToExclusao(uri) (!uri.endsWith("login.jsp") && !uri.endsWith(".css") 
 	
 		if (!isURLToExclusao(uri, httpRequest)) {
 			HttpSession session = httpRequest.getSession();
 			if (session.getAttribute("usuarioSessao") == null) {
-				request.setAttribute("msgErro", "Acesso negado! Você precisa logar primeiro");
+				request.setAttribute("msgAviso", "Acesso negado! Voce precisa logar primeiro");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
 				chain.doFilter(request, response);
 			}
+			
 		} else {
 			chain.doFilter(request, response);
 		}
@@ -62,7 +67,7 @@ public class LoginFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		System.out.println("Filtro de Login Inicializado " + new Date());
+		logger.debug("Filtro de Login Inicializado " + new Date());
 	}
 	
 	private boolean isURLToExclusao(String uri, HttpServletRequest request) {

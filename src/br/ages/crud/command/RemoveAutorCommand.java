@@ -3,6 +3,7 @@ package br.ages.crud.command;
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.AutorBO;
+import br.ages.crud.bo.LivroBO;
 import br.ages.crud.util.MensagemContantes;
 
 public class RemoveAutorCommand implements Command {
@@ -19,6 +20,7 @@ public class RemoveAutorCommand implements Command {
 		try {
 			Integer idAutor = Integer.parseInt(request.getParameter("id_autor"));
 			autorBO.removerAutor(idAutor);
+			
 			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_AUTOR.replace("?", idAutor.toString()).concat("<br/>"));
 			
 		} catch (Exception e) {

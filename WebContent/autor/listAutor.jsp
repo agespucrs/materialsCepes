@@ -6,7 +6,7 @@
 <%@ include file="/template/head.jsp"%>
 <div class="panel panel-primary panel-add">
 
-	<div class="panel-heading text-center">Lista Autores</div>
+	<div class="panel-heading text-center">Lista de Autores</div>
 
 	<div class="panel-body">
 
@@ -15,38 +15,36 @@
 		<div class="table-responsive">
 
 			<table class="table table-hover table-striped table-bordered">
-
 				<thead>
 					<tr>
-				<th style="text-align: center;"></th>
-				<th style="text-align: center;">Nome</th>
-				<th style="text-align: center;">Sobrenome</th>
-				<th style="text-align: center;">Ações</th>
-			</tr>
-			
-			<%
-				List<Autor> listaAutores = (List<Autor>) request.getAttribute("listaAutores");
-				int sizeListaAutores = listaAutores.size();
-				int tdChangeColor = 0;
-				
-				for (Autor autor : listaAutores) {
-			%>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td><%=autor.getNome() %></td>
-				<td><%= autor.getSobrenome() %></td>
-				<td>
-					<a href="/CePESMaterials/main?acao=consultarAutor&id_autor=<%=autor.getId_autor()%>"><img class="img" src="img/view.png"></a>
-					<a href="/CePESMaterials/main?acao=telaAutor&id_autor=<%=autor.getId_autor()%>&isEdit=sim"><img class="img" src="img/edit.png"/></a>
-					<a href="/CePESMaterials/main?acao=removerAutor&id_autor=<%=autor.getId_autor()%>"><img class="img" src="img/trash.png"/></a>
-				</td>
-			</tr>
-			<%
-				}
-			%>
+						<th style="text-align: center;"></th>
+						<th style="text-align: center;">Nome</th>
+						<th style="text-align: center;">Sobrenome</th>
+						<th colspan="2" style="text-align: center;">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						List<Autor> listaAutores = (List<Autor>) request.getAttribute("listaAutores");
+						int sizeListaAutores = listaAutores.size();
+						int tdChangeColor = 0;
+						for (Autor autor : listaAutores) {
+					%>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td align="center" class="au-nome"><%=autor.getNome() %></td>
+						<td align="center" class="au-sobrenome"><%= autor.getSobrenome() %></td>
+						<td align="center"><a href="/CePESMaterials/main?acao=telaAutor&id_autor=<%=autor.getId_autor()%>&isEdit=sim" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a></td>
+						<td align="center"><a href="/CePESMaterials/main?acao=removerAutor&id_autor=<%=autor.getId_autor()%>" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
+					</tr>
+					<%
+						}
+					%>
+				</tbody>
 			</table>
 			
-			<div id="totalRegistros" style="background: rgba(0,0,0,1); height: 40px;background: black;width: 100%;text-align: right;padding-right: 30px;line-height: 40px;"><%
+			<div id="totalRegistros" class="total">
+			<%
 				if(sizeListaAutores == 0)
 				{
 					%> <p>Nenhum autor encontrado.</p> <%	

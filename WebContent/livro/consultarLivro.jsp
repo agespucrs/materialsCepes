@@ -70,15 +70,15 @@
 					</tr>
 					<tr>
 						<td>Brochura</td>
-						<td><%if(livro.getBruxura_revista()){%><input onclick="return false" type="checkbox" id="bruxuraRevista" name="bruxuraRevista" checked/><%} else { %><input type="checkbox" id="bruxuraRevista" name="bruxuraRevista"/><% %></td>						
+						<td><%if(livro.getBrochura()){%><input onclick="return false" type="checkbox" id="brochura" name="brochura" checked/><%} else { %><input type="checkbox" id="brochura" name="brochura"/><% %></td>						
 						<td>Video</td>
 						<td><%if(livro.isVideo()){%><input onclick="alert()" type="checkbox" id="video" name="video" checked/><%} else { %><input type="checkbox" id="video" name="video"/><%}%></td>
 					</tr>
 					<tr>
 						<td>CD/DVD</td>
-						<td><%if(livro.isE_book()){%><input onclick="return false" type="checkbox" id="cd_dvd" name="cd_dvd" checked /><%} else { %><input type="checkbox" id="cd_dvd" name="cd_dvd"/><%}%></td></td>
+						<td><%if(livro.iseBook()){%><input onclick="return false" type="checkbox" id="cd_dvd" name="cd_dvd" checked /><%} else { %><input type="checkbox" id="cd_dvd" name="cd_dvd"/><%}%></td></td>
 						<td>e-book</td>
-						<td><%if(livro.isE_book()){%><input onclick="return false" type="checkbox" id="ebook" name="ebook" checked/><%} else { %><input type="checkbox" id="ebook" name="ebook"/><%}%></td>
+						<td><%if(livro.iseBook()){%><input onclick="return false" type="checkbox" id="ebook" name="ebook" checked/><%} else { %><input type="checkbox" id="ebook" name="ebook"/><%}%></td>
 					</tr>
 					<tr>
 						<td>Descrição</td>

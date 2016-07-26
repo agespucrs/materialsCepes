@@ -14,14 +14,14 @@ public class ListLivroCommand implements Command {
 
 	private String proxima;
 	private LivroBO livroBO;
-	
+
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException, ParseException {
 		this.livroBO = new LivroBO();
 		proxima = "livro/listLivro.jsp";
 
 		try {
-			List<Livro> listaLivros = livroBO.listarLivro();
+			List<Livro> listaLivros = livroBO.listarCopia();
 			request.setAttribute("listaLivros", listaLivros);
 		} catch (NegocioException e) {
 			e.printStackTrace();

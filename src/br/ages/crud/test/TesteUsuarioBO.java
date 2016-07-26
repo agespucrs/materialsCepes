@@ -49,7 +49,7 @@ public class TesteUsuarioBO {
 	public void testValidaCadastroUsuarioA() throws NegocioException{		
 		boolean ok = false;
 		usuarioCadastraUsuarioA.setNome("Teste Unitario Valida A");
-		usuarioCadastraUsuarioA.setAdministrador("N");
+		usuarioCadastraUsuarioA.setAdministrador(0);
 		usuarioCadastraUsuarioA.setEmail("testeUnitario@testeUnitario.com");
 		usuarioCadastraUsuarioA.setMatricula("123");
 		
@@ -62,7 +62,7 @@ public class TesteUsuarioBO {
 	public void testValidaCadastroUsuario() throws NegocioException {
 		boolean ok = false;
 		usuarioValidaCadastraUsuario.setNome("Teste Unitario Valida");
-		usuarioValidaCadastraUsuario.setAdministrador("N");
+		usuarioValidaCadastraUsuario.setAdministrador(1);
 		usuarioValidaCadastraUsuario.setEmail("testeUnitario@testeUnitario.com");
 		usuarioValidaCadastraUsuario.setMatricula("1234");
 		ok = usuarioBO.validaCadastroUsuario(usuarioValidaCadastraUsuario);
@@ -73,7 +73,7 @@ public class TesteUsuarioBO {
 	public void testRemoverUsuario() throws NegocioException, SQLException, ParseException {
 		boolean ok = false;
 		usuarioRemoveUsuario.setNome("Teste Unitario");
-		usuarioRemoveUsuario.setAdministrador("N");
+		usuarioRemoveUsuario.setAdministrador(0);
 		usuarioRemoveUsuario.setEmail("testeUnitario@testeUnitario.com");
 		usuarioRemoveUsuario.setMatricula("9898");
 		
@@ -88,7 +88,7 @@ public class TesteUsuarioBO {
 	public void testCadastraUsuario() throws NegocioException, SQLException, ParseException {		
 		boolean ok = false;
 		usuarioCadastraUsuario.setNome("Teste Unitario Cadastra");
-		usuarioCadastraUsuario.setAdministrador("N");
+		usuarioCadastraUsuario.setAdministrador(1);
 		usuarioCadastraUsuario.setEmail("testeUnitario@testeUnitario.com");
 		usuarioCadastraUsuario.setMatricula("989898");
 		ok = usuarioBO.cadastraUsuario(usuarioCadastraUsuario);

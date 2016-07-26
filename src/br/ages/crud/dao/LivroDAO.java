@@ -1,6 +1,7 @@
 package br.ages.crud.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import br.ages.crud.bo.EditoraBO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Autor;
+import br.ages.crud.model.CopiaLivro;
 import br.ages.crud.model.Livro;
 import br.ages.crud.util.ConexaoUtil;
 import br.ages.crud.util.MensagemContantes;
@@ -31,8 +33,7 @@ public class LivroDAO {
 		listarLivros = new ArrayList<>();
 	}
 
-	public boolean cadastrarLivro(Livro livro) throws PersistenciaException,
-			SQLException, ParseException {
+	public boolean cadastrarLivro(Livro livro) throws PersistenciaException, SQLException, ParseException {
 
 		Connection conexao = null;
 		try {
@@ -48,36 +49,30 @@ public class LivroDAO {
 
 			if (consultaCodigoISBNExistente(livro, conexao)) {
 
-				sql.append("UPDATE TB_LIVRO SET TITULO = ?,"
-						+ " SUBTITULO = ?," + " DATA_CADASTRO = ?,"
-						+ " PRECO = ?," + " LINGUA = ?," + " EDICAO = ?,"
-						+ " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?,"
-						+ " CD_DVD = ?," + " E_BOOK = ?," + " DESCRICAO = ?,"
-						+ " BRUXURA_REVISTA = ?," + " ID_EDITORA = ?,"
-						+ " EXCLUIDO = ?" + " WHERE CODIGO_ISBN = ?");
+				sql.append("UPDATE TB_LIVRO " + " SET TITULO = ?," + " SUBTITULO = ?," + " PRECO = ?,"
+						+ " CODIGO_ISBN = ?," + " EDICAO = ?," + " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?,"
+						+ " CD_DVD = ?," + " E_BOOK = ?," + " BROCHURA = ?," + " DESCRICAO = ?," + " REVISTA = ?," + " EXPIRAL = ?," + " DURA = ?,"
+						+ " WHERE CODIGO_ISBN = ?");
 
-				PreparedStatement statement = conexao.prepareStatement(sql
-						.toString());
+				PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
 				if (livroEstaExcluido(livro, conexao)) {
 					statement.setString(1, livro.getTitulo());
 					statement.setString(2, livro.getSubtitulo());
-					statement.setDate(3, dataCadastro);
-					statement.setLong(4, livro.getPreco());
-					statement.setString(5, livro.getLingua());
-					statement.setInt(6, livro.getEdicao());
-					java.sql.Date anoLivro = new java.sql.Date(livro.getAno()
-							.getTime());
-					statement.setDate(7, anoLivro);
-					statement.setInt(8, livro.getPaginas());
-					statement.setBoolean(9, livro.isVideo());
-					statement.setBoolean(10, livro.isCd_dvd());
-					statement.setBoolean(11, livro.isE_book());
+					statement.setFloat(3, livro.getPreco());
+					statement.setString(4, livro.getCodigoISBN());
+					statement.setInt(5, livro.getEdicao());
+					statement.setInt(6, livro.getAno());
+					statement.setInt(7, livro.getPaginas());
+					statement.setBoolean(8, livro.isVideo());
+					statement.setBoolean(9, livro.isCdDvd());
+					statement.setBoolean(10, livro.iseBook());
+					statement.setBoolean(11, livro.getBrochura());
 					statement.setString(12, livro.getDescricao());
-					statement.setBoolean(13, livro.getBruxura_revista());
-					statement.setInt(14, livro.getEditora().getIdEditora());
-					statement.setBoolean(15, false);
-					statement.setInt(16, livro.getIdLivro());
+					statement.setBoolean(13, livro.getRevista());
+					statement.setBoolean(14, livro.isExpiral());
+					statement.setBoolean(15, livro.isDura());
+					
 
 					statement.executeUpdate();
 
@@ -87,37 +82,36 @@ public class LivroDAO {
 				}
 				// END TO DO
 			} else {
-				sql.append("INSERT INTO TB_LIVRO (TITULO, SUBTITULO, DATA_CADASTRO, PRECO, LINGUA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, DESCRICAO, BRUXURA_REVISTA, ID_EDITORA, EXCLUIDO)");
-				sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				sql.append(
+						"INSERT INTO TB_LIVRO (TITULO, SUBTITULO, PRECO, ID_IDIOMA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA, EXPIRAL, DURA, DATA_CADASTRO)");
+				sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-				PreparedStatement statement = conexao.prepareStatement(
-						sql.toString(), Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 				statement.setString(1, livro.getTitulo());
 				statement.setString(2, livro.getSubtitulo());
-				statement.setDate(3, dataCadastro);
-				statement.setLong(4, livro.getPreco());
-				statement.setString(5, livro.getLingua());
-				statement.setString(6, livro.getCodigoISBN());
-				statement.setInt(7, livro.getEdicao());
-				if (livro.getAno() != null) {
-					java.sql.Date anoLivro = new java.sql.Date(livro.getAno()
-							.getTime());
-					statement.setDate(8, anoLivro);
-				} else {
-					statement.setDate(8, null);
-				}
-				if (livro.getPaginas() != null) {
-					statement.setInt(9, livro.getPaginas());
-				} else {
-					statement.setString(9, null);
-				}
-				statement.setBoolean(10, livro.isVideo());
-				statement.setBoolean(11, livro.isCd_dvd());
-				statement.setBoolean(12, livro.isE_book());
+				statement.setFloat(3, livro.getPreco());
+				statement.setInt(4, livro.getLingua());
+				statement.setString(5, livro.getCodigoISBN());
+				statement.setInt(6, livro.getEdicao());
+				statement.setInt(7, livro.getAno());
+				statement.setInt(8, livro.getPaginas());
+				statement.setBoolean(9, livro.isVideo());
+				statement.setBoolean(10, livro.isCdDvd());
+				statement.setBoolean(11, livro.iseBook());
+				statement.setBoolean(12, livro.getBrochura());
 				statement.setString(13, livro.getDescricao());
-				statement.setBoolean(14, livro.getBruxura_revista());
-				statement.setInt(15, livro.getEditora().getIdEditora());
-				statement.setBoolean(16, livro.getStatus());
+				statement.setInt(14, livro.getEditora().getIdEditora());
+				statement.setBoolean(15, livro.getStatus());
+				statement.setBoolean(16, livro.getRevista());
+				statement.setBoolean(17, livro.isExpiral());
+				statement.setBoolean(18, livro.isDura());
+				statement.setDate(19, new Date(new java.util.Date().getTime()));
+				
+				// add copia
+			//	CopiaLivro copia = new CopiaLivro();
+			//	copia.setCodigo_isbn(livro.getCodigoISBN());
+			//	copia.setIdLivro(livro.getIdLivro());
+			//	cadastrarCopia(copia);
 
 				statement.executeUpdate();
 
@@ -127,6 +121,12 @@ public class LivroDAO {
 					idLivro = resultset.getInt(1);
 				}
 
+				CopiaLivro copia = new CopiaLivro();
+				copia.setCodigo_isbn(livro.getCodigoISBN());
+				copia.setIdLivro(idLivro);
+				cadastrarCopia(copia);
+
+				
 				ArrayList<Integer> idAutores = new ArrayList<Integer>();
 				for (Autor aut : livro.getAutores()) {
 					idAutores.add(aut.getId_autor());
@@ -142,8 +142,7 @@ public class LivroDAO {
 		}
 	}
 
-	private boolean consultaCodigoISBNExistente(Livro livro, Connection conexao)
-			throws SQLException {
+	private boolean consultaCodigoISBNExistente(Livro livro, Connection conexao) throws SQLException {
 		Integer codISBN = null;
 
 		Livro livroISBNExistente = new Livro();
@@ -166,8 +165,7 @@ public class LivroDAO {
 		return true;
 	}
 
-	private boolean livroEstaExcluido(Livro livro, Connection conexao)
-			throws SQLException {
+	private boolean livroEstaExcluido(Livro livro, Connection conexao) throws SQLException {
 
 		Integer excluido = 0;
 
@@ -189,22 +187,113 @@ public class LivroDAO {
 		return true;
 	}
 
-	private void cadastraAutoresLivros(int IdLivro,
-			ArrayList<Integer> idAutores, Connection conexao)
+	private void cadastraAutoresLivros(int IdLivro, ArrayList<Integer> idAutores, Connection conexao)
 			throws SQLException {
 		for (Integer idAutor : idAutores) {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO TB_LIVRO_AUTOR (ID_LIVRO, ID_AUTOR) VALUES (?,?)");
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, IdLivro);
 			statement.setInt(2, idAutor);
 			statement.executeUpdate();
 		}
 	}
 
-	public List<Livro> listarLivros() throws PersistenciaException,
-			SQLException, NegocioException, ParseException {
+	private List<Autor> consultarAutoresLivro(int idLivro) throws PersistenciaException, SQLException {
+		List<Autor> lista = new ArrayList<Autor>();
+		Connection conexao = null;
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+
+			sql.append("SELECT AUT.NOME as NOME, AUT.SOBRENOME as SOBRENOME FROM TB_AUTOR AUT, ");
+			sql.append("TB_LIVRO_AUTOR LIV ");
+			sql.append("WHERE AUT.ID_AUTOR = LIV.ID_AUTOR AND ");
+			sql.append("LIV.ID_LIVRO = ? ");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			statement.setInt(1, idLivro);
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				Autor dto = new Autor();
+				dto.setNome(resultset.getString("NOME"));
+				dto.setSobrenome(resultset.getString("SOBRENOME"));
+				lista.add(dto);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+		return lista;
+	}
+
+	public List<Livro> listarCopias() throws PersistenciaException, SQLException, NegocioException, ParseException {
+
+		Connection conexao = null;
+		List<Livro> lista = new ArrayList<Livro>();
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+
+			sql.append("SELECT ID_LIVRO, TITULO, SUBTITULO, DATA_CADASTRO, PRECO, ID_IDIOMA, ");
+			sql.append(
+					"CODIGO, ID_COPIA, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, E_BOOK, BROCHURA, DESCRICAO, EXPIRAL, DURA, ID_EDITORA, ");
+			sql.append("LC.EXCLUIDO, REVISTA FROM TB_LIVRO LI ");
+			sql.append("INNER JOIN TB_LIVRO_COPIA LC ON LI.ID_LIVRO = LC.FK_ID_LIVRO  WHERE LC.EXCLUIDO = 0");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				if (!resultset.getBoolean("EXCLUIDO")) {
+					Livro dto = new Livro();
+					dto.setTitulo(resultset.getString("TITULO"));
+					EditoraBO editora = new EditoraBO();
+					dto.setIdLivro(resultset.getInt("ID_LIVRO"));
+					dto.setSubtitulo(resultset.getString("SUBTITULO"));
+					dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
+					dto.setPreco(resultset.getLong("PRECO"));
+					dto.setLingua(resultset.getInt("ID_IDIOMA"));
+					dto.setCodigoISBN(resultset.getString("CODIGO"));
+					dto.setEdicao(resultset.getInt("EDICAO"));
+					dto.setAno(resultset.getInt("ANO"));
+					dto.setPaginas(resultset.getInt("PAGINAS"));
+					dto.setVideo(resultset.getBoolean("VIDEO"));
+					dto.setCdDvd(resultset.getBoolean("CD_DVD"));
+					dto.seteBook(resultset.getBoolean("E_BOOK"));
+					dto.setDescricao(resultset.getString("DESCRICAO"));
+					dto.setBrochura(resultset.getBoolean("BROCHURA"));
+					dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
+					dto.setRevista(resultset.getBoolean("REVISTA"));
+					dto.setExpiral(resultset.getBoolean("EXPIRAL"));
+					dto.setDura(resultset.getBoolean("DURA"));
+					dto.setAutores(consultarAutoresLivro(dto.getIdLivro()));
+					dto.setIdCopia(resultset.getInt("ID_COPIA"));
+					lista.add(dto);
+				}
+			}
+
+			return lista;
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+	}
+
+	public List<Livro> listarLivros() throws PersistenciaException, SQLException, NegocioException, ParseException {
 
 		Connection conexao = null;
 
@@ -212,35 +301,39 @@ public class LivroDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_LIVRO INNER JOIN TB_EDITORA ON tb_livro.id_EDITORA = tb_editora.ID_EDITORA INNER JOIN TB_livro_AUTOR ON tb_livro.id_livro = tb_livro_autor.id_livro ORDER BY tb_livro.ID_LIVRO");
+			sql.append("SELECT ID_LIVRO, TITULO, SUBTITULO, DATA_CADASTRO, PRECO, ");
+			sql.append("ID_IDIOMA, CODIGO_ISBN, EDICAO, ANO, PAGINAS, VIDEO, CD_DVD, ");
+			sql.append("E_BOOK, BROCHURA, DESCRICAO, ID_EDITORA, EXCLUIDO, REVISTA, EXPIRAL, DURA ");
+			sql.append("FROM TB_LIVRO");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
 				if (!resultset.getBoolean("EXCLUIDO")) {
-					EditoraBO editora = new EditoraBO();
 					Livro dto = new Livro();
-					dto.setIdLivro(resultset.getInt("ID_LIVRO"));
 					dto.setTitulo(resultset.getString("TITULO"));
+					EditoraBO editora = new EditoraBO();
+					dto.setIdLivro(resultset.getInt("ID_LIVRO"));
 					dto.setSubtitulo(resultset.getString("SUBTITULO"));
 					dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
 					dto.setPreco(resultset.getLong("PRECO"));
-					dto.setLingua(resultset.getString("LINGUA"));
+					dto.setLingua(resultset.getInt("ID_IDIOMA"));
 					dto.setCodigoISBN(resultset.getString("CODIGO_ISBN"));
 					dto.setEdicao(resultset.getInt("EDICAO"));
-					dto.setAno(resultset.getDate("ANO"));
+					dto.setAno(resultset.getInt("ANO"));
 					dto.setPaginas(resultset.getInt("PAGINAS"));
 					dto.setVideo(resultset.getBoolean("VIDEO"));
-					dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
-					dto.setE_book(resultset.getBoolean("E_BOOK"));
+					dto.setCdDvd(resultset.getBoolean("CD_DVD"));
+					dto.seteBook(resultset.getBoolean("E_BOOK"));
 					dto.setDescricao(resultset.getString("DESCRICAO"));
-					dto.setBruxura_revista(resultset
-							.getBoolean("BRUXURA_REVISTA"));
-					dto.setEditora(editora.consultarEditora(resultset
-							.getInt("ID_EDITORA")));
+					dto.setBrochura(resultset.getBoolean("BROCHURA"));
+					dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
+					dto.setRevista(resultset.getBoolean("REVISTA"));
+					dto.setExpiral(resultset.getBoolean("EXPIRAL"));
+					dto.setDura(resultset.getBoolean("DURA"));
+					dto.setAutores(consultarAutoresLivro(dto.getIdLivro()));
 					listarLivros.add(dto);
 				}
 			}
@@ -253,8 +346,8 @@ public class LivroDAO {
 		return listarLivros;
 	}
 
-	public Livro consultarLivro(Integer idLivro) throws PersistenciaException,
-			SQLException, NegocioException, ParseException {
+	public Livro consultarLivro(Integer idLivro)
+			throws PersistenciaException, SQLException, NegocioException, ParseException {
 
 		Connection conexao = null;
 
@@ -265,8 +358,7 @@ public class LivroDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_LIVRO WHERE ID_LIVRO = ? ");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
 			ResultSet resultset = statement.executeQuery();
 
@@ -278,18 +370,21 @@ public class LivroDAO {
 				dto.setSubtitulo(resultset.getString("SUBTITULO"));
 				dto.setDataCadastro(resultset.getDate("DATA_CADASTRO"));
 				dto.setPreco(resultset.getLong("PRECO"));
-				dto.setLingua(resultset.getString("LINGUA"));
+				dto.setLingua(resultset.getInt("ID_IDIOMA"));
 				dto.setCodigoISBN(resultset.getString("CODIGO_ISBN"));
 				dto.setEdicao(resultset.getInt("EDICAO"));
-				dto.setAno(resultset.getDate("ANO"));
+				dto.setAno(resultset.getInt("ANO"));
 				dto.setPaginas(resultset.getInt("PAGINAS"));
 				dto.setVideo(resultset.getBoolean("VIDEO"));
-				dto.setCd_dvd(resultset.getBoolean("CD_DVD"));
-				dto.setE_book(resultset.getBoolean("E_BOOK"));
-				dto.setBruxura_revista(resultset.getBoolean("BRUXURA_REVISTA"));
+				dto.setCdDvd(resultset.getBoolean("CD_DVD"));
+				dto.seteBook(resultset.getBoolean("E_BOOK"));
+				dto.setBrochura(resultset.getBoolean("BROCHURA"));
 				dto.setDescricao(resultset.getString("DESCRICAO"));
-				dto.setEditora(editora.consultarEditora(resultset
-						.getInt("ID_EDITORA")));
+				dto.setEditora(editora.consultarEditora(resultset.getInt("ID_EDITORA")));
+				dto.setExcluido(resultset.getBoolean("EXCLUIDO"));
+				dto.setRevista(resultset.getBoolean("REVISTA"));
+				dto.setExpiral(resultset.getBoolean("EXPIRAL"));
+				dto.setDura(resultset.getBoolean("DURA"));
 				dto.setAutores(consultarAutoresLivros(idLivro, conexao));
 				consultarLivro = dto;
 			}
@@ -302,8 +397,7 @@ public class LivroDAO {
 		return consultarLivro;
 	}
 
-	private ArrayList<Autor> consultarAutoresLivros(Integer IdLivro,
-			Connection conexao) throws SQLException {
+	private ArrayList<Autor> consultarAutoresLivros(Integer IdLivro, Connection conexao) throws SQLException {
 		ArrayList<Integer> listaIdAutor = new ArrayList<Integer>();
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT ID_AUTOR FROM TB_LIVRO_AUTOR WHERE ID_LIVRO = ?");
@@ -316,15 +410,13 @@ public class LivroDAO {
 		return consultarAutores(listaIdAutor, conexao);
 	}
 
-	private ArrayList<Autor> consultarAutores(ArrayList<Integer> idAutores,
-			Connection conexao) throws SQLException {
+	private ArrayList<Autor> consultarAutores(ArrayList<Integer> idAutores, Connection conexao) throws SQLException {
 		ArrayList<Autor> listaAutores = new ArrayList<Autor>();
 		for (Integer idAutor : idAutores) {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_AUTOR WHERE ID_AUTOR = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idAutor);
 
 			ResultSet resultset = statement.executeQuery();
@@ -339,47 +431,46 @@ public class LivroDAO {
 		return listaAutores;
 	}
 
-	public void alterarLivro (Livro livro) throws PersistenciaException, SQLException, ParseException {
+	public void alterarLivro(Livro livro) throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
-		
+
 		try {
 
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			
-			//java.util.Date utilDate = new java.util.Date();
-			//java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
-					
-				
-			sql.append("UPDATE TB_LIVRO SET TITULO = ?,"
-					+ " SUBTITULO = ?,"
-					+ " PRECO = ?," + " LINGUA = ?," + " EDICAO = ?,"
-					+ " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?,"
-					+ " CD_DVD = ?," + " E_BOOK = ?," + " DESCRICAO = ?,"
-					+ " BRUXURA_REVISTA = ?," + " ID_EDITORA = ?,"
-					+ " EXCLUIDO = ?" + " WHERE ID_LIVRO = ?");
+
+			// java.util.Date utilDate = new java.util.Date();
+			// java.sql.Date dataCadastro = new
+			// java.sql.Date(utilDate.getTime());
+
+			sql.append("UPDATE TB_LIVRO SET TITULO = ?," + " SUBTITULO = ?," + " PRECO = ?," + " LINGUA = ?,"
+					+ " EDICAO = ?," + " ANO = ?," + " PAGINAS = ?," + " VIDEO = ?," + " CD_DVD = ?," + " E_BOOK = ?,"
+					+ " DESCRICAO = ?," + " BROCHURA = ?," + " ID_EDITORA = ?," + " EXCLUIDO = ?" + " REVISTA = ?" + " EXPIRAL = ?" + " DURA = ?"
+					+ "WHERE ID_LIVRO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, livro.getTitulo());
 			statement.setString(2, livro.getSubtitulo());
-			//statement.setDate(3, dataCadastro);
-			statement.setLong(3, livro.getPreco());
-			statement.setString(4, livro.getLingua());
+			statement.setFloat(3, livro.getPreco());
+			statement.setInt(4, livro.getLingua());
 			statement.setInt(5, livro.getEdicao());
-			java.sql.Date anoLivro = new java.sql.Date(livro.getAno().getTime());
-			statement.setDate(6, anoLivro);
+			statement.setInt(6, livro.getAno());
 			statement.setInt(7, livro.getPaginas());
 			statement.setBoolean(8, livro.isVideo());
-			statement.setBoolean(9, livro.isCd_dvd());
-			statement.setBoolean(10, livro.isE_book());
+			statement.setBoolean(9, livro.isCdDvd());
+			statement.setBoolean(10, livro.iseBook());
 			statement.setString(11, livro.getDescricao());
-			statement.setBoolean(12, livro.getBruxura_revista());
+			statement.setBoolean(12, livro.getBrochura());
 			statement.setInt(13, livro.getEditora().getIdEditora());
 			statement.setBoolean(14, false);
-			statement.setInt(15, livro.getIdLivro());
+			statement.setBoolean(15, livro.getRevista());
+			statement.setBoolean(16, livro.isExpiral());
+			statement.setBoolean(17, livro.isDura());
+			statement.setInt(18, livro.getIdLivro());
+			
 
 			statement.executeUpdate();
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
@@ -395,8 +486,7 @@ public class LivroDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE TB_LIVRO SET EXCLUIDO='1' WHERE ID_LIVRO = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idLivro);
 			statement.execute();
 
@@ -409,6 +499,105 @@ public class LivroDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void removerCopiaLivro(Integer idLivro) throws PersistenciaException {
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_LIVRO_COPIA SET EXCLUIDO=1 WHERE ID_COPIA = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idLivro);
+			statement.execute();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void cadastrarCopia(CopiaLivro copia) throws PersistenciaException {
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO TB_LIVRO_COPIA (FK_ID_LIVRO, CODIGO, EXCLUIDO) VALUES (?, ?, ?)");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, copia.getIdLivro());
+			statement.setString(2, copia.getCodigoIsbn());
+			statement.setInt(3, 0);
+			statement.execute();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void atualizarCopia(CopiaLivro copia) throws PersistenciaException {
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_LIVRO_COPIA SET CODIGO = ? WHERE ID_COPIA = ?");
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, copia.getCodigoIsbn());
+			statement.setInt(2, copia.getIdCopiaLivro());
+			statement.execute();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public CopiaLivro buscarCopia(Integer id) throws PersistenciaException, SQLException {
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ID_COPIA, CODIGO FROM TB_LIVRO_COPIA WHERE ID_COPIA = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, id);
+
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				CopiaLivro dto = new CopiaLivro();
+				dto.setIdCopiaLivro(resultset.getInt("ID_COPIA"));
+				dto.setCodigo_isbn(resultset.getString("CODIGO"));
+				return dto;
+
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+
+		return null;
 	}
 
 }
